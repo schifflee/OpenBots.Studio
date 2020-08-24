@@ -29,7 +29,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             txtDefaultValue.Text = elementValue;
 
             _isEditMode = true;
-            _editingVariableName = elementName;
+            _editingVariableName = elementName.Replace("<", "").Replace(">", "");
         }
 
         private void frmAddElement_Load(object sender, EventArgs e)
@@ -46,7 +46,8 @@ namespace taskt.UI.Forms.Supplement_Forms
                 return;
             }
 
-            var existingElement = ScriptElements.Where(var => var.ElementName == txtElementName.Text).FirstOrDefault();
+            string newElementName = txtElementName.Text.Replace("<", "").Replace(">", "");
+            var existingElement = ScriptElements.Where(var => var.ElementName == newElementName).FirstOrDefault();
             if (existingElement != null)                
             {
                 if (!_isEditMode || existingElement.ElementName != _editingVariableName)

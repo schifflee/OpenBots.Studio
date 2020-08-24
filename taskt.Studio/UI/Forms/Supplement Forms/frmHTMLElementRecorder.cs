@@ -28,16 +28,13 @@ namespace taskt.UI.Forms.Supplement_Forms
 
         private void frmHTMLElementRecorder_Load(object sender, EventArgs e)
         {
-
         }
 
         private void pbRecord_Click(object sender, EventArgs e)
         {
             TopMost = true;
             if (!chkStopOnClick.Checked)
-            {
                 lblDescription.Text = $"Recording.  Press F2 to stop recording!";
-            }
 
             SearchParameters = new DataTable();
             SearchParameters.Columns.Add("Enabled");
@@ -64,48 +61,49 @@ namespace taskt.UI.Forms.Supplement_Forms
         private void Document_Click(object sender, HtmlElementEventArgs e)
         {
             //mouse down has occured
-            try
+            if (e != null)
             {
-                HtmlElement element = wbElementRecorder.Document.GetElementFromPoint(e.ClientMousePosition);
+                try
+                {
+                    HtmlElement element = wbElementRecorder.Document.GetElementFromPoint(e.ClientMousePosition);
 
-                string savedId = element.Id;
-                string uniqueId = Guid.NewGuid().ToString();
-                element.Id = uniqueId;
+                    string savedId = element.Id;
+                    string uniqueId = Guid.NewGuid().ToString();
+                    element.Id = uniqueId;
 
-                HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-                doc.LoadHtml(element.Document.GetElementsByTagName("html")[0].OuterHtml);
-                element.Id = savedId;
-                HtmlNode node = doc.GetElementbyId(uniqueId);
+                    HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                    doc.LoadHtml(element.Document.GetElementsByTagName("html")[0].OuterHtml);
+                    element.Id = savedId;
+                    HtmlNode node = doc.GetElementbyId(uniqueId);
 
-                _xPath = node.XPath.Replace("[1]", "");
-                _name = element.GetAttribute("name") == null ? "" : element.GetAttribute("name");
-                _id = element.GetAttribute("id") == null ? "" : element.GetAttribute("id"); ;
-                _tagName = element.TagName;
-                _className = element.GetAttribute("className") == null ? "" : element.GetAttribute("className");
-                _linkText = element.TagName.ToLower() == "a" ? element.InnerText : "";
-                _cssSelector = ""; //TODO
+                    _xPath = node.XPath.Replace("[1]", "");
+                    _name = element.GetAttribute("name") == null ? "" : element.GetAttribute("name");
+                    _id = element.GetAttribute("id") == null ? "" : element.GetAttribute("id"); ;
+                    _tagName = element.TagName;
+                    _className = element.GetAttribute("className") == null ? "" : element.GetAttribute("className");
+                    _linkText = element.TagName.ToLower() == "a" ? element.InnerText : "";
+                    _cssSelector = ""; //TODO
 
-                LastItemClicked = $"[XPath:{_xPath}].[ID:{_id}].[Name:{_name}].[Tag Name:{_tagName}].[Class:{_className}].[Link Text:{_linkText}].[CSS Selector:{_cssSelector}]";
-                lblSubHeader.Text = LastItemClicked;
+                    LastItemClicked = $"[XPath:{_xPath}].[ID:{_id}].[Name:{_name}].[Tag Name:{_tagName}].[Class:{_className}].[Link Text:{_linkText}].[CSS Selector:{_cssSelector}]";
+                    lblSubHeader.Text = LastItemClicked;
 
-                SearchParameters.Rows.Clear();
-                SearchParameters.Rows.Add("XPath", _xPath);
-                SearchParameters.Rows.Add("ID", _id);
-                SearchParameters.Rows.Add("Name", _name);
-                SearchParameters.Rows.Add("Tag Name", _tagName);
-                SearchParameters.Rows.Add("Class Name", _className);
-                SearchParameters.Rows.Add("CSS Selector", _cssSelector); //TODO produce the appropriate CSS selector for selenium automation
-                SearchParameters.Rows.Add("Link Text", _linkText);
-            }
-            catch (Exception)
-            {
-                lblDescription.Text = "Error cloning element. Please Try Again.";
+                    SearchParameters.Rows.Clear();
+                    SearchParameters.Rows.Add("XPath", _xPath);
+                    SearchParameters.Rows.Add("ID", _id);
+                    SearchParameters.Rows.Add("Name", _name);
+                    SearchParameters.Rows.Add("Tag Name", _tagName);
+                    SearchParameters.Rows.Add("Class Name", _className);
+                    SearchParameters.Rows.Add("CSS Selector", _cssSelector); //TODO produce the appropriate CSS selector for selenium automation
+                    SearchParameters.Rows.Add("Link Text", _linkText);
+                }
+                catch (Exception)
+                {
+                    lblDescription.Text = "Error cloning element. Please Try Again.";
+                }
             }
 
             if (chkStopOnClick.Checked)
-            {
                 Close();
-            }
         }
 
         private void pbRefresh_Click(object sender, EventArgs e)
@@ -160,7 +158,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             {
                 ScriptElement newElement = new ScriptElement()
                 {
-                    ElementName = addElementForm.txtElementName.Text,
+                    ElementName = addElementForm.txtElementName.Text.Replace("<", "").Replace(">", ""),
                     ElementType = (ScriptElementType)Enum.Parse(typeof(ScriptElementType), 
                                         addElementForm.cbxElementType.SelectedItem.ToString().Replace(" ", "")),
                     ElementValue = addElementForm.txtDefaultValue.Text

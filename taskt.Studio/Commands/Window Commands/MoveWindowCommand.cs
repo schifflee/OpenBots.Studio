@@ -16,37 +16,34 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Window Commands")]
-    [Description("This command moves a window to a specified location on screen.")]
-    [UsesDescription("Use this command when you want to move an existing window by name to a certain point on the screen.")]
-    [ImplementationDescription("This command implements 'FindWindowNative', 'SetWindowPos' from user32.dll to achieve automation.")]
+    [Description("This command moves an open window to a specified location on screen.")]
     public class MoveWindowCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [PropertyDescription("Please enter or select the window that you want to move.")]
-        [InputSpecification("Input or Type the name of the window that you want to move.")]
-        [SampleUsage("**Untitled - Notepad**")]
+        [PropertyDescription("Window Name")]
+        [InputSpecification("Select the name of the window to move.")]
+        [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]
         [Remarks("")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_WindowName { get; set; }
-        [XmlAttribute]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [PropertyDescription("Please indicate the new X horizontal coordinate (pixel) for the window's location.  0 starts at the left of the screen.")]
-        [InputSpecification("Input the new horizontal coordinate of the window, 0 starts at the left and goes to the right")]
-        [SampleUsage("0")]
-        [Remarks("This number is the pixel location on screen. Maximum value should be the maximum value allowed by your resolution. For 1920x1080, the valid range could be 0-1920")]
-        public string v_XWindowPosition { get; set; }
-        [XmlAttribute]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [PropertyDescription("Please indicate the new Y vertical coordinate (pixel) for the window's location.  0 starts at the top of the screen.")]
-        [InputSpecification("Input the new vertical coordinate of the window, 0 starts at the top and goes downwards")]
-        [SampleUsage("0")]
-        [Remarks("This number is the pixel location on screen. Maximum value should be the maximum value allowed by your resolution. For 1920x1080, the valid range could be 0-1080")]
-        public string v_YWindowPosition { get; set; }
 
-        [XmlIgnore]
-        [NonSerialized]
-        public ComboBox WindowNameControl;
+        [XmlAttribute]
+        [PropertyDescription("X Position")]
+        [InputSpecification("Input the new horizontal coordinate of the window. Starts from 0 on the left and increases going right.")]
+        [SampleUsage("0 || {vXPosition}")]
+        [Remarks("This number is the pixel location on screen. Maximum value should be the maximum value allowed by your resolution. For 1920x1080, the valid range would be 0-1920.")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowMouseCaptureHelper)]
+        public string v_XMousePosition { get; set; }
 
+        [XmlAttribute]
+        [PropertyDescription("Y Position")]
+        [InputSpecification("Input the new vertical coordinate of the window. Starts from 0 at the top and increases going down.")]
+        [SampleUsage("0 || {vYPosition}")]
+        [Remarks("This number is the pixel location on screen. Maximum value should be the maximum value allowed by your resolution. For 1920x1080, the valid range would be 0-1080.")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowMouseCaptureHelper)]
+        public string v_YMousePosition { get; set; }
 
         public MoveWindowCommand()
         {
@@ -54,73 +51,49 @@ namespace taskt.Commands
             SelectionName = "Move Window";
             CommandEnabled = true;
             CustomRendering = true;
+            v_WindowName = "Current Window";
+            v_XMousePosition = "0";
+            v_YMousePosition = "0";
         }
 
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
             string windowName = v_WindowName.ConvertUserVariableToString(engine);
+            var variableXPosition = v_XMousePosition.ConvertUserVariableToString(engine);
+            var variableYPosition = v_YMousePosition.ConvertUserVariableToString(engine);
 
             var targetWindows = User32Functions.FindTargetWindows(windowName);
 
             //loop each window
             foreach (var targetedWindow in targetWindows)
             {
-                var variableXPosition = v_XWindowPosition.ConvertUserVariableToString(engine);
-                var variableYPosition = v_YWindowPosition.ConvertUserVariableToString(engine);
-
+                User32Functions.SetWindowState(targetedWindow, WindowState.SwShowNormal);
+            
                 if (!int.TryParse(variableXPosition, out int xPos))
-                {
-                    throw new Exception("X Position Invalid - " + v_XWindowPosition);
-                }
-                if (!int.TryParse(variableYPosition, out int yPos))
-                {
-                    throw new Exception("X Position Invalid - " + v_XWindowPosition);
-                }
+                    throw new Exception("X Position Invalid - " + v_XMousePosition);
 
+                if (!int.TryParse(variableYPosition, out int yPos))
+                    throw new Exception("Y Position Invalid - " + v_YMousePosition);
 
                 User32Functions.SetWindowPosition(targetedWindow, xPos, yPos);
             }
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
 
-            //create window name helper control
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_WindowName", this));
-            WindowNameControl = CommandControls.CreateStandardComboboxFor("v_WindowName", this).AddWindowNames();
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_WindowName", this, new Control[] { WindowNameControl }, editor));
-            RenderedControls.Add(WindowNameControl);
-
-            var xGroup = CommandControls.CreateDefaultInputGroupFor("v_XWindowPosition", this, editor);
-            var yGroup = CommandControls.CreateDefaultInputGroupFor("v_YWindowPosition", this, editor);
-            RenderedControls.AddRange(xGroup);
-            RenderedControls.AddRange(yGroup);
-
-            //RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_XWindowPosition", this));
-            //var xPositionControl = CommandControls.CreateDefaultInputFor("v_XWindowPosition", this);
-            //RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_XWindowPosition", this, new Control[] { xPositionControl }, editor));
-            //RenderedControls.Add(xPositionControl);
-
-            //RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_YWindowPosition", this));
-            //var yPositionControl = CommandControls.CreateDefaultInputFor("v_YWindowPosition", this);
-            //RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_YWindowPosition", this, new Control[] { yPositionControl }, editor));
-            //RenderedControls.Add(yPositionControl);
-
+            RenderedControls.AddRange(CommandControls.CreateDefaultWindowControlGroupFor("v_WindowName", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_XMousePosition", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_YMousePosition", this, editor));
 
             return RenderedControls;
-
         }
-        public override void Refresh(IfrmCommandEditor editor)
-        {
-            base.Refresh();
-            WindowNameControl.AddWindowNames();
-        }
-
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Target Window: " + v_WindowName + ", Target Coordinates (" + v_XWindowPosition + "," + v_YWindowPosition + ")]";
+            return base.GetDisplayValue() + $" [Window '{v_WindowName}' - Target Coordinates '({v_XMousePosition},{v_YMousePosition})']";
         }
     }
 }

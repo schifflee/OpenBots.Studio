@@ -17,6 +17,7 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Script;
 using taskt.Core.Settings;
+using taskt.Core.Utilities.CommandUtilities;
 using taskt.Properties;
 using taskt.UI.CustomControls.CustomUIControls;
 using taskt.UI.Forms;
@@ -59,7 +60,6 @@ namespace taskt.UI.CustomControls
 
         public static List<Control> CreateDefaultDropdownGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor)
         {
-            //Todo: Test
             var controlList = new List<Control>();
             var label = CreateDefaultLabelFor(parameterName, parent);
             var input = CreateDropdownFor(parameterName, parent);
@@ -82,6 +82,20 @@ namespace taskt.UI.CustomControls
             controlList.Add(label);
             controlList.AddRange(helpers);
             controlList.Add(gridview);
+
+            return controlList;
+        }
+
+        public static List<Control> CreateDefaultWindowControlGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor)
+        {
+            var controlList = new List<Control>();
+            var label = CreateDefaultLabelFor(parameterName, parent);
+            var windowNameControl = CreateStandardComboboxFor(parameterName, parent).AddWindowNames();
+            var helpers = CreateUIHelpersFor(parameterName, parent, new Control[] { windowNameControl }, (frmCommandEditor)editor);
+
+            controlList.Add(label);
+            controlList.AddRange(helpers);
+            controlList.Add(windowNameControl);
 
             return controlList;
         }
@@ -330,7 +344,7 @@ namespace taskt.UI.CustomControls
                         helperControl.CommandImage = Resources.command_input;
                         helperControl.CommandDisplay = "Capture Mouse Position";
                         helperControl.ForeColor = Color.AliceBlue;
-                        helperControl.Click += (sender, e) => ShowMouseCaptureForm(sender, e);
+                        helperControl.Click += (sender, e) => ShowMouseCaptureForm(sender, e, (frmCommandEditor)editor);
                         break;
                     case UIAdditionalHelperType.ShowElementRecorder:
                         //show variable selector
@@ -371,10 +385,16 @@ namespace taskt.UI.CustomControls
                         helperControl.CommandImage = Resources.command_startloop;
                         helperControl.CommandDisplay = "Add New Loop Statement";
                         break;
+                    case UIAdditionalHelperType.ShowEncryptionHelper:
+                        //show variable selector
+                        helperControl.CommandImage = Resources.command_password;
+                        helperControl.CommandDisplay = "Encrypt Text";
+                        helperControl.Click += (sender, e) => EncryptText(sender, e, (frmCommandEditor)editor);
+                        break;
 
-                    //default:
-                    //    MessageBox.Show("Command Helper does not exist for: " + attrib.additionalHelper.ToString());
-                    //    break;
+                        //default:
+                        //    MessageBox.Show("Command Helper does not exist for: " + attrib.additionalHelper.ToString());
+                        //    break;
                 }
 
                 controlList.Add(helperControl);
@@ -410,23 +430,16 @@ namespace taskt.UI.CustomControls
             }
         }
 
-        private static void ShowMouseCaptureForm(object sender, EventArgs e)
+        private static void ShowMouseCaptureForm(object sender, EventArgs e, IfrmCommandEditor editor)
         {
             frmShowCursorPosition frmShowCursorPos = new frmShowCursorPosition();
 
             //if user made a successful selection
             if (frmShowCursorPos.ShowDialog() == DialogResult.OK)
             {
-                //Todo - ideally one function to add to textbox which adds to class
-
                 //add selected variables to associated control text
-                CurrentEditor.flw_InputVariables.Controls["v_XMousePosition"].Text = frmShowCursorPos.XPosition.ToString();
-                CurrentEditor.flw_InputVariables.Controls["v_YMousePosition"].Text = frmShowCursorPos.YPosition.ToString();
-
-                //find current command and add to underlying class
-                SendMouseMoveCommand cmd = (SendMouseMoveCommand)CurrentEditor.SelectedCommand;
-                cmd.v_XMousePosition = frmShowCursorPos.XPosition.ToString();
-                cmd.v_YMousePosition = frmShowCursorPos.YPosition.ToString();
+                ((frmCommandEditor)editor).flw_InputVariables.Controls["v_XMousePosition"].Text = frmShowCursorPos.XPosition.ToString();
+                ((frmCommandEditor)editor).flw_InputVariables.Controls["v_YMousePosition"].Text = frmShowCursorPos.YPosition.ToString();
             }
         }
 
@@ -796,13 +809,28 @@ namespace taskt.UI.CustomControls
         {
             var htmlForm = new frmHTMLBuilder();
 
-            RichTextBox inputControl = (RichTextBox)((frmCommandEditor)editor).flw_InputVariables.Controls["v_InputHTML"];
-            htmlForm.rtbHTML.Text = inputControl.Text;
+            TextBox inputControl = (TextBox)((frmCommandEditor)editor).flw_InputVariables.Controls["v_InputHTML"];
+            htmlForm.rtbHTML.Text = ((frmCommandEditor)editor).flw_InputVariables.Controls["v_InputHTML"].Text;
 
             if (htmlForm.ShowDialog() == DialogResult.OK)
             {
                 inputControl.Text = htmlForm.rtbHTML.Text;
             }
+        }
+
+        private static void EncryptText(object sender, EventArgs e, IfrmCommandEditor editor)
+        {
+            CommandItemControl inputBox = (CommandItemControl)sender;
+            TextBox targetTextbox = (TextBox)inputBox.Tag;
+
+            if (string.IsNullOrEmpty(targetTextbox.Text))
+                return;
+
+            var encrypted = EncryptionServices.EncryptString(targetTextbox.Text, "TASKT");
+            targetTextbox.Text = encrypted;
+
+            ComboBox comboBoxControl = (ComboBox)((frmCommandEditor)editor).flw_InputVariables.Controls["v_EncryptionOption"];
+            comboBoxControl.Text = "Encrypted";
         }
 
         public static void ShowAllForms()

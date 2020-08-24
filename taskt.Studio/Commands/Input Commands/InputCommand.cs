@@ -20,40 +20,40 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Input Commands")]
-    [Description("Sends keystrokes to a targeted window")]
-    [UsesDescription("Use this command when you want to send keystroke inputs to a window.")]
-    [ImplementationDescription("This command implements 'Windows.Forms.SendKeys' method to achieve automation.")]
+    [Description("This command provides the user with a form to input and store a collection of data.")]
     public class InputCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Please specify a heading name")]
+        [PropertyDescription("Header Name")]
         [InputSpecification("Define the header to be displayed on the input form.")]
-        [SampleUsage("n/a")]
+        [SampleUsage("Please Provide Input || {vHeader}")]
         [Remarks("")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_InputHeader { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Please specify input directions")]
-        [InputSpecification("Define the directions you want to give the user.")]
-        [SampleUsage("n/a")]
+        [PropertyDescription("Input Directions")]
+        [InputSpecification("Define the directions to give to the user.")]
+        [SampleUsage("Directions: Please fill in the following fields || {vDirections}")]
         [Remarks("")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_InputDirections { get; set; }
 
         [XmlElement]
-        [PropertyDescription("User Input Parameters")]
+        [PropertyDescription("Input Parameters")]
         [InputSpecification("Define the required input parameters.")]
-        [SampleUsage("n/a")]
+        [SampleUsage("[TextBox | Name | 500,30 | John | {vName}]")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public DataTable v_UserInputConfig { get; set; }
 
         [XmlIgnore]
         [NonSerialized]
-        private DataGridView UserInputGridViewHelper;
+        private DataGridView _userInputGridViewHelper;
 
         [XmlIgnore]
         [NonSerialized]
-        private CommandItemControl AddRowControl;
+        private CommandItemControl _addRowControl;
 
         public InputCommand()
         {
@@ -68,28 +68,22 @@ namespace taskt.Commands
             v_UserInputConfig.Columns.Add("Label");
             v_UserInputConfig.Columns.Add("Size");
             v_UserInputConfig.Columns.Add("DefaultValue");
-            v_UserInputConfig.Columns.Add("UserInput");
-            v_UserInputConfig.Columns.Add("ApplyToVariable");
+            v_UserInputConfig.Columns.Add("StoreInVariable");
 
             v_InputHeader = "Please Provide Input";
             v_InputDirections = "Directions: Please fill in the following fields";
-
         }
 
         public override void RunCommand(object sender)
         {
-
-
             var engine = (AutomationEngineInstance)sender;
-
 
             if (engine.TasktEngineUI == null)
             {
                 engine.ReportProgress("UserInput Supported With UI Only");
-                System.Windows.Forms.MessageBox.Show("UserInput Supported With UI Only", "UserInput Command", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                MessageBox.Show("UserInput Supported With UI Only", "UserInput Command", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
 
             //create clone of original
             dynamic clonedCommand = Common.Clone(this);
@@ -102,13 +96,13 @@ namespace taskt.Commands
             foreach (DataRow rw in clonedCommand.v_UserInputConfig.Rows)
             {
                 rw["DefaultValue"] = rw["DefaultValue"].ToString().ConvertUserVariableToString(engine);
-
-                var targetVariable = rw["ApplyToVariable"] as string;
+                var targetVariable = rw["StoreInVariable"] as string;
 
                 if (string.IsNullOrEmpty(targetVariable))
                 {
                     var newMessage = new ShowMessageCommand();
-                    newMessage.v_Message = "User Input question '" + rw["Label"] + "' is missing variables to apply results to! Results for the item will not be tracked.  To fix this, assign a variable in the designer!";
+                    newMessage.v_Message = "User Input question '" + rw["Label"] + "' is missing variables to apply results to! " + 
+                                           "Results for the item will not be tracked. To fix this, assign a variable in the designer!";
                     newMessage.v_AutoCloseAfter = "10";
                     newMessage.RunCommand(sender);
                 }
@@ -127,13 +121,11 @@ namespace taskt.Commands
                     for (int i = 0; i < userInputs.Count; i++)
                     {                       
                         //get target variable
-                        var targetVariable = v_UserInputConfig.Rows[i]["ApplyToVariable"] as string;
+                        var targetVariable = v_UserInputConfig.Rows[i]["StoreInVariable"] as string;
 
                         //store user data in variable
                         if (!string.IsNullOrEmpty(targetVariable))
-                        {
                             ((object)userInputs[i]).StoreInUserVariable(engine, targetVariable);
-                        }
                     }
                 }
             }));
@@ -141,13 +133,11 @@ namespace taskt.Commands
 
         public override List<Control> Render(IfrmCommandEditor editor)
         {
-
-
             base.Render(editor);
 
-            UserInputGridViewHelper = new DataGridView();
-            UserInputGridViewHelper.KeyDown += UserInputDataGridView_KeyDown;
-            UserInputGridViewHelper.DataBindings.Add("DataSource", this, "v_UserInputConfig", false, DataSourceUpdateMode.OnPropertyChanged);
+            _userInputGridViewHelper = new DataGridView();
+            _userInputGridViewHelper.KeyDown += UserInputDataGridView_KeyDown;
+            _userInputGridViewHelper.DataBindings.Add("DataSource", this, "v_UserInputConfig", false, DataSourceUpdateMode.OnPropertyChanged);
 
             var typefield = new DataGridViewComboBoxColumn();
             typefield.Items.Add("TextBox");
@@ -155,78 +145,68 @@ namespace taskt.Commands
             typefield.Items.Add("ComboBox");
             typefield.HeaderText = "Input Type";
             typefield.DataPropertyName = "Type";
-            UserInputGridViewHelper.Columns.Add(typefield);
+            _userInputGridViewHelper.Columns.Add(typefield);
 
             var field = new DataGridViewTextBoxColumn();
             field.HeaderText = "Input Label";
             field.DataPropertyName = "Label";
-            UserInputGridViewHelper.Columns.Add(field);
-
+            _userInputGridViewHelper.Columns.Add(field);
 
             field = new DataGridViewTextBoxColumn();
             field.HeaderText = "Input Size (X,Y)";
             field.DataPropertyName = "Size";
-            UserInputGridViewHelper.Columns.Add(field);
+            _userInputGridViewHelper.Columns.Add(field);
 
             field = new DataGridViewTextBoxColumn();
             field.HeaderText = "Default Value";
             field.DataPropertyName = "DefaultValue";
-            UserInputGridViewHelper.Columns.Add(field);
+            _userInputGridViewHelper.Columns.Add(field);
 
             field = new DataGridViewTextBoxColumn();
             field.HeaderText = "Assigned Variable";
-            field.DataPropertyName = "ApplyToVariable";
-            UserInputGridViewHelper.Columns.Add(field);
+            field.DataPropertyName = "StoreInVariable";
+            _userInputGridViewHelper.Columns.Add(field);
 
-            UserInputGridViewHelper.ColumnHeadersHeight = 30;
-            UserInputGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            UserInputGridViewHelper.AllowUserToAddRows = false;
-            UserInputGridViewHelper.AllowUserToDeleteRows = false;
+            _userInputGridViewHelper.ColumnHeadersHeight = 30;
+            _userInputGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _userInputGridViewHelper.AllowUserToAddRows = false;
+            _userInputGridViewHelper.AllowUserToDeleteRows = false;
 
-
-            AddRowControl = new CommandItemControl();
-            AddRowControl.Padding = new Padding(10, 0, 0, 0);
-            AddRowControl.ForeColor = Color.AliceBlue;
-            AddRowControl.Font = new Font("Segoe UI Semilight", 10);
-            AddRowControl.CommandImage = Resources.command_input;
-            AddRowControl.CommandDisplay = "Add Input Parameter";
-            AddRowControl.Click += (sender, e) => AddInputParameter(sender, e, editor);
+            _addRowControl = new CommandItemControl();
+            _addRowControl.Padding = new Padding(10, 0, 0, 0);
+            _addRowControl.ForeColor = Color.AliceBlue;
+            _addRowControl.Font = new Font("Segoe UI Semilight", 10);
+            _addRowControl.CommandImage = Resources.command_input;
+            _addRowControl.CommandDisplay = "Add Input Parameter";
+            _addRowControl.Click += (sender, e) => AddInputParameter(sender, e, editor);
 
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InputHeader", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InputDirections", this, editor));
+
             RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_UserInputConfig", this));
-            RenderedControls.Add(AddRowControl);
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_UserInputConfig", this, new Control[] { UserInputGridViewHelper }, editor));
-            RenderedControls.Add(UserInputGridViewHelper);
-
-
+            RenderedControls.Add(_addRowControl);
+            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_UserInputConfig", this, new Control[] { _userInputGridViewHelper }, editor));
+            RenderedControls.Add(_userInputGridViewHelper);
 
             return RenderedControls;
+        }
 
+        public override string GetDisplayValue()
+        {
+            return base.GetDisplayValue() + $" [{ v_InputHeader}]";
         }
 
         private void AddInputParameter(object sender, EventArgs e, IfrmCommandEditor editor)
         {
             var newRow = v_UserInputConfig.NewRow();
-            newRow["Size"] = "500,100";
+            newRow["Size"] = "500,30";
             v_UserInputConfig.Rows.Add(newRow);
-
         }
 
         private void UserInputDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
-
-
-            if (UserInputGridViewHelper.SelectedRows.Count > 0)
-            {
-                UserInputGridViewHelper.Rows.RemoveAt(UserInputGridViewHelper.SelectedCells[0].RowIndex);
-            }
-
-        }
-
-        public override string GetDisplayValue()
-        {
-            return base.GetDisplayValue() + " [" + v_InputHeader + "]";
+            if (_userInputGridViewHelper.SelectedRows.Count > 0)
+                _userInputGridViewHelper.Rows.RemoveAt(_userInputGridViewHelper.SelectedCells[0].RowIndex);
         }
     }
 }

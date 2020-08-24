@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
 using System.Reflection;
 using System.Windows.Automation;
 using System.Windows.Forms;
@@ -38,11 +37,8 @@ namespace taskt.UI.Forms.Supplement_Forms
                 TopMost = true;
             }
             else
-            {
                 WindowState = FormWindowState.Minimized;
-            }
          
-            Size = new Size(540, 156);
             SearchParameters = new DataTable();
             SearchParameters.Columns.Add("Enabled");
             SearchParameters.Columns.Add("Parameter Name");
@@ -81,52 +77,50 @@ namespace taskt.UI.Forms.Supplement_Forms
         private void GlobalHook_MouseEvent(object sender, MouseCoordinateEventArgs e)
         {
             //mouse down has occured
-
-            //invoke UIA
-            try
+            if (e != null)
             {
-                AutomationElement element = AutomationElement.FromPoint(e.MouseCoordinates);
-                AutomationElement.AutomationElementInformation elementProperties = element.Current;
-
-                LastItemClicked = $"[Name:{element.Current.Name}].[ID:{element.Current.AutomationId.ToString()}].[Class:{element.Current.ClassName}]";
-                lblSubHeader.Text = LastItemClicked;
-
-                SearchParameters.Rows.Clear();
-
-                //get properties from class via reflection
-                PropertyInfo[] properties = typeof(AutomationElement.AutomationElementInformation).GetProperties();
-                Array.Sort(properties, (x, y) => String.Compare(x.Name, y.Name));
-
-                //loop through each property and get value from the element
-                foreach (PropertyInfo property in properties)
+                //invoke UIA
+                try
                 {
-                    try
-                    {
-                        var propName = property.Name;
-                        var propValue = property.GetValue(elementProperties, null);
+                    AutomationElement element = AutomationElement.FromPoint(e.MouseCoordinates);
+                    AutomationElement.AutomationElementInformation elementProperties = element.Current;
 
-                        //if property is a basic type then display
-                        if ((propValue is string) || (propValue is bool) || (propValue is int) || (propValue is double))
+                    LastItemClicked = $"[Automation ID:{element.Current.AutomationId}].[Name:{element.Current.Name}].[Class:{element.Current.ClassName}]";
+                    lblSubHeader.Text = LastItemClicked;
+
+                    SearchParameters.Rows.Clear();
+
+                    //get properties from class via reflection
+                    PropertyInfo[] properties = typeof(AutomationElement.AutomationElementInformation).GetProperties();
+                    Array.Sort(properties, (x, y) => string.Compare(x.Name, y.Name));
+
+                    //loop through each property and get value from the element
+                    foreach (PropertyInfo property in properties)
+                    {
+                        try
                         {
-                            SearchParameters.Rows.Add(false, propName, propValue);
+                            var propName = property.Name;
+                            var propValue = property.GetValue(elementProperties, null);
+
+                            //if property is a basic type then display
+                            if ((propValue is string) || (propValue is bool) || (propValue is int) || (propValue is double))
+                                SearchParameters.Rows.Add(false, propName, propValue);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error Iterating over properties in window: " + ex.ToString());
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error Iterating over properties in window: " + ex.ToString());
-                    }
+                }
+                catch (Exception)
+                {
+                    lblDescription.Text = "Error cloning element. Please Try Again.";
+                    //MessageBox.Show("Error in recording, please try again! " + ex.ToString());
                 }
             }
-            catch (Exception)
-            {
-                lblDescription.Text = "Error cloning element. Please Try Again.";
-                //MessageBox.Show("Error in recording, please try again! " + ex.ToString());
-            }
-
+            
             if (chkStopOnClick.Checked)
-            {
                 Close();     
-            }
         }
 
         private void pbRefresh_Click(object sender, EventArgs e)

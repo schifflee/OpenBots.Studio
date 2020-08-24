@@ -841,6 +841,31 @@ namespace taskt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///
+        ///&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta charset=&quot;utf-8&quot; /&gt;
+        ///    &lt;title&gt;Please Provide Information&lt;/title&gt;
+        ///
+        ///    &lt;style type=&quot;text/css&quot;&gt;
+        ///        /*!
+        /// * Bootstrap v4.0.0 (https://getbootstrap.com)
+        /// * Copyright 2011-2018 The Bootstrap Authors
+        /// * Copyright 2011-2018 Twitter, Inc.
+        /// * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+        /// */ :root {
+        ///            --blue: #007bff;
+        ///            --indigo: #6610f2;
+        ///            --purple: # [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string HTMLInputSample {
+            get {
+                return ResourceManager.GetString("HTMLInputSample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         public static byte[] IEDriverServer {

@@ -248,9 +248,12 @@ namespace taskt.UI.Forms
         /// <param name="e"></param>
         void OnHookStopped(object sender, EventArgs e)
         {
-            uiBtnCancel_Click(null, null);
+            if (EngineInstance != null)
+            {
+                uiBtnCancel_Click(null, null);
+                EngineInstance.CancelScript();
+            }  
             GlobalHook.HookStopped -= new EventHandler(OnHookStopped);
-            EngineInstance.CancelScript();
         }
         #endregion
 
@@ -628,7 +631,7 @@ namespace taskt.UI.Forms
                 uiBtnCancel.Visible = false;
                 uiBtnStepInto.Visible = false;
                 uiBtnStepOver.Visible = false;
-                lblKillProcNote.Text = "Cancelling...";
+                lblKillProcNote.Text = "Cancelling...";               
                 EngineInstance.ResumeScript();
 
                 SteppingCommandsItem commandsItem = new SteppingCommandsItem

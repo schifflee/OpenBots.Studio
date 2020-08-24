@@ -16,31 +16,26 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Window Commands")]
-    [Description("This command sets a target window's state.")]
-    [UsesDescription("Use this command when you want to change a window's state to minimized, maximized, or restored state")]
-    [ImplementationDescription("This command implements 'FindWindowNative', 'ShowWindow' from user32.dll to achieve automation.")]
+    [Description("This command sets a open window's state.")]
     public class SetWindowStateCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Please enter or select the window that you want to target for change.")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("Input or Type the name of the window that you want to change.")]
-        [SampleUsage("**Untitled - Notepad**")]
+        [PropertyDescription("Window Name")]
+        [InputSpecification("Select the name of the window to set.")]
+        [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]
         [Remarks("")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_WindowName { get; set; }
+
         [XmlAttribute]
-        [PropertyDescription("Please choose the new required state of the window.")]
+        [PropertyDescription("Window State")]
         [PropertyUISelectionOption("Maximize")]
         [PropertyUISelectionOption("Minimize")]
         [PropertyUISelectionOption("Restore")]
-        [InputSpecification("Select the appropriate window state required")]
-        [SampleUsage("Choose from **Minimize**, **Maximize** and **Restore**")]
+        [InputSpecification("Select the appropriate window state.")]
+        [SampleUsage("")]
         [Remarks("")]
         public string v_WindowState { get; set; }
-
-        [XmlIgnore]
-        [NonSerialized]
-        public ComboBox WindowNameControl;
 
         public SetWindowStateCommand()
         {
@@ -48,6 +43,8 @@ namespace taskt.Commands
             SelectionName = "Set Window State";
             CommandEnabled = true;
             CustomRendering = true;
+            v_WindowName = "Current Window";
+            v_WindowState = "Maximize";
         }
 
         public override void RunCommand(object sender)
@@ -83,33 +80,21 @@ namespace taskt.Commands
                 User32Functions.SetWindowState(targetedWindow, WINDOW_STATE);
             }     
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
 
-            //create window name helper control
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_WindowName", this));
-            WindowNameControl = CommandControls.CreateStandardComboboxFor("v_WindowName", this).AddWindowNames();
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_WindowName", this, new Control[] { WindowNameControl }, editor));
-            RenderedControls.Add(WindowNameControl);
-
-            var windowStateLabel = CommandControls.CreateDefaultLabelFor("v_WindowState", this);
-            RenderedControls.Add(windowStateLabel);
-
-            var windowStateControl = CommandControls.CreateDropdownFor("v_WindowState", this);
-            RenderedControls.Add(windowStateControl);
+            RenderedControls.AddRange(CommandControls.CreateDefaultWindowControlGroupFor("v_WindowName", this, editor));
+            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_WindowState", this));
+            RenderedControls.Add(CommandControls.CreateDropdownFor("v_WindowState", this));
 
             return RenderedControls;
+        }
 
-        }
-        public override void Refresh(IfrmCommandEditor editor)
-        {
-            base.Refresh();
-            WindowNameControl.AddWindowNames();
-        }
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Target Window: " + v_WindowName + ", Window State: " + v_WindowState + "]";
+            return base.GetDisplayValue() + $" [Window '{v_WindowName}' - Window State '{v_WindowState}']";
         }
     }
 }

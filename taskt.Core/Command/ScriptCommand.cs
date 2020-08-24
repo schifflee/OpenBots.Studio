@@ -100,10 +100,5 @@ namespace taskt.Core.Command
             RenderedControls = new List<Control>();
             return RenderedControls;
         }
-
-        public virtual void Refresh(IfrmCommandEditor editor = null)
-        {
-
-        }
     }
 }

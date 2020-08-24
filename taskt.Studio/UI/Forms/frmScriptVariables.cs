@@ -71,11 +71,11 @@ namespace taskt.UI.Forms
             for (int i = 0; i < _userVariableParentNode.Nodes.Count; i++)
             {
                 //get name and value
-                var VariableName = _userVariableParentNode.Nodes[i].Text.Replace("{", "").Replace("}", "");
-                var VariableValue = _userVariableParentNode.Nodes[i].Nodes[0].Text.Replace(_leadingValue, "").Replace(_emptyValue, "");
+                var variableName = _userVariableParentNode.Nodes[i].Text.Replace("{", "").Replace("}", "");
+                var variableValue = _userVariableParentNode.Nodes[i].Nodes[0].Text.Replace(_leadingValue, "").Replace(_emptyValue, "");
 
                 //add to list
-                ScriptVariables.Add(new ScriptVariable() { VariableName = VariableName, VariableValue = VariableValue });
+                ScriptVariables.Add(new ScriptVariable() { VariableName = variableName, VariableValue = variableValue });
             }
 
             //return success result

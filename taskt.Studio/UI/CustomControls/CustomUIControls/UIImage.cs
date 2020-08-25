@@ -23,7 +23,7 @@ namespace taskt.UI.CustomControls.CustomUIControls
             uiImages.Add("HTMLInputCommand", Resources.command_input);
             uiImages.Add("UIAutomationCommand", Resources.command_input);
             uiImages.Add("ResizeWindowCommand", Resources.command_window);
-            uiImages.Add("ShowMessageCommand", Resources.command_comment);
+            uiImages.Add("ShowMessageCommand", Resources.command_message);
             uiImages.Add("StopProcessCommand", Resources.command_stop_process);
             uiImages.Add("StartProcessCommand", Resources.command_start_process);
             uiImages.Add("SetVariableCommand", Resources.command_function);
@@ -56,7 +56,7 @@ namespace taskt.UI.CustomControls.CustomUIControls
             uiImages.Add("IEElementActionCommand", Resources.command_web);
             uiImages.Add("SendKeystrokesCommand", Resources.command_input);
             uiImages.Add("SendAdvancedKeystrokesCommand", Resources.command_input);
-            uiImages.Add("EncryptionCommand", Resources.command_input);
+            uiImages.Add("EncryptionCommand", Resources.command_password);
             uiImages.Add("SendMouseMoveCommand", Resources.command_input);
             uiImages.Add("SendMouseClickCommand", Resources.command_input);
             uiImages.Add("EndLoopCommand", Resources.command_endloop);
@@ -149,7 +149,7 @@ namespace taskt.UI.CustomControls.CustomUIControls
             uiImages.Add("SurfaceAutomationCommand", Resources.command_camera);
             uiImages.Add("CaptureImageCommand", Resources.command_camera);
             uiImages.Add("GetHTMLSourceCommand", Resources.command_web);
-            uiImages.Add("QueryHTMLSourceCommand", Resources.command_search);
+            uiImages.Add("QueryHTMLSourceCommand", Resources.command_regex);
             uiImages.Add("LoopCollectionCommand", Resources.command_startloop);
             uiImages.Add("LoopContinuouslyCommand", Resources.command_startloop);
             uiImages.Add("LoopNumberOfTimesCommand", Resources.command_startloop);
@@ -194,6 +194,10 @@ namespace taskt.UI.CustomControls.CustomUIControls
             uiImages.Add("CreateDictionaryCommand", Resources.command_dictionary);
             uiImages.Add("GetDictionaryValueCommand", Resources.command_dictionary);
             uiImages.Add("LoadDictionaryCommand", Resources.command_spreadsheet);
+            uiImages.Add("GetRegexMatchesCommand", Resources.command_regex);
+            uiImages.Add("RegexIsMatchCommand", Resources.command_regex);
+            uiImages.Add("RegexReplaceCommand", Resources.command_regex);
+            uiImages.Add("RegexSplitCommand", Resources.command_regex);
 
             return uiImages;
         }

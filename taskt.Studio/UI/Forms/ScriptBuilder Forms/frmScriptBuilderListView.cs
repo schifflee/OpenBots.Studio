@@ -105,7 +105,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                 for (int i = 0; i <= _selectedTabScriptActions.SelectedItems.Count - 1; i++)
                 {
                     var command = (ScriptCommand)_selectedTabScriptActions.SelectedItems[i].Tag;
-                    sequence.v_scriptActions.Add(command);
+                    sequence.ScriptActions.Add(command);
                 }
 
                 //remove originals
@@ -255,8 +255,18 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                     newBuilder._scriptElements.Add(element);
                 }
 
+                TabPage newtabPage = new TabPage("Sequence");
+                newtabPage.Name = "Sequence";
+                newtabPage.ToolTipText = "Sequence";
+
+                newBuilder.uiScriptTabControl.TabPages.Add(newtabPage);
+                newtabPage.Controls.Add(NewLstScriptActions("Sequence"));
+                newBuilder.uiScriptTabControl.SelectedTab = newtabPage;
+                newBuilder._selectedTabScriptActions = (UIListView)uiScriptTabControl.SelectedTab.Controls[0];
+                //TODO: Finish Fixing SequenceCommand
+
                 //append to new builder
-                foreach (var cmd in sequence.v_scriptActions)
+                foreach (var cmd in sequence.ScriptActions)
                 {
                     newBuilder._selectedTabScriptActions.Items.Add(CreateScriptCommandListViewItem(cmd));
                 }
@@ -281,7 +291,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                     }
 
                     //apply new list to existing sequence
-                    sequence.v_scriptActions = updatedList;
+                    sequence.ScriptActions = updatedList;
 
                     //update label
                     selectedCommandItem.Text = sequence.GetDisplayValue();

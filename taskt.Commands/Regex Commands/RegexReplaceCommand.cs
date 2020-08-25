@@ -17,34 +17,33 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Regex Commands")]
-    [Description("This command allows you to replace all the matches in Text based on RegEx")]
-    [UsesDescription("Use this command when you want to replace all matches in text based on Regex Pattern")]
-    [ImplementationDescription("This command implements Replace Action of Regex for given input Text and Regex Pattern and returns a text after replacement")]
+    [Description("This command replaces all the matches in a given text based on a Regex pattern")]
     public class RegexReplaceCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Please input the data you want to perform regex on")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("Enter Variable or Text to apply Regex on")]
-        [SampleUsage("**Hello** or **vSomeVariable**")]
+        [PropertyDescription("Text")]
+        [InputSpecification("Select or provide text to apply Regex on.")]
+        [SampleUsage("Hello || {vText}")]
         [Remarks("")]
-        public string v_InputTextData { get; set; }
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
+        public string v_InputText { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Please enter regex pattern")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("Enter a Regex Pattern to apply to replace matches with given text")]
-        [SampleUsage(@"**^([\w\-]+)** or **vSomeVariable**")]
+        [PropertyDescription("Regex Pattern")]
+        [InputSpecification("Enter a Regex Pattern to apply to Input Text to get all the matches.")]
+        [SampleUsage(@"^([\w\-]+) || {vPattern}")]
         [Remarks("")]
-        public string v_RegEx { get; set; }
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
+        public string v_Regex { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Please input the data (text) to replace all the matches")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("Enter Variable or Text to replace the matches")]
-        [SampleUsage("**Hello** or **vSomeVariable**")]
+        [PropertyDescription("Replacement Text")]
+        [InputSpecification("Selevt or provide text to replace the matches.")]
+        [SampleUsage("Goodbye || {vReplacement}")]
         [Remarks("")]
-        public string v_ReplaceTextData { get; set; }
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
+
+        public string v_ReplacementText { get; set; }
 
         [XmlAttribute]
         [PropertyDescription("Output Result Variable")]
@@ -64,29 +63,29 @@ namespace taskt.Commands
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
-            var vInputData = v_InputTextData.ConvertUserVariableToString(engine);
-            string vRegex = v_RegEx.ConvertUserVariableToString(engine);
-            string vReplaceData = v_ReplaceTextData.ConvertUserVariableToString(engine);
+            var vInputData = v_InputText.ConvertUserVariableToString(engine);
+            string vRegex = v_Regex.ConvertUserVariableToString(engine);
+            string vReplaceData = v_ReplacementText.ConvertUserVariableToString(engine);
             string resultData = Regex.Replace(vInputData, vRegex, vReplaceData);
 
             resultData.StoreInUserVariable(engine, v_OutputUserVariableName);
-        }
-
-        public override string GetDisplayValue()
-        {
-            return base.GetDisplayValue() + " [Replace All Matches with '" + v_ReplaceTextData + "', Get Result in: '" + v_OutputUserVariableName + "']";
         }
 
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_RegEx", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InputTextData", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_ReplaceTextData", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InputText", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_Regex", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_ReplacementText", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
 
             return RenderedControls;
+        }
+
+        public override string GetDisplayValue()
+        {
+            return base.GetDisplayValue() + $" [Text '{v_InputText}' - Regex Pattern '{v_Regex}' - Replacement '{v_ReplacementText}' - Store Result in '{v_OutputUserVariableName}']";
         }
     }
 }

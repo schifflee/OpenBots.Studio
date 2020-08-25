@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using taskt.Core.Attributes.ClassAttributes;
 using taskt.Core.Command;
@@ -17,7 +16,6 @@ namespace taskt.Commands
         {
             CommandName = "AddCodeCommentCommand";
             SelectionName = "Add Code Comment";
-            DisplayForeColor = Color.ForestGreen;
             CommandEnabled = true;
             CustomRendering = true;
         }
@@ -31,7 +29,7 @@ namespace taskt.Commands
 
         public override string GetDisplayValue()
         {
-            return $"// Comment: {v_Comment}";
+            return $"// Comment ['{v_Comment}']";
         }
     }
 }

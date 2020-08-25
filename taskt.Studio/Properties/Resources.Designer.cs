@@ -533,6 +533,16 @@ namespace taskt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap command_message {
+            get {
+                object obj = ResourceManager.GetObject("command_message", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap command_nextloop {
             get {
                 object obj = ResourceManager.GetObject("command_nextloop", resourceCulture);
@@ -576,6 +586,16 @@ namespace taskt.Properties {
         public static System.Drawing.Bitmap command_pause {
             get {
                 object obj = ResourceManager.GetObject("command_pause", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap command_regex {
+            get {
+                object obj = ResourceManager.GetObject("command_regex", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

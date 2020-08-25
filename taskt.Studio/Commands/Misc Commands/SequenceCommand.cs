@@ -10,16 +10,12 @@ using taskt.Engine;
 
 namespace taskt.Commands
 {
-
     [Serializable]
     [Group("Misc Commands")]
-    [Description("Command that groups multiple actions")]
-    [UsesDescription("Use this command when you want to group multiple commands together.")]
-    [ImplementationDescription("This command implements many commands in a list.")]
+    [Description("This command groups multiple actions together.")]
     public class SequenceCommand : ScriptCommand
     {
-        public List<ScriptCommand> v_scriptActions = new List<ScriptCommand>();
-
+        public List<ScriptCommand> ScriptActions = new List<ScriptCommand>();
 
         public SequenceCommand()
         {
@@ -31,27 +27,20 @@ namespace taskt.Commands
 
         public override void RunCommand(object sender, ScriptAction parentCommand)
         {
-
             var engine = (AutomationEngineInstance)sender;
 
-            foreach (var item in v_scriptActions)
+            foreach (var item in ScriptActions)
             {
-
                 //exit if cancellation pending
                 if (engine.IsCancellationPending)
-                {
                     return;
-                }
 
                 //only run if not commented
                 if (!item.IsCommented)
-                    item.RunCommand(sender);
-
-
-
+                    item.RunCommand(engine);
             }
-
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
@@ -59,10 +48,9 @@ namespace taskt.Commands
             return RenderedControls;
         }
 
-
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [" + v_scriptActions.Count() + " embedded commands]";
+            return base.GetDisplayValue() + $" [{ScriptActions.Count()} Embedded Commands]";
         }
     }
 }

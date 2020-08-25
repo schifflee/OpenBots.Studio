@@ -34,6 +34,7 @@ namespace taskt.Commands
         [Remarks("Set value to 0 to remain open indefinitely.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_AutoCloseAfter { get; set; }
+
         public ShowMessageCommand()
         {
             CommandName = "MessageBoxCommand";
@@ -59,9 +60,7 @@ namespace taskt.Commands
 
             //automatically close messageboxes for server requests
             if (engine.ServerExecution && closeAfter <= 0)
-            {
                 closeAfter = 10;
-            }
 
             var result = ((frmScriptEngine)engine.TasktEngineUI).Invoke(new Action(() =>
                 {

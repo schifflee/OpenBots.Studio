@@ -42,8 +42,9 @@ namespace taskt.Commands
         [XmlAttribute]
         [PropertyDescription("String Format")]
         [InputSpecification("Specify a DateTime string format if required.")]
-        [SampleUsage("MM/dd/yy || hh:mm ||{vFormat} etc.")]
+        [SampleUsage("MM/dd/yy || hh:mm || {vFormat}")]
         [Remarks("This input is optional.")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_ToStringFormat { get; set; }
 
         [XmlAttribute]

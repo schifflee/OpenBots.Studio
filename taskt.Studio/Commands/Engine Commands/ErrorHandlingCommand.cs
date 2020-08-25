@@ -17,7 +17,7 @@ namespace taskt.Commands
     public class ErrorHandlingCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Select an action to take in the event an error occurs")]
+        [PropertyDescription("Error Action")]
         [PropertyUISelectionOption("Stop Processing")]
         [PropertyUISelectionOption("Continue Processing")]
         [InputSpecification("Select the action to take when the bot comes across an error.")]

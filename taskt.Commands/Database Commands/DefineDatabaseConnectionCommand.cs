@@ -19,9 +19,7 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Database Commands")]
-    [Description("This command allows you to define a connection to an OLEDB data source")]
-    [UsesDescription("Use this command to create a new connection to a database.")]
-    [ImplementationDescription("This command implements 'OLEDB' to achieve automation.")]
+    [Description("This command connects to an OleDb database.")]
     public class DefineDatabaseConnectionCommand : ScriptCommand
     {
         [XmlAttribute]
@@ -33,17 +31,17 @@ namespace taskt.Commands
         public string v_InstanceName { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Define Connection String")]
-        [InputSpecification("")]
-        [SampleUsage("")]
+        [PropertyDescription("Connection String")]
+        [InputSpecification("Define the string to use when connecting to the OleDb database.")]
+        [SampleUsage("myRobot || {vUsername}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_ConnectionString { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Define Connection String Password")]
-        [InputSpecification("")]
-        [SampleUsage("")]
+        [PropertyDescription("Connection String Password")]
+        [InputSpecification("Define the password to use when connecting to the OleDb database.")]
+        [SampleUsage("password || {vPassword}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_ConnectionStringPassword { get; set; }
@@ -52,19 +50,19 @@ namespace taskt.Commands
         [PropertyDescription("Test Connection Before Proceeding")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
-        [InputSpecification("Select an option which best fits to the specification you would like to make.")]
-        [SampleUsage("Select one of the provided options.")]
+        [InputSpecification("Select the appropriate option.")]
+        [SampleUsage("")]
         [Remarks("")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_TestConnection { get; set; }
 
         [XmlIgnore]
         [NonSerialized]
-        private TextBox ConnectionString;
+        private TextBox _connectionString;
 
         [XmlIgnore]
         [NonSerialized]
-        private TextBox ConnectionStringPassword;
+        private TextBox _connectionStringPassword;
+
         public DefineDatabaseConnectionCommand()
         {
             CommandName = "DefineDatabaseConnectionCommand";
@@ -79,21 +77,20 @@ namespace taskt.Commands
         {
             //get engine and preference
             var engine = (AutomationEngineInstance)sender;
-            var testPreference = v_TestConnection.ConvertUserVariableToString(engine);
 
             //create connection
             var oleDBConnection = CreateConnection(sender);
 
             //attempt to open and close connection
-            if (testPreference == "Yes")
+            if (v_TestConnection == "Yes")
             {
                 oleDBConnection.Open();
                 oleDBConnection.Close();
             }
 
             oleDBConnection.AddAppInstance(engine, v_InstanceName);
-
         }
+
         private OleDbConnection CreateConnection(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
@@ -105,11 +102,11 @@ namespace taskt.Commands
                 connectionPass = connectionPass.Substring(1);
                 connectionPass = EncryptionServices.DecryptString(connectionPass, "taskt-database-automation");
             }
-
             connection = connection.Replace("#pwd", connectionPass);
 
             return new OleDbConnection(connection);
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
@@ -125,11 +122,10 @@ namespace taskt.Commands
             helperControl.CommandDisplay = "Build Connection String";
             helperControl.Click += (sender, e) => Button_Click(sender, e);
 
-
-            ConnectionString = (TextBox)CommandControls.CreateDefaultInputFor("v_ConnectionString", this);
+            _connectionString = (TextBox)CommandControls.CreateDefaultInputFor("v_ConnectionString", this);
 
             var connectionLabel = CommandControls.CreateDefaultLabelFor("v_ConnectionString", this);
-            var connectionHelpers = CommandControls.CreateUIHelpersFor("v_ConnectionString", this, new[] { ConnectionString }, editor);
+            var connectionHelpers = CommandControls.CreateUIHelpersFor("v_ConnectionString", this, new[] { _connectionString }, editor);
             CommandItemControl testConnectionControl = new CommandItemControl();
             testConnectionControl.Padding = new Padding(10, 0, 0, 0);
             testConnectionControl.ForeColor = Color.AliceBlue;
@@ -138,18 +134,17 @@ namespace taskt.Commands
             testConnectionControl.CommandImage = Resources.command_database2;
             testConnectionControl.CommandDisplay = "Test Connection";
             testConnectionControl.Click += (sender, e) => TestConnection(sender, e);
-            RenderedControls.Add(testConnectionControl);
 
             RenderedControls.Add(connectionLabel);
-            RenderedControls.Add(helperControl);
             RenderedControls.AddRange(connectionHelpers);
+            RenderedControls.Add(helperControl);
             RenderedControls.Add(testConnectionControl);
-            RenderedControls.Add(ConnectionString);
+            RenderedControls.Add(_connectionString);
 
-            ConnectionStringPassword = (TextBox)CommandControls.CreateDefaultInputFor("v_ConnectionStringPassword", this);
+            _connectionStringPassword = (TextBox)CommandControls.CreateDefaultInputFor("v_ConnectionStringPassword", this);
 
             var connectionPassLabel = CommandControls.CreateDefaultLabelFor("v_ConnectionStringPassword", this);
-            var connectionPassHelpers = CommandControls.CreateUIHelpersFor("v_ConnectionStringPassword", this, new[] { ConnectionStringPassword }, editor);
+            var connectionPassHelpers = CommandControls.CreateUIHelpersFor("v_ConnectionStringPassword", this, new[] { _connectionStringPassword }, editor);
 
             RenderedControls.Add(connectionPassLabel);
             RenderedControls.AddRange(connectionPassHelpers);
@@ -162,9 +157,7 @@ namespace taskt.Commands
             passwordHelperControl.CommandImage = Resources.command_password;
             passwordHelperControl.CommandDisplay = "Show Password";
             passwordHelperControl.Click += (sender, e) => TogglePasswordChar(passwordHelperControl, e);
-
             RenderedControls.Add(passwordHelperControl);
-
 
             CommandItemControl encryptHelperControl = new CommandItemControl();
             encryptHelperControl.Padding = new Padding(10, 0, 0, 0);
@@ -175,26 +168,28 @@ namespace taskt.Commands
             encryptHelperControl.CommandDisplay = "Encrypt Password";
             encryptHelperControl.Click += (sender, e) => EncryptPassword(passwordHelperControl, e);
             RenderedControls.Add(encryptHelperControl);
-
-            
+           
             var label = new Label();
             label.AutoSize = true;
-            label.Font = new Font("Segoe UI", 10, FontStyle.Regular);
+            label.Font = new Font("Segoe UI Semilight", 9);
             label.ForeColor = Color.White;
-            label.Text = "NOTE: If storing the password in the textbox below, please ensure the connection string above contains a database-specific placeholder with #pwd to be replaced at runtime. (;Password=#pwd)";
+            label.Text = "NOTE: If storing the password in the textbox below, please ensure the connection string " +
+                "above contains a database-specific placeholder with #pwd to be replaced at runtime. (;Password=#pwd)";
             RenderedControls.Add(label);
 
+            RenderedControls.Add(_connectionStringPassword);
+            _connectionStringPassword.PasswordChar = '*';
 
-            RenderedControls.Add(ConnectionStringPassword);
-            ConnectionStringPassword.PasswordChar = '*';
-
-          
-
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_TestConnection", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_TestConnection", this, editor));
 
             return RenderedControls;
-
         }
+
+        public override string GetDisplayValue()
+        {
+            return base.GetDisplayValue() + $" [Instance Name '{v_InstanceName}']";
+        }
+
         private void TestConnection(object sender, EventArgs e)
         {
             try
@@ -209,63 +204,56 @@ namespace taskt.Commands
             {
                 MessageBox.Show($"Connection Failed: {ex}", "Test Connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-          
-
-
         }
 
         private void Button_Click(object sender, EventArgs e)
         {
             ShowConnectionBuilder();
         }
+
         private void TogglePasswordChar(CommandItemControl sender, EventArgs e)
         {
             //if password is hidden
-            if (ConnectionStringPassword.PasswordChar == '*')
+            if (_connectionStringPassword.PasswordChar == '*')
             {
                 //show password plain text
                 sender.CommandDisplay = "Hide Password";
-                ConnectionStringPassword.PasswordChar = '\0';
+                _connectionStringPassword.PasswordChar = '\0';
             }
             else
             {
                 //mask password with chars
                 sender.CommandDisplay = "Show Password";
-                ConnectionStringPassword.PasswordChar = '*';
+                _connectionStringPassword.PasswordChar = '*';
             }
         }
+
         private void EncryptPassword(CommandItemControl sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(ConnectionStringPassword.Text))
-            {
+            if (string.IsNullOrEmpty(_connectionStringPassword.Text))
                 return;
-            }
 
-           var acknowledgement =  MessageBox.Show("WARNING! This function will encrypt the password locally but is not extremely secure as the client knows the secret!  Consider using a password management service instead. The encrypted password will be stored with a leading exclamation ('!') whch the automation engine will detect and know to decrypt the value automatically at run-time. Do not encrypt the password multiple times or the decryption will be invalid!  Would you like to proceed?", "Encryption Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var acknowledgement =  MessageBox.Show("WARNING! This function will encrypt the password locally but " + 
+                                                   "is not extremely secure as the client knows the secret! " + 
+                                                   "Consider using a password management service instead. The encrypted " +
+                                                   "password will be stored with a leading exclamation ('!') whch the " +
+                                                   "automation engine will detect and know to decrypt the value automatically " +
+                                                   "at run-time. Do not encrypt the password multiple times or the decryption " +
+                                                   "will be invalid!  Would you like to proceed?", "Encryption Warning", 
+                                                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (acknowledgement == DialogResult.Yes)
-            {
-                ConnectionStringPassword.Text = string.Concat($"!{EncryptionServices.EncryptString(ConnectionStringPassword.Text, "taskt-database-automation")}");
-            }
-
+                _connectionStringPassword.Text = string.Concat($"!{EncryptionServices.EncryptString(_connectionStringPassword.Text, "taskt-database-automation")}");
         }
 
         public void ShowConnectionBuilder()
         {
-
             var MSDASCObj = new MSDASC.DataLinks();
             var connection = new ADODB.Connection();
             MSDASCObj.PromptEdit(connection);
 
             if (!string.IsNullOrEmpty(connection.ConnectionString))
-            {
-                ConnectionString.Text = connection.ConnectionString;
-            }
-        }
-
-        public override string GetDisplayValue()
-        {
-            return $"{base.GetDisplayValue()} - [Instance Name: '{v_InstanceName}']";
+                _connectionString.Text = connection.ConnectionString;
         }
     }
 }

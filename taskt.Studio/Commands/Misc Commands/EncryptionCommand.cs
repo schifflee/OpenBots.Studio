@@ -58,7 +58,6 @@ namespace taskt.Commands
             CommandEnabled = true;
             CustomRendering = true;
             v_EncryptionType = "Encrypt";
-            v_PassPhrase = "TASKT";
         }
 
         public override void RunCommand(object sender)
@@ -83,7 +82,7 @@ namespace taskt.Commands
 
             RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_EncryptionType", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InputValue", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_PassPhrase", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultPasswordInputGroupFor("v_PassPhrase", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
 
             return RenderedControls;

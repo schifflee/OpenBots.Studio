@@ -188,8 +188,8 @@ namespace taskt.UI.CustomControls.CustomUIControls
             uiImages.Add("CloseNLGInstanceCommand", Resources.command_nlg);
             uiImages.Add("ShowEngineContextCommand", Resources.command_window);
             uiImages.Add("SetEnginePreferenceCommand", Resources.command_window);
-            uiImages.Add("DefineDatabaseConnectionCommand", Resources.command_database);
-            uiImages.Add("ExecuteDatabaseQueryCommand", Resources.command_database);
+            uiImages.Add("DefineDatabaseConnectionCommand", Resources.command_database2);
+            uiImages.Add("ExecuteDatabaseQueryCommand", Resources.command_database2);
             uiImages.Add("RemoteTaskCommand", Resources.command_remote);
             uiImages.Add("RemoteAPICommand", Resources.command_remote);
             uiImages.Add("AddDictionaryItemCommand", Resources.command_dictionary);

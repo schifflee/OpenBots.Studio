@@ -27,7 +27,7 @@ namespace taskt.Commands
         public string v_InstanceName { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Please select the NLG Parameter Type")]
+        [PropertyDescription("NLG Parameter Type")]
         [PropertyUISelectionOption("Set Subject")]
         [PropertyUISelectionOption("Set Verb")]
         [PropertyUISelectionOption("Set Object")]
@@ -56,6 +56,7 @@ namespace taskt.Commands
             CommandEnabled = true;
             CustomRendering = true;
             v_InstanceName = "DefaultNLG";
+            v_ParameterType = "Set Subject";
         }
 
         public override void RunCommand(object sender)

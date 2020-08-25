@@ -32,7 +32,6 @@ namespace taskt.UI.CustomControls
 
         public static List<Control> CreateDefaultInputGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor, int height = 30, int width = 300)
         {
-            //Todo: Test
             var controlList = new List<Control>();
             var label = CreateDefaultLabelFor(parameterName, parent);
             var input = CreateDefaultInputFor(parameterName, parent, height, width);
@@ -41,6 +40,22 @@ namespace taskt.UI.CustomControls
             controlList.Add(label);
             controlList.AddRange(helpers);
             controlList.Add(input);
+
+            return controlList;
+        }
+
+        public static List<Control> CreateDefaultPasswordInputGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor)
+        {
+            var controlList = new List<Control>();
+            var label = CreateDefaultLabelFor(parameterName, parent);
+            var passwordInput = CreateDefaultInputFor(parameterName, parent);
+            var helpers = CreateUIHelpersFor(parameterName, parent, new Control[] { passwordInput }, (frmCommandEditor)editor);
+
+            controlList.Add(label);
+            controlList.AddRange(helpers);
+            controlList.Add(passwordInput);
+
+            ((TextBox)passwordInput).PasswordChar = '*';
 
             return controlList;
         }

@@ -16,8 +16,7 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("NLG Commands")]
-    [Description("This command allows you to define a NLG parameter")]
-    [UsesDescription("Use this command when you want to define NLG parameters")]
+    [Description("This command defines a Natural Language Generation parameter.")]
     public class SetNLGParameterCommand : ScriptCommand
     {
         [XmlAttribute]
@@ -29,9 +28,6 @@ namespace taskt.Commands
 
         [XmlAttribute]
         [PropertyDescription("Please select the NLG Parameter Type")]
-        [InputSpecification("Enter the unique instance name that was specified in the **Create NLG Instance** command")]
-        [SampleUsage("**nlgDefaultInstance** or **myInstance**")]
-        [Remarks("Failure to enter the correct instance name or failure to first call **Create NLG Instance** command will cause an error")]
         [PropertyUISelectionOption("Set Subject")]
         [PropertyUISelectionOption("Set Verb")]
         [PropertyUISelectionOption("Set Object")]
@@ -40,12 +36,16 @@ namespace taskt.Commands
         [PropertyUISelectionOption("Add Pre-Modifier")]
         [PropertyUISelectionOption("Add Front Modifier")]
         [PropertyUISelectionOption("Add Post Modifier")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
+        [InputSpecification("Select the appropriate Natural Language Generation Parameter.")]
+        [SampleUsage("")]
+        [Remarks("")]
         public string v_ParameterType { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Please define the input")]
-        [InputSpecification("Enter the value that should be associated to the parameter")]
+        [PropertyDescription("Input Value")]
+        [InputSpecification("Enter the value that should be associated with the parameter")]
+        [SampleUsage("Hello || {vValue}")]
+        [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_Parameter { get; set; }
 
@@ -96,7 +96,7 @@ namespace taskt.Commands
             }
 
             //remove existing associations if override app instances is not enabled
-            engine.AppInstances.Remove(v_InstanceName);
+            v_InstanceName.RemoveAppInstance(engine);
 
             //add to app instance to track
             p.AddAppInstance(engine, v_InstanceName);
@@ -115,7 +115,7 @@ namespace taskt.Commands
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [" + v_ParameterType + ": '" + v_Parameter + "', Instance Name: '" + v_InstanceName + "']";
+            return base.GetDisplayValue() + $" [{v_ParameterType} '{v_Parameter}' - Instance Name '{v_InstanceName}']";
         }
     }
 }

@@ -197,6 +197,7 @@
     <Compile Include="IE Browser Commands\IEFindBrowserCommand.cs" />
     <Compile Include="IE Browser Commands\IENavigateToURLCommand.cs" />
     <Compile Include="List Commands\UpdateListItemCommand.cs" />
+    <Compile Include="NLG Commands\CloseNLGInstanceCommand.cs" />
     <Compile Include="NLG Commands\CreateNLGInstanceCommand.cs" />
     <Compile Include="NLG Commands\GenerateNLGPhraseCommand.cs" />
     <Compile Include="NLG Commands\SetNLGParameterCommand.cs" />

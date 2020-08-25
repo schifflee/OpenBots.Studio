@@ -7,6 +7,8 @@ using taskt.Core.Attributes.PropertyAttributes;
 using taskt.Core.Command;
 using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
+using taskt.Core.Utilities.CommonUtilities;
+using taskt.Engine;
 using taskt.UI.CustomControls;
 
 namespace taskt.Commands
@@ -18,12 +20,12 @@ namespace taskt.Commands
     public class SetEngineDelayCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Command Delay Time (Seconds)")]
-        [InputSpecification("Enter a specific amount of time in milliseconds (ex. to specify 8 seconds, one would enter 8000) or specify a variable containing a value.")]
-        [SampleUsage("**250** or **[vVariableSpeed]**")]
+        [PropertyDescription("Command Delay Time (Milliseconds)")]
+        [InputSpecification("Select or provide a specific amount of time in milliseconds.")]
+        [SampleUsage("1000 || {vTime}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_EngineSpeed { get; set; }
+        public string v_EngineDelay { get; set; }
 
         public SetEngineDelayCommand()
         {
@@ -31,19 +33,31 @@ namespace taskt.Commands
             SelectionName = "Set Engine Delay";
             CommandEnabled = true;
             CustomRendering = true;
-            v_EngineSpeed = "250";
+            v_EngineDelay = "250";
         }
+
+        public override void RunCommand(object sender)
+        {
+            var engine = (AutomationEngineInstance)sender;
+            var engineDelay = v_EngineDelay.ConvertUserVariableToString(engine);
+            var delay = int.Parse(engineDelay);
+
+            //update delay setting
+            engine.EngineSettings.DelayBetweenCommands = delay;
+        }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_EngineSpeed", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_EngineDelay", this, editor));
 
             return RenderedControls;
         }
+
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Set Delay to " + v_EngineSpeed + "ms between commands]";
+            return base.GetDisplayValue() + $" [Set Delay of '{v_EngineDelay} ms' Between Commands]";
         }
     }
 }

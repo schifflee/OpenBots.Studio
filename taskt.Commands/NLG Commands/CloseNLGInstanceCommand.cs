@@ -1,5 +1,4 @@
-﻿using SimpleNLG;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -15,21 +14,20 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("NLG Commands")]
-    [Description("This command creates a Natural Language Generation Instance.")]
-    public class CreateNLGInstanceCommand : ScriptCommand
+    [Description("This command closes a Natural Language Generation Instance.")]
+    public class CloseNLGInstanceCommand : ScriptCommand
     {
         [XmlAttribute]
         [PropertyDescription("NLG Instance Name")]
-        [InputSpecification("Enter a unique name that will represent the application instance.")]
+        [InputSpecification("Enter the unique instance that was specified in the **Create NLG Instance** command.")]
         [SampleUsage("MyNLGInstance")]
-        [Remarks("This unique name allows you to refer to the instance by name in future commands, " +
-                 "ensuring that the commands you specify run against the correct application.")]
+        [Remarks("Failure to enter the correct instance name or failure to first call the **Create NLG Instance** command will cause an error.")]
         public string v_InstanceName { get; set; }
 
-        public CreateNLGInstanceCommand()
+        public CloseNLGInstanceCommand()
         {
-            CommandName = "CreateNLGInstanceCommand";
-            SelectionName = "Create NLG Instance";
+            CommandName = "CloseNLGInstanceCommand";
+            SelectionName = "Close NLG Instance";
             CommandEnabled = true;
             CustomRendering = true;
             v_InstanceName = "DefaultNLG";
@@ -38,12 +36,7 @@ namespace taskt.Commands
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
-  
-            Lexicon lexicon = Lexicon.getDefaultLexicon();
-            NLGFactory nlgFactory = new NLGFactory(lexicon);
-            SPhraseSpec p = nlgFactory.createClause();
-
-            p.AddAppInstance(engine, v_InstanceName);
+            v_InstanceName.RemoveAppInstance(engine);
         }
 
         public override List<Control> Render(IfrmCommandEditor editor)
@@ -51,13 +44,13 @@ namespace taskt.Commands
             base.Render(editor);
 
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
-            
+
             return RenderedControls;
         }
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + $" [New Instance Name '{v_InstanceName}']";
+            return base.GetDisplayValue() + $" [Instance Name '{v_InstanceName}']";
         }
     }
 }

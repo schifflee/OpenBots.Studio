@@ -17,12 +17,11 @@ namespace taskt.Commands
     [Serializable]
     [Group("Engine Commands")]
     [Description("This command pauses the script for a set amount of time specified in milliseconds.")]
-
     public class PauseScriptCommand : ScriptCommand
     {
         [XmlAttribute]
         [PropertyDescription("Pause Time (Milliseconds)")]      
-        [InputSpecification("Enter a specific amount of time in milliseconds.")]
+        [InputSpecification("Select or provide a specific amount of time in milliseconds.")]
         [SampleUsage("1000 || {vTime}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
@@ -56,7 +55,7 @@ namespace taskt.Commands
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + $" [For '{v_PauseLength}' Milliseconds]";
+            return base.GetDisplayValue() + $" [Pause for '{v_PauseLength} ms']";
         }
     }
 }

@@ -193,7 +193,7 @@ namespace taskt.Commands
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + $" [{ v_InputHeader}]";
+            return base.GetDisplayValue() + $" [Header '{v_InputHeader}']";
         }
 
         private void AddInputParameter(object sender, EventArgs e, IfrmCommandEditor editor)

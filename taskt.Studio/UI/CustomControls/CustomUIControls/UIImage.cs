@@ -178,12 +178,14 @@ namespace taskt.UI.CustomControls.CustomUIControls
             uiImages.Add("UploadBotStoreDataCommand", Resources.command_server);
             uiImages.Add("GetBotStoreDataCommand", Resources.command_server);
             uiImages.Add("StopwatchCommand", Resources.command_stopwatch);
-            uiImages.Add("SystemActionCommand", Resources.command_script);
+            uiImages.Add("EnvironmentVariableCommand", Resources.command_system);
+            uiImages.Add("SystemActionCommand", Resources.command_system);
             uiImages.Add("LaunchRemoteDesktopCommand", Resources.command_system);
             uiImages.Add("OSVariableCommand", Resources.command_system);
             uiImages.Add("GenerateNLGPhraseCommand", Resources.command_nlg);
             uiImages.Add("SetNLGParameterCommand", Resources.command_nlg);
             uiImages.Add("CreateNLGInstanceCommand", Resources.command_nlg);
+            uiImages.Add("CloseNLGInstanceCommand", Resources.command_nlg);
             uiImages.Add("ShowEngineContextCommand", Resources.command_window);
             uiImages.Add("SetEnginePreferenceCommand", Resources.command_window);
             uiImages.Add("DefineDatabaseConnectionCommand", Resources.command_database);

@@ -95,7 +95,7 @@ namespace taskt.Commands
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Show Form To User]";
+            return base.GetDisplayValue();
         }
     }
 }

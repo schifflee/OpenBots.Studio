@@ -17,15 +17,12 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("System Commands")]
-    [Description("This command allows you to exclusively select a system/environment variable")]
-    [UsesDescription("Use this command to exclusively retrieve a system variable")]
-    [ImplementationDescription("")]
+    [Description("This command exclusively selects a environment variable.")]
     public class EnvironmentVariableCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Select the required environment variable")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("Select from one of the options")]
+        [PropertyDescription("Environment Variable")]
+        [InputSpecification("Select an evironment variable from one of the options.")]
         [SampleUsage("")]
         [Remarks("")]
         public string v_EnvVariableName { get; set; }
@@ -44,6 +41,7 @@ namespace taskt.Commands
         [XmlIgnore]
         [NonSerialized]
         public Label VariableValue;
+
         public EnvironmentVariableCommand()
         {
             CommandName = "EnvironmentVariableCommand";
@@ -55,22 +53,20 @@ namespace taskt.Commands
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
-            var environmentVariable = (string)v_EnvVariableName.ConvertUserVariableToString(engine);
+            var environmentVariable = v_EnvVariableName.ConvertUserVariableToString(engine);
 
             var variables = Environment.GetEnvironmentVariables();
             var envValue = (string)variables[environmentVariable];
 
             envValue.StoreInUserVariable(engine, v_OutputUserVariableName);
-
-
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
 
             var ActionNameComboBoxLabel = CommandControls.CreateDefaultLabelFor("v_EnvVariableName", this);
             VariableNameComboBox = (ComboBox)CommandControls.CreateDropdownFor("v_EnvVariableName", this);
-
 
             foreach (DictionaryEntry env in Environment.GetEnvironmentVariables())
             {
@@ -80,19 +76,15 @@ namespace taskt.Commands
             }
 
             VariableNameComboBox.SelectedValueChanged += VariableNameComboBox_SelectedValueChanged;
-
             RenderedControls.Add(ActionNameComboBoxLabel);
             RenderedControls.Add(VariableNameComboBox);
 
             VariableValue = new Label();
-            VariableValue.Font = new Font("Segoe UI Semilight", 10, FontStyle.Bold);
+            VariableValue.Font = new Font("Segoe UI Semilight", 12, FontStyle.Bold);
             VariableValue.ForeColor = Color.White;
-
             RenderedControls.Add(VariableValue);
 
-
-            RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
-            
+            RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));          
 
             return RenderedControls;
         }
@@ -104,18 +96,15 @@ namespace taskt.Commands
             if (selectedValue == null)
                 return;
 
-
             var variable = Environment.GetEnvironmentVariables();
             var value = variable[selectedValue];
 
             VariableValue.Text = "[ex. " + value + "]";
-
-
         }
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Apply '" + v_EnvVariableName + "' to Variable '" + v_OutputUserVariableName + "']";
+            return base.GetDisplayValue() + $" [Store Environment Variable '{v_EnvVariableName}' in '{v_OutputUserVariableName}']";
         }
     }
 

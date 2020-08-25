@@ -17,52 +17,52 @@ namespace taskt.Commands
 
     [Serializable]
     [Group("Remote Commands")]
-    [Description("This command allows you to execute a task remotely on another taskt instance")]
-    [UsesDescription("Use this command when you want to execute a command on another client that has local listener enabled")]
-    [ImplementationDescription("This command interfaces against Core.Server.LocalTCPListener")]
+    [Description("This command executes a task remotely on another taskt instance.")]
     public class RemoteTaskCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Please enter the IP:Port (ex. 192.168.2.200:19312)")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("Define any IP endpoint which is enabled for local listening.")]
-        [SampleUsage("**https://example.com** or **{vMyUrl}**")]
+        [PropertyDescription("API Endpoint/Port")]
+        [InputSpecification("Define the API endpoint or port enabled for local listening.")]
+        [SampleUsage("example.com/hello || 192.168.2.200:19312 || {vMyUrl}")]
         [Remarks("")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_BaseURL { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Select Parameter Type")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
+        [PropertyDescription("Parameter Type")]
         [PropertyUISelectionOption("Run Raw Script Data")]
         [PropertyUISelectionOption("Run Local File")]
         [PropertyUISelectionOption("Run Remote File")]
         [PropertyUISelectionOption("Run Command Json")]
-        [InputSpecification("Select the necessary parameter.")]
+        [InputSpecification("Select the appropriate parameter.")]
+        [SampleUsage("")]
         [Remarks("")]
         public string v_ParameterType { get; set; }
 
         [XmlAttribute]
         [PropertyDescription("Execution Preference")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUISelectionOption("Continue Execution")]
         [PropertyUISelectionOption("Await For Result")]
-        [InputSpecification("Select the necessary execution preference.")]
+        [InputSpecification("Select the appropriate execution preference.")]
+        [SampleUsage("")]
         [Remarks("")]
         public string v_ExecuteAwait { get; set; }
 
         [XmlAttribute]
         [PropertyDescription("Script Parameter Data")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("Specify the data, typically either raw data, local file, or remote file")]
-        [SampleUsage("n/a")]
+        [InputSpecification("Specify the data, typically either raw data, a local file, or a remote file.")]
+        [SampleUsage(@"hello || {vData} || C:\temp\myfile.json || {ProjectPath}\myfile.json || {vFilePath}")]
         [Remarks("")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
         public string v_Parameter { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Request Timeout (ms)")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("Enter the length of time to wait before the request times out ")]
+        [PropertyDescription("Request Timeout (Seconds)")]
+        [InputSpecification("Enter the length of time to wait before the request times out.")]
+        [SampleUsage("30 || {vTime}")]
         [Remarks("")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_RequestTimeout { get; set; }
 
         [XmlAttribute]
@@ -78,47 +78,42 @@ namespace taskt.Commands
             SelectionName = "Remote Task";
             CommandEnabled = true;
             CustomRendering = true;
+            v_ParameterType = "Run Raw Script Data";
             v_ExecuteAwait = "Continue Execution";
-            v_RequestTimeout = "120000";
+            v_RequestTimeout = "30";
         }
 
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
-            try
-            {
-                var server = v_BaseURL.ConvertUserVariableToString(engine);
-                var paramType = v_ParameterType.ConvertUserVariableToString(engine);
-                var parameter = v_Parameter.ConvertUserVariableToString(engine);
-                var awaitPreference = v_ExecuteAwait.ConvertUserVariableToString(engine);
-                var timeout = v_RequestTimeout.ConvertUserVariableToString(engine);
+            var server = v_BaseURL.ConvertUserVariableToString(engine);
+            var paramType = v_ParameterType.ConvertUserVariableToString(engine);
+            var parameter = v_Parameter.ConvertUserVariableToString(engine);
+            var awaitPreference = v_ExecuteAwait.ConvertUserVariableToString(engine);
+            var timeout = int.Parse(v_RequestTimeout.ConvertUserVariableToString(engine)) * 1000;
 
-                var response = LocalTCPClient.SendAutomationTask(server, paramType, timeout, parameter, awaitPreference);
-                response.StoreInUserVariable(engine, v_OutputUserVariableName);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
+            var response = LocalTCPClient.SendAutomationTask(server, paramType, timeout, parameter, awaitPreference);
+            response.StoreInUserVariable(engine, v_OutputUserVariableName);
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
+
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_BaseURL", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_ParameterType", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_Parameter", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_ExecuteAwait", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_Parameter", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_RequestTimeout", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
 
             return RenderedControls;
-
         }
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + $" [{v_ParameterType} on {v_BaseURL}]";
+            return base.GetDisplayValue() + $" [{v_ParameterType} on '{v_BaseURL}' - Store Response in '{v_OutputUserVariableName}']";
+
         }
 
     }

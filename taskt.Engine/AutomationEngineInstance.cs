@@ -373,17 +373,6 @@ namespace taskt.Engine
                 {
                     CurrentLoopContinuing = true;
                 }
-                else if(parentCommand.CommandName == "SetEngineDelayCommand")
-                {
-                    //get property value
-                    var engineDelay = parentCommand.PropertyValues["v_EngineSpeed"].ToString();
-                    //var setEngineCommand = (SetEngineDelayCommand)parentCommand;
-                    //var engineDelay = setEngineCommand.v_EngineSpeed.ConvertToUserVariable(this);
-                    var delay = int.Parse(engineDelay);
-
-                    //update delay setting
-                    EngineSettings.DelayBetweenCommands = delay;
-                }
                 else
                 {
                     //sleep required time

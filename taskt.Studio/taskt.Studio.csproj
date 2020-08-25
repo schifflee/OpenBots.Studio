@@ -854,7 +854,6 @@
     </Content>
     <None Include="Resources\taskt_icon.ico" />
     <Content Include="taskt_logo_alt.ico" />
-    <None Include="Resources\item-header96.png" />
     <None Include="Resources\item-header.png" />
     <None Include="Resources\action-bar-new.png" />
     <None Include="Resources\action-bar-open.png" />

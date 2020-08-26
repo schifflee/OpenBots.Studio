@@ -130,8 +130,12 @@ namespace taskt.Commands
 
             NewEngine = new frmScriptEngine(childTaskPath, (frmScriptBuilder)CurrentScriptBuilder, ((frmScriptBuilder)CurrentScriptBuilder).EngineLogger,
                 variableList, null, false, parentEngine.IsDebugMode);
+    
             NewEngine.IsChildEngine = true;
             NewEngine.IsHiddenTaskEngine = true;
+
+            //pass app instance dictionary to the new engine
+            NewEngine.EngineInstance.AppInstances = currentScriptEngine.AppInstances;
 
             if (IsSteppedInto)
             {                
@@ -172,6 +176,9 @@ namespace taskt.Commands
                     currentScriptEngine.VariableList.Add(newTemp);
                 }
             }
+
+            //get updated app instance dictionary after the new engine finishes running
+            currentScriptEngine.AppInstances = NewEngine.EngineInstance.AppInstances;
 
             //get errors from new engine (if any)
             var newEngineErrors = NewEngine.EngineInstance.ErrorsOccured;

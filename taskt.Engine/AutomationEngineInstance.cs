@@ -473,10 +473,7 @@ namespace taskt.Engine
                         throw ex;
                 }
             }
-        }
-        
-
-        
+        }     
 
         public void CancelScript()
         {

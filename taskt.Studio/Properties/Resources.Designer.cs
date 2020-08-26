@@ -363,6 +363,16 @@ namespace taskt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap command_catch {
+            get {
+                object obj = ResourceManager.GetObject("command_catch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap command_comment {
             get {
                 object obj = ResourceManager.GetObject("command_comment", resourceCulture);
@@ -453,6 +463,16 @@ namespace taskt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap command_end_try {
+            get {
+                object obj = ResourceManager.GetObject("command_end_try", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap command_endloop {
             get {
                 object obj = ResourceManager.GetObject("command_endloop", resourceCulture);
@@ -466,6 +486,16 @@ namespace taskt.Properties {
         public static System.Drawing.Bitmap command_error {
             get {
                 object obj = ResourceManager.GetObject("command_error", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap command_exception {
+            get {
+                object obj = ResourceManager.GetObject("command_exception", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

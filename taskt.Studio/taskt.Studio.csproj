@@ -837,6 +837,9 @@
     <None Include="Resources\command-end-switch.png" />
     <None Include="Resources\command-regex.png" />
     <None Include="Resources\command-message.png" />
+    <None Include="Resources\command-end-try.png" />
+    <None Include="Resources\command-catch.png" />
+    <None Include="Resources\command-exception.png" />
     <Content Include="Resources\HTMLInputSample.html" />
     <Content Include="Resources\IEDriverServer.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

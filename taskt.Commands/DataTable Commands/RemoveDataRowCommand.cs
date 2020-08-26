@@ -41,7 +41,7 @@ namespace taskt.Commands
         [PropertyDescription("Overwrite Option")]
         [PropertyUISelectionOption("And")]
         [PropertyUISelectionOption("Or")]
-        [InputSpecification("Indicate whether this command should remove rows with all the constraints or remove them with 1 or more constraints.")]
+        [InputSpecification("Indicate whether this command should remove rows with all the constraints or remove those with 1 or more constraints.")]
         [SampleUsage("")]
         [Remarks("")]
         public string v_AndOr { get; set; }

@@ -56,26 +56,18 @@ namespace taskt.Commands
             //get sending instance
             var engine = (AutomationEngineInstance)sender;
             var variable = v_VariableName.ConvertUserVariableToObject(engine);
-            object input;
 
-            try
-            {
+            dynamic input = v_Input.ConvertUserVariableToString(engine);
+
+            if (input == v_Input && input.StartsWith("{") && input.EndsWith("}"))
                 input = v_Input.ConvertUserVariableToObject(engine);
-
-                if (input is string)
-                    input = v_Input.ConvertUserVariableToString(engine);
-            }
-            catch (Exception)
-            {
-                input = v_Input.ConvertUserVariableToString(engine);
-            }
 
             if (variable == null)
             {
                 //variable does not exist so add to the list
                 try
                 {
-                    input.StoreInUserVariable(engine, v_VariableName);
+                    ((object)input).StoreInUserVariable(engine, v_VariableName);
                 }
                 catch (Exception ex)
                 {
@@ -88,7 +80,7 @@ namespace taskt.Commands
                 switch (v_IfExists)
                 {
                     case "Replace If Variable Exists":
-                        input.StoreInUserVariable(engine, v_VariableName);
+                        ((object)input).StoreInUserVariable(engine, v_VariableName);
                         break;
                     case "Error If Variable Exists":
                         throw new Exception("Attempted to create a variable that already exists! Use 'Set Variable' instead or change the Exception Setting in the 'Add Variable' Command.");

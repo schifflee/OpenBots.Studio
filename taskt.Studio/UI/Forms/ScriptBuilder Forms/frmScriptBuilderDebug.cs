@@ -75,23 +75,26 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                     DataRow[] foundVariables = variableValues.Select("Name = '" + variable.VariableName + "'");
                     if (foundVariables.Length == 0)
                     {
-                        var type = variable.VariableValue.GetType().ToString();
-                        switch (variable.VariableValue.GetType().ToString())
+                        string type = "";
+                        if (variable.VariableValue != null)
+                            type = variable.VariableValue.GetType().FullName;
+
+                        switch (type)
                         {
                             case "System.String":
-                                variableValues.Rows.Add(variable.VariableName, variable.VariableValue.GetType().FullName,
+                                variableValues.Rows.Add(variable.VariableName, type,
                                     variable.VariableValue);
                                 break;
                             case "System.Security.SecureString":
-                                variableValues.Rows.Add(variable.VariableName, variable.VariableValue.GetType().FullName,
+                                variableValues.Rows.Add(variable.VariableName, type,
                                     "*Secure String*");
                                 break;
                             case "System.Data.DataTable":
-                                variableValues.Rows.Add(variable.VariableName, variable.VariableValue.GetType().FullName, 
+                                variableValues.Rows.Add(variable.VariableName, type, 
                                     ConvertDataTableToString((DataTable)variable.VariableValue));
                                 break;
                             case "System.Data.DataRow":
-                                variableValues.Rows.Add(variable.VariableName, variable.VariableValue.GetType().FullName,
+                                variableValues.Rows.Add(variable.VariableName, type,
                                     ConvertDataRowToString((DataRow)variable.VariableValue));
                                 break;
                             case "System.__ComObject":
@@ -99,7 +102,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                                     ConvertMailItemToString((MailItem)variable.VariableValue));
                                 break;
                             case "MimeKit.MimeMessage":
-                                variableValues.Rows.Add(variable.VariableName, variable.VariableValue.GetType().FullName,
+                                variableValues.Rows.Add(variable.VariableName, type,
                                     ConvertMimeMessageToString((MimeMessage)variable.VariableValue));
                                 break;
                             case "OpenQA.Selenium.Remote.RemoteWebElement":
@@ -107,7 +110,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                                     ConvertIWebElementToString((IWebElement)variable.VariableValue));
                                 break;
                             case "System.Drawing.Bitmap":
-                                variableValues.Rows.Add(variable.VariableName, variable.VariableValue.GetType().FullName,
+                                variableValues.Rows.Add(variable.VariableName, type,
                                     ConvertBitmapToString((Bitmap)variable.VariableValue));
                                 break;
                             case "System.Collections.Generic.List`1[System.String]":
@@ -115,11 +118,14 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                             case "System.Collections.Generic.List`1[Microsoft.Office.Interop.Outlook.MailItem]":
                             case "System.Collections.Generic.List`1[MimeKit.MimeMessage]":
                             case "System.Collections.Generic.List`1[OpenQA.Selenium.IWebElement]":
-                                variableValues.Rows.Add(variable.VariableName, variable.VariableValue.GetType().FullName,
+                                variableValues.Rows.Add(variable.VariableName, type,
                                     ConvertListToString(variable.VariableValue));
                                 break;
+                            case "":
+                                variableValues.Rows.Add(variable.VariableName, "null", "null");
+                                break;
                             default:
-                                variableValues.Rows.Add(variable.VariableName, variable.VariableValue.GetType().FullName, 
+                                variableValues.Rows.Add(variable.VariableName, type, 
                                     "*Type Not Yet Supported*");
                                 break;
                         }                       

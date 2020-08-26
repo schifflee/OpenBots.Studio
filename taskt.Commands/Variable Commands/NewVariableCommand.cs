@@ -56,11 +56,19 @@ namespace taskt.Commands
             //get sending instance
             var engine = (AutomationEngineInstance)sender;
             var variable = v_VariableName.ConvertUserVariableToObject(engine);
+            object input;
 
-            var input = v_Input.ConvertUserVariableToObject(engine);
+            try
+            {
+                input = v_Input.ConvertUserVariableToObject(engine);
 
-            if (input is string)
+                if (input is string)
+                    input = v_Input.ConvertUserVariableToString(engine);
+            }
+            catch (Exception)
+            {
                 input = v_Input.ConvertUserVariableToString(engine);
+            }
 
             if (variable == null)
             {

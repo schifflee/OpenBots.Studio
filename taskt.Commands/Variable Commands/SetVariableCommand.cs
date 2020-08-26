@@ -44,10 +44,19 @@ namespace taskt.Commands
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
-            var input = v_Input.ConvertUserVariableToObject(engine);
+            object input;
 
-            if (input is string)
+            try
+            {
+                input = v_Input.ConvertUserVariableToObject(engine);
+
+                if (input is string)
+                    input = v_Input.ConvertUserVariableToString(engine);
+            }
+            catch (Exception)
+            {
                 input = v_Input.ConvertUserVariableToString(engine);
+            }
 
             input.StoreInUserVariable(engine, v_OutputUserVariableName);
         }

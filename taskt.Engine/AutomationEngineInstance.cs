@@ -362,6 +362,9 @@ namespace taskt.Engine
                 }
                 else if (parentCommand.CommandName == "StopCurrentTaskCommand")
                 {
+                    if (TasktEngineUI != null && TasktEngineUI.CallBackForm != null)
+                        TasktEngineUI.CallBackForm.IsScriptRunning = false;
+
                     IsCancellationPending = true;
                     return;
                 }

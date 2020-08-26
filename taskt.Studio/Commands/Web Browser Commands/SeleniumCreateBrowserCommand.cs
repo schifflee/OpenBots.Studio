@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using System;
 using System.Collections.Generic;
@@ -35,10 +37,12 @@ namespace taskt.Commands
         [XmlAttribute]
         [PropertyDescription("Browser Engine Type")]
         [PropertyUISelectionOption("Chrome")]
-        [PropertyUISelectionOption("IE")]
+        [PropertyUISelectionOption("Firefox")]
+        [PropertyUISelectionOption("Microsoft Edge")]
+        [PropertyUISelectionOption("Internet Explorer")]
         [InputSpecification("Select the browser engine to execute the Selenium automation with.")]
         [SampleUsage("")]
-        [Remarks("")]
+        [Remarks("The recommended browser option for web automation is Chrome.")]
         public string v_EngineType { get; set; }
 
         [XmlAttribute]
@@ -85,7 +89,8 @@ namespace taskt.Commands
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
-            var driverPath =Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Resources");
+            var convertedOptions = v_SeleniumOptions.ConvertUserVariableToString(engine);
+            var driverPath = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Resources");
 
             DriverService driverService;
             IWebDriver webDriver;
@@ -96,19 +101,40 @@ namespace taskt.Commands
 
                 options.AddUserProfilePreference("download.prompt_for_download", true);
 
-                if (!string.IsNullOrEmpty(v_SeleniumOptions))
-                {
-                    var convertedOptions = v_SeleniumOptions.ConvertUserVariableToString(engine);
+                if (!string.IsNullOrEmpty(convertedOptions.Trim()))
+                {                   
                     options.AddArguments(convertedOptions);
                 }
 
                 driverService = ChromeDriverService.CreateDefaultService(driverPath);
                 webDriver = new ChromeDriver((ChromeDriverService)driverService, options);
             }
+            else if (v_EngineType == "Firefox")
+            {
+                string firefoxExecutablePath = @"C:\Program Files\Mozilla Firefox\firefox.exe";
+                if (!File.Exists(firefoxExecutablePath))
+                    throw new FileNotFoundException($"Could not locate '{firefoxExecutablePath}'");
+
+                FirefoxOptions options = new FirefoxOptions();
+                options.BrowserExecutableLocation = firefoxExecutablePath;
+
+                driverService = FirefoxDriverService.CreateDefaultService(driverPath);
+                webDriver = new FirefoxDriver((FirefoxDriverService)driverService, options);
+            }
+            else if (v_EngineType == "Microsoft Edge")
+            {
+                EdgeOptions options = new EdgeOptions();               
+    
+                driverService = EdgeDriverService.CreateDefaultService(driverPath);
+                webDriver = new EdgeDriver((EdgeDriverService)driverService, options);
+            }
             else
             {
+                InternetExplorerOptions options = new InternetExplorerOptions();
+                options.IgnoreZoomLevel = true;
+
                 driverService = InternetExplorerDriverService.CreateDefaultService(driverPath);
-                webDriver = new InternetExplorerDriver((InternetExplorerDriverService)driverService, new InternetExplorerOptions());
+                webDriver = new InternetExplorerDriver((InternetExplorerDriverService)driverService, options);
             }
 
             //add app instance

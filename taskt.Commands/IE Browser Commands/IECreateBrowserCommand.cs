@@ -30,6 +30,14 @@ namespace taskt.Commands
         public string v_InstanceName { get; set; }
 
         [XmlAttribute]
+        [PropertyDescription("URL")]
+        [InputSpecification("Enter a Web URL to navigate to.")]
+        [SampleUsage("https://example.com/ || {vURL}")]
+        [Remarks("This input is optional.")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
+        public string v_URL { get; set; }
+
+        [XmlAttribute]
         [PropertyDescription("Instance Tracking (after task ends)")]
         [PropertyUISelectionOption("Forget Instance")]
         [PropertyUISelectionOption("Keep Instance Alive")]
@@ -38,21 +46,14 @@ namespace taskt.Commands
         [Remarks("Calling the **Close Browser** command or closing the application will end the instance.")]
         public string v_InstanceTracking { get; set; }
 
-        [XmlAttribute]
-        [PropertyDescription("Navigate to URL")]
-        [InputSpecification("Enter a Web URL to navigate to.")]
-        [SampleUsage("https://example.com/ || {vURL}")]
-        [Remarks("")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_URL { get; set; }
-
         public IECreateBrowserCommand()
         {
             CommandName = "IECreateBrowserCommand";
-            SelectionName = "Create Browser";
+            SelectionName = "Create IE Browser";
             v_InstanceName = "DefaultIEBrowser";
             CommandEnabled = true;
             CustomRendering = true;
+            v_InstanceTracking = "Forget Instance";
         }
 
         public override void RunCommand(object sender)
@@ -61,25 +62,27 @@ namespace taskt.Commands
             var webURL = v_URL.ConvertUserVariableToString(engine);
 
             InternetExplorer newBrowserSession = new InternetExplorer();
-            try
-            {
-                newBrowserSession.Navigate(webURL);
-                WaitForReadyState(newBrowserSession);
-                newBrowserSession.Visible = true;
-            }
-            catch (Exception ex) 
-            {
-                throw ex;
-            }
 
+            if (!string.IsNullOrEmpty(webURL.Trim()))
+            {
+                try
+                {
+                    newBrowserSession.Navigate(webURL);
+                    WaitForReadyState(newBrowserSession);
+                    newBrowserSession.Visible = true;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+                
             //add app instance
             newBrowserSession.AddAppInstance(engine, v_InstanceName);
 
             //handle app instance tracking
             if (v_InstanceTracking == "Keep Instance Alive")
-            {
                 GlobalAppInstances.AddInstance(v_InstanceName, newBrowserSession);
-            }
         }
 
         public override List<Control> Render(IfrmCommandEditor editor)
@@ -87,15 +90,15 @@ namespace taskt.Commands
             base.Render(editor);
 
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_InstanceTracking", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_URL", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_InstanceTracking", this, editor));
 
             return RenderedControls;
         }
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + $" [Instance Name '{v_InstanceName}']";
+            return base.GetDisplayValue() + $" [New Instance Name '{v_InstanceName}']";
         }
 
         public static void WaitForReadyState(InternetExplorer ieInstance)

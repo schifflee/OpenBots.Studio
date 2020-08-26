@@ -40,7 +40,7 @@ namespace taskt.Commands
         public IEFindBrowserCommand()
         {
             CommandName = "IEFindBrowserCommand";
-            SelectionName = "Find Browser";
+            SelectionName = "Find IE Browser";
             v_InstanceName = "DefaultIEBrowser";
             CommandEnabled = true;
             CustomRendering = true;

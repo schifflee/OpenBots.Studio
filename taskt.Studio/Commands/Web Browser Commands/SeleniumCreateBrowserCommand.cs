@@ -46,6 +46,14 @@ namespace taskt.Commands
         public string v_EngineType { get; set; }
 
         [XmlAttribute]
+        [PropertyDescription("URL")]
+        [InputSpecification("Enter the URL that you want the selenium instance to navigate to.")]
+        [SampleUsage("https://mycompany.com/orders || {vURL}")]
+        [Remarks("This input is optional.")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
+        public string v_URL { get; set; }
+
+        [XmlAttribute]
         [PropertyDescription("Instance Tracking")]
         [PropertyUISelectionOption("Forget Instance")]
         [PropertyUISelectionOption("Keep Instance Alive")]
@@ -67,7 +75,7 @@ namespace taskt.Commands
         public string v_BrowserWindowOption { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Selenium Command Line Options")]
+        [PropertyDescription("Selenium Command Line Options (Chrome)")]
         [InputSpecification("Select options to be passed to the Selenium command.")]
         [SampleUsage("user-data-dir=c:\\users\\public\\SeleniumTasktProfile || {vOptions}")]
         [Remarks("This input is optional.")]
@@ -90,51 +98,55 @@ namespace taskt.Commands
         {
             var engine = (AutomationEngineInstance)sender;
             var convertedOptions = v_SeleniumOptions.ConvertUserVariableToString(engine);
-            var driverPath = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Resources");
+            var vURL = v_URL.ConvertUserVariableToString(engine);
+
+            string driverPath = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Resources");
 
             DriverService driverService;
             IWebDriver webDriver;
 
-            if (v_EngineType == "Chrome")
+            switch (v_EngineType)
             {
-                ChromeOptions options = new ChromeOptions();
+                case "Chrome":
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.AddUserProfilePreference("download.prompt_for_download", true);
 
-                options.AddUserProfilePreference("download.prompt_for_download", true);
+                    if (!string.IsNullOrEmpty(convertedOptions.Trim()))
+                        chromeOptions.AddArguments(convertedOptions);
 
-                if (!string.IsNullOrEmpty(convertedOptions.Trim()))
-                {                   
-                    options.AddArguments(convertedOptions);
-                }
+                    driverService = ChromeDriverService.CreateDefaultService(driverPath);
+                    webDriver = new ChromeDriver((ChromeDriverService)driverService, chromeOptions);
+                    break;
 
-                driverService = ChromeDriverService.CreateDefaultService(driverPath);
-                webDriver = new ChromeDriver((ChromeDriverService)driverService, options);
-            }
-            else if (v_EngineType == "Firefox")
-            {
-                string firefoxExecutablePath = @"C:\Program Files\Mozilla Firefox\firefox.exe";
-                if (!File.Exists(firefoxExecutablePath))
-                    throw new FileNotFoundException($"Could not locate '{firefoxExecutablePath}'");
+                case "Firefox":
+                    string firefoxExecutablePath = @"C:\Program Files\Mozilla Firefox\firefox.exe";
+                    if (!File.Exists(firefoxExecutablePath))
+                        throw new FileNotFoundException($"Could not locate '{firefoxExecutablePath}'");
 
-                FirefoxOptions options = new FirefoxOptions();
-                options.BrowserExecutableLocation = firefoxExecutablePath;
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.BrowserExecutableLocation = firefoxExecutablePath;
 
-                driverService = FirefoxDriverService.CreateDefaultService(driverPath);
-                webDriver = new FirefoxDriver((FirefoxDriverService)driverService, options);
-            }
-            else if (v_EngineType == "Microsoft Edge")
-            {
-                EdgeOptions options = new EdgeOptions();               
-    
-                driverService = EdgeDriverService.CreateDefaultService(driverPath);
-                webDriver = new EdgeDriver((EdgeDriverService)driverService, options);
-            }
-            else
-            {
-                InternetExplorerOptions options = new InternetExplorerOptions();
-                options.IgnoreZoomLevel = true;
+                    driverService = FirefoxDriverService.CreateDefaultService(driverPath);
+                    webDriver = new FirefoxDriver((FirefoxDriverService)driverService, firefoxOptions);
+                    break;
 
-                driverService = InternetExplorerDriverService.CreateDefaultService(driverPath);
-                webDriver = new InternetExplorerDriver((InternetExplorerDriverService)driverService, options);
+                case "Microsoft Edge":
+                    EdgeOptions edgeOptions = new EdgeOptions();
+
+                    driverService = EdgeDriverService.CreateDefaultService(driverPath);
+                    webDriver = new EdgeDriver((EdgeDriverService)driverService, edgeOptions);
+                    break;
+
+                case "Internet Explorer":
+                    InternetExplorerOptions ieOptions = new InternetExplorerOptions();
+                    ieOptions.IgnoreZoomLevel = true;
+
+                    driverService = InternetExplorerDriverService.CreateDefaultService(driverPath);
+                    webDriver = new InternetExplorerDriver((InternetExplorerDriverService)driverService, ieOptions);
+                    break;
+
+                default:
+                    throw new Exception($"The selected engine type '{v_EngineType}' is not valid.");
             }
 
             //add app instance
@@ -144,7 +156,6 @@ namespace taskt.Commands
             if (v_InstanceTracking == "Keep Instance Alive")
                 GlobalAppInstances.AddInstance(v_InstanceName, webDriver);
 
-            //handle window type on startup - https://github.com/saucepleez/taskt/issues/22
             switch (v_BrowserWindowOption)
             {
                 case "Maximize":
@@ -155,6 +166,9 @@ namespace taskt.Commands
                 default:
                     break;
             }
+
+            if (!string.IsNullOrEmpty(vURL.Trim()))
+                webDriver.Navigate().GoToUrl(vURL);
         }
 
         public override List<Control> Render(IfrmCommandEditor editor)
@@ -163,6 +177,7 @@ namespace taskt.Commands
 
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_EngineType", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_URL", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_InstanceTracking", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_BrowserWindowOption", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_SeleniumOptions", this, editor));
@@ -172,7 +187,7 @@ namespace taskt.Commands
 
         public override string GetDisplayValue()
         {
-            return $"Create {v_EngineType} Browser [Instance Name '{v_InstanceName}']";
+            return $"Create {v_EngineType} Browser [Navigate To URL '{v_URL}' - New Instance Name '{v_InstanceName}']";
         }
     }
 }

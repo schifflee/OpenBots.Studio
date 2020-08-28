@@ -122,15 +122,15 @@
     <value>1</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="wbElementRecorder.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
+  <data name="wbElementRecorder.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="wbElementRecorder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 197</value>
+    <value>0, 195</value>
   </data>
   <data name="wbElementRecorder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1636, 578</value>
+    <value>1636, 580</value>
   </data>
   <data name="wbElementRecorder.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -2095,6 +2095,6 @@
     <value>frmHTMLElementRecorder</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>taskt.UI.Forms.UIForm, taskt.Studio, Version=0.0.7544.31040, Culture=neutral, PublicKeyToken=null</value>
+    <value>taskt.UI.Forms.UIForm, taskt.Studio, Version=0.0.7544.42250, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

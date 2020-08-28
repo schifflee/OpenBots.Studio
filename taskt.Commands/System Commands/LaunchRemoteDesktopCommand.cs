@@ -22,7 +22,7 @@ namespace taskt.Commands
         [XmlAttribute]
         [PropertyDescription("Machine Name")]
         [InputSpecification("Define the name of the machine to log on to.")]
-        [SampleUsage("")]
+        [SampleUsage("myMachine || {vMachineName}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_MachineName { get; set; }

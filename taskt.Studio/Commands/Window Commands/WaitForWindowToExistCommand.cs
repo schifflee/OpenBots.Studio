@@ -82,7 +82,7 @@ namespace taskt.Commands
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + $" [ Window '{v_WindowName}' - Timeout '{v_Timeout}']";
+            return base.GetDisplayValue() + $" [Window '{v_WindowName}' - Timeout '{v_Timeout}']";
         }
     }
 }

@@ -17,7 +17,7 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("System Commands")]
-    [Description("This command exclusively selects a environment variable.")]
+    [Description("This command exclusively selects an environment variable.")]
     public class EnvironmentVariableCommand : ScriptCommand
     {
         [XmlAttribute]

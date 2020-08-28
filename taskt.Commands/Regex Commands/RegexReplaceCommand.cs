@@ -17,7 +17,7 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Regex Commands")]
-    [Description("This command replaces all the matches in a given text based on a Regex pattern")]
+    [Description("This command replaces all the matches in a given text based on a Regex pattern.")]
     public class RegexReplaceCommand : ScriptCommand
     {
         [XmlAttribute]

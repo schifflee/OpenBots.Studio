@@ -33,7 +33,7 @@ namespace taskt.Commands
         [XmlAttribute]
         [PropertyDescription("Connection String")]
         [InputSpecification("Define the string to use when connecting to the OleDb database.")]
-        [SampleUsage("myRobot || {vUsername}")]
+        [SampleUsage("Provider=sqloledb;Data Source=myServerAddress;Initial Catalog=myDataBase;Integrated Security=SSPI; || {vConnectionString}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_ConnectionString { get; set; }

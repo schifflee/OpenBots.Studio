@@ -13,15 +13,16 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Engine Commands")]
-    [Description("This command allows you to set preferences for engine behavior at runtime.")]
+    [Description("This command sets preferences for engine behavior at runtime.")]
     public class SetEnginePreferenceCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Calculation Option")]
+        [PropertyDescription("Calculation Preference")]
         [PropertyUISelectionOption("Enable Automatic Calculations")]
         [PropertyUISelectionOption("Disable Automatic Calculations")]
-        [InputSpecification("")]
-        [Remarks("")]
+        [InputSpecification("Select the appropriate calculation preference.")]
+        [Remarks("Disabling automatic calculations will prevent the engine from interpreting strings " +
+                 "with characters '+, -, *, /, =' as mathematical operations.")]
         public string v_CalculationOption { get; set; }
 
         public SetEnginePreferenceCommand()

@@ -86,8 +86,7 @@ namespace taskt.Commands
             base.Render(editor);
 
             RenderedControls.AddRange(CommandControls.CreateDefaultWindowControlGroupFor("v_WindowName", this, editor));
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_WindowState", this));
-            RenderedControls.Add(CommandControls.CreateDropdownFor("v_WindowState", this));
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_WindowState", this, editor));
 
             return RenderedControls;
         }

@@ -30,7 +30,7 @@ namespace taskt.Commands
 
         [XmlAttribute]
         [PropertyDescription("Regex Pattern")]
-        [InputSpecification("Enter a Regex Pattern to apply to Input Text to get all the matches.")]
+        [InputSpecification("Enter a Regex Pattern to apply to the input Text.")]
         [SampleUsage(@"^([\w\-]+) || {vPattern}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]

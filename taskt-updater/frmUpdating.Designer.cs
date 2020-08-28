@@ -1,4 +1,4 @@
-﻿namespace taskt_updater
+﻿namespace taskt.Updater
 {
     partial class frmUpdating
     {

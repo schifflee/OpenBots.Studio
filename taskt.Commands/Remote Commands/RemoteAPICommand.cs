@@ -31,7 +31,7 @@ namespace taskt.Commands
         [PropertyDescription("Parameter Type")]
         [PropertyUISelectionOption("Get Engine Status")]
         [PropertyUISelectionOption("Restart taskt")]
-        [InputSpecification("Select the appropriate parameter.")]
+        [InputSpecification("Select the appropriate parameter type.")]
         [SampleUsage("")]
         [Remarks("")]
         public string v_ParameterType { get; set; }
@@ -91,4 +91,3 @@ namespace taskt.Commands
     }
 
 }
-

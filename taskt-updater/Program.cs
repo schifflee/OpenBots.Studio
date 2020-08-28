@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace taskt_updater
+namespace taskt.Updater
 {
     static class Program
     {
@@ -14,7 +12,6 @@ namespace taskt_updater
         [STAThread]
         static void Main(string[] args)
         {
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -24,12 +21,7 @@ namespace taskt_updater
                 Application.Exit();
             }
             else
-            {
                 Application.Run(new frmUpdating(args[0]));
-            }
-
-
-           
         }
     }
 }

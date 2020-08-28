@@ -17,7 +17,7 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Regex Commands")]
-    [Description("This command replaces all the matches in a given text based on a Regex pattern")]
+    [Description("This command replaces all the matches in a given text based on a Regex pattern.")]
     public class RegexReplaceCommand : ScriptCommand
     {
         [XmlAttribute]
@@ -30,7 +30,7 @@ namespace taskt.Commands
 
         [XmlAttribute]
         [PropertyDescription("Regex Pattern")]
-        [InputSpecification("Enter a Regex Pattern to apply to Input Text to get all the matches.")]
+        [InputSpecification("Enter a Regex Pattern to apply to the input Text.")]
         [SampleUsage(@"^([\w\-]+) || {vPattern}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]

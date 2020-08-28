@@ -16,13 +16,13 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("System Commands")]
-    [Description("This command allows you to launch a remote desktop session.")]
+    [Description("This command launches a remote desktop session.")]
     public class LaunchRemoteDesktopCommand : ScriptCommand
     {
         [XmlAttribute]
         [PropertyDescription("Machine Name")]
         [InputSpecification("Define the name of the machine to log on to.")]
-        [SampleUsage("")]
+        [SampleUsage("myMachine || {vMachineName}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_MachineName { get; set; }

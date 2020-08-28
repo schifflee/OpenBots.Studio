@@ -94,6 +94,7 @@ namespace taskt.Commands
             //get variablized string
             var variableDateTime = v_InputDate.ConvertUserVariableToString(engine);
             var formatting = v_ToStringFormat.ConvertUserVariableToString(engine);
+            var variableIncrement = v_Increment.ConvertUserVariableToString(engine);
 
             //convert to date time
             DateTime requiredDateTime;
@@ -102,7 +103,6 @@ namespace taskt.Commands
 
             //get increment value
             double requiredInterval;
-            var variableIncrement = v_Increment.ConvertUserVariableToString(engine);
 
             //convert to double
             if (!double.TryParse(variableIncrement, out requiredInterval))
@@ -210,7 +210,7 @@ namespace taskt.Commands
                 operandLanguage = "from";
 
             if (operand == "Get")
-                operand = v_CalculationMethod.Replace(interval, "").TrimEnd();//$"{v_CalculationMethod.Split(' ')[0]} {v_CalculationMethod.Split(' ')[1]}";
+                operand = v_CalculationMethod.Replace(interval, "").TrimEnd();
 
             //return value
             return base.GetDisplayValue() + $" [{operand} '{v_Increment}' {interval} {operandLanguage} '{v_InputDate}' - Store Date in '{v_OutputUserVariableName}']";

@@ -34,7 +34,7 @@ namespace taskt.Commands
         [PropertyUISelectionOption("Run Local File")]
         [PropertyUISelectionOption("Run Remote File")]
         [PropertyUISelectionOption("Run Command Json")]
-        [InputSpecification("Select the appropriate parameter.")]
+        [InputSpecification("Select the appropriate parameter type.")]
         [SampleUsage("")]
         [Remarks("")]
         public string v_ParameterType { get; set; }
@@ -119,4 +119,3 @@ namespace taskt.Commands
     }
 
 }
-

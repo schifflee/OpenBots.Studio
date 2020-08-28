@@ -15,5 +15,6 @@ namespace taskt.Core.Infrastructure
         string DefaultStartupCommand { get; set; }
         ScriptCommand EditingCommand { get; set; }
         List<ScriptCommand> ConfiguredCommands { get; set; }
+        string HTMLElementRecorderURL { get; set; }
     }
 }

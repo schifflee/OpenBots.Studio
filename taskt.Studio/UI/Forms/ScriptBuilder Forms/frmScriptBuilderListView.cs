@@ -317,6 +317,9 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                 //set elements
                 editCommand.ScriptElements = _scriptElements;
 
+                if (currentCommand.CommandName == "SeleniumElementActionCommand")
+                    editCommand.HTMLElementRecorderURL = HTMLElementRecorderURL;
+
                 //show edit command form and save changes on OK result
                 if (editCommand.ShowDialog() == DialogResult.OK)
                 {
@@ -330,6 +333,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                 {
                     CreateUndoSnapshot();
                     _scriptElements = editCommand.ScriptElements;
+                    HTMLElementRecorderURL = editCommand.HTMLElementRecorderURL;
                 }
             }
         }

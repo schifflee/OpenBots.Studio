@@ -1,4 +1,5 @@
-﻿using HtmlAgilityPack;
+﻿using Gecko;
+using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,6 +14,8 @@ namespace taskt.UI.Forms.Supplement_Forms
         public List<ScriptElement> ScriptElements { get; set; }
         public DataTable SearchParameters { get; set; }
         public string LastItemClicked { get; set; }
+        public string StartURL { get; set; }
+        private string _homeURL = "https://www.google.com/"; //TODO replace with openbots url;
         private string _xPath;
         private string _name;
         private string _id;
@@ -20,10 +23,21 @@ namespace taskt.UI.Forms.Supplement_Forms
         private string _className;
         private string _linkText;
         private string _cssSelector;
+        private bool _isRecording = false;
 
-        public frmHTMLElementRecorder()
+        public frmHTMLElementRecorder(string startURL)
         {
+            if (string.IsNullOrEmpty(startURL))
+                StartURL = _homeURL;
+            else
+                StartURL = startURL;
+
             InitializeComponent();
+
+            Xpcom.Initialize("Firefox");
+            wbElementRecorder.Navigate(StartURL);
+            tbURL.Text = StartURL;
+            tbURL.Refresh();
         }
 
         private void frmHTMLElementRecorder_Load(object sender, EventArgs e)
@@ -32,48 +46,61 @@ namespace taskt.UI.Forms.Supplement_Forms
 
         private void pbRecord_Click(object sender, EventArgs e)
         {
-            TopMost = true;
-            if (!chkStopOnClick.Checked)
-                lblDescription.Text = $"Recording.  Press F2 to stop recording!";
+            if (!_isRecording)
+            {
+                _isRecording = true;
+                TopMost = true;
+                if (!chkStopOnClick.Checked)
+                    lblDescription.Text = "Recording. Press F2 to save and close.";
 
-            SearchParameters = new DataTable();
-            SearchParameters.Columns.Add("Enabled");
-            SearchParameters.Columns.Add("Parameter Name");
-            SearchParameters.Columns.Add("Parameter Value");
-            SearchParameters.TableName = DateTime.Now.ToString("UIASearchParamTable" + DateTime.Now.ToString("MMddyy.hhmmss"));
+                SearchParameters = new DataTable();
+                SearchParameters.Columns.Add("Enabled");
+                SearchParameters.Columns.Add("Parameter Name");
+                SearchParameters.Columns.Add("Parameter Value");
+                SearchParameters.TableName = DateTime.Now.ToString("UIASearchParamTable" + DateTime.Now.ToString("MMddyy.hhmmss"));
 
-            //clear all
-            SearchParameters.Rows.Clear();
+                //clear all
+                SearchParameters.Rows.Clear();
 
-            //start global hook and wait for left mouse down event
-            GlobalHook.StartEngineCancellationHook(Keys.F2);
-            GlobalHook.HookStopped += GlobalHook_HookStopped;
-            GlobalHook.StartElementCaptureHook(chkStopOnClick.Checked);
-            wbElementRecorder.Document.Click += new HtmlElementEventHandler(Document_Click);
+                //start global hook and wait for left mouse down event
+                GlobalHook.StartEngineCancellationHook(Keys.F2);
+                GlobalHook.HookStopped += GlobalHook_HookStopped;
+                GlobalHook.StartElementCaptureHook(chkStopOnClick.Checked);
+                wbElementRecorder.DomClick += wbElementRecorder_DomClick;
+            }
+            else
+            {
+                _isRecording = false;
+                if (!chkStopOnClick.Checked)
+                    lblDescription.Text = "Recording has stopped. Press F2 to save and close.";
 
+                //remove wait for left mouse down event
+                wbElementRecorder.DomClick -= wbElementRecorder_DomClick;
+            }
         }
+
         private void GlobalHook_HookStopped(object sender, EventArgs e)
         {
-            Document_Click(null, null);
+            wbElementRecorder_DomClick(null, null);
             Close();
         }
 
-        private void Document_Click(object sender, HtmlElementEventArgs e)
+        private void wbElementRecorder_DomClick(object sender, DomMouseEventArgs e)
         {
             //mouse down has occured
             if (e != null)
             {
                 try
                 {
-                    HtmlElement element = wbElementRecorder.Document.GetElementFromPoint(e.ClientMousePosition);
+                    GeckoElement element = wbElementRecorder.DomDocument.ElementFromPoint(e.ClientX, e.ClientY);
 
-                    string savedId = element.Id;
+                    string savedId = element.GetAttribute("id");
                     string uniqueId = Guid.NewGuid().ToString();
-                    element.Id = uniqueId;
+                    element.SetAttribute("id", uniqueId);
 
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-                    doc.LoadHtml(element.Document.GetElementsByTagName("html")[0].OuterHtml);
-                    element.Id = savedId;
+                    doc.LoadHtml(element.OwnerDocument.GetElementsByTagName("html")[0].OuterHtml);
+                    element.SetAttribute("id", savedId);
                     HtmlNode node = doc.GetElementbyId(uniqueId);
 
                     _xPath = node.XPath.Replace("[1]", "");
@@ -81,7 +108,7 @@ namespace taskt.UI.Forms.Supplement_Forms
                     _id = element.GetAttribute("id") == null ? "" : element.GetAttribute("id"); ;
                     _tagName = element.TagName;
                     _className = element.GetAttribute("className") == null ? "" : element.GetAttribute("className");
-                    _linkText = element.TagName.ToLower() == "a" ? element.InnerText : "";
+                    _linkText = element.TagName.ToLower() == "a" ? element.TextContent : "";
                     _cssSelector = ""; //TODO
 
                     LastItemClicked = $"[XPath:{_xPath}].[ID:{_id}].[Name:{_name}].[Tag Name:{_tagName}].[Class:{_className}].[Link Text:{_linkText}].[CSS Selector:{_cssSelector}]";
@@ -104,6 +131,11 @@ namespace taskt.UI.Forms.Supplement_Forms
 
             if (chkStopOnClick.Checked)
                 Close();
+        }
+
+        private void pbHome_Click(object sender, EventArgs e)
+        {
+            wbElementRecorder.Navigate(_homeURL);
         }
 
         private void pbRefresh_Click(object sender, EventArgs e)
@@ -187,6 +219,18 @@ namespace taskt.UI.Forms.Supplement_Forms
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
-        }       
+        }
+
+        private void frmHTMLElementRecorder_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            StartURL = wbElementRecorder.Url.ToString();
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void wbElementRecorder_Navigated(object sender, GeckoNavigatedEventArgs e)
+        {
+            tbURL.Text = wbElementRecorder.Url.ToString();
+        }
+
     }
 }

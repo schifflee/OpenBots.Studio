@@ -50,6 +50,7 @@ namespace taskt.UI.Forms
         public ScriptCommand EditingCommand { get; set; }
         //track existing commands for visibility
         public List<ScriptCommand> ConfiguredCommands { get; set; }
+        public string HTMLElementRecorderURL { get; set; }
 
         #region Form Events
         //handle events for the form

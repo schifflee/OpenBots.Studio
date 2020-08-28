@@ -23,6 +23,7 @@ namespace taskt.UI.Forms.Supplement_Forms
         private string _className;
         private string _linkText;
         private string _cssSelector;
+        private bool _isRecording = false;
 
         public frmHTMLElementRecorder(string startURL)
         {
@@ -45,26 +46,39 @@ namespace taskt.UI.Forms.Supplement_Forms
 
         private void pbRecord_Click(object sender, EventArgs e)
         {
-            TopMost = true;
-            if (!chkStopOnClick.Checked)
-                lblDescription.Text = $"Recording. Press F2 to stop recording!";
+            if (!_isRecording)
+            {
+                _isRecording = true;
+                TopMost = true;
+                if (!chkStopOnClick.Checked)
+                    lblDescription.Text = "Recording. Press F2 to save and close.";
 
-            SearchParameters = new DataTable();
-            SearchParameters.Columns.Add("Enabled");
-            SearchParameters.Columns.Add("Parameter Name");
-            SearchParameters.Columns.Add("Parameter Value");
-            SearchParameters.TableName = DateTime.Now.ToString("UIASearchParamTable" + DateTime.Now.ToString("MMddyy.hhmmss"));
+                SearchParameters = new DataTable();
+                SearchParameters.Columns.Add("Enabled");
+                SearchParameters.Columns.Add("Parameter Name");
+                SearchParameters.Columns.Add("Parameter Value");
+                SearchParameters.TableName = DateTime.Now.ToString("UIASearchParamTable" + DateTime.Now.ToString("MMddyy.hhmmss"));
 
-            //clear all
-            SearchParameters.Rows.Clear();
+                //clear all
+                SearchParameters.Rows.Clear();
 
-            //start global hook and wait for left mouse down event
-            GlobalHook.StartEngineCancellationHook(Keys.F2);
-            GlobalHook.HookStopped += GlobalHook_HookStopped;
-            GlobalHook.StartElementCaptureHook(chkStopOnClick.Checked);
-            wbElementRecorder.DomClick += new EventHandler<DomMouseEventArgs>(wbElementRecorder_DomClick);
+                //start global hook and wait for left mouse down event
+                GlobalHook.StartEngineCancellationHook(Keys.F2);
+                GlobalHook.HookStopped += GlobalHook_HookStopped;
+                GlobalHook.StartElementCaptureHook(chkStopOnClick.Checked);
+                wbElementRecorder.DomClick += wbElementRecorder_DomClick;
+            }
+            else
+            {
+                _isRecording = false;
+                if (!chkStopOnClick.Checked)
+                    lblDescription.Text = "Recording has stopped. Press F2 to save and close.";
 
+                //remove wait for left mouse down event
+                wbElementRecorder.DomClick -= wbElementRecorder_DomClick;
+            }
         }
+
         private void GlobalHook_HookStopped(object sender, EventArgs e)
         {
             wbElementRecorder_DomClick(null, null);

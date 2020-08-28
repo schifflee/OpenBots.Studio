@@ -121,244 +121,13 @@
   <data name="tlpControls.ColumnCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;pbHome.Name" xml:space="preserve">
-    <value>pbHome</value>
-  </data>
-  <data name="&gt;&gt;pbHome.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pbHome.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;pbHome.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;wbElementRecorder.Name" xml:space="preserve">
-    <value>wbElementRecorder</value>
-  </data>
-  <data name="&gt;&gt;wbElementRecorder.Type" xml:space="preserve">
-    <value>Gecko.GeckoWebBrowser, Geckofx-Winforms, Version=45.0.34.0, Culture=neutral, PublicKeyToken=3209ac31600d1857</value>
-  </data>
-  <data name="&gt;&gt;wbElementRecorder.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;wbElementRecorder.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;pbElements.Name" xml:space="preserve">
-    <value>pbElements</value>
-  </data>
-  <data name="&gt;&gt;pbElements.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pbElements.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;pbElements.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;pbSave.Name" xml:space="preserve">
-    <value>pbSave</value>
-  </data>
-  <data name="&gt;&gt;pbSave.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pbSave.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;pbSave.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;pbBack.Name" xml:space="preserve">
-    <value>pbBack</value>
-  </data>
-  <data name="&gt;&gt;pbBack.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pbBack.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;pbBack.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;pbForward.Name" xml:space="preserve">
-    <value>pbForward</value>
-  </data>
-  <data name="&gt;&gt;pbForward.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pbForward.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;pbForward.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;pgGo.Name" xml:space="preserve">
-    <value>pgGo</value>
-  </data>
-  <data name="&gt;&gt;pgGo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pgGo.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;pgGo.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;tbURL.Name" xml:space="preserve">
-    <value>tbURL</value>
-  </data>
-  <data name="&gt;&gt;tbURL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbURL.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;tbURL.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;pbRefresh.Name" xml:space="preserve">
-    <value>pbRefresh</value>
-  </data>
-  <data name="&gt;&gt;pbRefresh.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pbRefresh.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;pbRefresh.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;pbRecord.Name" xml:space="preserve">
-    <value>pbRecord</value>
-  </data>
-  <data name="&gt;&gt;pbRecord.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pbRecord.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;pbRecord.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;lblDescription.Name" xml:space="preserve">
-    <value>lblDescription</value>
-  </data>
-  <data name="&gt;&gt;lblDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDescription.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;lblDescription.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;chkStopOnClick.Name" xml:space="preserve">
-    <value>chkStopOnClick</value>
-  </data>
-  <data name="&gt;&gt;chkStopOnClick.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkStopOnClick.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;chkStopOnClick.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;lblSubHeader.Name" xml:space="preserve">
-    <value>lblSubHeader</value>
-  </data>
-  <data name="&gt;&gt;lblSubHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSubHeader.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;lblSubHeader.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;lblHeader.Name" xml:space="preserve">
-    <value>lblHeader</value>
-  </data>
-  <data name="&gt;&gt;lblHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblHeader.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;lblHeader.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pnlHeader.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pnlHeader.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="pnlHeader.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="pnlHeader.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1636, 775</value>
-  </data>
-  <data name="pnlHeader.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;pnlHeader.Name" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;pnlHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlHeader.Parent" xml:space="preserve">
-    <value>tlpControls</value>
-  </data>
-  <data name="&gt;&gt;pnlHeader.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tlpControls.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tlpControls.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="tlpControls.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="tlpControls.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tlpControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1636, 775</value>
-  </data>
-  <data name="tlpControls.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tlpControls.Name" xml:space="preserve">
-    <value>tlpControls</value>
-  </data>
-  <data name="&gt;&gt;tlpControls.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tlpControls.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tlpControls.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tlpControls.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="pnlHeader" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50" /&gt;&lt;Rows Styles="Absolute,689,Absolute,689" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <metadata name="ttElementRecorder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>14, 13</value>
-  </metadata>
   <data name="pbHome.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pbHome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 119</value>
+    <value>9, 119</value>
   </data>
   <data name="pbHome.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 39</value>
@@ -369,6 +138,9 @@
   <data name="pbHome.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
   </data>
+  <metadata name="ttElementRecorder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>14, 13</value>
+  </metadata>
   <data name="pbHome.ToolTip" xml:space="preserve">
     <value>Home</value>
   </data>
@@ -391,7 +163,7 @@
     <value>0, 187</value>
   </data>
   <data name="wbElementRecorder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1636, 588</value>
+    <value>1639, 588</value>
   </data>
   <data name="wbElementRecorder.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -415,7 +187,7 @@
     <value>NoControl</value>
   </data>
   <data name="pbElements.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1575, 119</value>
+    <value>1585, 119</value>
   </data>
   <data name="pbElements.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -448,7 +220,7 @@
     <value>Top, Right</value>
   </data>
   <data name="pbSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1524, 119</value>
+    <value>1534, 119</value>
   </data>
   <data name="pbSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -481,7 +253,7 @@
     <value>Top, Right</value>
   </data>
   <data name="pbBack.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1323, 119</value>
+    <value>1333, 119</value>
   </data>
   <data name="pbBack.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 39</value>
@@ -1270,7 +1042,7 @@
 </value>
   </data>
   <data name="pbForward.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1372, 119</value>
+    <value>1382, 119</value>
   </data>
   <data name="pbForward.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 39</value>
@@ -1300,7 +1072,7 @@
     <value>Top, Right</value>
   </data>
   <data name="pgGo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1272, 119</value>
+    <value>1282, 119</value>
   </data>
   <data name="pgGo.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 39</value>
@@ -1333,10 +1105,10 @@
     <value>Segoe UI, 12pt</value>
   </data>
   <data name="tbURL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 121</value>
+    <value>58, 121</value>
   </data>
   <data name="tbURL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1200, 34</value>
+    <value>1218, 34</value>
   </data>
   <data name="tbURL.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -1357,7 +1129,7 @@
     <value>Top, Right</value>
   </data>
   <data name="pbRefresh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1422, 119</value>
+    <value>1432, 119</value>
   </data>
   <data name="pbRefresh.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1390,7 +1162,7 @@
     <value>Top, Right</value>
   </data>
   <data name="pbRecord.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1473, 119</value>
+    <value>1483, 119</value>
   </data>
   <data name="pbRecord.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1457,7 +1229,7 @@
     <value>Segoe UI, 9.75pt</value>
   </data>
   <data name="chkStopOnClick.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 161</value>
+    <value>10, 158</value>
   </data>
   <data name="chkStopOnClick.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1549,9 +1321,66 @@
   <data name="&gt;&gt;lblHeader.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <metadata name="ttElementRecorder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>14, 13</value>
-  </metadata>
+  <data name="pnlHeader.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pnlHeader.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pnlHeader.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="pnlHeader.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1639, 775</value>
+  </data>
+  <data name="pnlHeader.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;pnlHeader.Name" xml:space="preserve">
+    <value>pnlHeader</value>
+  </data>
+  <data name="&gt;&gt;pnlHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlHeader.Parent" xml:space="preserve">
+    <value>tlpControls</value>
+  </data>
+  <data name="&gt;&gt;pnlHeader.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tlpControls.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tlpControls.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tlpControls.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="tlpControls.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tlpControls.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1639, 775</value>
+  </data>
+  <data name="tlpControls.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tlpControls.Name" xml:space="preserve">
+    <value>tlpControls</value>
+  </data>
+  <data name="&gt;&gt;tlpControls.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tlpControls.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tlpControls.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tlpControls.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="pnlHeader" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50" /&gt;&lt;Rows Styles="Absolute,689,Absolute,689" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1559,7 +1388,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1636, 775</value>
+    <value>1639, 775</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3919,6 +3748,6 @@
     <value>frmHTMLElementRecorder</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>taskt.UI.Forms.UIForm, taskt.Studio, Version=0.0.7545.2971, Culture=neutral, PublicKeyToken=null</value>
+    <value>taskt.UI.Forms.UIForm, taskt.Studio, Version=0.0.7545.18423, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

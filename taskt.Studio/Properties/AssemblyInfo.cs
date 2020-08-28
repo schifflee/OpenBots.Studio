@@ -1,4 +1,5 @@
 ﻿//Copyright (c) 2019 Jason Bayldon
+//Modifications - Copyright (c) 2020 OpenBots Inc.
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
 //you may not use this file except in compliance with the License.
@@ -23,7 +24,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("taskt")]
-[assembly: AssemblyCopyright("Copyright ©2019")]
+[assembly: AssemblyCopyright("Copyright ©2020 OpenBots Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

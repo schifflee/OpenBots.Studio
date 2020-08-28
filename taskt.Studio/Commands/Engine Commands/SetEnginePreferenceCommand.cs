@@ -13,7 +13,7 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Engine Commands")]
-    [Description("This command allows you to set preferences for engine behavior at runtime.")]
+    [Description("This command sets preferences for engine behavior at runtime.")]
     public class SetEnginePreferenceCommand : ScriptCommand
     {
         [XmlAttribute]

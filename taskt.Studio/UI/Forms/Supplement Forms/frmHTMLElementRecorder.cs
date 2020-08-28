@@ -1,4 +1,5 @@
-﻿using HtmlAgilityPack;
+﻿using Gecko;
+using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,6 +25,8 @@ namespace taskt.UI.Forms.Supplement_Forms
         public frmHTMLElementRecorder()
         {
             InitializeComponent();
+            Xpcom.Initialize("Firefox");
+            wbElementRecorder.Navigate("https://www.google.com/");
         }
 
         private void frmHTMLElementRecorder_Load(object sender, EventArgs e)
@@ -49,31 +52,31 @@ namespace taskt.UI.Forms.Supplement_Forms
             GlobalHook.StartEngineCancellationHook(Keys.F2);
             GlobalHook.HookStopped += GlobalHook_HookStopped;
             GlobalHook.StartElementCaptureHook(chkStopOnClick.Checked);
-            wbElementRecorder.Document.Click += new HtmlElementEventHandler(Document_Click);
+            wbElementRecorder.DomClick += new EventHandler<DomMouseEventArgs>(wbElementRecorder_DomClick);
 
         }
         private void GlobalHook_HookStopped(object sender, EventArgs e)
         {
-            Document_Click(null, null);
+            wbElementRecorder_DomClick(null, null);
             Close();
         }
 
-        private void Document_Click(object sender, HtmlElementEventArgs e)
+        private void wbElementRecorder_DomClick(object sender, DomMouseEventArgs e)
         {
             //mouse down has occured
             if (e != null)
             {
                 try
                 {
-                    HtmlElement element = wbElementRecorder.Document.GetElementFromPoint(e.ClientMousePosition);
+                    GeckoElement element = wbElementRecorder.DomDocument.ElementFromPoint(e.ClientX, e.ClientY);
 
-                    string savedId = element.Id;
+                    string savedId = element.GetAttribute("id");
                     string uniqueId = Guid.NewGuid().ToString();
-                    element.Id = uniqueId;
+                    element.SetAttribute("id", uniqueId);
 
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-                    doc.LoadHtml(element.Document.GetElementsByTagName("html")[0].OuterHtml);
-                    element.Id = savedId;
+                    doc.LoadHtml(element.OwnerDocument.GetElementsByTagName("html")[0].OuterHtml);
+                    element.SetAttribute("id", savedId);
                     HtmlNode node = doc.GetElementbyId(uniqueId);
 
                     _xPath = node.XPath.Replace("[1]", "");
@@ -81,7 +84,7 @@ namespace taskt.UI.Forms.Supplement_Forms
                     _id = element.GetAttribute("id") == null ? "" : element.GetAttribute("id"); ;
                     _tagName = element.TagName;
                     _className = element.GetAttribute("className") == null ? "" : element.GetAttribute("className");
-                    _linkText = element.TagName.ToLower() == "a" ? element.InnerText : "";
+                    _linkText = element.TagName.ToLower() == "a" ? element.TextContent : "";
                     _cssSelector = ""; //TODO
 
                     LastItemClicked = $"[XPath:{_xPath}].[ID:{_id}].[Name:{_name}].[Tag Name:{_tagName}].[Class:{_className}].[Link Text:{_linkText}].[CSS Selector:{_cssSelector}]";
@@ -187,6 +190,7 @@ namespace taskt.UI.Forms.Supplement_Forms
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
-        }       
+        }
+
     }
 }

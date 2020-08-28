@@ -34,6 +34,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHTMLElementRecorder));
             this.tlpControls = new System.Windows.Forms.TableLayoutPanel();
             this.pnlHeader = new System.Windows.Forms.Panel();
+            this.wbElementRecorder = new Gecko.GeckoWebBrowser();
             this.pbElements = new System.Windows.Forms.PictureBox();
             this.pbSave = new System.Windows.Forms.PictureBox();
             this.pbBack = new System.Windows.Forms.PictureBox();
@@ -41,7 +42,6 @@ namespace taskt.UI.Forms.Supplement_Forms
             this.pgGo = new System.Windows.Forms.PictureBox();
             this.tbURL = new System.Windows.Forms.TextBox();
             this.lblURL = new System.Windows.Forms.Label();
-            this.wbElementRecorder = new System.Windows.Forms.WebBrowser();
             this.pbRefresh = new System.Windows.Forms.PictureBox();
             this.pbRecord = new System.Windows.Forms.PictureBox();
             this.lblDescription = new System.Windows.Forms.Label();
@@ -69,6 +69,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             // pnlHeader
             // 
             this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
+            this.pnlHeader.Controls.Add(this.wbElementRecorder);
             this.pnlHeader.Controls.Add(this.pbElements);
             this.pnlHeader.Controls.Add(this.pbSave);
             this.pnlHeader.Controls.Add(this.pbBack);
@@ -76,7 +77,6 @@ namespace taskt.UI.Forms.Supplement_Forms
             this.pnlHeader.Controls.Add(this.pgGo);
             this.pnlHeader.Controls.Add(this.tbURL);
             this.pnlHeader.Controls.Add(this.lblURL);
-            this.pnlHeader.Controls.Add(this.wbElementRecorder);
             this.pnlHeader.Controls.Add(this.pbRefresh);
             this.pnlHeader.Controls.Add(this.pbRecord);
             this.pnlHeader.Controls.Add(this.lblDescription);
@@ -85,6 +85,13 @@ namespace taskt.UI.Forms.Supplement_Forms
             this.pnlHeader.Controls.Add(this.lblHeader);
             resources.ApplyResources(this.pnlHeader, "pnlHeader");
             this.pnlHeader.Name = "pnlHeader";
+            // 
+            // wbElementRecorder
+            // 
+            resources.ApplyResources(this.wbElementRecorder, "wbElementRecorder");
+            this.wbElementRecorder.FrameEventsPropagateToMainWindow = false;
+            this.wbElementRecorder.Name = "wbElementRecorder";
+            this.wbElementRecorder.UseHttpActivityObserver = false;
             // 
             // pbElements
             // 
@@ -141,13 +148,6 @@ namespace taskt.UI.Forms.Supplement_Forms
             resources.ApplyResources(this.lblURL, "lblURL");
             this.lblURL.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.lblURL.Name = "lblURL";
-            // 
-            // wbElementRecorder
-            // 
-            resources.ApplyResources(this.wbElementRecorder, "wbElementRecorder");
-            this.wbElementRecorder.Name = "wbElementRecorder";
-            this.wbElementRecorder.ScriptErrorsSuppressed = true;
-            this.wbElementRecorder.Url = new System.Uri("https://www.google.com/", System.UriKind.Absolute);
             // 
             // pbRefresh
             // 
@@ -222,7 +222,6 @@ namespace taskt.UI.Forms.Supplement_Forms
         private System.Windows.Forms.PictureBox pgGo;
         private System.Windows.Forms.TextBox tbURL;
         private System.Windows.Forms.Label lblURL;
-        private System.Windows.Forms.WebBrowser wbElementRecorder;
         private System.Windows.Forms.PictureBox pbRefresh;
         private System.Windows.Forms.PictureBox pbRecord;
         private System.Windows.Forms.Label lblDescription;
@@ -234,5 +233,6 @@ namespace taskt.UI.Forms.Supplement_Forms
         private System.Windows.Forms.PictureBox pbSave;
         private System.Windows.Forms.PictureBox pbElements;
         private System.Windows.Forms.ToolTip ttElementRecorder;
+        private Gecko.GeckoWebBrowser wbElementRecorder;
     }
 }

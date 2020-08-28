@@ -122,13 +122,37 @@
     <value>1</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="wbElementRecorder.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="wbElementRecorder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 197</value>
+  </data>
+  <data name="wbElementRecorder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1636, 578</value>
+  </data>
+  <data name="wbElementRecorder.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="&gt;&gt;wbElementRecorder.Name" xml:space="preserve">
+    <value>wbElementRecorder</value>
+  </data>
+  <data name="&gt;&gt;wbElementRecorder.Type" xml:space="preserve">
+    <value>Gecko.GeckoWebBrowser, Geckofx-Winforms, Version=45.0.34.0, Culture=neutral, PublicKeyToken=3209ac31600d1857</value>
+  </data>
+  <data name="&gt;&gt;wbElementRecorder.Parent" xml:space="preserve">
+    <value>pnlHeader</value>
+  </data>
+  <data name="&gt;&gt;wbElementRecorder.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="pbElements.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="pbElements.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pbElements.Location" type="System.Drawing.Point, System.Drawing">
     <value>1575, 119</value>
   </data>
@@ -160,7 +184,7 @@
     <value>pnlHeader</value>
   </data>
   <data name="&gt;&gt;pbElements.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="pbSave.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -193,7 +217,7 @@
     <value>pnlHeader</value>
   </data>
   <data name="&gt;&gt;pbSave.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="pbBack.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -223,7 +247,7 @@
     <value>pnlHeader</value>
   </data>
   <data name="&gt;&gt;pbBack.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="pbForward.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1012,7 +1036,7 @@
     <value>pnlHeader</value>
   </data>
   <data name="&gt;&gt;pbForward.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="pgGo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1042,7 +1066,7 @@
     <value>pnlHeader</value>
   </data>
   <data name="&gt;&gt;pgGo.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="tbURL.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1069,7 +1093,7 @@
     <value>pnlHeader</value>
   </data>
   <data name="&gt;&gt;tbURL.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="lblURL.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1099,33 +1123,6 @@
     <value>pnlHeader</value>
   </data>
   <data name="&gt;&gt;lblURL.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="wbElementRecorder.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="wbElementRecorder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 195</value>
-  </data>
-  <data name="wbElementRecorder.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="wbElementRecorder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1636, 580</value>
-  </data>
-  <data name="wbElementRecorder.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="&gt;&gt;wbElementRecorder.Name" xml:space="preserve">
-    <value>wbElementRecorder</value>
-  </data>
-  <data name="&gt;&gt;wbElementRecorder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.WebBrowser, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;wbElementRecorder.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
-  <data name="&gt;&gt;wbElementRecorder.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
   <data name="pbRefresh.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -2098,6 +2095,6 @@
     <value>frmHTMLElementRecorder</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>taskt.UI.Forms.UIForm, taskt, Version=0.0.7509.327, Culture=neutral, PublicKeyToken=null</value>
+    <value>taskt.UI.Forms.UIForm, taskt.Studio, Version=0.0.7544.31040, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

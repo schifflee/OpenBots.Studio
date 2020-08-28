@@ -205,7 +205,7 @@ namespace taskt.Commands
                     int elementPositionY = element.Location.Y;
                     if (elementPositionY > seleniumWindowHeightY)
                     {
-                        String scroll = String.Format("window.scroll(0, {0})", elementPositionY);
+                        string scroll = string.Format("window.scroll(0, {0})", elementPositionY);
                         IJavaScriptExecutor js = browserObject as IJavaScriptExecutor;
                         js.ExecuteScript(scroll);
                     }
@@ -643,12 +643,13 @@ namespace taskt.Commands
         public void ShowRecorder(object sender, EventArgs e, IfrmCommandEditor editor)
         {
             //create recorder
-            frmHTMLElementRecorder newElementRecorder = new frmHTMLElementRecorder();
+            frmHTMLElementRecorder newElementRecorder = new frmHTMLElementRecorder(editor.HTMLElementRecorderURL);
             newElementRecorder.ScriptElements = editor.ScriptElements;
 
             //show form
             newElementRecorder.ShowDialog();
 
+            editor.HTMLElementRecorderURL = newElementRecorder.StartURL;
             editor.ScriptElements = newElementRecorder.ScriptElements;
 
             try

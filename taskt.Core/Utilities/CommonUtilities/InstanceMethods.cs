@@ -32,13 +32,9 @@ namespace taskt.Core.Utilities.CommonUtilities
             try
             {
                 if (engine.AppInstances.TryGetValue(instanceName, out object appObject))
-                {
                     return appObject;
-                }
-                else
-                {
-                    throw new Exception("App Instance '" + instanceName + "' not found!");
-                }
+
+                throw new Exception("App Instance '" + instanceName + "' not found!");
             }
             catch (Exception ex)
             {
@@ -51,13 +47,9 @@ namespace taskt.Core.Utilities.CommonUtilities
             try
             {
                 if (engine.AppInstances.ContainsKey(instanceName))
-                {
                     engine.AppInstances.Remove(instanceName);
-                }
                 else
-                {
                     throw new Exception("App Instance '" + instanceName + "' not found!");
-                }
             }
             catch (Exception ex)
             {

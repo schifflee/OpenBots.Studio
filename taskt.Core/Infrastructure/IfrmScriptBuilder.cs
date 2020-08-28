@@ -15,5 +15,6 @@ namespace taskt.Core.Infrastructure
         void Notify(string notificationText);
         void RemoveDebugTab();
         DialogResult LoadErrorForm(string errorMessage);
+        string HTMLElementRecorderURL { get; set; }
     }
 }

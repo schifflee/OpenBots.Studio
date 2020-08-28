@@ -14,6 +14,8 @@ namespace taskt.UI.Forms.Supplement_Forms
         public List<ScriptElement> ScriptElements { get; set; }
         public DataTable SearchParameters { get; set; }
         public string LastItemClicked { get; set; }
+        public string StartURL { get; set; }
+        private string _homeURL = "https://www.google.com/"; //TODO replace with openbots url;
         private string _xPath;
         private string _name;
         private string _id;
@@ -22,11 +24,19 @@ namespace taskt.UI.Forms.Supplement_Forms
         private string _linkText;
         private string _cssSelector;
 
-        public frmHTMLElementRecorder()
+        public frmHTMLElementRecorder(string startURL)
         {
+            if (string.IsNullOrEmpty(startURL))
+                StartURL = _homeURL;
+            else
+                StartURL = startURL;
+
             InitializeComponent();
+
             Xpcom.Initialize("Firefox");
-            wbElementRecorder.Navigate("https://www.google.com/");
+            wbElementRecorder.Navigate(StartURL);
+            tbURL.Text = StartURL;
+            tbURL.Refresh();
         }
 
         private void frmHTMLElementRecorder_Load(object sender, EventArgs e)
@@ -37,7 +47,7 @@ namespace taskt.UI.Forms.Supplement_Forms
         {
             TopMost = true;
             if (!chkStopOnClick.Checked)
-                lblDescription.Text = $"Recording.  Press F2 to stop recording!";
+                lblDescription.Text = $"Recording. Press F2 to stop recording!";
 
             SearchParameters = new DataTable();
             SearchParameters.Columns.Add("Enabled");
@@ -107,6 +117,11 @@ namespace taskt.UI.Forms.Supplement_Forms
 
             if (chkStopOnClick.Checked)
                 Close();
+        }
+
+        private void pbHome_Click(object sender, EventArgs e)
+        {
+            wbElementRecorder.Navigate(_homeURL);
         }
 
         private void pbRefresh_Click(object sender, EventArgs e)
@@ -190,6 +205,17 @@ namespace taskt.UI.Forms.Supplement_Forms
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
+        }
+
+        private void frmHTMLElementRecorder_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            StartURL = wbElementRecorder.Url.ToString();
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void wbElementRecorder_Navigated(object sender, GeckoNavigatedEventArgs e)
+        {
+            tbURL.Text = wbElementRecorder.Url.ToString();
         }
 
     }

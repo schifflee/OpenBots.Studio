@@ -126,7 +126,8 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         public Logger EngineLogger { get; set; }
         private bool _isDebugMode;
         private TreeView _tvCommandsCopy;
-        private string _txtCommandWatermark = "Type Here to Search";     
+        private string _txtCommandWatermark = "Type Here to Search";   
+        public string HTMLElementRecorderURL { get; set; }
         #endregion
 
         #region Form Events
@@ -500,12 +501,14 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private void AddNewCommand(string specificCommand = "")
         {
             //bring up new command configuration form
-            var newCommandForm = new frmCommandEditor(_automationCommands, GetConfiguredCommands());
+            frmCommandEditor newCommandForm = new frmCommandEditor(_automationCommands, GetConfiguredCommands());
             newCommandForm.CreationModeInstance = CreationMode.Add;
             newCommandForm.ScriptVariables = _scriptVariables;
             newCommandForm.ScriptElements = _scriptElements;
             if (specificCommand != "")
                 newCommandForm.DefaultStartupCommand = specificCommand;
+
+            newCommandForm.HTMLElementRecorderURL = HTMLElementRecorderURL;
 
             //if a command was selected
             if (newCommandForm.ShowDialog() == DialogResult.OK)
@@ -519,6 +522,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             {
                 CreateUndoSnapshot();
                 _scriptElements = newCommandForm.ScriptElements;
+                HTMLElementRecorderURL = newCommandForm.HTMLElementRecorderURL;
             }
         }
 

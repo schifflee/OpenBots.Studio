@@ -746,10 +746,14 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
 
         private void elementRecorderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmHTMLElementRecorder elementRecorder = new frmHTMLElementRecorder();
-            elementRecorder.ScriptElements = _scriptElements; 
+            frmHTMLElementRecorder elementRecorder = new frmHTMLElementRecorder(HTMLElementRecorderURL);
+            elementRecorder.ScriptElements = _scriptElements;
+            elementRecorder.chkStopOnClick.Visible = false;
+
             elementRecorder.ShowDialog();
+
             CreateUndoSnapshot();
+            HTMLElementRecorderURL = elementRecorder.StartURL;
             _scriptElements = elementRecorder.ScriptElements;           
         }
 

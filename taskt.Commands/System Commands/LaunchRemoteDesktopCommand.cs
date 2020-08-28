@@ -16,7 +16,7 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("System Commands")]
-    [Description("This command allows you to launch a remote desktop session.")]
+    [Description("This command launches a remote desktop session.")]
     public class LaunchRemoteDesktopCommand : ScriptCommand
     {
         [XmlAttribute]

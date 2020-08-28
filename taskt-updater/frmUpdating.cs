@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO.Compression;
+using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
+using System.Net;
+using System.Windows.Forms;
 
-namespace taskt_updater
+namespace taskt.Updater
 {
     public partial class frmUpdating : Form
     {
@@ -19,7 +16,6 @@ namespace taskt_updater
         {
             InitializeComponent();
             bgwUpdate.RunWorkerAsync(packageURL);
-      
         }
 
         private void bgwUpdate_DoWork(object sender, DoWorkEventArgs e)
@@ -27,20 +23,16 @@ namespace taskt_updater
             //get package
             bgwUpdate.ReportProgress(0, "Setting Up...");
 
-
             //define update folder
             var tempUpdateFolder = topLevelFolder + "\\temp\\";
 
             //delete existing
             if (Directory.Exists(tempUpdateFolder))
-            {
-                System.IO.Directory.Delete(tempUpdateFolder, true);
-            }
+                Directory.Delete(tempUpdateFolder, true);
 
             //create folder
-            System.IO.Directory.CreateDirectory(tempUpdateFolder);
+            Directory.CreateDirectory(tempUpdateFolder);
           
-
             //cast arg to string
             string packageURL = (string)e.Argument;
 
@@ -48,16 +40,14 @@ namespace taskt_updater
 
             //create uri and download package
             Uri uri = new Uri(packageURL);
-            string localPackagePath = System.IO.Path.Combine(tempUpdateFolder, System.IO.Path.GetFileName(uri.LocalPath));
+            string localPackagePath = Path.Combine(tempUpdateFolder, Path.GetFileName(uri.LocalPath));
 
             //if package exists for some reason then delete
-            if (System.IO.File.Exists(localPackagePath))
-            {
-                System.IO.File.Delete(localPackagePath);
-            }
+            if (File.Exists(localPackagePath))
+                File.Delete(localPackagePath);
 
             //create web client
-            System.Net.WebClient newWebClient = new System.Net.WebClient();
+            WebClient newWebClient = new WebClient();
 
             //download file
             newWebClient.DownloadFile(uri, localPackagePath);
@@ -67,27 +57,22 @@ namespace taskt_updater
             using (FileStream zipToOpen = new FileStream(localPackagePath, FileMode.Open))
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
-                {
                     ExtractZipToDirectory(archive, tempUpdateFolder, true);
-                }
             }
-
-
 
             //create deployment folder reference
             var deploymentFolder = tempUpdateFolder + "taskt\\";
 
             bgwUpdate.ReportProgress(0, "Deployed to " + deploymentFolder);
-
-
             bgwUpdate.ReportProgress(0, "Updating Files...");
 
             //copy deployed files to top level
             CopyDirectory(deploymentFolder, topLevelFolder);
 
             //clean up old folder
-            // System.IO.Directory.Delete(tempUpdateFolder);
+            // Directory.Delete(tempUpdateFolder);
         }
+
         public void ExtractZipToDirectory(ZipArchive archive, string destinationDirectoryName, bool overwrite)
         {
             if (!overwrite)
@@ -95,9 +80,11 @@ namespace taskt_updater
                 archive.ExtractToDirectory(destinationDirectoryName);
                 return;
             }
+
             foreach (ZipArchiveEntry file in archive.Entries)
             {
                 string completeFileName = Path.Combine(destinationDirectoryName, file.FullName);
+
                 if (file.Name == "")
                 {// Assuming Empty for Directory
                     Directory.CreateDirectory(Path.GetDirectoryName(completeFileName));
@@ -117,22 +104,15 @@ namespace taskt_updater
                 var folders = stack.Pop();
                 Directory.CreateDirectory(folders.Target);
                 foreach (var file in Directory.GetFiles(folders.Source, "*.*"))
-                {
                     File.Copy(file, Path.Combine(folders.Target, Path.GetFileName(file)), true);
-                }
 
                 foreach (var folder in Directory.GetDirectories(folders.Source))
-                {
                     stack.Push(new Folders(folder, Path.Combine(folders.Target, Path.GetFileName(folder))));
-                }
-
             }
         }
 
-
         private void frmUpdating_Load(object sender, EventArgs e)
         {
-      
         }
 
         private void bgwUpdate_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -143,31 +123,18 @@ namespace taskt_updater
 
         private void bgwUpdate_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
-            
             if (e.Error is null)
             {
-                System.Diagnostics.Process.Start(topLevelFolder + "\\taskt.exe");
+                Process.Start(topLevelFolder + "\\taskt.exe");
 
-                this.Close();
+                Close();
                 //MessageBox.Show("All Done");
                 lblUpdate.Text = "All Done!";
             }
             else
-            {
                 MessageBox.Show(e.Error.ToString());
-            }
         }
     }
-    public class Folders
-    {
-        public string Source { get; private set; }
-        public string Target { get; private set; }
 
-        public Folders(string source, string target)
-        {
-            Source = source;
-            Target = target;
-        }
-    }
+    
 }

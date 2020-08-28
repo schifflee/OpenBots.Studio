@@ -38,7 +38,6 @@ namespace taskt.Utilities
         private static StringBuilder _buffer = new StringBuilder(512);
 
         public static List<ScriptCommand> GeneratedCommands;
-
         public static event EventHandler HookStopped = delegate { };
 
         #region User32 Window 
@@ -63,12 +62,11 @@ namespace taskt.Utilities
         private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
 
         private delegate void SystemEventHandler(IntPtr hWinEventHook, _systemEvents @event, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
-
         #endregion
 
         #region User32 KeyboardMouse
-
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+
         private delegate IntPtr LowLevelMouseProc(int nCode, IntPtr wParam, IntPtr lParam);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -79,16 +77,17 @@ namespace taskt.Utilities
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-
         private static extern bool UnhookWindowsHookEx(IntPtr hhk);
+
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-
         private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
 
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
+
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         private static extern short GetKeyState(int keyCode);
+
         [DllImport("user32.dll")]
         private static extern IntPtr WindowFromPoint(Point Point);
 
@@ -97,7 +96,6 @@ namespace taskt.Utilities
 
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         private static extern int ToUnicode(uint virtualKeyCode, uint scanCode, byte[] keyboardState, StringBuilder receivingBuffer, int bufferSize, uint flags);
-
 
         //enums and structs
         private const int _whMouseLl = 14;
@@ -187,7 +185,6 @@ namespace taskt.Utilities
             //stopwatch for tracking mouse moves specifically
             _lastMouseMove = new Stopwatch();
             _lastMouseMove.Start();
-
         }
 
         //hook end
@@ -197,9 +194,7 @@ namespace taskt.Utilities
             UnhookWindowsHookEx(_mouseHookID);
 
             if (_performWindowCapture)
-            {
                 UnhookWinEvent(_winEventHook);
-            }
 
             //BuildCommentCommand();
             HookStopped(null, new EventArgs());
@@ -215,7 +210,6 @@ namespace taskt.Utilities
             }
 
             return CallNextHookEx(_keyboardHookID, nCode, wParam, lParam);
-
         }
 
         public static event EventHandler<MouseCoordinateEventArgs> MouseEvent;
@@ -229,12 +223,7 @@ namespace taskt.Utilities
                 if (message == _mouseMessages.WmLButtonDown)
                 {
                     if (StopOnClick)
-                    {
                         UnhookWindowsHookEx(_mouseHookID);
-                    }
-
-                    //MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
-                    //System.Windows.Point point = new System.Windows.Point(hookStruct.pt.x, hookStruct.pt.y);
 
                     System.Windows.Point point = new System.Windows.Point(Cursor.Position.X, Cursor.Position.Y);
                     MouseEvent?.Invoke(null, new MouseCoordinateEventArgs() { MouseCoordinates = point });
@@ -247,9 +236,7 @@ namespace taskt.Utilities
         private static IntPtr MouseHookEvent(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode >= 0)
-            {
                 BuildMouseCommand(lParam, (_mouseMessages)wParam);
-            }
 
             return CallNextHookEx(_mouseHookID, nCode, wParam, lParam);
         }
@@ -261,42 +248,26 @@ namespace taskt.Utilities
 
             //determine if casing is needed
             if (IsKeyDown(Keys.ShiftKey) && IsKeyToggled(Keys.Capital))
-            {
                 toUpperCase = false;
-            }
             else if (!IsKeyDown(Keys.ShiftKey) && IsKeyToggled(Keys.Capital))
-            {
                 toUpperCase = true;
-            }
             else if (IsKeyDown(Keys.ShiftKey) && !IsKeyToggled(Keys.Capital))
-            {
                 toUpperCase = true;
-            }
             else if (!IsKeyDown(Keys.ShiftKey) && !IsKeyToggled(Keys.Capital))
-            {
                 toUpperCase = false;
-            }
-
 
             var buf = new StringBuilder(256);
             var keyboardState = new byte[256];
 
-
             if (toUpperCase)
-            {
                 keyboardState[(int)Keys.ShiftKey] = 0xff;
-            }
 
             ToUnicode((uint)key, 0, keyboardState, buf, 256, 0);
 
             var selectedKey = buf.ToString();
 
-
             if ((selectedKey == "") || (selectedKey == "\r"))
-            {
                 selectedKey = key.ToString();
-            }
-
 
             //translate key press to sendkeys identifier
             if (selectedKey == StopHookKey)
@@ -306,51 +277,33 @@ namespace taskt.Utilities
                 return;
             }
             else if (selectedKey == "Return")
-            {
                 selectedKey = "ENTER";
-            }
             else if (selectedKey == "Space")
-            {
                 selectedKey = " ";
-            }
             else if (selectedKey == "OemPeriod")
-            {
                 selectedKey = ".";
-            }
             else if (selectedKey == "Oemcomma")
-            {
                 selectedKey = ",";
-            }
             else if (selectedKey == "OemQuestion")
-            {
                 selectedKey = "?";
-            }
             else if (selectedKey.Contains("ShiftKey"))
-            {
                 return;
-            }
 
             if (!_performKeyboardCapture)
-            {
                 return;
-            }
 
             //add braces
             if (selectedKey.Length > 1)
-            {
                 selectedKey = "{" + selectedKey + "}";
-            }
 
             //generate sendkeys together
             if ((GeneratedCommands.Count > 1) && (GeneratedCommands[GeneratedCommands.Count - 1] is SendKeystrokesCommand))
             {
-
                 var lastCreatedSendKeysCommand = (SendKeystrokesCommand)GeneratedCommands[GeneratedCommands.Count - 1];
 
                 if (lastCreatedSendKeysCommand.v_TextToSend.Contains("{ENTER}"))
                 {
                     //append this to a new command because you dont want text to input after user presses enter
-
                     //build a pause command to track pause since last command
                     BuildPauseCommand();
 
@@ -388,7 +341,7 @@ namespace taskt.Utilities
         //build mouse command
         private static void BuildMouseCommand(IntPtr lParam, _mouseMessages mouseMessage)
         {
-            string mouseEventClickType = string.Empty;
+            string mouseEventClickType;
             switch (mouseMessage)
             {
                 case _mouseMessages.WmLButtonDown:
@@ -401,13 +354,9 @@ namespace taskt.Utilities
                     mouseEventClickType = "None";
 
                     if (_lastMouseMove.ElapsedMilliseconds >= _msResolution)
-                    {
                         _lastMouseMove.Restart();
-                    }
                     else
-                    {
                         return;
-                    }
                     break;
                 case _mouseMessages.WmRButtonDown:
                     mouseEventClickType = "Right Down";
@@ -423,18 +372,13 @@ namespace taskt.Utilities
             //if (mouseEventClickType == string.Empty)
             //    return;
 
-
             //return if we do not want to capture mouse moves
             if ((!_performMouseMoveCapture) && (mouseEventClickType == "None"))
-            {
                 return;
-            }
 
             //return if we do not want to capture mouse clicks
             if ((!_performMouseClickCapture) && (mouseEventClickType != "None"))
-            {
                 return;
-            }
 
             //build a pause command to track pause since last command
             BuildPauseCommand();
@@ -488,9 +432,7 @@ namespace taskt.Utilities
 
             //bypass screen recorder and Cortana (Win10) which throws errors
             if ((windowName == "Screen Recorder") || (windowName == "Cortana"))
-            {
                 return;
-            }
 
             if (length > 0)
             {
@@ -511,18 +453,15 @@ namespace taskt.Utilities
                 {
                     User32Functions.GetWindowRect(hwnd, out Rect windowRect);
 
-
                     MoveWindowCommand moveWindowCommand = new MoveWindowCommand
                     {
                         v_WindowName = windowName,
-                        v_XWindowPosition = windowRect.left.ToString(),
-                        v_YWindowPosition = windowRect.top.ToString(),
+                        v_XMousePosition = windowRect.left.ToString(),
+                        v_YMousePosition = windowRect.top.ToString(),
                         v_Comment = "Generated by Screen Recorder @ " + DateTime.Now.ToString()
-
                     };
 
                     GeneratedCommands.Add(moveWindowCommand);
-
                 }
                 else if (_activateWindowTopLeft)
                 {
@@ -530,14 +469,12 @@ namespace taskt.Utilities
                     MoveWindowCommand moveWindowCommand = new MoveWindowCommand
                     {
                         v_WindowName = windowName,
-                        v_XWindowPosition = "0",
-                        v_YWindowPosition = "0",
+                        v_XMousePosition = "0",
+                        v_YMousePosition = "0",
                         v_Comment = "Generated by Screen Recorder @ " + DateTime.Now.ToString()
-
                     };
 
                     User32Functions.SetWindowPosition(hwnd, 0, 0);
-
                     GeneratedCommands.Add(moveWindowCommand);
                 }
 
@@ -558,7 +495,6 @@ namespace taskt.Utilities
                         v_XWindowSize = width.ToString(),
                         v_YWindowSize = height.ToString(),
                         v_Comment = "Generated by Screen Recorder @ " + DateTime.Now.ToString()
-
                     };
 
                     //add to list
@@ -570,11 +506,8 @@ namespace taskt.Utilities
         //build pause command
         private static void BuildPauseCommand()
         {
-
             if (_stopWatch.ElapsedMilliseconds < 1)
-            {
                 return;
-            }
 
             _stopWatch.Stop();
             var pauseTime = _stopWatch.ElapsedMilliseconds;
@@ -582,6 +515,7 @@ namespace taskt.Utilities
             {
                 v_PauseLength = pauseTime.ToString()
             };
+
             GeneratedCommands.Add(pauseCommand);
             _stopWatch.Restart();
         }
@@ -592,9 +526,7 @@ namespace taskt.Utilities
 
             using (ProcessModule curModule = curProcess.MainModule)
             {
-                return SetWindowsHookEx(_whKeyboardLl, proc,
-
-                    GetModuleHandle(curModule.ModuleName), 0);
+                return SetWindowsHookEx(_whKeyboardLl, proc, GetModuleHandle(curModule.ModuleName), 0);
             }
         }
 
@@ -607,7 +539,6 @@ namespace taskt.Utilities
                 return SetWindowsHookEx(_whMouseLl, proc, GetModuleHandle(curModule.ModuleName), 0);
             }
         }
-
 
         #region User32 Keyboard Mouse
         private static _keyStates GetKeyState(Keys key)

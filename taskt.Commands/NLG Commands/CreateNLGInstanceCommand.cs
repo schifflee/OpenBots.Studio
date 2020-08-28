@@ -15,9 +15,7 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("NLG Commands")]
-    [Description("This command pauses the script for a set amount of time specified in milliseconds.")]
-    [UsesDescription("Use this command when you want to pause your script for a specific amount of time.  After the specified time is finished, the script will resume execution.")]
-    [ImplementationDescription("This command implements 'Thread.Sleep' to achieve automation.")]
+    [Description("This command creates a Natural Language Generation Instance.")]
     public class CreateNLGInstanceCommand : ScriptCommand
     {
         [XmlAttribute]
@@ -59,7 +57,7 @@ namespace taskt.Commands
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Instance Name: '" + v_InstanceName + "']";
+            return base.GetDisplayValue() + $" [New Instance Name '{v_InstanceName}']";
         }
     }
 }

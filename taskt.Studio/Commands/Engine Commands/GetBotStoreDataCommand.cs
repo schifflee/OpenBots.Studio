@@ -32,30 +32,28 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Engine Commands")]
-    [Description("This command allows you to get data from tasktServer.")]
-    [UsesDescription("Use this command when you want to retrieve data from tasktServer")]
-    [ImplementationDescription("")]
+    [Description("This command retrives data from a local tasktServer BotStore.")]
     public class GetBotStoreDataCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Please indicate a name of the key to retrieve")]
-        [InputSpecification("Select a variable or provide an input value")]
-        [SampleUsage("**vSomeVariable**")]
+        [PropertyDescription("Key")]
+        [InputSpecification("Select or provide the name of the key to retrieve.")]
+        [SampleUsage("Hello || {vKey}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_KeyName { get; set; }
+        public string v_Key { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Indicate whether to retrieve the whole record or just the value")]
-        [InputSpecification("Depending upon the option selected, the whole record with metadata may be required.")]
-        [SampleUsage("Select one of the associated options")]
-        [Remarks("")]
+        [PropertyDescription("Retrieval Option")]
         [PropertyUISelectionOption("Retrieve Value")]
         [PropertyUISelectionOption("Retrieve Entire Record")]
+        [InputSpecification("Indicate whether to retrieve the whole record or just the value.")]
+        [SampleUsage("")]
+        [Remarks("Depending on the option selected, the whole record with metadata may be retrieved.")]     
         public string v_DataOption { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Output Result Variable")]
+        [PropertyDescription("Output Data Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]
         [Remarks("Variables not pre-defined in the Variable Manager will be automatically generated at runtime.")]
@@ -67,15 +65,16 @@ namespace taskt.Commands
             SelectionName = "Get BotStore Data";
             CommandEnabled = true;
             CustomRendering = true;
+            v_DataOption = "Retrieve Value";
         }
+
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
-            var keyName = v_KeyName.ConvertUserVariableToString(engine);
-            var dataOption = v_DataOption.ConvertUserVariableToString(engine);
+            var keyName = v_Key.ConvertUserVariableToString(engine);
 
             BotStoreRequestType requestType;
-            if (dataOption == "Retrieve Entire Record")
+            if (v_DataOption == "Retrieve Entire Record")
                 requestType = BotStoreRequestType.BotStoreModel;
             else
                 requestType = BotStoreRequestType.BotStoreValue;
@@ -99,22 +98,16 @@ namespace taskt.Commands
         {
             base.Render(editor);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_KeyName", this, editor));
-
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_DataOption", this));
-            var dropdown = CommandControls.CreateDropdownFor("v_DataOption", this);
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_DataOption", this, new Control[] { dropdown }, editor));
-            RenderedControls.Add(dropdown);
-
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_Key", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_DataOption", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
 
             return RenderedControls;
         }
 
-
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Get Data from Key '" + v_KeyName + "' in tasktServer BotStore]";
+            return base.GetDisplayValue() + $" [Get Data From Key '{v_Key}' in tasktServer BotStore - Store Data in '{v_OutputUserVariableName}']";
         }
     }
 

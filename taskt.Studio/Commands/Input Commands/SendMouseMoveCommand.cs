@@ -14,30 +14,31 @@ using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
-
     [Serializable]
     [Group("Input Commands")]
-    [Description("Simulates mouse movements")]
-    [UsesDescription("Use this command to simulate the movement of the mouse, additionally, this command also allows you to perform a click after movement has completed.")]
-    [ImplementationDescription("This command implements 'SetCursorPos' function from user32.dll to achieve automation.")]
+    [Description("This command simulates a mouse movement to a specified position.")]
     public class SendMouseMoveCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Please enter the X position to move the mouse to")]
+        [PropertyDescription("X Position")]
+        [InputSpecification("Input the new horizontal coordinate of the mouse. Starts from 0 on the left and increases going right.")]
+        [SampleUsage("0 || {vXPosition}")]
+        [Remarks("This number is the pixel location on screen. Maximum value should be the maximum value allowed by your resolution. For 1920x1080, the valid range would be 0-1920.")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowMouseCaptureHelper)]
-        [InputSpecification("Input the new horizontal coordinate of the mouse, 0 starts at the left and goes to the right")]
-        [SampleUsage("0")]
-        [Remarks("This number is the pixel location on screen. Maximum value should be the maximum value allowed by your resolution. For 1920x1080, the valid range could be 0-1920")]
         public string v_XMousePosition { get; set; }
+
         [XmlAttribute]
-        [PropertyDescription("Please enter the Y position to move the mouse to")]
+        [PropertyDescription("Y Position")]
+        [InputSpecification("Input the new vertical coordinate of the mouse. Starts from 0 at the top and increases going down.")]
+        [SampleUsage("0 || {vYPosition}")]
+        [Remarks("This number is the pixel location on screen. Maximum value should be the maximum value allowed by your resolution. For 1920x1080, the valid range would be 0-1080.")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowMouseCaptureHelper)]
-        [InputSpecification("Input the new horizontal coordinate of the window, 0 starts at the left and goes down")]
-        [SampleUsage("0")]
-        [Remarks("This number is the pixel location on screen. Maximum value should be the maximum value allowed by your resolution. For 1920x1080, the valid range could be 0-1080")]
         public string v_YMousePosition { get; set; }
+
         [XmlAttribute]
-        [PropertyDescription("Please indicate mouse click type if required")]
+        [PropertyDescription("Click Type (Optional)")]
         [PropertyUISelectionOption("None")]
         [PropertyUISelectionOption("Left Click")]
         [PropertyUISelectionOption("Middle Click")]
@@ -49,9 +50,9 @@ namespace taskt.Commands
         [PropertyUISelectionOption("Left Up")]
         [PropertyUISelectionOption("Middle Up")]
         [PropertyUISelectionOption("Right Up")]
-        [InputSpecification("Indicate the type of click required")]
-        [SampleUsage("Select from **Left Click**, **Middle Click**, **Right Click**, **Double Left Click**, **Left Down**, **Middle Down**, **Right Down**, **Left Up**, **Middle Up**, **Right Up** ")]
-        [Remarks("You can simulate custom click by using multiple mouse click commands in succession, adding **Pause Command** in between where required.")]
+        [InputSpecification("Indicate the type of click required.")]
+        [SampleUsage("")]
+        [Remarks("You can simulate a custom click by using multiple mouse click commands in succession, adding **Pause Command** in between where required.")]
         public string v_MouseClick { get; set; }
 
         public SendMouseMoveCommand()
@@ -60,28 +61,25 @@ namespace taskt.Commands
             SelectionName = "Send Mouse Move";
             CommandEnabled = true;
             CustomRendering = true;
-           
+            v_XMousePosition = "0";
+            v_YMousePosition = "0";
+            v_MouseClick = "None";
         }
 
         public override void RunCommand(object sender)
         {
-
             var engine = (AutomationEngineInstance)sender;
             var mouseX = v_XMousePosition.ConvertUserVariableToString(engine);
             var mouseY = v_YMousePosition.ConvertUserVariableToString(engine);
 
-            try
-            {
-                var xLocation = Convert.ToInt32(Math.Floor(Convert.ToDouble(mouseX)));
-                var yLocation = Convert.ToInt32(Math.Floor(Convert.ToDouble(mouseY)));
+            if (!int.TryParse(mouseX, out int xPos))
+                throw new Exception("X Position Invalid - " + v_XMousePosition);
 
-                User32Functions.SetCursorPosition(xLocation, yLocation);
-                User32Functions.SendMouseClick(v_MouseClick, xLocation, yLocation);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error parsing input to int type (X: " + v_XMousePosition + ", Y:" + v_YMousePosition + ") " + ex.ToString());
-            }
+            if (!int.TryParse(mouseY, out int yPos))
+                throw new Exception("Y Position Invalid - " + v_YMousePosition);
+
+            User32Functions.SetCursorPosition(xPos, yPos);
+            User32Functions.SendMouseClick(v_MouseClick, xPos, yPos);           
         }
 
         public override List<Control> Render(IfrmCommandEditor editor)
@@ -93,14 +91,11 @@ namespace taskt.Commands
             RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_MouseClick", this, editor));
 
             return RenderedControls;
-
         }
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Target Coordinates (" + v_XMousePosition + "," + v_YMousePosition + ") Click: " + v_MouseClick + "]";
-        }
-
-     
+            return base.GetDisplayValue() + $" [Target Coordinates '({v_XMousePosition},{v_YMousePosition})' - Click Type '{v_MouseClick}']";
+        }    
     }
 }

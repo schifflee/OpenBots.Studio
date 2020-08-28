@@ -16,22 +16,16 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Misc Commands")]
-    [Description("This command allows you to set text to the clipboard.")]
-    [UsesDescription("Use this command when you want to copy the data from the clipboard and apply it to a variable.  You can then use the variable to extract the value.")]
-    [ImplementationDescription("This command implements actions against the VariableList from the scripting engine using System.Windows.Forms.Clipboard.")]
+    [Description("This command sets text to the user's clipboard.")]
     public class SetClipboardTextCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Please select a target variable or input a value")]
-        [InputSpecification("Select a variable or provide an input value")]
-        [SampleUsage("**vSomeVariable**")]
+        [PropertyDescription("Text")]
+        [InputSpecification("Select or provide the text to set on the clipboard.")]
+        [SampleUsage("Hello || {vTextToSet}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputValue { get; set; }
-
-        [XmlIgnore]
-        [NonSerialized]
-        public ComboBox VariableNameControl;
+        public string v_TextToSet { get; set; }
 
         public SetClipboardTextCommand()
         {
@@ -44,22 +38,23 @@ namespace taskt.Commands
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
-            var input = v_InputValue.ConvertUserVariableToString(engine);
+            var input = v_TextToSet.ConvertUserVariableToString(engine);
+
             User32Functions.SetClipboardText(input);
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InputValue", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_TextToSet", this, editor));
 
             return RenderedControls;
-
         }
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Apply '" + v_InputValue + "' to Clipboard]";
+            return base.GetDisplayValue() + $" [Text '{v_TextToSet}']";
         }
     }
 }

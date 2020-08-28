@@ -25,7 +25,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             txtDefaultValue.Text = variableValue;
 
             _isEditMode = true;
-            _editingVariableName = variableName;
+            _editingVariableName = variableName.Replace("{", "").Replace("}", "");
         }
 
         private void frmAddVariable_Load(object sender, EventArgs e)
@@ -42,7 +42,8 @@ namespace taskt.UI.Forms.Supplement_Forms
                 return;
             }
 
-            var existingVariable = ScriptVariables.Where(var => var.VariableName == txtVariableName.Text).FirstOrDefault();
+            string newVariableName = txtVariableName.Text.Replace("{", "").Replace("}", "");
+            var existingVariable = ScriptVariables.Where(var => var.VariableName == newVariableName).FirstOrDefault();
             if (existingVariable != null)
             {
                 if (!_isEditMode || existingVariable.VariableName != _editingVariableName)

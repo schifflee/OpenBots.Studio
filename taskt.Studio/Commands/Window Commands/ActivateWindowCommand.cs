@@ -16,22 +16,16 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Window Commands")]
-    [Description("This command activates a window and brings it to the front.")]
-    [UsesDescription("Use this command when you want to active a window by name or bring it to attention.")]
-    [ImplementationDescription("This command implements 'FindWindowNative', 'SetForegroundWindow', 'ShowWindow' from user32.dll to achieve automation.")]
+    [Description("This command activates an open window and brings it to the front.")]
     public class ActivateWindowCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Please enter or select the window that you want to activate.")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("Input or Type the name of the window that you want to activate or bring forward.")]
-        [SampleUsage("**Untitled - Notepad**")]
+        [PropertyDescription("Window Name")]
+        [InputSpecification("Select the name of the window to activate and bring forward.")]
+        [SampleUsage("Untitled - Notepad || {vWindow}")]
         [Remarks("")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_WindowName { get; set; }
-
-        [XmlIgnore]
-        [NonSerialized]
-        public ComboBox WindowNameControl;
 
         public ActivateWindowCommand()
         {
@@ -40,6 +34,7 @@ namespace taskt.Commands
             CommandEnabled = true;
             CustomRendering = true;
         }
+
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
@@ -53,31 +48,20 @@ namespace taskt.Commands
                 User32Functions.SetWindowState(targetedWindow, WindowState.SwShowNormal);
                 User32Functions.SetForegroundWindow(targetedWindow);
             }
-
         }
 
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
 
-            //create window name helper control
-            RenderedControls.Add(UI.CustomControls.CommandControls.CreateDefaultLabelFor("v_WindowName", this));
-            WindowNameControl = UI.CustomControls.CommandControls.CreateStandardComboboxFor("v_WindowName", this).AddWindowNames();
-            RenderedControls.AddRange(UI.CustomControls.CommandControls.CreateUIHelpersFor("v_WindowName", this, new Control[] { WindowNameControl }, editor));
-            RenderedControls.Add(WindowNameControl);
+            RenderedControls.AddRange(CommandControls.CreateDefaultWindowControlGroupFor("v_WindowName", this, editor));
 
             return RenderedControls;
-
-        }
-        public override void Refresh(IfrmCommandEditor editor)
-        {
-            base.Refresh();
-            WindowNameControl.AddWindowNames();
-        }
+        }     
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Target Window: " + v_WindowName + "]";
+            return base.GetDisplayValue() + $" [Window '{v_WindowName}']";
         }
     }
 }

@@ -62,7 +62,8 @@ namespace taskt.Core.Enums
         AddInputParameter,
         ShowHTMLBuilder,
         ShowIfBuilder,
-        ShowLoopBuilder
+        ShowLoopBuilder,
+        ShowEncryptionHelper
     }
 
     public enum BotStoreRequestType

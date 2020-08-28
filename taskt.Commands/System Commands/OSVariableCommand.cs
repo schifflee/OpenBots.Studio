@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Management;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -16,15 +17,12 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("System Commands")]
-    [Description("This command allows you to exclusively select a system/environment variable")]
-    [UsesDescription("Use this command to exclusively retrieve a system variable")]
-    [ImplementationDescription("")]
+    [Description("This command exclusively selects an OS variable.")]
     public class OSVariableCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Select the required system variable")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("Select from one of the options")]
+        [PropertyDescription("OS Variable")]
+        [InputSpecification("Select an OS variable from one of the options.")]
         [SampleUsage("")]
         [Remarks("")]
         public string v_OSVariableName { get; set; }
@@ -43,6 +41,7 @@ namespace taskt.Commands
         [XmlIgnore]
         [NonSerialized]
         public Label VariableValue;
+
         public OSVariableCommand()
         {
             CommandName = "OSVariableCommand";
@@ -54,7 +53,7 @@ namespace taskt.Commands
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
-            var systemVariable = (string)v_OSVariableName.ConvertUserVariableToString(engine);
+            var systemVariable = v_OSVariableName.ConvertUserVariableToString(engine);
 
             ObjectQuery wql = new ObjectQuery("SELECT * FROM Win32_OperatingSystem");
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(wql);
@@ -71,20 +70,16 @@ namespace taskt.Commands
                         return;
                     }
                 }
-
             }
-
             throw new Exception("System Property '" + systemVariable + "' not found!");
-
-
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
 
             var ActionNameComboBoxLabel = CommandControls.CreateDefaultLabelFor("v_OSVariableName", this);
             VariableNameComboBox = (ComboBox)CommandControls.CreateDropdownFor("v_OSVariableName", this);
-
 
             ObjectQuery wql = new ObjectQuery("SELECT * FROM Win32_OperatingSystem");
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(wql);
@@ -93,26 +88,19 @@ namespace taskt.Commands
             foreach (ManagementObject result in results)
             {
                 foreach (PropertyData prop in result.Properties)
-                {
                     VariableNameComboBox.Items.Add(prop.Name);
-                }
-
             }
 
             VariableNameComboBox.SelectedValueChanged += VariableNameComboBox_SelectedValueChanged;
-
             RenderedControls.Add(ActionNameComboBoxLabel);
             RenderedControls.Add(VariableNameComboBox);
 
             VariableValue = new Label();
-            VariableValue.Font = new System.Drawing.Font("Segoe UI", 12);
-            VariableValue.ForeColor = System.Drawing.Color.White;
-
+            VariableValue.Font = new Font("Segoe UI Semilight", 12, FontStyle.Bold);
+            VariableValue.ForeColor = Color.White;
             RenderedControls.Add(VariableValue);
 
-
-            RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
-            
+            RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));      
 
             return RenderedControls;
         }
@@ -123,7 +111,6 @@ namespace taskt.Commands
 
             if (selectedValue == null)
                 return;
-
 
             ObjectQuery wql = new ObjectQuery("SELECT * FROM Win32_OperatingSystem");
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(wql);
@@ -139,17 +126,13 @@ namespace taskt.Commands
                         return;
                     }
                 }
-
             }
-
             VariableValue.Text = "[ex. **Item not found**]";
-
-          
         }
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Apply '" + v_OSVariableName + "' to Variable '" + v_OutputUserVariableName + "']";
+            return base.GetDisplayValue() + $" [Store OS Variable '{v_OSVariableName}' in '{v_OutputUserVariableName}']";
         }
     }
 

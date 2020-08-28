@@ -363,6 +363,16 @@ namespace taskt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap command_catch {
+            get {
+                object obj = ResourceManager.GetObject("command_catch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap command_comment {
             get {
                 object obj = ResourceManager.GetObject("command_comment", resourceCulture);
@@ -453,6 +463,16 @@ namespace taskt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap command_end_try {
+            get {
+                object obj = ResourceManager.GetObject("command_end_try", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap command_endloop {
             get {
                 object obj = ResourceManager.GetObject("command_endloop", resourceCulture);
@@ -466,6 +486,16 @@ namespace taskt.Properties {
         public static System.Drawing.Bitmap command_error {
             get {
                 object obj = ResourceManager.GetObject("command_error", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap command_exception {
+            get {
+                object obj = ResourceManager.GetObject("command_exception", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -533,6 +563,16 @@ namespace taskt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap command_message {
+            get {
+                object obj = ResourceManager.GetObject("command_message", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap command_nextloop {
             get {
                 object obj = ResourceManager.GetObject("command_nextloop", resourceCulture);
@@ -576,6 +616,16 @@ namespace taskt.Properties {
         public static System.Drawing.Bitmap command_pause {
             get {
                 object obj = ResourceManager.GetObject("command_pause", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap command_regex {
+            get {
+                object obj = ResourceManager.GetObject("command_regex", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -837,6 +887,31 @@ namespace taskt.Properties {
             get {
                 object obj = ResourceManager.GetObject("header_backing_dark", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///
+        ///&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta charset=&quot;utf-8&quot; /&gt;
+        ///    &lt;title&gt;Please Provide Information&lt;/title&gt;
+        ///
+        ///    &lt;style type=&quot;text/css&quot;&gt;
+        ///        /*!
+        /// * Bootstrap v4.0.0 (https://getbootstrap.com)
+        /// * Copyright 2011-2018 The Bootstrap Authors
+        /// * Copyright 2011-2018 Twitter, Inc.
+        /// * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+        /// */ :root {
+        ///            --blue: #007bff;
+        ///            --indigo: #6610f2;
+        ///            --purple: # [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string HTMLInputSample {
+            get {
+                return ResourceManager.GetString("HTMLInputSample", resourceCulture);
             }
         }
         

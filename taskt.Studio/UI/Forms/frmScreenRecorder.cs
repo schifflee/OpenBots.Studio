@@ -44,10 +44,10 @@ namespace taskt.UI.Forms
 
                 foreach (ScriptCommand cmd in _scriptCommandList)
                 {
-                    newSequence.v_scriptActions.Add(cmd);
+                    newSequence.ScriptActions.Add(cmd);
                 }
 
-                if (newSequence.v_scriptActions.Count > 0)
+                if (newSequence.ScriptActions.Count > 0)
                     outputList.Add(newSequence);
             }
             else if (chkGroupMovesIntoSequences.Checked)
@@ -68,7 +68,7 @@ namespace taskt.UI.Forms
                         }
                         else
                         {
-                            newSequence.v_scriptActions.Add(cmd);
+                            newSequence.ScriptActions.Add(cmd);
                         }
                     }
                     else if (cmd is SendKeystrokesCommand)
@@ -79,11 +79,11 @@ namespace taskt.UI.Forms
                     }
                     else
                     {
-                        newSequence.v_scriptActions.Add(cmd);
+                        newSequence.ScriptActions.Add(cmd);
                     }
                 }
 
-                if (newSequence.v_scriptActions.Count > 0)
+                if (newSequence.ScriptActions.Count > 0)
                     outputList.Add(newSequence);
             }
 

@@ -37,7 +37,7 @@ namespace taskt.Commands
         public IENavigateToURLCommand()
         {
             CommandName = "IENavigateToURLCommand";
-            SelectionName = "Navigate to URL";
+            SelectionName = "IE Navigate to URL";
             v_InstanceName = "DefaultIEBrowser";
             CommandEnabled = true;
             CustomRendering = true;

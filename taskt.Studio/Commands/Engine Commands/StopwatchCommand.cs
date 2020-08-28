@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using taskt.Core.Attributes.ClassAttributes;
@@ -15,9 +16,7 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Engine Commands")]
-    [Description("This command allows you to stop a program or a process.")]
-    [UsesDescription("Use this command to close an application by its name such as 'chrome'. Alternatively, you may use the Close Window or Thick App Command instead.")]
-    [ImplementationDescription("This command implements 'Process.CloseMainWindow'.")]
+    [Description("This command measures time elapsed during the execution of the process.")]
     public class StopwatchCommand : ScriptCommand
     {
         [XmlAttribute]
@@ -29,30 +28,31 @@ namespace taskt.Commands
         public string v_InstanceName { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Enter the Stopwatch Action")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("Provide a unique instance or way to refer to the stopwatch")]
-        [SampleUsage("**myStopwatch**, **{vStopWatch}**")]
+        [PropertyDescription("Stopwatch Action")]
+        [PropertyUISelectionOption("Start Stopwatch")]
+        [PropertyUISelectionOption("Stop Stopwatch")]
+        [PropertyUISelectionOption("Restart Stopwatch")]
+        [PropertyUISelectionOption("Reset Stopwatch")]
+        [PropertyUISelectionOption("Measure Stopwatch")]
+        [InputSpecification("Select the appropriate stopwatch action.")]
+        [SampleUsage("")]
         [Remarks("")]
         public string v_StopwatchAction { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Optional - Specify String Format")]
-        [InputSpecification("Specify if a specific string format is required.")]
-        [SampleUsage("MM/dd/yy, hh:mm, etc.")]
-        [Remarks("")]
+        [PropertyDescription("String Format")]
+        [InputSpecification("Specify a DateTime string format if required.")]
+        [SampleUsage("MM/dd/yy || hh:mm || {vFormat}")]
+        [Remarks("This input is optional.")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_ToStringFormat { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Output Result Variable")]
+        [PropertyDescription("Output Elapsed Time Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]
         [Remarks("Variables not pre-defined in the Variable Manager will be automatically generated at runtime.")]
         public string v_OutputUserVariableName { get; set; }
-
-        [XmlIgnore]
-        [NonSerialized]
-        public ComboBox StopWatchComboBox;
 
         [XmlIgnore]
         [NonSerialized]
@@ -70,103 +70,89 @@ namespace taskt.Commands
 
         public override void RunCommand(object sender)
         {
-            var engine = (AutomationEngineInstance)sender;   
-            System.Diagnostics.Stopwatch stopwatch;
-
-            var action = v_StopwatchAction.ConvertUserVariableToString(engine);
-
-            switch (action)
+            var engine = (AutomationEngineInstance)sender;
+            var format = v_ToStringFormat.ConvertUserVariableToString(engine);
+            
+            Stopwatch stopwatch;
+            switch (v_StopwatchAction)
             {
                 case "Start Stopwatch":
                     //start a new stopwatch
-                    stopwatch = new System.Diagnostics.Stopwatch();
+                    stopwatch = new Stopwatch();
                     stopwatch.AddAppInstance(engine, v_InstanceName);
                     stopwatch.Start();
                     break;
                 case "Stop Stopwatch":
                     //stop existing stopwatch
-                    stopwatch = (System.Diagnostics.Stopwatch)engine.AppInstances[v_InstanceName];
+                    stopwatch = (Stopwatch)engine.AppInstances[v_InstanceName];
                     stopwatch.Stop();
                     break;
                 case "Restart Stopwatch":
                     //restart which sets to 0 and automatically starts
-                    stopwatch = (System.Diagnostics.Stopwatch)engine.AppInstances[v_InstanceName];
+                    stopwatch = (Stopwatch)engine.AppInstances[v_InstanceName];
                     stopwatch.Restart();
                     break;
                 case "Reset Stopwatch":
                     //reset which sets to 0
-                    stopwatch = (System.Diagnostics.Stopwatch)engine.AppInstances[v_InstanceName];
+                    stopwatch = (Stopwatch)engine.AppInstances[v_InstanceName];
                     stopwatch.Reset();
                     break;
                 case "Measure Stopwatch":
                     //check elapsed which gives measure
-                    stopwatch = (System.Diagnostics.Stopwatch)engine.AppInstances[v_InstanceName];
+                    stopwatch = (Stopwatch)engine.AppInstances[v_InstanceName];
                     string elapsedTime;
-                    if (string.IsNullOrEmpty(v_ToStringFormat))
-                    {
+                    if (string.IsNullOrEmpty(format.Trim()))
                         elapsedTime = stopwatch.Elapsed.ToString();
-                    }
                     else
-                    {
-                        var format = v_ToStringFormat.ConvertUserVariableToString(engine);
                         elapsedTime = stopwatch.Elapsed.ToString(format);
-                    }
 
                     elapsedTime.StoreInUserVariable(engine, v_OutputUserVariableName);
-
                     break;
                 default:
-                    throw new NotImplementedException("Stopwatch Action '" + action + "' not implemented");
+                    throw new NotImplementedException("Stopwatch Action '" + v_StopwatchAction + "' not implemented");
             }
-
-
-
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
 
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
-
-            var StopWatchComboBoxLabel = CommandControls.CreateDefaultLabelFor("v_StopwatchAction", this);
-            StopWatchComboBox = (ComboBox)CommandControls.CreateDropdownFor("v_StopwatchAction", this);
-            StopWatchComboBox.DataSource = new List<string> { "Start Stopwatch", "Stop Stopwatch", "Restart Stopwatch", "Reset Stopwatch", "Measure Stopwatch" };
-            StopWatchComboBox.SelectedIndexChanged += StopWatchComboBox_SelectedValueChanged;
-            RenderedControls.Add(StopWatchComboBoxLabel);
-            RenderedControls.Add(StopWatchComboBox);
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_StopwatchAction", this, editor));
+            ((ComboBox)RenderedControls[3]).SelectedIndexChanged += StopWatchComboBox_SelectedValueChanged;
 
             MeasureControls = new List<Control>();
-            MeasureControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
             MeasureControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_ToStringFormat", this, editor));
+            MeasureControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
 
             foreach (var ctrl in MeasureControls)
-            {
                 ctrl.Visible = false;
-            }
-            RenderedControls.AddRange(MeasureControls);
 
+            RenderedControls.AddRange(MeasureControls);
+          
             return RenderedControls;
         }
 
         private void StopWatchComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
-           
-            if (StopWatchComboBox.SelectedValue.ToString() == "Measure Stopwatch")
+            if (((ComboBox)RenderedControls[3]).Text == "Measure Stopwatch")
             {
                 foreach (var ctrl in MeasureControls)
-                                 ctrl.Visible = true;
-               
+                    ctrl.Visible = true;
             }
-            else {
+            else 
+            {
                 foreach (var ctrl in MeasureControls)
                     ctrl.Visible = false;
             }
-            
         }
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Action: " + v_StopwatchAction + ", Name: " + v_InstanceName + "]";
+            if (v_StopwatchAction == "Measure Stopwatch")
+                return base.GetDisplayValue() + $" [{v_StopwatchAction} - Store Elapsed Time in '{v_OutputUserVariableName}' - Instance Name '{v_InstanceName}']";
+            else
+                return base.GetDisplayValue() + $" [{v_StopwatchAction} - Instance Name '{v_InstanceName}']";
         }
     }
 }

@@ -167,7 +167,7 @@ namespace taskt.Commands
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_SMTPHost", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_SMTPPort", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_SMTPUserName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_SMTPPassword", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultPasswordInputGroupFor("v_SMTPPassword", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_SMTPRecipients", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_SMTPSubject", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_SMTPBody", this, editor, 100, 300));

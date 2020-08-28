@@ -16,26 +16,25 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Engine Commands")]
-    [Description("This command allows you to upload data to a local tasktServer bot store")]
-    [UsesDescription("Use this command when you want to upload or share data across bots.")]
-    [ImplementationDescription("")]
+    [Description("This command uploads data to a local tasktServer BotStore.")]
+
     public class UploadBotStoreDataCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Please indicate a name of the key to create")]
-        [InputSpecification("Select a variable or provide an input value")]
-        [SampleUsage("**vSomeVariable**")]
+        [PropertyDescription("Key")]
+        [InputSpecification("Select or provide the name of the key to create.")]
+        [SampleUsage("Hello || {vKey}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_KeyName { get; set; }
+        public string v_Key { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Please select a target variable or input value to upload")]
-        [InputSpecification("Select a variable or provide an input value")]
-        [SampleUsage("**vSomeVariable**")]
+        [PropertyDescription("Value")]
+        [InputSpecification("Select or provide a value for the key.")]
+        [SampleUsage("World || {vValue}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputValue { get; set; }
+        public string v_Value { get; set; }
 
         public UploadBotStoreDataCommand()
         {
@@ -44,12 +43,12 @@ namespace taskt.Commands
             CommandEnabled = true;
             CustomRendering = true;
         }
+
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
-
-            var keyName = v_KeyName.ConvertUserVariableToString(engine);
-            var keyValue = v_InputValue.ConvertUserVariableToString(engine);
+            var keyName = v_Key.ConvertUserVariableToString(engine);
+            var keyValue = v_Value.ConvertUserVariableToString(engine);
             
             try
             {
@@ -59,22 +58,21 @@ namespace taskt.Commands
             {
                 throw ex;
             }
-
-
-
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_KeyName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InputValue", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_Key", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_Value", this, editor));
 
             return RenderedControls;
         }
+
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Upload Data to Key '" + v_KeyName + "' in tasktServer BotStore]";
+            return base.GetDisplayValue() + $" [Upload Key/Value '({v_Key},{v_Value})' to tasktServer BotStore]";
         }
     }
 }

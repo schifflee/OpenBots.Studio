@@ -10,9 +10,9 @@ using taskt.Core.Attributes.PropertyAttributes;
 using taskt.Core.Command;
 using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
-using taskt.Core.Script;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
+using taskt.Properties;
 using taskt.UI.CustomControls;
 using taskt.UI.Forms.Supplement_Forms;
 
@@ -88,9 +88,10 @@ namespace taskt.Commands
             RenderedControls.AddRange(CommandControls.CreateDataGridViewGroupFor("v_DataRowDataTable", this, editor));
 
             CommandItemControl loadSchemaControl = new CommandItemControl();
-            loadSchemaControl.ForeColor = System.Drawing.Color.White;
+            loadSchemaControl.ForeColor = Color.White;
             loadSchemaControl.Font = new Font("Segoe UI Semilight", 10);
             loadSchemaControl.CommandDisplay = "Load Column Names From Existing DataTable";
+            loadSchemaControl.CommandImage = Resources.command_spreadsheet;
             loadSchemaControl.Click += LoadSchemaControl_Click;
             RenderedControls.Add(loadSchemaControl);
 

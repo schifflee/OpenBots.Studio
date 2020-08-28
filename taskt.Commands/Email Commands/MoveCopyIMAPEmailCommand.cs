@@ -184,7 +184,7 @@ namespace taskt.Commands
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_IMAPHost", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_IMAPPort", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_IMAPUserName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_IMAPPassword", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultPasswordInputGroupFor("v_IMAPPassword", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_IMAPDestinationFolder", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_IMAPOperationType", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_IMAPMoveCopyUnreadOnly", this, editor));

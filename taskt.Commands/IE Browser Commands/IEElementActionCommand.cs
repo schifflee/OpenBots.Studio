@@ -95,7 +95,7 @@ namespace taskt.Commands
         public IEElementActionCommand()
         {
             CommandName = "IEElementActionCommand";
-            SelectionName = "Element Action";
+            SelectionName = "IE Element Action";
             CommandEnabled = true;
             v_InstanceName = "DefaultIEBrowser";
             CustomRendering = true;

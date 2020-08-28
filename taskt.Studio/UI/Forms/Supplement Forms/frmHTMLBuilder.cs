@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace taskt.UI.Forms.Supplement_Forms
 {
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [ComVisible(true)]
     public partial class frmHTMLBuilder : Form
     {
         public frmHTMLBuilder()

@@ -15,21 +15,15 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Misc Commands")]
-    [Description("This command allows you to get text from the clipboard.")]
-    [UsesDescription("Use this command when you want to copy the data from the clipboard and apply it to a variable.  You can then use the variable to extract the value.")]
-    [ImplementationDescription("This command implements actions against the VariableList from the scripting engine using System.Windows.Forms.Clipboard.")]
+    [Description("This command gets text from the user's clipboard.")]
     public class GetClipboardTextCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Output Clipboard Result Variable")]
+        [PropertyDescription("Output Clipboard Text Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]
         [Remarks("Variables not pre-defined in the Variable Manager will be automatically generated at runtime.")]
         public string v_OutputUserVariableName { get; set; }
-
-        [XmlIgnore]
-        [NonSerialized]
-        public ComboBox VariableNameControl;
 
         public GetClipboardTextCommand()
         {
@@ -44,6 +38,7 @@ namespace taskt.Commands
             var engine = (AutomationEngineInstance)sender;
             User32Functions.GetClipboardText().StoreInUserVariable(engine, v_OutputUserVariableName);
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
@@ -55,7 +50,7 @@ namespace taskt.Commands
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Get Text From Clipboard and Apply to Variable: " + v_OutputUserVariableName + "]";
+            return base.GetDisplayValue() + $" [Store Clipboard Text in '{v_OutputUserVariableName}']";
         }
     }
 }

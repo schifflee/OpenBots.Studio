@@ -81,7 +81,7 @@ namespace taskt.Core.Utilities.CommonUtilities
                 {
                     var searchVariable = startVariableMarker + potentialVariable + endVariableMarker;
 
-                    if (userInputString.Contains(searchVariable))
+                    if (userInputString.Contains(searchVariable) && varCheck.VariableValue is string)
                     {
                         userInputString = userInputString.Replace(searchVariable, (string)varCheck.VariableValue);
                     }

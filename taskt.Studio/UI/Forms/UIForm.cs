@@ -46,7 +46,7 @@ namespace taskt.UI.Forms
 
             // UIForm
             ClientSize = new Size(284, 261);
-            Icon = ((Icon)(resources.GetObject("$Icon")));
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "UIForm";
             Load += new EventHandler(UIForm_Load);
             ResumeLayout(false);

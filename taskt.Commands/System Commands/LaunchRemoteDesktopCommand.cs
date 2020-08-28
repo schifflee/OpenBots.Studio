@@ -16,49 +16,47 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("System Commands")]
-    [Description("This command allows you to stop a program or a process.")]
-    [UsesDescription("Use this command to close an application by its name such as 'chrome'. Alternatively, you may use the Close Window or Thick App Command instead.")]
-    [ImplementationDescription("This command implements 'Process.CloseMainWindow'.")]
+    [Description("This command launches a remote desktop session.")]
     public class LaunchRemoteDesktopCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Enter the name of the machine")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("")]
-        [SampleUsage("")]
+        [PropertyDescription("Machine Name")]
+        [InputSpecification("Define the name of the machine to log on to.")]
+        [SampleUsage("myMachine || {vMachineName}")]
         [Remarks("")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_MachineName { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Enter the username")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("")]
-        [SampleUsage("")]
+        [PropertyDescription("Username")]
+        [InputSpecification("Define the username to use when connecting to the machine.")]
+        [SampleUsage("myRobot || {vUsername}")]
         [Remarks("")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_UserName { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Enter the password")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("")]
-        [SampleUsage("")]
+        [PropertyDescription("Password")]
+        [InputSpecification("Define the password to use when connecting to the machine.")]
+        [SampleUsage("password || {vPassword}")]
         [Remarks("")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_Password { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Enter the width of the RDP window")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("")]
-        [SampleUsage("")]
+        [PropertyDescription("RDP Window Width")]
+        [InputSpecification("Define the width for the Remote Desktop Window.")]
+        [SampleUsage("1000 || {vWidth}")]
         [Remarks("")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_RDPWidth { get; set; }
 
         [XmlAttribute]
-        [PropertyDescription("Enter the height of the RDP window")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [InputSpecification("")]
-        [SampleUsage("")]
+        [PropertyDescription("RDP Window Height")]
+        [InputSpecification("Define the height for the Remote Desktop Window.")]
+        [SampleUsage("800 || {vHeight}")]
         [Remarks("")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_RDPHeight { get; set; }
 
         public LaunchRemoteDesktopCommand()
@@ -70,42 +68,30 @@ namespace taskt.Commands
 
             v_RDPWidth = SystemInformation.PrimaryMonitorSize.Width.ToString();
             v_RDPHeight = SystemInformation.PrimaryMonitorSize.Height.ToString();
-
         }
 
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
-
             var machineName = v_MachineName.ConvertUserVariableToString(engine);
             var userName = v_UserName.ConvertUserVariableToString(engine);
             var password = v_Password.ConvertUserVariableToString(engine);
             var width = int.Parse(v_RDPWidth.ConvertUserVariableToString(engine));
             var height = int.Parse(v_RDPHeight.ConvertUserVariableToString(engine));
 
-
             var result = ((frmScriptEngine)engine.TasktEngineUI).Invoke(new Action(() =>
             {
                 engine.TasktEngineUI.LaunchRDPSession(machineName, userName, password, width, height);
             }));
-
-
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
 
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_MachineName", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_UserName", this, editor));
-
-            //mask passwords
-            var passwordGroup = CommandControls.CreateDefaultInputGroupFor("v_Password", this, editor);
-            TextBox inputBox = (TextBox)passwordGroup[2];
-            inputBox.PasswordChar = '*';
-
-            RenderedControls.AddRange(passwordGroup);
-
-
+            RenderedControls.AddRange(CommandControls.CreateDefaultPasswordInputGroupFor("v_Password", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_RDPWidth", this, editor));
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_RDPHeight", this, editor));
 
@@ -114,7 +100,7 @@ namespace taskt.Commands
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Logon " + v_UserName + " to " + v_MachineName + "]";
+            return base.GetDisplayValue() + $" [Machine '{v_MachineName}']";
         }
     }
 }

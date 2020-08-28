@@ -28,7 +28,7 @@ namespace taskt.Commands
         public IECloseBrowserCommand()
         {
             CommandName = "IECloseBrowserCommand";
-            SelectionName = "Close Browser";
+            SelectionName = "Close IE Browser";
             CommandEnabled = true;
             v_InstanceName = "DefaultIEBrowser";
             CustomRendering = true;

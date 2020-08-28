@@ -15,9 +15,7 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("NLG Commands")]
-    [Description("This command pauses the script for a set amount of time specified in milliseconds.")]
-    [UsesDescription("Use this command when you want to pause your script for a specific amount of time.  After the specified time is finished, the script will resume execution.")]
-    [ImplementationDescription("This command implements 'Thread.Sleep' to achieve automation.")]
+    [Description("This command produces a Natural Language Generation phrase.")]
     public class GenerateNLGPhraseCommand : ScriptCommand
     {
         [XmlAttribute]
@@ -51,10 +49,10 @@ namespace taskt.Commands
             Lexicon lexicon = Lexicon.getDefaultLexicon();
             Realiser realiser = new Realiser(lexicon);
 
-            String phraseOutput = realiser.realiseSentence(p);
+            string phraseOutput = realiser.realiseSentence(p);
             phraseOutput.StoreInUserVariable(engine, v_OutputUserVariableName);
-
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
@@ -67,7 +65,7 @@ namespace taskt.Commands
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Apply to '" + v_OutputUserVariableName +  "', Instance Name: '" + v_InstanceName + "']";
+            return base.GetDisplayValue() + $" [Store Phrase in '{v_OutputUserVariableName}' - Instance Name '{v_InstanceName}']";
         }
     }
 }

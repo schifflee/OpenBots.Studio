@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using taskt.Core.Attributes.ClassAttributes;
@@ -29,16 +30,24 @@ namespace taskt.Commands
 
         [XmlAttribute]
         [PropertyDescription("Calculation Method")]
-        [PropertyUISelectionOption("Add Seconds")]
-        [PropertyUISelectionOption("Add Minutes")]
-        [PropertyUISelectionOption("Add Hours")]
-        [PropertyUISelectionOption("Add Days")]
-        [PropertyUISelectionOption("Add Years")]
-        [PropertyUISelectionOption("Subtract Seconds")]
-        [PropertyUISelectionOption("Subtract Minutes")]
-        [PropertyUISelectionOption("Subtract Hours")]
-        [PropertyUISelectionOption("Subtract Days")]
-        [PropertyUISelectionOption("Subtract Years")]
+        [PropertyUISelectionOption("Add Second(s)")]
+        [PropertyUISelectionOption("Add Minute(s)")]
+        [PropertyUISelectionOption("Add Hour(s)")]
+        [PropertyUISelectionOption("Add Day(s)")]
+        [PropertyUISelectionOption("Add Month(s)")]
+        [PropertyUISelectionOption("Add Year(s)")]
+        [PropertyUISelectionOption("Subtract Second(s)")]
+        [PropertyUISelectionOption("Subtract Minute(s)")]
+        [PropertyUISelectionOption("Subtract Hour(s)")]
+        [PropertyUISelectionOption("Subtract Day(s)")]
+        [PropertyUISelectionOption("Subtract Month(s)")]
+        [PropertyUISelectionOption("Subtract Year(s)")]
+        [PropertyUISelectionOption("Get Next Day")]
+        [PropertyUISelectionOption("Get Next Month")]
+        [PropertyUISelectionOption("Get Next Year")]
+        [PropertyUISelectionOption("Get Previous Day")]
+        [PropertyUISelectionOption("Get Previous Month")]
+        [PropertyUISelectionOption("Get Previous Year")]
         [InputSpecification("Select the date operation.")]
         [SampleUsage("")]
         [Remarks("The selected operation will be applied to the input date value and result will be stored in the output variable.")]
@@ -84,64 +93,90 @@ namespace taskt.Commands
 
             //get variablized string
             var variableDateTime = v_InputDate.ConvertUserVariableToString(engine);
+            var formatting = v_ToStringFormat.ConvertUserVariableToString(engine);
+            var variableIncrement = v_Increment.ConvertUserVariableToString(engine);
 
             //convert to date time
             DateTime requiredDateTime;
             if (!DateTime.TryParse(variableDateTime, out requiredDateTime))
-            {
                 throw new InvalidDataException("Date was unable to be parsed - " + variableDateTime);
-            }
 
             //get increment value
             double requiredInterval;
-            var variableIncrement = v_Increment.ConvertUserVariableToString(engine);
 
             //convert to double
-            if (!Double.TryParse(variableIncrement, out requiredInterval))
-            {
+            if (!double.TryParse(variableIncrement, out requiredInterval))
                 throw new InvalidDataException("Date was unable to be parsed - " + variableIncrement);
-            }
+
+            dynamic dateTimeValue;
 
             //perform operation
             switch (v_CalculationMethod)
             {
-                case "Add Seconds":
-                    requiredDateTime = requiredDateTime.AddSeconds(requiredInterval);
+                case "Add Second(s)":
+                    dateTimeValue = requiredDateTime.AddSeconds(requiredInterval);
                     break;
-                case "Add Minutes":
-                    requiredDateTime = requiredDateTime.AddMinutes(requiredInterval);
+                case "Add Minute(s)":
+                    dateTimeValue = requiredDateTime.AddMinutes(requiredInterval);
                     break;
-                case "Add Hours":
-                    requiredDateTime = requiredDateTime.AddHours(requiredInterval);
+                case "Add Hour(s)":
+                    dateTimeValue = requiredDateTime.AddHours(requiredInterval);
                     break;
-                case "Add Days":
-                    requiredDateTime = requiredDateTime.AddDays(requiredInterval);
+                case "Add Day(s)":
+                    dateTimeValue = requiredDateTime.AddDays(requiredInterval);
                     break;
-                case "Add Years":
-                    requiredDateTime = requiredDateTime.AddYears((int)requiredInterval);
+                case "Add Month(s)":
+                    dateTimeValue = requiredDateTime.AddMonths((int)requiredInterval);
                     break;
-                case "Subtract Seconds":
-                    requiredDateTime = requiredDateTime.AddSeconds((requiredInterval * -1));
+                case "Add Year(s)":
+                    dateTimeValue = requiredDateTime.AddYears((int)requiredInterval);
                     break;
-                case "Subtract Minutes":
-                    requiredDateTime = requiredDateTime.AddMinutes((requiredInterval * -1));
+                case "Subtract Second(s)":
+                    dateTimeValue = requiredDateTime.AddSeconds((requiredInterval * -1));
                     break;
-                case "Subtract Hours":
-                    requiredDateTime = requiredDateTime.AddHours((requiredInterval * -1));
+                case "Subtract Minute(s)":
+                    dateTimeValue = requiredDateTime.AddMinutes((requiredInterval * -1));
                     break;
-                case "Subtract Days":
-                    requiredDateTime = requiredDateTime.AddDays((requiredInterval * -1));
+                case "Subtract Hour(s)":
+                    dateTimeValue = requiredDateTime.AddHours(requiredInterval * -1);
                     break;
-                case "Subtract Years":
-                    requiredDateTime = requiredDateTime.AddYears(((int)requiredInterval * -1));
+                case "Subtract Day(s)":
+                    dateTimeValue = requiredDateTime.AddDays(requiredInterval * -1);
+                    break;
+                case "Subtract Month(s)":
+                    dateTimeValue = requiredDateTime.AddMonths((int)requiredInterval * -1);
+                    break;
+                case "Subtract Year(s)":
+                    dateTimeValue = requiredDateTime.AddYears((int)requiredInterval * -1);
+                    break;
+                case "Get Next Day":
+                    dateTimeValue = requiredDateTime.AddDays(requiredInterval).Day;
+                    break;
+                case "Get Next Month":
+                    dateTimeValue = requiredDateTime.AddMonths((int)requiredInterval).Month;
+                    break;
+                case "Get Next Year":
+                    dateTimeValue = requiredDateTime.AddYears((int)requiredInterval).Year;
+                    break;
+                case "Get Previous Day":
+                    dateTimeValue = requiredDateTime.AddDays(requiredInterval * -1).Day;
+                    break;
+                case "Get Previous Month":
+                    dateTimeValue = requiredDateTime.AddMonths((int)requiredInterval * -1).Month;
+                    break;
+                case "Get Previous Year":
+                    dateTimeValue = requiredDateTime.AddYears((int)requiredInterval * -1).Year;
                     break;
                 default:
+                    dateTimeValue = "";
                     break;
             }
 
+            string stringDateFormatted = ((object)dateTimeValue).ToString();
+
             //handle if formatter is required
-            var formatting = v_ToStringFormat.ConvertUserVariableToString(engine);
-            var stringDateFormatted = requiredDateTime.ToString(formatting);
+            if (!string.IsNullOrEmpty(formatting.Trim()))
+                stringDateFormatted = requiredDateTime.ToString(formatting);
 
             //store string (Result) in variable
             stringDateFormatted.StoreInUserVariable(engine, v_OutputUserVariableName);
@@ -163,32 +198,22 @@ namespace taskt.Commands
 
         public override string GetDisplayValue()
         {
-            //if calculation method was selected
-            if (v_CalculationMethod != null)
-            {
-                //determine operand and interval
-                var operand = v_CalculationMethod.Split(' ')[0];
-                var interval = v_CalculationMethod.Split(' ')[1];
+            //determine operand and interval
+            var operand = v_CalculationMethod.Split(' ').First();
+            var interval = v_CalculationMethod.Split(' ').Last();
 
-                //additional language handling based on selection made
-                string operandLanguage;
-                if (operand == "Add")
-                {
-                    operandLanguage = "to";
-                }
-                else
-                {
-                    operandLanguage = "from";
-                }
-
-                //return value
-                return base.GetDisplayValue() + $" [{operand} '{v_Increment}' {interval} {operandLanguage} '{v_InputDate}' - Store Date in '{v_OutputUserVariableName}']";
-            }
+            //additional language handling based on selection made
+            string operandLanguage;
+            if (operand == "Add")
+                operandLanguage = "to";
             else
-            {
-                return base.GetDisplayValue();
-            }
+                operandLanguage = "from";
 
+            if (operand == "Get")
+                operand = v_CalculationMethod.Replace(interval, "").TrimEnd();
+
+            //return value
+            return base.GetDisplayValue() + $" [{operand} '{v_Increment}' {interval} {operandLanguage} '{v_InputDate}' - Store Date in '{v_OutputUserVariableName}']";
         }
     }
 }

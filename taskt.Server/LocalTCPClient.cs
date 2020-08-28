@@ -432,7 +432,7 @@ namespace taskt.Server
             _tcpListener.Stop();
         }
 
-        public static string SendAutomationTask(string endpoint, string parameterType, string timeout,
+        public static string SendAutomationTask(string endpoint, string parameterType, int timeout,
                                                 string scriptData = "", string awaitPreference = "")
         {
             if (!endpoint.StartsWith("http://"))
@@ -451,7 +451,7 @@ namespace taskt.Server
             request.Method = Method.POST;
             request.AddHeader("Content-Type", "text/plain");
             request.Resource = (awaitPreference == awaitForResult) ? awaitEndpoint : executeEndpoint;
-            request.Timeout = int.Parse(timeout);
+            request.Timeout = timeout;
 
             if (_listenerSettings.RequireListenerAuthenticationKey)
             {

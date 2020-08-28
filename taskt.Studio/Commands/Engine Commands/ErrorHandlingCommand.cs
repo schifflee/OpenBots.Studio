@@ -13,18 +13,17 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Engine Commands")]
-    [Description("This command specifies what to do  after an error is encountered.")]
-    [UsesDescription("Use this command when you want to define how your script should behave when an error is encountered.")]
-    [ImplementationDescription("This command implements 'Thread.Sleep' to achieve automation.")]
+    [Description("This command specifies what to do if an error is encountered during execution.")]
     public class ErrorHandlingCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("Select an action to take in the event an error occurs")]
+        [PropertyDescription("Error Action")]
         [PropertyUISelectionOption("Stop Processing")]
         [PropertyUISelectionOption("Continue Processing")]
-        [InputSpecification("Select the action you want to take when you come across an error.")]
-        [SampleUsage("**Stop Processing** to end the script if an error is encountered or **Continue Processing** to continue running the script")]
-        [Remarks("**If Command** allows you to specify and test if a line number encountered an error. In order to use that functionality, you must specify **Continue Processing**")]
+        [InputSpecification("Select the action to take when the bot comes across an error.")]
+        [SampleUsage("")]
+        [Remarks("**If Command** allows you to specify and test if a line number encountered an error. "+
+                 "In order to use that functionality, you must specify **Continue Processing**.")]
         public string v_ErrorHandlingAction { get; set; }
 
         public ErrorHandlingCommand()
@@ -33,6 +32,7 @@ namespace taskt.Commands
             SelectionName = "Error Handling";
             CommandEnabled = true;
             CustomRendering = true;
+            v_ErrorHandlingAction = "Stop Processing";
         }
 
         public override void RunCommand(object sender)
@@ -40,23 +40,19 @@ namespace taskt.Commands
             var engine = (AutomationEngineInstance)sender;
             engine.ErrorHandlingAction = v_ErrorHandlingAction;
         }
+
         public override List<Control> Render(IfrmCommandEditor editor)
         {
             base.Render(editor);
 
-
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_ErrorHandlingAction", this));
-            var dropdown = CommandControls.CreateDropdownFor("v_ErrorHandlingAction", this);
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_ErrorHandlingAction", this, new Control[] { dropdown }, editor));
-            RenderedControls.Add(dropdown);
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_ErrorHandlingAction", this, editor));
 
             return RenderedControls;
         }
 
-
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + " [Action: " + v_ErrorHandlingAction + "]";
+            return base.GetDisplayValue() + $" ['{v_ErrorHandlingAction}']";
         }
     }
 }

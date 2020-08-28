@@ -409,4 +409,22 @@
   <data name="command_end_switch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\command-end-switch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="HTMLInputSample" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HTMLInputSample.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="command_regex" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\command-regex.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="command_message" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\command-message.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="command_catch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\command-catch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="command_end_try" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\command-end-try.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="command_exception" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\command-exception.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

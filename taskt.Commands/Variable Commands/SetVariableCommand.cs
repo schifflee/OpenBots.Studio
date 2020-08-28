@@ -44,12 +44,13 @@ namespace taskt.Commands
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
-            var input = v_Input.ConvertUserVariableToObject(engine);
 
-            if (input is string)
-                input = v_Input.ConvertUserVariableToString(engine);
+            dynamic input = v_Input.ConvertUserVariableToString(engine);
 
-            input.StoreInUserVariable(engine, v_OutputUserVariableName);
+            if (input == v_Input && input.StartsWith("{") && input.EndsWith("}"))
+                input = v_Input.ConvertUserVariableToObject(engine);
+
+            ((object)input).StoreInUserVariable(engine, v_OutputUserVariableName);
         }
 
         public override List<Control> Render(IfrmCommandEditor editor)

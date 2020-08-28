@@ -88,9 +88,9 @@
             this.lblMainLogo.Location = new System.Drawing.Point(1, 6);
             this.lblMainLogo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMainLogo.Name = "lblMainLogo";
-            this.lblMainLogo.Size = new System.Drawing.Size(318, 54);
+            this.lblMainLogo.Size = new System.Drawing.Size(509, 68);
             this.lblMainLogo.TabIndex = 4;
-            this.lblMainLogo.Text = "taskt is executing";
+            this.lblMainLogo.Text = "OpenBots is executing";
             // 
             // lblKillProcNote
             // 

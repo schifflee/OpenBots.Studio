@@ -7,7 +7,7 @@ namespace taskt.Core.Common
         public CompilerResults CompileInput(string codeInput)
         {
             //define file output
-            string output = "tasktOnTheFly.exe";
+            string output = "OpenBotsOnTheFly.exe";
 
             //create provider
             CodeDomProvider codeProvider = CodeDomProvider.CreateProvider("CSharp");

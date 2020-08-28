@@ -34,14 +34,14 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             var projectBuilder = new frmProjectBuilder();
             projectBuilder.ShowDialog();
 
-            //Close taskt if add project form is closed at startup
+            //Close OpenBots if add project form is closed at startup
             if (projectBuilder.DialogResult == DialogResult.Cancel && _scriptProject == null)
             {
                 Application.Exit();
                 return;
             }
 
-            //Create new taskt project
+            //Create new OpenBots project
             else if (projectBuilder.CreateProject == true)
             {
                 DialogResult result = CheckForUnsavedScripts();
@@ -88,7 +88,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                 }
             }
 
-            //Open existing taskt project
+            //Open existing OpenBots project
             else if (projectBuilder.OpenProject == true)
             {
                 DialogResult result = CheckForUnsavedScripts();

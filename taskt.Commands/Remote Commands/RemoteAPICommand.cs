@@ -16,7 +16,7 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Remote Commands")]
-    [Description("This command executes a task remotely on another taskt instance.")]
+    [Description("This command executes a task remotely on another OpenBots instance.")]
     public class RemoteAPICommand : ScriptCommand
     {
         [XmlAttribute]
@@ -30,7 +30,7 @@ namespace taskt.Commands
         [XmlAttribute]
         [PropertyDescription("Parameter Type")]
         [PropertyUISelectionOption("Get Engine Status")]
-        [PropertyUISelectionOption("Restart taskt")]
+        [PropertyUISelectionOption("Restart OpenBots")]
         [InputSpecification("Select the appropriate parameter type.")]
         [SampleUsage("")]
         [Remarks("")]

@@ -841,7 +841,7 @@ namespace taskt.UI.CustomControls
             if (string.IsNullOrEmpty(targetTextbox.Text))
                 return;
 
-            var encrypted = EncryptionServices.EncryptString(targetTextbox.Text, "TASKT");
+            var encrypted = EncryptionServices.EncryptString(targetTextbox.Text, "OPENBOTS");
             targetTextbox.Text = encrypted;
 
             ComboBox comboBoxControl = (ComboBox)((frmCommandEditor)editor).flw_InputVariables.Controls["v_EncryptionOption"];

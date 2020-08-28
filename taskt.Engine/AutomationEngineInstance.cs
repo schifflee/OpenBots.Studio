@@ -267,7 +267,7 @@ namespace taskt.Engine
             //get command
             ScriptCommand parentCommand = command.ScriptCommand;
 
-            if (parentCommand.CommandName == "RunTaskCommand")
+            if (parentCommand.CommandName == "RunTaskCommand" || parentCommand.CommandName == "MessageBoxCommand")
                 parentCommand.CurrentScriptBuilder = TasktEngineUI.CallBackForm;
 
             //set LastCommadExecuted
@@ -626,7 +626,7 @@ namespace taskt.Engine
             //write execution metrics
             if (EngineSettings.TrackExecutionMetrics && (FileName != null))
             {
-                string summaryLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "taskt Execution Summary Logs.txt");
+                string summaryLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots Execution Summary Logs.txt");
                 Logger summaryLogger = new Logging().CreateJsonFileLogger(summaryLoggerFilePath, Serilog.RollingInterval.Infinite);
                 summaryLogger.Information(serializedArguments);
                 if (!TasktEngineUI.IsChildEngine)

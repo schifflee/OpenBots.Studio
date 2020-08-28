@@ -147,7 +147,7 @@ namespace taskt.UI.Forms
             {
                 case SinkType.File:
                     if (string.IsNullOrEmpty(_engineSettings.LoggingValue1.Trim()))
-                        _engineSettings.LoggingValue1 = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "taskt Engine Logs.txt");
+                        _engineSettings.LoggingValue1 = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots Engine Logs.txt");
 
                     ScriptEngineLogger = new Logging().CreateFileLogger(_engineSettings.LoggingValue1, Serilog.RollingInterval.Day,
                         _engineSettings.MinLogLevel);

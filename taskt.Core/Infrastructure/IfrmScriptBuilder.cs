@@ -1,4 +1,9 @@
-﻿using System.Windows.Forms;
+﻿using Microsoft.Office.Interop.Outlook;
+using MimeKit;
+using OpenQA.Selenium;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace taskt.Core.Infrastructure
 {
@@ -16,5 +21,13 @@ namespace taskt.Core.Infrastructure
         void RemoveDebugTab();
         DialogResult LoadErrorForm(string errorMessage);
         string HTMLElementRecorderURL { get; set; }
+
+        string ConvertDataTableToString(DataTable dt);
+        string ConvertDataRowToString(DataRow row);
+        string ConvertMailItemToString(MailItem mail);
+        string ConvertMimeMessageToString(MimeMessage message);
+        string ConvertIWebElementToString(IWebElement element);
+        string ConvertBitmapToString(Bitmap bitmap);
+        string ConvertListToString(object list);
     }
 }

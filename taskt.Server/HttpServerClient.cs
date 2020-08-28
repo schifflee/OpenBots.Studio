@@ -29,7 +29,7 @@ namespace taskt.Server
 
         static HttpServerClient()
         {
-            string httpLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "taskt HTTP Logs.txt");
+            string httpLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots HTTP Logs.txt");
             _httpLogger = new Logging().CreateFileLogger(httpLoggerFilePath, RollingInterval.Day);
             Initialize();
         }

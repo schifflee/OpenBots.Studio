@@ -675,7 +675,7 @@
             this.lblRootFolder.Name = "lblRootFolder";
             this.lblRootFolder.Size = new System.Drawing.Size(136, 23);
             this.lblRootFolder.TabIndex = 24;
-            this.lblRootFolder.Text = "taskt Root Folder";
+            this.lblRootFolder.Text = "OpenBots Studio Root Folder";
             // 
             // txtAppFolderPath
             // 
@@ -1027,7 +1027,7 @@
             this.lblClientGUIDDesc.Name = "lblClientGUIDDesc";
             this.lblClientGUIDDesc.Size = new System.Drawing.Size(571, 25);
             this.lblClientGUIDDesc.TabIndex = 32;
-            this.lblClientGUIDDesc.Text = "Indicates the GUID the client will use when connecting to taskt server";
+            this.lblClientGUIDDesc.Text = "Indicates the GUID the client will use when connecting to OpenBots Server";
             // 
             // lblServerSettingsDesc
             // 
@@ -1052,7 +1052,7 @@
             this.lblHTTPSDesc.Name = "lblHTTPSDesc";
             this.lblHTTPSDesc.Size = new System.Drawing.Size(522, 25);
             this.lblHTTPSDesc.TabIndex = 29;
-            this.lblHTTPSDesc.Text = "Enter the location of the taskt server ex. https://localhost:60281";
+            this.lblHTTPSDesc.Text = "Enter the location of the OpenBots Server ex. https://localhost:60281";
             // 
             // btnGetGUID
             // 
@@ -1361,7 +1361,7 @@
             this.lblLocalListenerSettingsDesc.Size = new System.Drawing.Size(783, 82);
             this.lblLocalListenerSettingsDesc.TabIndex = 32;
             this.lblLocalListenerSettingsDesc.Text = "Enable this functionality to allow this computer to accept script execution reque" +
-    "sts from other taskt or REST-capable clients.";
+    "sts from other OpenBots or REST-capable clients.";
             // 
             // lblLocalListenerSettings
             // 

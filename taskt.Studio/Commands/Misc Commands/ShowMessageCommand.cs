@@ -47,9 +47,58 @@ namespace taskt.Commands
         public override void RunCommand(object sender)
         {
             var engine = (Engine.AutomationEngineInstance)sender;
-            string variableMessage = v_Message.ConvertUserVariableToString(engine);
+
             int closeAfter = int.Parse(v_AutoCloseAfter.ConvertUserVariableToString(engine));
-            variableMessage = variableMessage.Replace("\\n", Environment.NewLine);
+
+            dynamic variableMessage = v_Message.ConvertUserVariableToString(engine);
+
+            if (variableMessage == v_Message && variableMessage.StartsWith("{") && variableMessage.EndsWith("}"))
+                variableMessage = v_Message.ConvertUserVariableToObject(engine);
+
+            string type = "";
+            if (variableMessage != null)
+                type = variableMessage.GetType().FullName;
+
+            switch (type)
+            {
+                case "System.String":
+                    variableMessage = variableMessage.Replace("\\n", Environment.NewLine);
+                    break;
+                case "System.Security.SecureString":
+                    variableMessage = type + Environment.NewLine + "*Secure String*";
+                    break;
+                case "System.Data.DataTable":
+                    variableMessage = type + Environment.NewLine + CurrentScriptBuilder.ConvertDataTableToString(variableMessage);
+                    break;
+                case "System.Data.DataRow":
+                    variableMessage = type + Environment.NewLine + CurrentScriptBuilder.ConvertDataRowToString(variableMessage);
+                    break;
+                case "System.__ComObject":
+                    variableMessage = type + Environment.NewLine + CurrentScriptBuilder.ConvertMailItemToString(variableMessage);
+                    break;
+                case "MimeKit.MimeMessage":
+                    variableMessage = type + Environment.NewLine + CurrentScriptBuilder.ConvertMimeMessageToString(variableMessage);
+                    break;
+                case "OpenQA.Selenium.Remote.RemoteWebElement":
+                    variableMessage = type + Environment.NewLine + CurrentScriptBuilder.ConvertIWebElementToString(variableMessage);
+                    break;
+                case "System.Drawing.Bitmap":
+                    variableMessage = type + Environment.NewLine + CurrentScriptBuilder.ConvertBitmapToString(variableMessage);
+                    break;
+                case "System.Collections.Generic.List`1[System.String]":
+                case "System.Collections.Generic.List`1[System.Data.DataTable]":
+                case "System.Collections.Generic.List`1[Microsoft.Office.Interop.Outlook.MailItem]":
+                case "System.Collections.Generic.List`1[MimeKit.MimeMessage]":
+                case "System.Collections.Generic.List`1[OpenQA.Selenium.IWebElement]":
+                    variableMessage = type + Environment.NewLine + CurrentScriptBuilder.ConvertListToString(variableMessage);
+                    break;
+                case "":
+                    variableMessage = "null";    
+                    break;
+                default:
+                    variableMessage = v_Message + Environment.NewLine + "*Variable Type Not Yet Supported*";
+                    break;
+            }
 
             if (engine.TasktEngineUI == null)
             {

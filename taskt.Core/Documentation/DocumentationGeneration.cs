@@ -108,8 +108,8 @@ namespace taskt.Core.Documentation
                 stringBuilder.AppendLine("This page was generated on " + DateTime.Now.ToString("MM/dd/yy hh:mm tt"));
                 stringBuilder.AppendLine(Environment.NewLine);
                 stringBuilder.AppendLine("## Help");
-                stringBuilder.AppendLine("[Open/Report an issue on GitHub](https://github.com/saucepleez/taskt/issues/new)");
-                stringBuilder.AppendLine("[Ask a question on Gitter](https://gitter.im/taskt-rpa/Lobby)");
+                stringBuilder.AppendLine("[Open/Report an issue on GitHub]((https://github.com/OpenBotsAI/OpenBots.Studio/issues/new)");
+                stringBuilder.AppendLine("[Ask a question on the OpenBots Forum](https://openbots.ai/forums/)");
 
                 //create kebob destination and command file name
                 var kebobDestination = groupName.Replace(" ", "-").Replace("/", "-").ToLower();
@@ -149,12 +149,11 @@ namespace taskt.Core.Documentation
             {
                 stringBuilder.AppendLine("|" + cmd.Group + "|[" + cmd.Name + "](" + cmd.Location + ")|" + cmd.Description + "|");
             }
-
-            stringBuilder.AppendLine("This page was generated on " + DateTime.Now.ToString("MM/dd/yy hh:mm tt"));
+           
             stringBuilder.AppendLine(Environment.NewLine);
             stringBuilder.AppendLine("## Help");
-            stringBuilder.AppendLine("[Open/Report an issue on GitHub](https://github.com/saucepleez/taskt/issues/new)");
-            stringBuilder.AppendLine("[Ask a question on Gitter](https://gitter.im/taskt-rpa/Lobby)");
+            stringBuilder.AppendLine("[Open/Report an issue on GitHub](https://github.com/OpenBotsAI/OpenBots.Studio/issues/new)");
+            stringBuilder.AppendLine("[Ask a question on the OpenBots forum](https://openbots.ai/forums/)");
 
             //write file
             fullFileName = Path.Combine(docsFolderName, "automation-commands.md");

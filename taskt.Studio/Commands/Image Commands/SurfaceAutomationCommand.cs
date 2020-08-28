@@ -224,7 +224,7 @@ namespace taskt.Commands
                                                 select rw.Field<string>("Parameter Value")).FirstOrDefault();
 
                         if (encryptedData == "Encrypted")
-                            textToSet = EncryptionServices.DecryptString(textToSet, "TASKT");
+                            textToSet = EncryptionServices.DecryptString(textToSet, "OPENBOTS");
 
                         Point setTextPositionPoint = GetClickPosition(clickPosition, element);
 
@@ -606,7 +606,7 @@ namespace taskt.Commands
 
                 if (warning == DialogResult.Yes)
                 {
-                    targetElement.Value = EncryptionServices.EncryptString(targetElement.Value.ToString(), "TASKT");
+                    targetElement.Value = EncryptionServices.EncryptString(targetElement.Value.ToString(), "OPENBOTS");
                     _imageGridViewHelper.Rows[4].Cells[1].Value = "Encrypted";
                 }
             }

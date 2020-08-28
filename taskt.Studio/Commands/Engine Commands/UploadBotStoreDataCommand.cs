@@ -16,7 +16,7 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Engine Commands")]
-    [Description("This command uploads data to a local tasktServer BotStore.")]
+    [Description("This command uploads data to a local OpenBots Server BotStore.")]
 
     public class UploadBotStoreDataCommand : ScriptCommand
     {

@@ -84,7 +84,7 @@ namespace taskt.UI.Forms
             {
                 // Create a new task definition and assign properties
                 TaskDefinition td = ts.NewTask();
-                td.RegistrationInfo.Description = "Scheduled task from taskt - " + selectedFile;
+                td.RegistrationInfo.Description = "Scheduled task from OpenBots Studio - " + selectedFile;
                 var trigger = new TimeTrigger();
                 ////   // Add a trigger that will fire the task at this time every other day
                 //DailyTrigger dt = (DailyTrigger)td.Triggers.Add(new DailyTrigger(2));
@@ -127,7 +127,7 @@ namespace taskt.UI.Forms
                 td.Triggers.Add(trigger);
 
                 td.Actions.Add(new ExecAction(@"" + txtAppPath.Text + "", "\"" + selectedFile + "\"", null));
-                ts.RootFolder.RegisterTaskDefinition(@"taskt-" + cboSelectedScript.Text, td);
+                ts.RootFolder.RegisterTaskDefinition(@"OpenBots-" + cboSelectedScript.Text, td);
             }
         }
 
@@ -175,7 +175,7 @@ namespace taskt.UI.Forms
             {
                 foreach (Task task in ts.RootFolder.Tasks)
                 {
-                    if (task.Name.Contains("taskt"))
+                    if (task.Name.Contains("OpenBots"))
                     {
                         string currentState = "enable";
                         if (task.Enabled)

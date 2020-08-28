@@ -175,7 +175,7 @@ namespace taskt.Commands
                         clearElement = "No";
 
                     if (encryptedData == "Encrypted")
-                        textToSet = EncryptionServices.DecryptString(textToSet, "TASKT");
+                        textToSet = EncryptionServices.DecryptString(textToSet, "OPENBOTS");
 
                     textToSet = textToSet.ConvertUserVariableToString(engine);
 
@@ -814,7 +814,7 @@ namespace taskt.Commands
 
                 if (warning == DialogResult.Yes)
                 {
-                    targetElement.Value = EncryptionServices.EncryptString(targetElement.Value.ToString(), "TASKT");
+                    targetElement.Value = EncryptionServices.EncryptString(targetElement.Value.ToString(), "OPENBOTS");
                     _actionParametersGridViewHelper.Rows[2].Cells[1].Value = "Encrypted";
                 }
             }

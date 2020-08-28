@@ -380,10 +380,10 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // notifyTray
             // 
             this.notifyTray.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.notifyTray.BalloonTipText = "taskt is still running in your system tray. Double-click to restore taskt to full" +
+            this.notifyTray.BalloonTipText = "OpenBots Studio is still running in your system tray. Double-click to restore OpenBots Studio to full" +
     " size!\r\n";
             this.notifyTray.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyTray.Icon")));
-            this.notifyTray.Text = "taskt, free and open-source process automation";
+            this.notifyTray.Text = "OpenBots Studio, Open Source Automation for All";
             this.notifyTray.Visible = true;
             this.notifyTray.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyTray_MouseDoubleClick);
             // 
@@ -905,14 +905,14 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.lblMainLogo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblMainLogo.AutoSize = true;
             this.lblMainLogo.BackColor = System.Drawing.Color.Transparent;
-            this.lblMainLogo.Font = new System.Drawing.Font("Segoe UI Light", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMainLogo.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMainLogo.ForeColor = System.Drawing.Color.AliceBlue;
-            this.lblMainLogo.Location = new System.Drawing.Point(2, -8);
+            this.lblMainLogo.Location = new System.Drawing.Point(2, -6);
             this.lblMainLogo.Margin = new System.Windows.Forms.Padding(0);
             this.lblMainLogo.Name = "lblMainLogo";
-            this.lblMainLogo.Size = new System.Drawing.Size(101, 54);
+            this.lblMainLogo.Size = new System.Drawing.Size(327, 54);
             this.lblMainLogo.TabIndex = 0;
-            this.lblMainLogo.Text = "taskt";
+            this.lblMainLogo.Text = "OpenBots Studio";
             this.lblMainLogo.Click += new System.EventHandler(this.lblMainLogo_Click);
             // 
             // lblCoordinatorInfo
@@ -1347,7 +1347,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.lblWelcomeToTaskt.Name = "lblWelcomeToTaskt";
             this.lblWelcomeToTaskt.Size = new System.Drawing.Size(227, 37);
             this.lblWelcomeToTaskt.TabIndex = 2;
-            this.lblWelcomeToTaskt.Text = "Welcome to taskt!";
+            this.lblWelcomeToTaskt.Text = "Welcome to OpenBots Studio!";
             // 
             // lblWelcomeDescription
             // 
@@ -1549,7 +1549,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.aboutTasktToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutTasktToolStripMenuItem.Image")));
             this.aboutTasktToolStripMenuItem.Name = "aboutTasktToolStripMenuItem";
             this.aboutTasktToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
-            this.aboutTasktToolStripMenuItem.Text = "About taskt";
+            this.aboutTasktToolStripMenuItem.Text = "About OpenBots Studio";
             this.aboutTasktToolStripMenuItem.Click += new System.EventHandler(this.aboutTasktToolStripMenuItem_Click);
             // 
             // scriptActionsToolStripMenuItem
@@ -1749,7 +1749,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmScriptBuilder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "taskt";
+            this.Text = "OpenBots Studio";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmScriptBuilder_FormClosing);
             this.Load += new System.EventHandler(this.frmScriptBuilder_Load);
             this.Shown += new System.EventHandler(this.frmScriptBuilder_Shown);

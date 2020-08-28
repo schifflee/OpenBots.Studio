@@ -61,7 +61,7 @@ namespace taskt.Updater
             }
 
             //create deployment folder reference
-            var deploymentFolder = tempUpdateFolder + "taskt\\";
+            var deploymentFolder = tempUpdateFolder + "OpenBotsStudio\\";
 
             bgwUpdate.ReportProgress(0, "Deployed to " + deploymentFolder);
             bgwUpdate.ReportProgress(0, "Updating Files...");

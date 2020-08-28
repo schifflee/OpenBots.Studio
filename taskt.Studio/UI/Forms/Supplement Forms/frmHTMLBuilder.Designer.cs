@@ -140,7 +140,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmHTMLBuilder";
-            this.Text = "taskt HTML Builder";
+            this.Text = "HTML Builder";
             this.tlpMain.ResumeLayout(false);
             this.flwAcceptIcons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOK)).EndInit();

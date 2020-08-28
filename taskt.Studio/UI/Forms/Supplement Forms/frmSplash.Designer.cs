@@ -45,7 +45,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmSplash";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Welcome to taskt!";
+            this.Text = "Welcome to OpenBots Studio!";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Black;
             this.Load += new System.EventHandler(this.frmSplash_Load);

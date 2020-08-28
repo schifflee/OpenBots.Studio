@@ -154,7 +154,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             }
         }
 
-        private string ConvertDataTableToString(DataTable dt)
+        public string ConvertDataTableToString(DataTable dt)
         {
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -178,7 +178,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             return stringBuilder.ToString();
         }
 
-        private string ConvertDataRowToString(DataRow row)
+        public string ConvertDataRowToString(DataRow row)
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append("[");
@@ -190,7 +190,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             return stringBuilder.ToString();
         }
 
-        private string ConvertMailItemToString(MailItem mail)
+        public string ConvertMailItemToString(MailItem mail)
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append($"[Subject: {mail.Subject}, \n" +
@@ -244,7 +244,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             return stringBuilder.ToString();
         }
 
-        private string ConvertIWebElementToString(IWebElement element)
+        public string ConvertIWebElementToString(IWebElement element)
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append($"[Text: {element.Text}, \n" +
@@ -257,14 +257,14 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             return stringBuilder.ToString();
         }
 
-        private string ConvertBitmapToString(Bitmap bitmap)
+        public string ConvertBitmapToString(Bitmap bitmap)
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append($"Size({bitmap.Width}, {bitmap.Height})");
             return stringBuilder.ToString();
         }
 
-        private string ConvertListToString(object list)
+        public string ConvertListToString(object list)
         {
             StringBuilder stringBuilder = new StringBuilder();
 

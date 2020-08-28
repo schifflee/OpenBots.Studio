@@ -32,7 +32,7 @@ namespace taskt.Commands
 {
     [Serializable]
     [Group("Engine Commands")]
-    [Description("This command retrives data from a local tasktServer BotStore.")]
+    [Description("This command retrives data from a local OpenBots Server BotStore.")]
     public class GetBotStoreDataCommand : ScriptCommand
     {
         [XmlAttribute]
@@ -107,7 +107,7 @@ namespace taskt.Commands
 
         public override string GetDisplayValue()
         {
-            return base.GetDisplayValue() + $" [Get Data From Key '{v_Key}' in tasktServer BotStore - Store Data in '{v_OutputUserVariableName}']";
+            return base.GetDisplayValue() + $" [Get Data From Key '{v_Key}' in OpenBots Server BotStore - Store Data in '{v_OutputUserVariableName}']";
         }
     }
 

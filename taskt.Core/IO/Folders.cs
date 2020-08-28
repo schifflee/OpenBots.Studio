@@ -23,7 +23,7 @@ namespace taskt.Core.IO
                     return attentedTasksFolder;
                 case FolderType.SettingsFolder:
                     //return app data taskt folder
-                    return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "taskt");
+                    return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OpenBotsStudio");
                 case FolderType.ScriptsFolder:
                     //return scripts folder
                     return Path.Combine(GetFolder(FolderType.RootFolder), "My Scripts");
@@ -32,7 +32,7 @@ namespace taskt.Core.IO
                     return Path.Combine(GetFolder(FolderType.RootFolder), "Logs");
                 case FolderType.TempFolder:
                     //return temp folder
-                    return Path.Combine(Path.GetTempPath(), "taskt");
+                    return Path.Combine(Path.GetTempPath(), "OpenBotsStudio");
                 default:
                     //enum is not implemented
                     throw new NotImplementedException("FolderType " + folderType.ToString() + " Not Supported");

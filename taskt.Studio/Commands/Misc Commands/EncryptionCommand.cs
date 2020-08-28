@@ -39,7 +39,7 @@ namespace taskt.Commands
         [XmlAttribute]
         [PropertyDescription("Pass Phrase")]
         [InputSpecification("Select or provide a pass phrase for encryption/decryption.")]
-        [SampleUsage("TASKT || {vPassPhrase}")]
+        [SampleUsage("OPENBOTS || {vPassPhrase}")]
         [Remarks("If decrypting, provide the pass phrase used to encypt the original text.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_PassPhrase { get; set; }

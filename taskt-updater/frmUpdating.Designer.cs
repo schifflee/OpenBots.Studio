@@ -46,9 +46,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(38, 35);
+            this.pictureBox1.Location = new System.Drawing.Point(51, 43);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(300, 300);
+            this.pictureBox1.Size = new System.Drawing.Size(400, 369);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -57,34 +58,37 @@
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(12, 3);
+            this.label1.Location = new System.Drawing.Point(16, 4);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(353, 30);
+            this.label1.Size = new System.Drawing.Size(471, 37);
             this.label1.TabIndex = 1;
-            this.label1.Text = "taskt is updating!";
+            this.label1.Text = "OpenBots Studio is updating!";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblUpdate
             // 
             this.lblUpdate.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdate.Location = new System.Drawing.Point(13, 337);
+            this.lblUpdate.Location = new System.Drawing.Point(17, 415);
+            this.lblUpdate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUpdate.Name = "lblUpdate";
-            this.lblUpdate.Size = new System.Drawing.Size(353, 25);
+            this.lblUpdate.Size = new System.Drawing.Size(471, 31);
             this.lblUpdate.TabIndex = 2;
             this.lblUpdate.Text = "...";
             this.lblUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmUpdating
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(231)))), ((int)(((byte)(228)))));
-            this.ClientSize = new System.Drawing.Size(385, 366);
+            this.ClientSize = new System.Drawing.Size(513, 450);
             this.Controls.Add(this.lblUpdate);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmUpdating";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Updating";

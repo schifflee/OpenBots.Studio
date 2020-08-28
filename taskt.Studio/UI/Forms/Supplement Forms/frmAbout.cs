@@ -32,7 +32,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             DateTime buildDate = File.GetLastWriteTime(Assembly.GetExecutingAssembly().Location);
 
             lblAppVersion.Text = "version: " + new Version(Application.ProductVersion);
-            lblBuildDate.Text = "build date: " + buildDate.ToString("MM.dd.yy hh.mm.ss");
+            lblBuildDate.Text = "build date: " + buildDate.ToString("MM.dd.yyyy");
         }
 
         private void lblOneNote_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

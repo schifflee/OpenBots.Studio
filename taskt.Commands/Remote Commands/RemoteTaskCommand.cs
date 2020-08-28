@@ -17,7 +17,7 @@ namespace taskt.Commands
 
     [Serializable]
     [Group("Remote Commands")]
-    [Description("This command executes a task remotely on another taskt instance.")]
+    [Description("This command executes a task remotely on another OpenBots instance.")]
     public class RemoteTaskCommand : ScriptCommand
     {
         [XmlAttribute]

@@ -60,7 +60,7 @@
             this.lblLogo.Name = "lblLogo";
             this.lblLogo.Size = new System.Drawing.Size(515, 86);
             this.lblLogo.TabIndex = 0;
-            this.lblLogo.Text = "taskt vm window";
+            this.lblLogo.Text = "vm window";
             // 
             // tmrLoginFailure
             // 

@@ -160,7 +160,7 @@ namespace taskt.Commands
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
-            //convert to user variable -- https://github.com/saucepleez/taskt/issues/66
+
             var seleniumSearchParam = v_SeleniumSearchParameter.ConvertUserVariableToString(engine);
             var browserObject = v_InstanceName.GetAppInstance(engine);
             var seleniumInstance = (IWebDriver)browserObject;
@@ -254,7 +254,7 @@ namespace taskt.Commands
                         element.Clear();
 
                     if (encryptedData == "Encrypted")
-                        textToSet = EncryptionServices.DecryptString(textToSet, "TASKT");
+                        textToSet = EncryptionServices.DecryptString(textToSet, "OPENBOTS");
 
                     string[] potentialKeyPresses = textToSet.Split('{', '}');
 
@@ -274,7 +274,6 @@ namespace taskt.Commands
                         }
                         else
                         {
-                            //convert to user variable - https://github.com/saucepleez/taskt/issues/22
                             var convertedChunk = chunkedString.ConvertUserVariableToString(engine);
                             element.SendKeys(convertedChunk);
                         }
@@ -321,7 +320,6 @@ namespace taskt.Commands
                         }
                         else
                         {
-                            //convert to user variable - https://github.com/saucepleez/taskt/issues/22
                             var convertedChunk = chunkedString.ConvertUserVariableToString(engine);
                             element.SendKeys(convertedChunk);
                         }
@@ -831,7 +829,7 @@ namespace taskt.Commands
 
                 if (warning == DialogResult.Yes)
                 {
-                    targetElement.Value = EncryptionServices.EncryptString(targetElement.Value.ToString(), "TASKT");
+                    targetElement.Value = EncryptionServices.EncryptString(targetElement.Value.ToString(), "OPENBOTS");
                     _elementsGridViewHelper.Rows[2].Cells[1].Value = "Encrypted";
                 }
             }

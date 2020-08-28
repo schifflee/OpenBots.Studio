@@ -31,7 +31,7 @@ namespace taskt.Commands
         [XmlAttribute]
         [PropertyDescription("Script Code")]
         [InputSpecification("Enter the script code to execute.")]
-        [SampleUsage("arguments[0].click(); || alert('Welcome to Taskt'); || {vScript}")]
+        [SampleUsage("arguments[0].click(); || alert('Welcome to OpenBots'); || {vScript}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_ScriptCode { get; set; }

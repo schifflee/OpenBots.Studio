@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using taskt.Core.Attributes.ClassAttributes;
@@ -61,26 +62,17 @@ namespace taskt.Commands
 
             dynamic listToCount; 
             if (listVariable is List<string>)
-            {
                 listToCount = (List<string>)listVariable;
-            }
+            else if (listVariable is List<DataTable>)
+                listToCount = (List<DataTable>)listVariable;
             else if (listVariable is List<MailItem>)
-            {
                 listToCount = (List<MailItem>)listVariable;
-            }
             else if (listVariable is List<MimeMessage>)
-            {
                 listToCount = (List<MimeMessage>)listVariable;
-            }
             else if (listVariable is List<IWebElement>)
-            {
                 listToCount = (List<IWebElement>)listVariable;
-            }
-            else if (
-                (listVariable.ToString().StartsWith("[")) && 
-                (listVariable.ToString().EndsWith("]")) && 
-                (listVariable.ToString().Contains(","))
-                )
+            else if (listVariable.ToString().StartsWith("[") && listVariable.ToString().EndsWith("]") && 
+                     listVariable.ToString().Contains(","))
             {
                 //automatically handle if user has given a json array
                 JArray jsonArray = JsonConvert.DeserializeObject(listVariable.ToString()) as JArray;
@@ -96,9 +88,7 @@ namespace taskt.Commands
                 listToCount = itemList;
             }
             else
-            {
                 throw new System.Exception("Complex Variable List Type<T> Not Supported");
-            }
 
             string count = listToCount.Count.ToString();
             count.StoreInUserVariable(engine, v_OutputUserVariableName);

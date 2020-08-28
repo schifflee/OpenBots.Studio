@@ -15,7 +15,7 @@ namespace taskt.Core.Metrics
         public List<ExecutionMetric> ExecutionMetricsSummary()
         {
             //create execution file path
-            var filePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "taskt Execution Summary Logs.txt");
+            var filePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots Execution Summary Logs.txt");
 
             //throw if file doesnt exist
             if (!File.Exists(filePath))
@@ -94,7 +94,7 @@ namespace taskt.Core.Metrics
 
         public void ClearExecutionMetrics()
         {
-            var filePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "taskt Execution Summary Logs.txt");
+            var filePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots Execution Summary Logs.txt");
             File.WriteAllText(filePath, string.Empty);
         }
     }

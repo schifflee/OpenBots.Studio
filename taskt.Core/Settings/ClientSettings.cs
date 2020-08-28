@@ -24,9 +24,9 @@ namespace taskt.Core.Settings
             MinimizeToTray = false;
             AntiIdleWhileOpen = false;
             InsertCommandsInline = true;
-            RootFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "taskt");
+            RootFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OpenBotsStudio");
             StartupMode = "Builder Mode";
-            AttendedTasksFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "taskt", "My Scripts");
+            AttendedTasksFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OpenBotsStudio", "My Scripts");
             EnableSequenceDragDrop = true;
             PreloadBuilderCommands = false;
             UseSlimActionBar = true;

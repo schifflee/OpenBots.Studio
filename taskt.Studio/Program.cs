@@ -57,7 +57,7 @@ namespace taskt
                     using (EventLog eventLog = new EventLog("Application"))
                     {
                         eventLog.Source = "Application";
-                        eventLog.WriteEntry("An attempt was made to run a taskt script file from '" + filePath +
+                        eventLog.WriteEntry("An attempt was made to run an OpenBots script file from '" + filePath +
                             "' but the file was not found.  Please verify that the file exists at the path indicated.",
                             EventLogEntryType.Error, 101, 1);
                     }
@@ -67,14 +67,14 @@ namespace taskt
                 }
 
                 //initialize Logger
-                string engineLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "taskt Engine Logs.txt");
+                string engineLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots Engine Logs.txt");
                 Logger engineLogger = new Logging().CreateFileLogger(engineLoggerFilePath, Serilog.RollingInterval.Day);
                 Application.Run(new frmScriptEngine(filePath, null, engineLogger));
             }
             else
             {
                 //clean up updater
-                var updaterExecutableDestination = Application.StartupPath + "\\taskt-updater.exe";
+                var updaterExecutableDestination = Application.StartupPath + "\\taskt.Updater.exe";
 
                 if (File.Exists(updaterExecutableDestination))
                 {

@@ -26,7 +26,7 @@ namespace taskt.Commands
         [SampleUsage(@"Engine Logs || C:\MyEngineLogs.txt || {vFileVariable}")]
         [Remarks("Selecting 'Engine Logs' will result in writing execution logs in the 'Engine Logs'. " +
             "The current Date and Time will be automatically appended to a local file if a custom file name is provided. " +
-            "Logs are all saved in the TaskT Root Folder in the 'Logs' folder.")]
+            "Logs are all saved in the OpenBots Studio Root Folder in the 'Logs' folder.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
         public string v_LogFile { get; set; }

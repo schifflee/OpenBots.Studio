@@ -39,7 +39,7 @@ namespace taskt.Server
 
         static SocketClient()
         {
-            string socketLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "taskt Socket Logs.txt");
+            string socketLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots Socket Logs.txt");
             SocketLogger = new Logging().CreateFileLogger(socketLoggerFilePath, RollingInterval.Day);
         }
 

@@ -163,7 +163,7 @@ namespace taskt.UI.Forms
             newAppSettings.EngineSettings.CancellationKey = key;
 
             if ((SinkType)cbxSinkType.SelectedItem == SinkType.File && string.IsNullOrEmpty(txtLogging1.Text.Trim()))
-                newAppSettings.EngineSettings.LoggingValue1 = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "taskt Engine Logs.txt");
+                newAppSettings.EngineSettings.LoggingValue1 = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots Engine Logs.txt");
 
             newAppSettings.Save(newAppSettings);
             
@@ -191,12 +191,12 @@ namespace taskt.UI.Forms
                 if (frmUpdate.ShowDialog() == DialogResult.OK)
                 {
                     //move update exe to root folder for execution
-                    var updaterExecutionResources = Application.StartupPath + "\\resources\\taskt-updater.exe";
-                    var updaterExecutableDestination = Application.StartupPath + "\\taskt-updater.exe";
+                    var updaterExecutionResources = Application.StartupPath + "\\resources\\taskt.Updater.exe";
+                    var updaterExecutableDestination = Application.StartupPath + "\\taskt.Updater.exe";
 
                     if (!File.Exists(updaterExecutionResources))
                     {
-                        MessageBox.Show("taskt-updater.exe not found in resources directory!");
+                        MessageBox.Show("taskt.Updater.exe not found in resources directory!");
                         return;
                     }
                     else
@@ -250,7 +250,7 @@ namespace taskt.UI.Forms
         private void btnSelectFolder_Click(object sender, EventArgs e)
         {
             //prompt user to confirm they want to select a new folder
-            var updateFolderRequest = MessageBox.Show("Would you like to change the default root folder that taskt uses" +
+            var updateFolderRequest = MessageBox.Show("Would you like to change the default root folder that OpenBots uses" +
                 " to store tasks and information? " + Environment.NewLine + Environment.NewLine + "Current Root Folder: " +
                 txtAppFolderPath.Text, "Change Default Root Folder", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -267,7 +267,7 @@ namespace taskt.UI.Forms
                 {
                     //create references to old and new root folders
                     var oldRootFolder = txtAppFolderPath.Text;
-                    var newRootFolder = Path.Combine(fbd.SelectedPath, "taskt");
+                    var newRootFolder = Path.Combine(fbd.SelectedPath, "OpenBotsStudio");
 
                     //ask user to confirm
                     var confirmNewFolderSelection = MessageBox.Show("Please confirm the changes below:" +
@@ -478,7 +478,7 @@ namespace taskt.UI.Forms
             }
         }
 
-            private void btnStopListening_Click(object sender, EventArgs e)
+        private void btnStopListening_Click(object sender, EventArgs e)
         {
             DisableListenerButtons();
             LocalTCPClient.StopAutomationListener();
@@ -512,7 +512,7 @@ namespace taskt.UI.Forms
         {
             lblLogging1.Text = "File Path: ";
             txtLogging1.Clear();
-            txtLogging1.Text = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "taskt Engine Logs.txt");
+            txtLogging1.Text = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots Engine Logs.txt");
             btnFileManager.Visible = true;
            
             lblLogging2.Visible = false;

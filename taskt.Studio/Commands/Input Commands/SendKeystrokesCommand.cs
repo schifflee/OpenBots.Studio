@@ -75,7 +75,7 @@ namespace taskt.Commands
             string textToSend = v_TextToSend.ConvertUserVariableToString(engine);
 
             if (v_EncryptionOption == "Encrypted")
-                textToSend = EncryptionServices.DecryptString(textToSend, "TASKT");
+                textToSend = EncryptionServices.DecryptString(textToSend, "OPENBOTS");
 
             if (textToSend == "{WIN_KEY}")
             {

@@ -77,7 +77,7 @@ namespace taskt.Commands
         [XmlAttribute]
         [PropertyDescription("Selenium Command Line Options (Chrome)")]
         [InputSpecification("Select options to be passed to the Selenium command.")]
-        [SampleUsage("user-data-dir=c:\\users\\public\\SeleniumTasktProfile || {vOptions}")]
+        [SampleUsage("user-data-dir=c:\\users\\public\\SeleniumOpenBotsProfile || {vOptions}")]
         [Remarks("This input is optional.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_SeleniumOptions { get; set; }

@@ -143,15 +143,15 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             if (!string.IsNullOrEmpty(ScriptFilePath))
             {
                 FileInfo scriptFileInfo = new FileInfo(ScriptFilePath);
-                Text = "taskt - (Project: " + _scriptProject.ProjectName + " - Script: " + scriptFileInfo.Name + ")";
+                Text = "OpenBots Studio - (Project: " + _scriptProject.ProjectName + " - Script: " + scriptFileInfo.Name + ")";
             }
             else if (_scriptProject.ProjectName != null)
             {
-                Text = "taskt - (Project: " + _scriptProject.ProjectName + ")";
+                Text = "OpenBots Studio - (Project: " + _scriptProject.ProjectName + ")";
             }
             else
             {
-                Text = "taskt";
+                Text = "OpenBots Studio";
             }
         }
 
@@ -185,7 +185,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             HttpServerClient.InitializeScriptEngine(new frmScriptEngine());
             HttpServerClient.AssociatedBuilder = this;
 
-            string clientLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "taskt Automation Client Logs.txt");
+            string clientLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots Automation Client Logs.txt");
             Logger automationClientLogger = new Logging().CreateFileLogger(clientLoggerFilePath, Serilog.RollingInterval.Day);
             LocalTCPClient.InitializeAutomationEngine(new AutomationEngineInstance(automationClientLogger));
             LocalTCPClient.Initialize(this, new AutomationEngineInstance(automationClientLogger));

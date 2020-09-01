@@ -43,6 +43,7 @@ namespace taskt.UI.Forms
         #region Form Variables
         private EngineSettings _engineSettings;
         public string FilePath { get; set; }
+        public string ProjectName { get; set; }
         public string JsonData { get; set; }
         public Task RemoteTask { get; set; }
         public bool ServerExecution { get; set; }
@@ -66,7 +67,7 @@ namespace taskt.UI.Forms
 
         //events and methods
         #region Form Events/Methods
-        public frmScriptEngine(string pathToFile, frmScriptBuilder builderForm, Logger engineLogger, List<ScriptVariable> variables = null, 
+        public frmScriptEngine(string pathToFile, string projectName, frmScriptBuilder builderForm, Logger engineLogger, List<ScriptVariable> variables = null, 
             List<ScriptElement> elements = null, bool blnCloseWhenDone = false, bool isDebugMode = false)
         {
             InitializeComponent();
@@ -92,6 +93,8 @@ namespace taskt.UI.Forms
 
             //set file
             FilePath = pathToFile;
+
+            ProjectName = projectName;
 
             //get engine settings
             _engineSettings = new ApplicationSettings().GetOrCreateApplicationSettings().EngineSettings;
@@ -139,6 +142,8 @@ namespace taskt.UI.Forms
             //set file
             FilePath = null;
 
+            ProjectName = "";
+
             //get engine settings
             _engineSettings = new ApplicationSettings().GetOrCreateApplicationSettings().EngineSettings;
 
@@ -153,13 +158,13 @@ namespace taskt.UI.Forms
                         _engineSettings.MinLogLevel);
                     break;
                 case SinkType.HTTP:
-                    ScriptEngineLogger = new Logging().CreateHTTPLogger(_engineSettings.LoggingValue1, _engineSettings.MinLogLevel);
+                    ScriptEngineLogger = new Logging().CreateHTTPLogger(ProjectName, _engineSettings.LoggingValue1, _engineSettings.MinLogLevel);
                     break;
                 case SinkType.SignalR:
                     string[] groupNames = _engineSettings.LoggingValue3.Split(',').Select(x => x.Trim()).ToArray();
                     string[] userIDs = _engineSettings.LoggingValue4.Split(',').Select(x => x.Trim()).ToArray();
 
-                    ScriptEngineLogger = new Logging().CreateSignalRLogger(_engineSettings.LoggingValue1, _engineSettings.LoggingValue2,
+                    ScriptEngineLogger = new Logging().CreateSignalRLogger(ProjectName, _engineSettings.LoggingValue1, _engineSettings.LoggingValue2,
                         groupNames, userIDs, _engineSettings.MinLogLevel);
                     break;
             }

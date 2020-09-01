@@ -73,7 +73,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                 UpdateWindowTitle();
             }
         }
-        private Project _scriptProject;
+        public Project ScriptProject { get; set; }
         private string _scriptProjectPath;
         private string _mainFileName;
         private Point _lastClickPosition;
@@ -143,11 +143,11 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             if (!string.IsNullOrEmpty(ScriptFilePath))
             {
                 FileInfo scriptFileInfo = new FileInfo(ScriptFilePath);
-                Text = "OpenBots Studio - (Project: " + _scriptProject.ProjectName + " - Script: " + scriptFileInfo.Name + ")";
+                Text = "OpenBots Studio - (Project: " + ScriptProject.ProjectName + " - Script: " + scriptFileInfo.Name + ")";
             }
-            else if (_scriptProject.ProjectName != null)
+            else if (ScriptProject.ProjectName != null)
             {
-                Text = "OpenBots Studio - (Project: " + _scriptProject.ProjectName + ")";
+                Text = "OpenBots Studio - (Project: " + ScriptProject.ProjectName + ")";
             }
             else
             {
@@ -284,7 +284,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             if (_appSettings.ClientSettings.StartupMode == "Attended Task Mode")
             {
                 WindowState = FormWindowState.Minimized;
-                var frmAttended = new frmAttendedMode();
+                var frmAttended = new frmAttendedMode(ScriptProject.ProjectName);
                 frmAttended.Show();
             }
 

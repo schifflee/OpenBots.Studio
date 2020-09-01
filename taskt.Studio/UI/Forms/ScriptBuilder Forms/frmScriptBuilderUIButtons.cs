@@ -134,7 +134,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                     //check if script is a part of the currently opened project
                     string openScriptProjectName = deserializedScript.ProjectName;
 
-                    if (openScriptProjectName != _scriptProject.ProjectName)
+                    if (openScriptProjectName != ScriptProject.ProjectName)
                     {
                         uiScriptTabControl.TabPages.RemoveAt(uiScriptTabControl.TabCount - 1);
                         throw new Exception("Attempted to load a script not part of the currently open project");
@@ -370,8 +370,8 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             //serialize script
             try
             {
-                var exportedScript = Script.SerializeScript(_selectedTabScriptActions.Items, _scriptVariables, _scriptElements, ScriptFilePath, _scriptProject.ProjectName);
-                _scriptProject.SaveProject(ScriptFilePath, exportedScript, _mainFileName);
+                var exportedScript = Script.SerializeScript(_selectedTabScriptActions.Items, _scriptVariables, _scriptElements, ScriptFilePath, ScriptProject.ProjectName);
+                ScriptProject.SaveProject(ScriptFilePath, exportedScript, _mainFileName);
                 uiScriptTabControl.SelectedTab.Text = uiScriptTabControl.SelectedTab.Text.Replace(" *", "");
                 //show success dialog
                 Notify("File has been saved successfully!");
@@ -685,19 +685,19 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                         _appSettings.EngineSettings.MinLogLevel);
                     break;
                 case SinkType.HTTP:
-                    EngineLogger = new Logging().CreateHTTPLogger(_appSettings.EngineSettings.LoggingValue1, _appSettings.EngineSettings.MinLogLevel);
+                    EngineLogger = new Logging().CreateHTTPLogger(ScriptProject.ProjectName, _appSettings.EngineSettings.LoggingValue1, _appSettings.EngineSettings.MinLogLevel);
                     break;
                 case SinkType.SignalR:
                     string[] groupNames = _appSettings.EngineSettings.LoggingValue3.Split(',').Select(x => x.Trim()).ToArray();
                     string[] userIDs = _appSettings.EngineSettings.LoggingValue4.Split(',').Select(x => x.Trim()).ToArray();
 
-                    EngineLogger = new Logging().CreateSignalRLogger(_appSettings.EngineSettings.LoggingValue1, _appSettings.EngineSettings.LoggingValue2,
+                    EngineLogger = new Logging().CreateSignalRLogger(ScriptProject.ProjectName, _appSettings.EngineSettings.LoggingValue1, _appSettings.EngineSettings.LoggingValue2,
                         groupNames, userIDs, _appSettings.EngineSettings.MinLogLevel);
                     break;
             }
 
             //initialize Engine
-            CurrentEngine = new frmScriptEngine(ScriptFilePath, this, EngineLogger, null, null, false, _isDebugMode);
+            CurrentEngine = new frmScriptEngine(ScriptFilePath, ScriptProject.ProjectName, this, EngineLogger, null, null, false, _isDebugMode);
 
             //executionManager = new ScriptExectionManager();
             //executionManager.CurrentlyExecuting = true;

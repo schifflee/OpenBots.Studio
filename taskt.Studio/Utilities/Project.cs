@@ -9,6 +9,7 @@ namespace taskt.Utilities
 {
     public class Project
     {
+        public Guid ProjectID { get; set; }
         public string ProjectName { get; set; }
         public string Main { get; set; }
         public List<string> ScriptPaths { get; set; }
@@ -20,9 +21,10 @@ namespace taskt.Utilities
 
         public Project(string projectName)
         {
-            ScriptPaths = new List<string>();
+            ProjectID = Guid.NewGuid();
             ProjectName = projectName;
             Main = "Main.json";
+            ScriptPaths = new List<string>();
         }
 
         public void SaveProject(string scriptPath, Script script, string mainName)

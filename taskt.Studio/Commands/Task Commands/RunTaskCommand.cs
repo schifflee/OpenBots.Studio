@@ -128,7 +128,8 @@ namespace taskt.Commands
                 }
             }
 
-            NewEngine = new frmScriptEngine(childTaskPath, (frmScriptBuilder)CurrentScriptBuilder, ((frmScriptBuilder)CurrentScriptBuilder).EngineLogger,
+            string projectName = ((frmScriptBuilder)CurrentScriptBuilder).ScriptProject.ProjectName;
+            NewEngine = new frmScriptEngine(childTaskPath, projectName, (frmScriptBuilder)CurrentScriptBuilder, ((frmScriptBuilder)CurrentScriptBuilder).EngineLogger,
                 variableList, null, false, parentEngine.IsDebugMode);
     
             NewEngine.IsChildEngine = true;

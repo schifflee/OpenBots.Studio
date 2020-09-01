@@ -35,7 +35,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             projectBuilder.ShowDialog();
 
             //Close OpenBots if add project form is closed at startup
-            if (projectBuilder.DialogResult == DialogResult.Cancel && _scriptProject == null)
+            if (projectBuilder.DialogResult == DialogResult.Cancel && ScriptProject == null)
             {
                 Application.Exit();
                 return;
@@ -75,7 +75,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                     //Save new project
                     proj.SaveProject(mainScriptPath, mainScript, _mainFileName);
                     //Open new project
-                    _scriptProject = Project.OpenProject(mainScriptPath);
+                    ScriptProject = Project.OpenProject(mainScriptPath);
                     //Open main script
                     OpenFile(mainScriptPath);
                     ScriptFilePath = mainScriptPath;
@@ -98,8 +98,8 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                 try
                 {
                     //Open project
-                    _scriptProject = Project.OpenProject(projectBuilder.ExistingMainPath);
-                    _mainFileName = _scriptProject.Main;
+                    ScriptProject = Project.OpenProject(projectBuilder.ExistingMainPath);
+                    _mainFileName = ScriptProject.Main;
 
                     if (Path.GetFileName(projectBuilder.ExistingMainPath) != _mainFileName)
                         throw new Exception("Attempted to open project from a script that isn't Main");
@@ -300,7 +300,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             {
                 string selectedNodePath = tvProject.SelectedNode.Tag.ToString();
                 string selectedNodeName = tvProject.SelectedNode.Text.ToString();
-                if (selectedNodeName != _scriptProject.ProjectName)
+                if (selectedNodeName != ScriptProject.ProjectName)
                 {
                     DialogResult result = MessageBox.Show($"Are you sure you would like to delete {selectedNodeName}?",
                                                  $"Delete {selectedNodeName}", MessageBoxButtons.YesNo);
@@ -464,7 +464,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
 
                 if (!File.Exists(newFilePath))
                 {
-                    Script.SerializeScript(newScriptActions.Items, newScripVariables, newScriptElements, newFilePath, _scriptProject.ProjectName);
+                    Script.SerializeScript(newScriptActions.Items, newScripVariables, newScriptElements, newFilePath, ScriptProject.ProjectName);
                     NewNode(tvProject.SelectedNode, newFilePath, "file");
                     OpenFile(newFilePath);
                 }
@@ -479,7 +479,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                         newerFilePath = Path.Combine(newDirectoryPath, $"{newFileNameWithoutExtension} ({count}).json");
                         count += 1;
                     }
-                    Script.SerializeScript(newScriptActions.Items, newScripVariables, newScriptElements, newerFilePath, _scriptProject.ProjectName);
+                    Script.SerializeScript(newScriptActions.Items, newScripVariables, newScriptElements, newerFilePath, ScriptProject.ProjectName);
                     NewNode(tvProject.SelectedNode, newerFilePath, "file");
                     OpenFile(newerFilePath);
                 }

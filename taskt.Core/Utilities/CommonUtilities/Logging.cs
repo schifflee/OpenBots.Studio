@@ -3,6 +3,7 @@ using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting.Compact;
 using System;
+using System.Net;
 
 namespace taskt.Core.Utilities.CommonUtilities
 {
@@ -20,6 +21,7 @@ namespace taskt.Core.Utilities.CommonUtilities
                 levelSwitch.MinimumLevel = minLogLevel;
 
                 return new LoggerConfiguration()
+                        .Enrich.WithProperty("JobId", Guid.NewGuid())
                         .MinimumLevel.ControlledBy(levelSwitch)
                         .WriteTo.File(filePath, rollingInterval: logInterval)
                         .CreateLogger();
@@ -30,7 +32,7 @@ namespace taskt.Core.Utilities.CommonUtilities
             }
         }
 
-        public Logger CreateHTTPLogger(string uri, LogEventLevel minLogLevel = LogEventLevel.Verbose)
+        public Logger CreateHTTPLogger(string projectName, string uri, LogEventLevel minLogLevel = LogEventLevel.Verbose)
         {
             try
             {
@@ -38,6 +40,9 @@ namespace taskt.Core.Utilities.CommonUtilities
                 levelSwitch.MinimumLevel = minLogLevel;
 
                 return new LoggerConfiguration()
+                        .Enrich.WithProperty("JobId", Guid.NewGuid())
+                        .Enrich.WithProperty("ProcessName", $"{Dns.GetHostName()}-{projectName}")
+                        .Enrich.WithProperty("MachineName", Dns.GetHostName())
                         .MinimumLevel.ControlledBy(levelSwitch)
                         .WriteTo.Http(uri)
                         .CreateLogger();
@@ -48,7 +53,7 @@ namespace taskt.Core.Utilities.CommonUtilities
             }
         }
 
-        public Logger CreateSignalRLogger(string url, string logHub = "LogHub", string[] logGroupNames = null,
+        public Logger CreateSignalRLogger(string projectName, string url, string logHub = "LogHub", string[] logGroupNames = null,
             string[] logUserIds = null, LogEventLevel minLogLevel = LogEventLevel.Verbose)
         {
             try
@@ -57,6 +62,9 @@ namespace taskt.Core.Utilities.CommonUtilities
                 levelSwitch.MinimumLevel = minLogLevel;
 
                 return new LoggerConfiguration()
+                        .Enrich.WithProperty("JobId", Guid.NewGuid())
+                        .Enrich.WithProperty("ProcessName", $"{Dns.GetHostName()}-{projectName}")
+                        .Enrich.WithProperty("MachineName", Dns.GetHostName())
                         .MinimumLevel.ControlledBy(levelSwitch)
                         .WriteTo.SignalRClient(url,
                                                hub: logHub, // default is LogHub
@@ -79,6 +87,7 @@ namespace taskt.Core.Utilities.CommonUtilities
                 levelSwitch.MinimumLevel = minLogLevel;
 
                 return new LoggerConfiguration()
+                        .Enrich.WithProperty("JobId", Guid.NewGuid())
                         .MinimumLevel.ControlledBy(levelSwitch)
                         .WriteTo.File(new CompactJsonFormatter(), jsonFilePath, rollingInterval: logInterval)
                         .CreateLogger();

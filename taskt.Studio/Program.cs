@@ -69,7 +69,7 @@ namespace taskt
                 //initialize Logger
                 string engineLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots Engine Logs.txt");
                 Logger engineLogger = new Logging().CreateFileLogger(engineLoggerFilePath, Serilog.RollingInterval.Day);
-                Application.Run(new frmScriptEngine(filePath, null, engineLogger));
+                Application.Run(new frmScriptEngine(filePath, "", null, engineLogger));
             }
             else
             {

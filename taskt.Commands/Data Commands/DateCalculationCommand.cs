@@ -172,11 +172,13 @@ namespace taskt.Commands
                     break;
             }
 
-            string stringDateFormatted = ((object)dateTimeValue).ToString();
+            string stringDateFormatted;
 
             //handle if formatter is required
             if (!string.IsNullOrEmpty(formatting.Trim()))
-                stringDateFormatted = requiredDateTime.ToString(formatting);
+                stringDateFormatted = ((DateTime)dateTimeValue).ToString(formatting);
+            else
+                stringDateFormatted = ((object)dateTimeValue).ToString();
 
             //store string (Result) in variable
             stringDateFormatted.StoreInUserVariable(engine, v_OutputUserVariableName);

@@ -81,10 +81,31 @@ namespace taskt.Core.Utilities.CommonUtilities
                 {
                     var searchVariable = startVariableMarker + potentialVariable + endVariableMarker;
 
-                    if (userInputString.Contains(searchVariable) && varCheck.VariableValue is string)
+                    if (userInputString.Contains(searchVariable))
                     {
-                        userInputString = userInputString.Replace(searchVariable, (string)varCheck.VariableValue);
+                        if (varCheck.VariableValue is string)
+                        {
+                            userInputString = userInputString.Replace(searchVariable, (string)varCheck.VariableValue);
+                        }
+                        else if (varCheck.VariableValue is DataRow && potentialVariable.Split('.').Length == 2)
+                        {
+                            string columnName = potentialVariable.Split('.')[1];
+                            var row = varCheck.VariableValue as DataRow;
+
+                            string cellItem;
+                            if (int.TryParse(columnName, out var columnIndex))
+                            {
+                                cellItem = row[columnIndex].ToString();
+                            }
+                            else
+                            {
+                                cellItem = row[columnName].ToString();
+                            }
+
+                            userInputString = userInputString.Replace(searchVariable, cellItem);
+                        }
                     }
+                    
                 }                           
             }
             return userInputString.CalculateVariables(engine);

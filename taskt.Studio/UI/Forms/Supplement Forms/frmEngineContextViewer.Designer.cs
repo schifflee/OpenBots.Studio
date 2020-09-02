@@ -44,7 +44,7 @@
             this.tvContext.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvContext.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tvContext.Location = new System.Drawing.Point(4, 66);
-            this.tvContext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tvContext.Margin = new System.Windows.Forms.Padding(4);
             this.tvContext.Name = "tvContext";
             this.tvContext.Size = new System.Drawing.Size(1064, 429);
             this.tvContext.TabIndex = 0;
@@ -59,7 +59,7 @@
             this.tlpContextViewer.Controls.Add(this.pnlDialogResult, 0, 2);
             this.tlpContextViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpContextViewer.Location = new System.Drawing.Point(0, 0);
-            this.tlpContextViewer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tlpContextViewer.Margin = new System.Windows.Forms.Padding(4);
             this.tlpContextViewer.Name = "tlpContextViewer";
             this.tlpContextViewer.RowCount = 3;
             this.tlpContextViewer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
@@ -86,7 +86,7 @@
             this.pnlDialogResult.Controls.Add(this.uiBtnOk);
             this.pnlDialogResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDialogResult.Location = new System.Drawing.Point(4, 503);
-            this.pnlDialogResult.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlDialogResult.Margin = new System.Windows.Forms.Padding(4);
             this.pnlDialogResult.Name = "pnlDialogResult";
             this.pnlDialogResult.Size = new System.Drawing.Size(1064, 60);
             this.pnlDialogResult.TabIndex = 1;
@@ -116,9 +116,11 @@
             this.ClientSize = new System.Drawing.Size(1072, 567);
             this.Controls.Add(this.tlpContextViewer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmEngineContextViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "engine context viewer";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FrmEngineContextViewer_Load);
             this.tlpContextViewer.ResumeLayout(false);
             this.tlpContextViewer.PerformLayout();

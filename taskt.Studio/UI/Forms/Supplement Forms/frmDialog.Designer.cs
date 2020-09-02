@@ -74,7 +74,7 @@
             this.tlpMain.Controls.Add(this.txtMessage, 0, 1);
             this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMain.Location = new System.Drawing.Point(0, 0);
-            this.tlpMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tlpMain.Margin = new System.Windows.Forms.Padding(4);
             this.tlpMain.Name = "tlpMain";
             this.tlpMain.RowCount = 3;
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
@@ -90,7 +90,7 @@
             this.txtMessage.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMessage.ForeColor = System.Drawing.Color.SteelBlue;
             this.txtMessage.Location = new System.Drawing.Point(4, 32);
-            this.txtMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMessage.Margin = new System.Windows.Forms.Padding(4);
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(883, 347);
             this.txtMessage.TabIndex = 20;
@@ -156,8 +156,9 @@
             this.ClientSize = new System.Drawing.Size(891, 459);
             this.Controls.Add(this.tlpMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dialog";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmDialog_Load);

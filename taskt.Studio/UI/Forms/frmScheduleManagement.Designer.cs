@@ -430,6 +430,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmScheduleManagement";
             this.Text = "Schedule";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.frmScheduleManagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvScheduledTasks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnShowScheduleManager)).EndInit();

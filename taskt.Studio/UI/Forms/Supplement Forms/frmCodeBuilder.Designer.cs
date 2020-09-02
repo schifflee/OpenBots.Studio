@@ -192,6 +192,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmCodeBuilder";
             this.Text = "Code Builder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.frmCodeBuilder_Load);
             this.tlpBuilder.ResumeLayout(false);
             this.pnlTop.ResumeLayout(false);

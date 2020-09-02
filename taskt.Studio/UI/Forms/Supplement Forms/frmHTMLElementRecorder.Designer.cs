@@ -103,6 +103,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             this.wbElementRecorder.Name = "wbElementRecorder";
             this.wbElementRecorder.UseHttpActivityObserver = false;
             this.wbElementRecorder.Navigated += new System.EventHandler<Gecko.GeckoNavigatedEventArgs>(this.wbElementRecorder_Navigated);
+            this.wbElementRecorder.CreateWindow += new System.EventHandler<Gecko.GeckoCreateWindowEventArgs>(this.wbElementRecorder_CreateWindow);
             // 
             // pbElements
             // 

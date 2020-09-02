@@ -509,9 +509,9 @@ namespace taskt.Commands
             _searchParameterControls = new List<Control>();
             _searchParameterControls.Add(CommandControls.CreateDefaultLabelFor("v_SeleniumSearchParameter", this));
             _searchParameterControls.Add(helperControl);
-            var searchParameterInput = CommandControls.CreateDefaultInputFor("v_SeleniumSearchParameter", this);
-            _searchParameterControls.AddRange(CommandControls.CreateUIHelpersFor("v_SeleniumSearchParameter", this, new Control[] { searchParameterInput }, editor));
-            _searchParameterControls.Add(searchParameterInput);
+            var searchParameterDropDown = CommandControls.CreateStandardComboboxFor("v_SeleniumSearchParameter", this);
+            _searchParameterControls.AddRange(CommandControls.CreateUIHelpersFor("v_SeleniumSearchParameter", this, new Control[] { searchParameterDropDown }, editor));
+            _searchParameterControls.Add(searchParameterDropDown);
             RenderedControls.AddRange(_searchParameterControls);
 
             _elementActionDropdown = (ComboBox)CommandControls.CreateDropdownFor("v_SeleniumElementAction", this);
@@ -653,8 +653,17 @@ namespace taskt.Commands
             try
             {
                 string seleniumSearchType = Regex.Matches(v_SeleniumSearchType, @"(?<=By )[\w\s]+")[0].ToString();
-                var searchParameter = newElementRecorder.SearchParameters.AsEnumerable().Where(s => s[0].ToString() == seleniumSearchType).SingleOrDefault();
-                _searchParameterControls[3].Text = searchParameter[1].ToString();
+                var searchParameter = newElementRecorder.SearchParameters.AsEnumerable().Where(s => s.Key == seleniumSearchType).SingleOrDefault();
+                ((ComboBox)_searchParameterControls[3]).Items.Clear();
+
+                if (seleniumSearchType == "CSS Selector")
+                {
+                    var cssSelectorList = (List<string>)searchParameter.Value;
+                    ((ComboBox)_searchParameterControls[3]).Items.AddRange(cssSelectorList.ToArray());
+                    _searchParameterControls[3].Text = cssSelectorList.FirstOrDefault();
+                }
+                else
+                    _searchParameterControls[3].Text = searchParameter.Value.ToString();
             }
             catch (Exception)
             {

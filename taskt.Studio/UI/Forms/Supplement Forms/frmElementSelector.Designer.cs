@@ -112,6 +112,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmElementSelector";
             this.Text = "Insert a Element";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.frmElementSelector_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnCancel)).EndInit();

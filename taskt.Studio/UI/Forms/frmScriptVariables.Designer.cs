@@ -69,7 +69,7 @@
             this.uiBtnCancel.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnCancel.Image")));
             this.uiBtnCancel.IsMouseOver = false;
             this.uiBtnCancel.Location = new System.Drawing.Point(70, 1);
-            this.uiBtnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.uiBtnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnCancel.Name = "uiBtnCancel";
             this.uiBtnCancel.Size = new System.Drawing.Size(60, 59);
             this.uiBtnCancel.TabIndex = 15;
@@ -87,7 +87,7 @@
             this.uiBtnOK.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnOK.Image")));
             this.uiBtnOK.IsMouseOver = false;
             this.uiBtnOK.Location = new System.Drawing.Point(10, 1);
-            this.uiBtnOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.uiBtnOK.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnOK.Name = "uiBtnOK";
             this.uiBtnOK.Size = new System.Drawing.Size(60, 59);
             this.uiBtnOK.TabIndex = 14;
@@ -105,7 +105,7 @@
             this.tlpVariables.Controls.Add(this.pnlBottom, 0, 2);
             this.tlpVariables.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpVariables.Location = new System.Drawing.Point(0, 0);
-            this.tlpVariables.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tlpVariables.Margin = new System.Windows.Forms.Padding(4);
             this.tlpVariables.Name = "tlpVariables";
             this.tlpVariables.RowCount = 3;
             this.tlpVariables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 119F));
@@ -123,7 +123,7 @@
             this.tvScriptVariables.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tvScriptVariables.ForeColor = System.Drawing.Color.White;
             this.tvScriptVariables.Location = new System.Drawing.Point(4, 123);
-            this.tvScriptVariables.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tvScriptVariables.Margin = new System.Windows.Forms.Padding(4);
             this.tvScriptVariables.Name = "tvScriptVariables";
             this.tvScriptVariables.ShowLines = false;
             this.tvScriptVariables.Size = new System.Drawing.Size(857, 457);
@@ -168,7 +168,7 @@
             this.uiBtnNew.Image = global::taskt.Properties.Resources.action_bar_new;
             this.uiBtnNew.IsMouseOver = false;
             this.uiBtnNew.Location = new System.Drawing.Point(10, 55);
-            this.uiBtnNew.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.uiBtnNew.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnNew.Name = "uiBtnNew";
             this.uiBtnNew.Size = new System.Drawing.Size(60, 60);
             this.uiBtnNew.TabIndex = 13;
@@ -197,9 +197,10 @@
             this.ClientSize = new System.Drawing.Size(865, 647);
             this.Controls.Add(this.tlpVariables);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmScriptVariables";
             this.Text = "Variables";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmScriptVariables_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOK)).EndInit();

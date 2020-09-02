@@ -127,7 +127,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pbHome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 119</value>
+    <value>9, 111</value>
   </data>
   <data name="pbHome.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 39</value>
@@ -160,10 +160,10 @@
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="wbElementRecorder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 187</value>
+    <value>0, 175</value>
   </data>
   <data name="wbElementRecorder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1639, 588</value>
+    <value>1639, 600</value>
   </data>
   <data name="wbElementRecorder.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -187,7 +187,7 @@
     <value>NoControl</value>
   </data>
   <data name="pbElements.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1585, 119</value>
+    <value>1585, 111</value>
   </data>
   <data name="pbElements.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -220,7 +220,7 @@
     <value>Top, Right</value>
   </data>
   <data name="pbSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1534, 119</value>
+    <value>1534, 111</value>
   </data>
   <data name="pbSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -253,7 +253,7 @@
     <value>Top, Right</value>
   </data>
   <data name="pbBack.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1333, 119</value>
+    <value>1333, 111</value>
   </data>
   <data name="pbBack.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 39</value>
@@ -1042,7 +1042,7 @@
 </value>
   </data>
   <data name="pbForward.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1382, 119</value>
+    <value>1382, 111</value>
   </data>
   <data name="pbForward.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 39</value>
@@ -1072,7 +1072,7 @@
     <value>Top, Right</value>
   </data>
   <data name="pgGo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1282, 119</value>
+    <value>1282, 111</value>
   </data>
   <data name="pgGo.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 39</value>
@@ -1105,7 +1105,7 @@
     <value>Segoe UI, 12pt</value>
   </data>
   <data name="tbURL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>58, 121</value>
+    <value>58, 113</value>
   </data>
   <data name="tbURL.Size" type="System.Drawing.Size, System.Drawing">
     <value>1218, 34</value>
@@ -1129,7 +1129,7 @@
     <value>Top, Right</value>
   </data>
   <data name="pbRefresh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1432, 119</value>
+    <value>1432, 111</value>
   </data>
   <data name="pbRefresh.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1162,7 +1162,7 @@
     <value>Top, Right</value>
   </data>
   <data name="pbRecord.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1483, 119</value>
+    <value>1483, 111</value>
   </data>
   <data name="pbRecord.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1195,7 +1195,7 @@
     <value>Segoe UI, 12pt</value>
   </data>
   <data name="lblDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 85</value>
+    <value>12, 77</value>
   </data>
   <data name="lblDescription.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1229,7 +1229,7 @@
     <value>Segoe UI, 9.75pt</value>
   </data>
   <data name="chkStopOnClick.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 158</value>
+    <value>12, 148</value>
   </data>
   <data name="chkStopOnClick.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1261,8 +1261,11 @@
   <data name="lblSubHeader.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 12pt</value>
   </data>
+  <data name="lblSubHeader.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblSubHeader.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 53</value>
+    <value>12, 48</value>
   </data>
   <data name="lblSubHeader.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1292,7 +1295,7 @@
     <value>True</value>
   </data>
   <data name="lblHeader.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 24pt, style=Bold</value>
+    <value>Microsoft Sans Serif, 20pt, style=Bold</value>
   </data>
   <data name="lblHeader.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 11</value>
@@ -1301,7 +1304,7 @@
     <value>4, 0, 4, 0</value>
   </data>
   <data name="lblHeader.Size" type="System.Drawing.Size, System.Drawing">
-    <value>461, 46</value>
+    <value>396, 39</value>
   </data>
   <data name="lblHeader.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -3733,7 +3736,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
+    <value>CenterParent</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>HTML element recorder</value>
@@ -3748,6 +3751,6 @@
     <value>frmHTMLElementRecorder</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>taskt.UI.Forms.UIForm, taskt.Studio, Version=0.0.7545.18423, Culture=neutral, PublicKeyToken=null</value>
+    <value>taskt.UI.Forms.UIForm, taskt.Studio, Version=1.0.7550.19426, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

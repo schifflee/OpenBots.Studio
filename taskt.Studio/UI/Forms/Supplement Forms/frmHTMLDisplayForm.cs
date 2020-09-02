@@ -44,7 +44,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             HtmlElementCollection collection = webBrowserHTML.Document.GetElementsByTagName(tagSearch);
             for (int i = 0; i < collection.Count; i++)
             {
-                var variableName = collection[i].GetAttribute("v_applyToVariable");
+                var variableName = collection[i].GetAttribute("v_OutputUserVariableName");
 
                 if (!string.IsNullOrEmpty(variableName))
                 {

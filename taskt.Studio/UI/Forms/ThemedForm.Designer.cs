@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(391, 290);
             this.Name = "ThemedForm";
             this.Text = "ThemedForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.ThemedForm_Load);
             this.ResumeLayout(false);
         }

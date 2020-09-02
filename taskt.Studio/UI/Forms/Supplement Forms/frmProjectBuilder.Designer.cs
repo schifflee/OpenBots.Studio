@@ -209,6 +209,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(701, 279);
             this.Controls.Add(this.lblError);
@@ -232,7 +233,6 @@
             this.Name = "frmProjectBuilder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Project Manager";
-            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.btnOpenProject)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCreateProject)).EndInit();
             this.ResumeLayout(false);

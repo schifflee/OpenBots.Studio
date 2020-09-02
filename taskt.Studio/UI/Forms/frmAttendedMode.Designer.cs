@@ -46,7 +46,7 @@
             this.cboSelectedScript.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboSelectedScript.FormattingEnabled = true;
             this.cboSelectedScript.Location = new System.Drawing.Point(74, 16);
-            this.cboSelectedScript.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboSelectedScript.Margin = new System.Windows.Forms.Padding(4);
             this.cboSelectedScript.Name = "cboSelectedScript";
             this.cboSelectedScript.Size = new System.Drawing.Size(444, 33);
             this.cboSelectedScript.TabIndex = 0;
@@ -66,7 +66,7 @@
             this.uiBtnClose.Image = global::taskt.Properties.Resources.command_exitloop;
             this.uiBtnClose.IsMouseOver = false;
             this.uiBtnClose.Location = new System.Drawing.Point(5, 4);
-            this.uiBtnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.uiBtnClose.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnClose.Name = "uiBtnClose";
             this.uiBtnClose.Size = new System.Drawing.Size(60, 62);
             this.uiBtnClose.TabIndex = 14;
@@ -84,7 +84,7 @@
             this.uiBtnRun.Image = global::taskt.Properties.Resources.action_bar_run;
             this.uiBtnRun.IsMouseOver = false;
             this.uiBtnRun.Location = new System.Drawing.Point(527, 4);
-            this.uiBtnRun.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.uiBtnRun.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnRun.Name = "uiBtnRun";
             this.uiBtnRun.Size = new System.Drawing.Size(60, 62);
             this.uiBtnRun.TabIndex = 13;
@@ -109,8 +109,9 @@
             this.Controls.Add(this.cboSelectedScript);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmAttendedMode";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "OpenBots Studio Attended Mode";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmAttendedMode_Load);

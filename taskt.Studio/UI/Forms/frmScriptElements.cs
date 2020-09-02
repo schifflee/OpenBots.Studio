@@ -94,10 +94,13 @@ namespace taskt.UI.Forms
             {
                 ScriptElementType addElementFormType = (ScriptElementType)Enum.Parse(typeof(ScriptElementType),
                                                         addElementForm.cbxElementType.SelectedItem.ToString().Replace(" ", ""));
-
                 //add newly edited node
-                AddUserElementNode(_userElementParentNode, addElementForm.txtElementName.Text, addElementFormType, 
-                                   addElementForm.txtDefaultValue.Text);
+                if (addElementFormType == ScriptElementType.CSSSelector)
+                    AddUserElementNode(_userElementParentNode, addElementForm.txtElementName.Text, addElementFormType,
+                                       addElementForm.cbxDefaultValue.Text);
+                else
+                    AddUserElementNode(_userElementParentNode, addElementForm.txtElementName.Text, addElementFormType, 
+                                       addElementForm.txtDefaultValue.Text);
             }
         }
 
@@ -161,8 +164,12 @@ namespace taskt.UI.Forms
                                                         addElementForm.cbxElementType.SelectedItem.ToString().Replace(" ", ""));
 
                 //add newly edited node
-                AddUserElementNode(_userElementParentNode, addElementForm.txtElementName.Text, addElementFormType, 
-                                   addElementForm.txtDefaultValue.Text);
+                if (addElementFormType == ScriptElementType.CSSSelector)
+                    AddUserElementNode(_userElementParentNode, addElementForm.txtElementName.Text, addElementFormType,
+                                       addElementForm.cbxDefaultValue.Text);
+                else
+                    AddUserElementNode(_userElementParentNode, addElementForm.txtElementName.Text, addElementFormType, 
+                                       addElementForm.txtDefaultValue.Text);
             }
         }
 

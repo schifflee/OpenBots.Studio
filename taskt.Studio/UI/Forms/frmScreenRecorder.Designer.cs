@@ -354,6 +354,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "frmScreenRecorder";
             this.Text = "Screen Recorder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.frmSequenceRecorder_Load);
             this.pnlOptions.ResumeLayout(false);
             this.pnlOptions.PerformLayout();

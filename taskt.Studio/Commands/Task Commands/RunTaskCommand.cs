@@ -130,13 +130,10 @@ namespace taskt.Commands
 
             string projectName = ((frmScriptBuilder)CurrentScriptBuilder).ScriptProject.ProjectName;
             NewEngine = new frmScriptEngine(childTaskPath, projectName, (frmScriptBuilder)CurrentScriptBuilder, ((frmScriptBuilder)CurrentScriptBuilder).EngineLogger,
-                variableList, null, false, parentEngine.IsDebugMode);
+                variableList, null, currentScriptEngine.AppInstances, false, parentEngine.IsDebugMode);
     
             NewEngine.IsChildEngine = true;
             NewEngine.IsHiddenTaskEngine = true;
-
-            //pass app instance dictionary to the new engine
-            NewEngine.EngineInstance.AppInstances = currentScriptEngine.AppInstances;
 
             if (IsSteppedInto)
             {                

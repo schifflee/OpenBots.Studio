@@ -100,21 +100,20 @@ namespace taskt.Engine
         }
 
         public void ExecuteScriptAsync(IfrmScriptEngine scriptEngine, string filePath, List<ScriptVariable> variables = null, 
-                                       List<ScriptElement> elements = null)
+                                       List<ScriptElement> elements = null, Dictionary<string, object> appInstances = null)
         {
             EngineLogger.Information("Client requesting to execute script using frmEngine");
 
             TasktEngineUI = scriptEngine;
 
             if (variables != null)
-            {
                 VariableList = variables;
-            }
 
             if (elements != null)
-            {
                 ElementList = elements;
-            }
+
+            if (appInstances != null)
+                AppInstances = appInstances;
 
             new Thread(() =>
             {

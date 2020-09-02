@@ -697,7 +697,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             }
 
             //initialize Engine
-            CurrentEngine = new frmScriptEngine(ScriptFilePath, ScriptProject.ProjectName, this, EngineLogger, null, null, false, _isDebugMode);
+            CurrentEngine = new frmScriptEngine(ScriptFilePath, ScriptProject.ProjectName, this, EngineLogger, null, null, null, false, _isDebugMode);
 
             //executionManager = new ScriptExectionManager();
             //executionManager.CurrentlyExecuting = true;

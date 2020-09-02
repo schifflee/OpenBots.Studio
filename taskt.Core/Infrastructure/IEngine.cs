@@ -43,7 +43,7 @@ namespace taskt.Core.Infrastructure
         event EventHandler<LineNumberChangedEventArgs> LineNumberChangedEvent;
 
         void ExecuteScriptAsync(IfrmScriptEngine scriptEngine, string filePath, List<ScriptVariable> variables = null,
-                                       List<ScriptElement> elements = null);
+                                       List<ScriptElement> elements = null, Dictionary<string, object> appInstances = null);
         void ExecuteScriptAsync(string filePath);
         void ExecuteScriptJson(string jsonData);
         void ExecuteCommand(ScriptAction command);

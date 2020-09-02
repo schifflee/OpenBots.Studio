@@ -67,7 +67,7 @@ namespace taskt.Core.Utilities.CommonUtilities
                 string varcheckname = potentialVariable;
                 bool isSystemVar = systemVariables.Any(vars => vars.VariableName == varcheckname);
 
-                if (potentialVariable.Split('.').Length == 2 && !isSystemVar)
+                if (potentialVariable.Split('.').Length >= 2 && !isSystemVar)
                 {
                     varcheckname = potentialVariable.Split('.')[0];
                 }
@@ -89,18 +89,35 @@ namespace taskt.Core.Utilities.CommonUtilities
                         }
                         else if (varCheck.VariableValue is DataRow && potentialVariable.Split('.').Length == 2)
                         {
+                            //user is trying to get data from column name/index
                             string columnName = potentialVariable.Split('.')[1];
                             var row = varCheck.VariableValue as DataRow;
 
                             string cellItem;
                             if (int.TryParse(columnName, out var columnIndex))
-                            {
                                 cellItem = row[columnIndex].ToString();
+                            else
+                                cellItem = row[columnName].ToString();
+
+                            userInputString = userInputString.Replace(searchVariable, cellItem);
+                        }
+                        else if (varCheck.VariableValue is DataTable && potentialVariable.Split('.').Length == 3)
+                        {
+                            //user is trying to get data from row index and column name/index	
+                            string rowString = potentialVariable.Split('.')[1];
+                            string columnName = potentialVariable.Split('.')[2];
+                            var dt = varCheck.VariableValue as DataTable;
+                            string cellItem;
+
+                            if (int.TryParse(rowString, out int rowNumber))
+                            {                               
+                                if (int.TryParse(columnName, out int columnIndex))
+                                    cellItem = dt.Rows[rowNumber][columnIndex].ToString();
+                                else
+                                    cellItem = dt.Rows[rowNumber][columnName].ToString();
                             }
                             else
-                            {
-                                cellItem = row[columnName].ToString();
-                            }
+                                return userInputString;
 
                             userInputString = userInputString.Replace(searchVariable, cellItem);
                         }

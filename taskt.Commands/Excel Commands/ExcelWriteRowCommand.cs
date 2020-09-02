@@ -83,25 +83,7 @@ namespace taskt.Commands
 
             //Write row
             DataRow row;
-            var loopIndexVariable = "Loop.CurrentIndex".ConvertUserVariableToString(engine);
-            //check in case of looping through datatable using BeginListLoopCommand
-            if (vRow != null && vRow is DataTable && loopIndexVariable != null)
-            {
-                int loopIndex = int.Parse(loopIndexVariable.ToString());
-                row = ((DataTable)vRow).Rows[loopIndex - 1];
-
-                string cellValue;
-                for (int j = 0; j < row.ItemArray.Length; j++)
-                {
-                    if (row.ItemArray[j] == null)
-                        cellValue = string.Empty;
-                    else
-                        cellValue = row.ItemArray[j].ToString();
-
-                    excelSheet.Cells[numberOfRow, j + sum] = cellValue;
-                }
-            }
-            else if (vRow != null && vRow is DataRow)
+            if (vRow != null && vRow is DataRow)
             {
                 row = (DataRow)vRow;
 

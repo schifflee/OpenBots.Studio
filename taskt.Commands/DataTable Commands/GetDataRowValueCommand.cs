@@ -65,17 +65,7 @@ namespace taskt.Commands
         {
             var engine = (AutomationEngineInstance)sender;
             var dataRowVariable = v_DataRow.ConvertUserVariableToObject(engine);
-
-            DataRow dataRow;
-            var loopIndexVariable = "Loop.CurrentIndex".ConvertUserVariableToString(engine);
-            //check if currently looping through datatable using BeginListLoopCommand
-            if (dataRowVariable is DataTable && loopIndexVariable != null)
-            {
-                int loopIndex = int.Parse(loopIndexVariable.ToString());
-                dataRow = ((DataTable)dataRowVariable).Rows[loopIndex-1];
-            }
-            else 
-                dataRow = (DataRow)dataRowVariable;
+            DataRow dataRow = (DataRow)dataRowVariable;
 
             var valueIndex = v_DataValueIndex.ConvertUserVariableToString(engine);
             string value = "";

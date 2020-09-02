@@ -151,7 +151,10 @@ namespace taskt.Utilities
             _mouseHookID = SetMouseHook(_mouseLeftUpProc);
         }
 
-        public static void StartScreenRecordingHook(bool captureClick, bool captureMouse, bool groupMouseMoves, bool captureKeyboard, bool captureWindow, bool activateTopLeft, bool trackActivatedWindowSize, bool trackWindowsOpenLocation, int eventResolution, string stopHookHotKey)
+        public static void StartScreenRecordingHook(bool captureClick, bool captureMouse, bool groupMouseMoves, 
+                                                    bool captureKeyboard, bool captureWindow, bool activateTopLeft, 
+                                                    bool trackActivatedWindowSize, bool trackWindowsOpenLocation, 
+                                                    int eventResolution, string stopHookHotKey)
         {
             //create new list for commands generated
             GeneratedCommands = new List<ScriptCommand>();
@@ -175,7 +178,8 @@ namespace taskt.Utilities
             if (_performWindowCapture)
             {
                 _winEventHookHandler = new SystemEventHandler(BuildWindowCommand);
-                _winEventHook = SetWinEventHook(_systemEvents.EventMin, _systemEvents.EventMax, IntPtr.Zero, _winEventHookHandler, 0, 0, 0);
+                _winEventHook = SetWinEventHook(_systemEvents.EventMin, _systemEvents.EventMax, 
+                                                IntPtr.Zero, _winEventHookHandler, 0, 0, 0);
             }
 
             //start stopwatch for timing all event occurences

@@ -833,6 +833,7 @@
     <None Include="Resources\project-collapse.png" />
     <None Include="Resources\project-expand.png" />
     <None Include="Resources\project-open-directory.png" />
+    <None Include="Resources\openbots-logo.png" />
     <Content Include="Resources\taskt-ExtractPDFText.jar">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

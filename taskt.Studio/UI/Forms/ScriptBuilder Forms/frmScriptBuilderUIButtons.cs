@@ -507,6 +507,12 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
 
         private void uiBtnClose_Click(object sender, EventArgs e)
         {
+            if (_isSequence)
+            {
+                DialogResult = DialogResult.Cancel;
+                return;
+            }
+
             Application.Exit();
         }
         #endregion
@@ -619,6 +625,12 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
 
             Show();
             BringToFront();
+        }
+
+        private void uiBtnSaveSequence_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void scheduleToolStripMenuItem_Click(object sender, EventArgs e)

@@ -86,7 +86,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlMain = new taskt.UI.CustomControls.CustomUIControls.UIPanel();
-            this.lblMainLogo = new System.Windows.Forms.Label();
+            this.pbMainLogo = new System.Windows.Forms.PictureBox();
             this.lblCoordinatorInfo = new System.Windows.Forms.Label();
             this.splitContainerStudioControls = new taskt.UI.CustomControls.CustomUIControls.UISplitContainer();
             this.uiPaneTabs = new taskt.UI.CustomControls.CustomUIControls.UITabControl();
@@ -157,6 +157,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tsmiCloseTab = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCloseAllButThis = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsProjectMainFolderActions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.uiBtnSaveSequence = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.cmsProjectFolderActions.SuspendLayout();
             this.cmsScriptActions.SuspendLayout();
             this.pnlControlContainer.SuspendLayout();
@@ -185,6 +186,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnAddVariable)).BeginInit();
             this.pnlHeader.SuspendLayout();
             this.pnlMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMainLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerStudioControls)).BeginInit();
             this.splitContainerStudioControls.Panel1.SuspendLayout();
             this.splitContainerStudioControls.Panel2.SuspendLayout();
@@ -209,6 +211,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.cmsProjectFileActions.SuspendLayout();
             this.cmsScriptTabActions.SuspendLayout();
             this.cmsProjectMainFolderActions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiBtnSaveSequence)).BeginInit();
             this.SuspendLayout();
             // 
             // cmsProjectFolderActions
@@ -318,7 +321,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.moveToParentToolStripMenuItem,
             this.viewCodeToolStripMenuItem});
             this.cmsScriptActions.Name = "cmsScriptActions";
-            this.cmsScriptActions.Size = new System.Drawing.Size(264, 228);
+            this.cmsScriptActions.Size = new System.Drawing.Size(330, 285);
             // 
             // enableSelectedCodeToolStripMenuItem
             // 
@@ -380,8 +383,8 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // notifyTray
             // 
             this.notifyTray.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.notifyTray.BalloonTipText = "OpenBots Studio is still running in your system tray. Double-click to restore OpenBots Studio to full" +
-    " size!\r\n";
+            this.notifyTray.BalloonTipText = "OpenBots Studio is still running in your system tray. Double-click to restore Ope" +
+    "nBots Studio to full size!\r\n";
             this.notifyTray.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyTray.Icon")));
             this.notifyTray.Text = "OpenBots Studio, Open Source Automation for All";
             this.notifyTray.Visible = true;
@@ -477,13 +480,14 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // grpSaveClose
             // 
             this.grpSaveClose.BackColor = System.Drawing.Color.Transparent;
+            this.grpSaveClose.Controls.Add(this.uiBtnSaveSequence);
             this.grpSaveClose.Controls.Add(this.uiBtnRestart);
             this.grpSaveClose.Controls.Add(this.uiBtnClose);
             this.grpSaveClose.Location = new System.Drawing.Point(1215, 4);
             this.grpSaveClose.Margin = new System.Windows.Forms.Padding(4);
             this.grpSaveClose.Name = "grpSaveClose";
             this.grpSaveClose.Padding = new System.Windows.Forms.Padding(4);
-            this.grpSaveClose.Size = new System.Drawing.Size(188, 91);
+            this.grpSaveClose.Size = new System.Drawing.Size(131, 91);
             this.grpSaveClose.TabIndex = 19;
             this.grpSaveClose.TabStop = false;
             this.grpSaveClose.Text = "Save and Close";
@@ -889,7 +893,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // 
             // pnlMain
             // 
-            this.pnlMain.Controls.Add(this.lblMainLogo);
+            this.pnlMain.Controls.Add(this.pbMainLogo);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(0);
@@ -900,20 +904,16 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             theme1.BgGradientStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(136)))), ((int)(((byte)(204)))));
             this.pnlMain.Theme = theme1;
             // 
-            // lblMainLogo
+            // pbMainLogo
             // 
-            this.lblMainLogo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblMainLogo.AutoSize = true;
-            this.lblMainLogo.BackColor = System.Drawing.Color.Transparent;
-            this.lblMainLogo.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMainLogo.ForeColor = System.Drawing.Color.AliceBlue;
-            this.lblMainLogo.Location = new System.Drawing.Point(2, -6);
-            this.lblMainLogo.Margin = new System.Windows.Forms.Padding(0);
-            this.lblMainLogo.Name = "lblMainLogo";
-            this.lblMainLogo.Size = new System.Drawing.Size(327, 54);
-            this.lblMainLogo.TabIndex = 0;
-            this.lblMainLogo.Text = "OpenBots Studio";
-            this.lblMainLogo.Click += new System.EventHandler(this.lblMainLogo_Click);
+            this.pbMainLogo.BackColor = System.Drawing.Color.Transparent;
+            this.pbMainLogo.Image = global::taskt.Properties.Resources.openbots_logo;
+            this.pbMainLogo.Location = new System.Drawing.Point(8, 5);
+            this.pbMainLogo.Name = "pbMainLogo";
+            this.pbMainLogo.Size = new System.Drawing.Size(189, 50);
+            this.pbMainLogo.TabIndex = 1;
+            this.pbMainLogo.TabStop = false;
+            this.pbMainLogo.Click += new System.EventHandler(this.pbMainLogo_Click);
             // 
             // lblCoordinatorInfo
             // 
@@ -1345,7 +1345,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.lblWelcomeToTaskt.Location = new System.Drawing.Point(139, 5);
             this.lblWelcomeToTaskt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWelcomeToTaskt.Name = "lblWelcomeToTaskt";
-            this.lblWelcomeToTaskt.Size = new System.Drawing.Size(227, 37);
+            this.lblWelcomeToTaskt.Size = new System.Drawing.Size(366, 37);
             this.lblWelcomeToTaskt.TabIndex = 2;
             this.lblWelcomeToTaskt.Text = "Welcome to OpenBots Studio!";
             // 
@@ -1512,7 +1512,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.variablesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.variablesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("variablesToolStripMenuItem.Image")));
             this.variablesToolStripMenuItem.Name = "variablesToolStripMenuItem";
-            this.variablesToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.variablesToolStripMenuItem.Size = new System.Drawing.Size(249, 26);
             this.variablesToolStripMenuItem.Text = "Variable Manager";
             this.variablesToolStripMenuItem.Click += new System.EventHandler(this.variablesToolStripMenuItem_Click);
             // 
@@ -1521,7 +1521,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.elementManagerToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.elementManagerToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("elementManagerToolStripMenuItem.Image")));
             this.elementManagerToolStripMenuItem.Name = "elementManagerToolStripMenuItem";
-            this.elementManagerToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.elementManagerToolStripMenuItem.Size = new System.Drawing.Size(249, 26);
             this.elementManagerToolStripMenuItem.Text = "Element Manager";
             this.elementManagerToolStripMenuItem.Click += new System.EventHandler(this.elementManagerToolStripMenuItem_Click);
             // 
@@ -1530,7 +1530,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.settingsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.settingsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("settingsToolStripMenuItem.Image")));
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(249, 26);
             this.settingsToolStripMenuItem.Text = "Settings Manager";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -1539,7 +1539,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.showSearchBarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.showSearchBarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("showSearchBarToolStripMenuItem.Image")));
             this.showSearchBarToolStripMenuItem.Name = "showSearchBarToolStripMenuItem";
-            this.showSearchBarToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.showSearchBarToolStripMenuItem.Size = new System.Drawing.Size(249, 26);
             this.showSearchBarToolStripMenuItem.Text = "Show Search Bar";
             this.showSearchBarToolStripMenuItem.Click += new System.EventHandler(this.showSearchBarToolStripMenuItem_Click);
             // 
@@ -1548,7 +1548,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.aboutTasktToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.aboutTasktToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutTasktToolStripMenuItem.Image")));
             this.aboutTasktToolStripMenuItem.Name = "aboutTasktToolStripMenuItem";
-            this.aboutTasktToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.aboutTasktToolStripMenuItem.Size = new System.Drawing.Size(249, 26);
             this.aboutTasktToolStripMenuItem.Text = "About OpenBots Studio";
             this.aboutTasktToolStripMenuItem.Click += new System.EventHandler(this.aboutTasktToolStripMenuItem_Click);
             // 
@@ -1737,6 +1737,25 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.cmsProjectMainFolderActions.Name = "cmsProjectMainFolderActions";
             this.cmsProjectMainFolderActions.Size = new System.Drawing.Size(199, 88);
             // 
+            // uiBtnSaveSequence
+            // 
+            this.uiBtnSaveSequence.BackColor = System.Drawing.Color.Transparent;
+            this.uiBtnSaveSequence.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.uiBtnSaveSequence.DisplayText = "Save";
+            this.uiBtnSaveSequence.DisplayTextBrush = System.Drawing.Color.AliceBlue;
+            this.uiBtnSaveSequence.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.uiBtnSaveSequence.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnSaveSequence.Image")));
+            this.uiBtnSaveSequence.IsMouseOver = false;
+            this.uiBtnSaveSequence.Location = new System.Drawing.Point(2, 21);
+            this.uiBtnSaveSequence.Margin = new System.Windows.Forms.Padding(4);
+            this.uiBtnSaveSequence.Name = "uiBtnSaveSequence";
+            this.uiBtnSaveSequence.Size = new System.Drawing.Size(60, 62);
+            this.uiBtnSaveSequence.TabIndex = 16;
+            this.uiBtnSaveSequence.TabStop = false;
+            this.uiBtnSaveSequence.Text = "Save";
+            this.uiBtnSaveSequence.Visible = false;
+            this.uiBtnSaveSequence.Click += new System.EventHandler(this.uiBtnSaveSequence_Click);
+            // 
             // frmScriptBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1785,7 +1804,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.pnlMain.ResumeLayout(false);
-            this.pnlMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMainLogo)).EndInit();
             this.splitContainerStudioControls.Panel1.ResumeLayout(false);
             this.splitContainerStudioControls.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerStudioControls)).EndInit();
@@ -1814,6 +1833,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.cmsProjectFileActions.ResumeLayout(false);
             this.cmsScriptTabActions.ResumeLayout(false);
             this.cmsProjectMainFolderActions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uiBtnSaveSequence)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1867,7 +1887,6 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private CustomControls.CustomUIControls.UITreeView tvCommands;
         private Panel pnlHeader;
         private CustomControls.CustomUIControls.UIPanel pnlMain;
-        private Label lblMainLogo;
         private Label lblCoordinatorInfo;
         private Panel pnlStatus;
         private CustomControls.CustomUIControls.UIGroupBox grpSearch;
@@ -1941,6 +1960,8 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private TableLayoutPanel tlpCommands;
         private Panel pnlCommandSearch;
         private TextBox txtCommandSearch;
+        private PictureBox pbMainLogo;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnSaveSequence;
     }
 }
 

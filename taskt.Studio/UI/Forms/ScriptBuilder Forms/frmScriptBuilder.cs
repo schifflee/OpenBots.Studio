@@ -129,6 +129,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private TreeView _tvCommandsCopy;
         private string _txtCommandWatermark = "Type Here to Search";   
         public string HTMLElementRecorderURL { get; set; }
+        private bool _isSequence;
         #endregion
 
         #region Form Events
@@ -292,6 +293,9 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
 
         private void frmScriptBuilder_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (_isSequence)
+                return;
+
             DialogResult result = CheckForUnsavedScripts();
             if (result == DialogResult.Cancel)
                 e.Cancel = true;
@@ -379,7 +383,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             //e.Graphics.DrawLine(lightSteelBluePen, 0, pnlControlContainer.Height - 1, pnlControlContainer.Width, pnlControlContainer.Height - 1);
         }
 
-        private void lblMainLogo_Click(object sender, EventArgs e)
+        private void pbMainLogo_Click(object sender, EventArgs e)
         {
             frmAbout aboutForm = new frmAbout();
             aboutForm.Show();
@@ -665,8 +669,6 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             OpenFile(Path.Combine(Folders.GetFolder(FolderType.ScriptsFolder), senderLink.Text));
         }
         #endregion
-
-        
     }
 }
 

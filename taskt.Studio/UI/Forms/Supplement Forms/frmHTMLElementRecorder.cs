@@ -224,6 +224,8 @@ namespace taskt.UI.Forms.Supplement_Forms
         private void frmHTMLElementRecorder_FormClosing(object sender, FormClosingEventArgs e)
         {
             StartURL = wbElementRecorder.Url.ToString();
+            wbElementRecorder.Dispose();
+            wbElementRecorder = null;
             DialogResult = DialogResult.Cancel;
         }
 

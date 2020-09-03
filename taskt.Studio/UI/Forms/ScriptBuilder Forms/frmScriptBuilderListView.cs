@@ -210,8 +210,13 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                             item.Selected = true;
                         break;
                     case Keys.S:
-                        ClearSelectedListViewItems();
-                        SaveToFile(false);
+                        if (_isSequence)
+                            uiBtnSaveSequence_Click(null, null);
+                        else
+                        {
+                            ClearSelectedListViewItems();
+                            SaveToFile(false);
+                        }                        
                         break;
                 }
             }

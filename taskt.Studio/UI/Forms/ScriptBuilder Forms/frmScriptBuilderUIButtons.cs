@@ -604,12 +604,12 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         #endregion
 
         #region Script Events Tool Strip and Buttons
-        private void recordToolStripMenuItem_Click(object sender, EventArgs e)
+        private void uiRecorderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RecordSequence();
         }
 
-        private void uiBtnRecordSequence_Click(object sender, EventArgs e)
+        private void uiBtnRecordUISequence_Click(object sender, EventArgs e)
         {
             RecordSequence();
         }
@@ -769,7 +769,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             _scriptElements = elementRecorder.ScriptElements;           
         }
 
-        private void uiBtnElementRecorder_Click(object sender, EventArgs e)
+        private void uiBtnRecordElementSequence_Click(object sender, EventArgs e)
         {
             elementRecorderToolStripMenuItem_Click(sender, e);
         }

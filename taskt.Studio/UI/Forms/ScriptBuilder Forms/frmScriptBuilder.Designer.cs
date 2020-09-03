@@ -63,6 +63,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.lblTotalResults = new System.Windows.Forms.Label();
             this.txtScriptSearch = new System.Windows.Forms.TextBox();
             this.grpSaveClose = new taskt.UI.CustomControls.CustomUIControls.UIGroupBox();
+            this.uiBtnSaveSequence = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.uiBtnRestart = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.uiBtnClose = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.grpFileActions = new taskt.UI.CustomControls.CustomUIControls.UIGroupBox();
@@ -73,9 +74,9 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnNew = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.uiBtnOpen = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.grpRecordRun = new taskt.UI.CustomControls.CustomUIControls.UIGroupBox();
-            this.uiBtnElementRecorder = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnRecordElementSequence = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.uiBtnRunScript = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnRecordSequence = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnRecordUISequence = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.uiBtnDebugScript = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.uiBtnScheduleManagement = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.grpVariable = new taskt.UI.CustomControls.CustomUIControls.UIGroupBox();
@@ -132,16 +133,17 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.variablesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showSearchBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutTasktToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptActionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementRecorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiRecorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsSearchBox = new System.Windows.Forms.ToolStripTextBox();
@@ -157,13 +159,13 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tsmiCloseTab = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCloseAllButThis = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsProjectMainFolderActions = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.uiBtnSaveSequence = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.cmsProjectFolderActions.SuspendLayout();
             this.cmsScriptActions.SuspendLayout();
             this.pnlControlContainer.SuspendLayout();
             this.grpSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSearch)).BeginInit();
             this.grpSaveClose.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiBtnSaveSequence)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnRestart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnClose)).BeginInit();
             this.grpFileActions.SuspendLayout();
@@ -174,9 +176,9 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnNew)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOpen)).BeginInit();
             this.grpRecordRun.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiBtnElementRecorder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiBtnRecordElementSequence)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnRunScript)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiBtnRecordSequence)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiBtnRecordUISequence)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnDebugScript)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnScheduleManagement)).BeginInit();
             this.grpVariable.SuspendLayout();
@@ -211,7 +213,6 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.cmsProjectFileActions.SuspendLayout();
             this.cmsScriptTabActions.SuspendLayout();
             this.cmsProjectMainFolderActions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiBtnSaveSequence)).BeginInit();
             this.SuspendLayout();
             // 
             // cmsProjectFolderActions
@@ -321,7 +322,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.moveToParentToolStripMenuItem,
             this.viewCodeToolStripMenuItem});
             this.cmsScriptActions.Name = "cmsScriptActions";
-            this.cmsScriptActions.Size = new System.Drawing.Size(330, 285);
+            this.cmsScriptActions.Size = new System.Drawing.Size(264, 228);
             // 
             // enableSelectedCodeToolStripMenuItem
             // 
@@ -496,6 +497,25 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.grpSaveClose.TitleForeColor = System.Drawing.Color.GhostWhite;
             this.grpSaveClose.TitleHatchStyle = System.Drawing.Drawing2D.HatchStyle.Horizontal;
             // 
+            // uiBtnSaveSequence
+            // 
+            this.uiBtnSaveSequence.BackColor = System.Drawing.Color.Transparent;
+            this.uiBtnSaveSequence.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.uiBtnSaveSequence.DisplayText = "Save";
+            this.uiBtnSaveSequence.DisplayTextBrush = System.Drawing.Color.AliceBlue;
+            this.uiBtnSaveSequence.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.uiBtnSaveSequence.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnSaveSequence.Image")));
+            this.uiBtnSaveSequence.IsMouseOver = false;
+            this.uiBtnSaveSequence.Location = new System.Drawing.Point(2, 21);
+            this.uiBtnSaveSequence.Margin = new System.Windows.Forms.Padding(4);
+            this.uiBtnSaveSequence.Name = "uiBtnSaveSequence";
+            this.uiBtnSaveSequence.Size = new System.Drawing.Size(60, 62);
+            this.uiBtnSaveSequence.TabIndex = 16;
+            this.uiBtnSaveSequence.TabStop = false;
+            this.uiBtnSaveSequence.Text = "Save";
+            this.uiBtnSaveSequence.Visible = false;
+            this.uiBtnSaveSequence.Click += new System.EventHandler(this.uiBtnSaveSequence_Click);
+            // 
             // uiBtnRestart
             // 
             this.uiBtnRestart.BackColor = System.Drawing.Color.Transparent;
@@ -665,9 +685,9 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // grpRecordRun
             // 
             this.grpRecordRun.BackColor = System.Drawing.Color.Transparent;
-            this.grpRecordRun.Controls.Add(this.uiBtnElementRecorder);
+            this.grpRecordRun.Controls.Add(this.uiBtnRecordElementSequence);
             this.grpRecordRun.Controls.Add(this.uiBtnRunScript);
-            this.grpRecordRun.Controls.Add(this.uiBtnRecordSequence);
+            this.grpRecordRun.Controls.Add(this.uiBtnRecordUISequence);
             this.grpRecordRun.Controls.Add(this.uiBtnDebugScript);
             this.grpRecordRun.Controls.Add(this.uiBtnScheduleManagement);
             this.grpRecordRun.Location = new System.Drawing.Point(651, 8);
@@ -683,23 +703,23 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.grpRecordRun.TitleForeColor = System.Drawing.Color.GhostWhite;
             this.grpRecordRun.TitleHatchStyle = System.Drawing.Drawing2D.HatchStyle.Horizontal;
             // 
-            // uiBtnElementRecorder
+            // uiBtnRecordElementSequence
             // 
-            this.uiBtnElementRecorder.BackColor = System.Drawing.Color.Transparent;
-            this.uiBtnElementRecorder.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.uiBtnElementRecorder.DisplayText = "Element";
-            this.uiBtnElementRecorder.DisplayTextBrush = System.Drawing.Color.AliceBlue;
-            this.uiBtnElementRecorder.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnElementRecorder.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnElementRecorder.Image")));
-            this.uiBtnElementRecorder.IsMouseOver = false;
-            this.uiBtnElementRecorder.Location = new System.Drawing.Point(128, 22);
-            this.uiBtnElementRecorder.Margin = new System.Windows.Forms.Padding(4);
-            this.uiBtnElementRecorder.Name = "uiBtnElementRecorder";
-            this.uiBtnElementRecorder.Size = new System.Drawing.Size(60, 62);
-            this.uiBtnElementRecorder.TabIndex = 16;
-            this.uiBtnElementRecorder.TabStop = false;
-            this.uiBtnElementRecorder.Text = "Element";
-            this.uiBtnElementRecorder.Click += new System.EventHandler(this.uiBtnElementRecorder_Click);
+            this.uiBtnRecordElementSequence.BackColor = System.Drawing.Color.Transparent;
+            this.uiBtnRecordElementSequence.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.uiBtnRecordElementSequence.DisplayText = "Element";
+            this.uiBtnRecordElementSequence.DisplayTextBrush = System.Drawing.Color.AliceBlue;
+            this.uiBtnRecordElementSequence.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.uiBtnRecordElementSequence.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnRecordElementSequence.Image")));
+            this.uiBtnRecordElementSequence.IsMouseOver = false;
+            this.uiBtnRecordElementSequence.Location = new System.Drawing.Point(69, 22);
+            this.uiBtnRecordElementSequence.Margin = new System.Windows.Forms.Padding(4);
+            this.uiBtnRecordElementSequence.Name = "uiBtnRecordElementSequence";
+            this.uiBtnRecordElementSequence.Size = new System.Drawing.Size(60, 62);
+            this.uiBtnRecordElementSequence.TabIndex = 16;
+            this.uiBtnRecordElementSequence.TabStop = false;
+            this.uiBtnRecordElementSequence.Text = "Element";
+            this.uiBtnRecordElementSequence.Click += new System.EventHandler(this.uiBtnRecordElementSequence_Click);
             // 
             // uiBtnRunScript
             // 
@@ -719,23 +739,23 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnRunScript.Text = "Run";
             this.uiBtnRunScript.Click += new System.EventHandler(this.uiBtnRunScript_Click);
             // 
-            // uiBtnRecordSequence
+            // uiBtnRecordUISequence
             // 
-            this.uiBtnRecordSequence.BackColor = System.Drawing.Color.Transparent;
-            this.uiBtnRecordSequence.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.uiBtnRecordSequence.DisplayText = "Record";
-            this.uiBtnRecordSequence.DisplayTextBrush = System.Drawing.Color.AliceBlue;
-            this.uiBtnRecordSequence.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnRecordSequence.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnRecordSequence.Image")));
-            this.uiBtnRecordSequence.IsMouseOver = false;
-            this.uiBtnRecordSequence.Location = new System.Drawing.Point(2, 22);
-            this.uiBtnRecordSequence.Margin = new System.Windows.Forms.Padding(4);
-            this.uiBtnRecordSequence.Name = "uiBtnRecordSequence";
-            this.uiBtnRecordSequence.Size = new System.Drawing.Size(60, 62);
-            this.uiBtnRecordSequence.TabIndex = 19;
-            this.uiBtnRecordSequence.TabStop = false;
-            this.uiBtnRecordSequence.Text = "Record";
-            this.uiBtnRecordSequence.Click += new System.EventHandler(this.uiBtnRecordSequence_Click);
+            this.uiBtnRecordUISequence.BackColor = System.Drawing.Color.Transparent;
+            this.uiBtnRecordUISequence.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.uiBtnRecordUISequence.DisplayText = "UI";
+            this.uiBtnRecordUISequence.DisplayTextBrush = System.Drawing.Color.AliceBlue;
+            this.uiBtnRecordUISequence.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.uiBtnRecordUISequence.Image = global::taskt.Properties.Resources.action_bar_element_recorder;
+            this.uiBtnRecordUISequence.IsMouseOver = false;
+            this.uiBtnRecordUISequence.Location = new System.Drawing.Point(129, 22);
+            this.uiBtnRecordUISequence.Margin = new System.Windows.Forms.Padding(4);
+            this.uiBtnRecordUISequence.Name = "uiBtnRecordUISequence";
+            this.uiBtnRecordUISequence.Size = new System.Drawing.Size(60, 62);
+            this.uiBtnRecordUISequence.TabIndex = 19;
+            this.uiBtnRecordUISequence.TabStop = false;
+            this.uiBtnRecordUISequence.Text = "UI";
+            this.uiBtnRecordUISequence.Click += new System.EventHandler(this.uiBtnRecordUISequence_Click);
             // 
             // uiBtnDebugScript
             // 
@@ -764,7 +784,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnScheduleManagement.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnScheduleManagement.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnScheduleManagement.Image")));
             this.uiBtnScheduleManagement.IsMouseOver = false;
-            this.uiBtnScheduleManagement.Location = new System.Drawing.Point(63, 22);
+            this.uiBtnScheduleManagement.Location = new System.Drawing.Point(4, 22);
             this.uiBtnScheduleManagement.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnScheduleManagement.Name = "uiBtnScheduleManagement";
             this.uiBtnScheduleManagement.Size = new System.Drawing.Size(65, 62);
@@ -1389,9 +1409,9 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.msTasktMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.msTasktMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileActionsToolStripMenuItem,
-            this.modifyToolStripMenuItem,
+            this.optionsToolStripMenuItem,
             this.scriptActionsToolStripMenuItem,
-            this.elementRecorderToolStripMenuItem,
+            this.recorderToolStripMenuItem,
             this.runToolStripMenuItem,
             this.debugToolStripMenuItem,
             this.tsSearchBox,
@@ -1493,19 +1513,19 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.closeApplicationToolStripMenuItem.Text = "Close Application";
             this.closeApplicationToolStripMenuItem.Click += new System.EventHandler(this.closeApplicationToolStripMenuItem_Click);
             // 
-            // modifyToolStripMenuItem
+            // optionsToolStripMenuItem
             // 
-            this.modifyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.variablesToolStripMenuItem,
             this.elementManagerToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.showSearchBarToolStripMenuItem,
             this.aboutTasktToolStripMenuItem});
-            this.modifyToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.modifyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("modifyToolStripMenuItem.Image")));
-            this.modifyToolStripMenuItem.Name = "modifyToolStripMenuItem";
-            this.modifyToolStripMenuItem.Size = new System.Drawing.Size(95, 34);
-            this.modifyToolStripMenuItem.Text = "Options";
+            this.optionsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.optionsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("optionsToolStripMenuItem.Image")));
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(95, 34);
+            this.optionsToolStripMenuItem.Text = "Options";
             // 
             // variablesToolStripMenuItem
             // 
@@ -1555,22 +1575,12 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // scriptActionsToolStripMenuItem
             // 
             this.scriptActionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.recordToolStripMenuItem,
             this.scheduleToolStripMenuItem});
             this.scriptActionsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.scriptActionsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("scriptActionsToolStripMenuItem.Image")));
             this.scriptActionsToolStripMenuItem.Name = "scriptActionsToolStripMenuItem";
             this.scriptActionsToolStripMenuItem.Size = new System.Drawing.Size(134, 34);
             this.scriptActionsToolStripMenuItem.Text = "Script Actions";
-            // 
-            // recordToolStripMenuItem
-            // 
-            this.recordToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.recordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("recordToolStripMenuItem.Image")));
-            this.recordToolStripMenuItem.Name = "recordToolStripMenuItem";
-            this.recordToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
-            this.recordToolStripMenuItem.Text = "Record";
-            this.recordToolStripMenuItem.Click += new System.EventHandler(this.recordToolStripMenuItem_Click);
             // 
             // scheduleToolStripMenuItem
             // 
@@ -1581,14 +1591,34 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.scheduleToolStripMenuItem.Text = "Schedule";
             this.scheduleToolStripMenuItem.Click += new System.EventHandler(this.scheduleToolStripMenuItem_Click);
             // 
+            // recorderToolStripMenuItem
+            // 
+            this.recorderToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.elementRecorderToolStripMenuItem,
+            this.uiRecorderToolStripMenuItem});
+            this.recorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.recorderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("recorderToolStripMenuItem.Image")));
+            this.recorderToolStripMenuItem.Name = "recorderToolStripMenuItem";
+            this.recorderToolStripMenuItem.Size = new System.Drawing.Size(142, 34);
+            this.recorderToolStripMenuItem.Text = "Recorder Tools";
+            // 
             // elementRecorderToolStripMenuItem
             // 
             this.elementRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.elementRecorderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("elementRecorderToolStripMenuItem.Image")));
+            this.elementRecorderToolStripMenuItem.Image = global::taskt.Properties.Resources.action_bar_element;
             this.elementRecorderToolStripMenuItem.Name = "elementRecorderToolStripMenuItem";
-            this.elementRecorderToolStripMenuItem.Size = new System.Drawing.Size(161, 34);
+            this.elementRecorderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.elementRecorderToolStripMenuItem.Text = "Element Recorder";
             this.elementRecorderToolStripMenuItem.Click += new System.EventHandler(this.elementRecorderToolStripMenuItem_Click);
+            // 
+            // uiRecorderToolStripMenuItem
+            // 
+            this.uiRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.uiRecorderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("uiRecorderToolStripMenuItem.Image")));
+            this.uiRecorderToolStripMenuItem.Name = "uiRecorderToolStripMenuItem";
+            this.uiRecorderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.uiRecorderToolStripMenuItem.Text = "UI Recorder";
+            this.uiRecorderToolStripMenuItem.Click += new System.EventHandler(this.uiRecorderToolStripMenuItem_Click);
             // 
             // runToolStripMenuItem
             // 
@@ -1737,25 +1767,6 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.cmsProjectMainFolderActions.Name = "cmsProjectMainFolderActions";
             this.cmsProjectMainFolderActions.Size = new System.Drawing.Size(199, 88);
             // 
-            // uiBtnSaveSequence
-            // 
-            this.uiBtnSaveSequence.BackColor = System.Drawing.Color.Transparent;
-            this.uiBtnSaveSequence.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.uiBtnSaveSequence.DisplayText = "Save";
-            this.uiBtnSaveSequence.DisplayTextBrush = System.Drawing.Color.AliceBlue;
-            this.uiBtnSaveSequence.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnSaveSequence.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnSaveSequence.Image")));
-            this.uiBtnSaveSequence.IsMouseOver = false;
-            this.uiBtnSaveSequence.Location = new System.Drawing.Point(2, 21);
-            this.uiBtnSaveSequence.Margin = new System.Windows.Forms.Padding(4);
-            this.uiBtnSaveSequence.Name = "uiBtnSaveSequence";
-            this.uiBtnSaveSequence.Size = new System.Drawing.Size(60, 62);
-            this.uiBtnSaveSequence.TabIndex = 16;
-            this.uiBtnSaveSequence.TabStop = false;
-            this.uiBtnSaveSequence.Text = "Save";
-            this.uiBtnSaveSequence.Visible = false;
-            this.uiBtnSaveSequence.Click += new System.EventHandler(this.uiBtnSaveSequence_Click);
-            // 
             // frmScriptBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1781,6 +1792,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.grpSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSearch)).EndInit();
             this.grpSaveClose.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uiBtnSaveSequence)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnRestart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnClose)).EndInit();
             this.grpFileActions.ResumeLayout(false);
@@ -1791,9 +1803,9 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnNew)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOpen)).EndInit();
             this.grpRecordRun.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.uiBtnElementRecorder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiBtnRecordElementSequence)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnRunScript)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiBtnRecordSequence)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiBtnRecordUISequence)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnDebugScript)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnScheduleManagement)).EndInit();
             this.grpVariable.ResumeLayout(false);
@@ -1833,7 +1845,6 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.cmsProjectFileActions.ResumeLayout(false);
             this.cmsScriptTabActions.ResumeLayout(false);
             this.cmsProjectMainFolderActions.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.uiBtnSaveSequence)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1866,13 +1877,12 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private ToolStripMenuItem saveAsToolStripMenuItem;
         private ToolStripMenuItem restartApplicationToolStripMenuItem;
         private ToolStripMenuItem closeApplicationToolStripMenuItem;
-        private ToolStripMenuItem modifyToolStripMenuItem;
+        private ToolStripMenuItem optionsToolStripMenuItem;
         private ToolStripMenuItem variablesToolStripMenuItem;
         private ToolStripMenuItem settingsToolStripMenuItem;
         private ToolStripMenuItem showSearchBarToolStripMenuItem;
         private ToolStripMenuItem aboutTasktToolStripMenuItem;
         private ToolStripMenuItem scriptActionsToolStripMenuItem;
-        private ToolStripMenuItem recordToolStripMenuItem;
         private ToolStripMenuItem scheduleToolStripMenuItem;
         private ToolStripMenuItem debugToolStripMenuItem;
         private ToolStripTextBox tsSearchBox;
@@ -1905,7 +1915,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private CustomControls.CustomUIControls.UIPictureButton uiBtnNew;
         private CustomControls.CustomUIControls.UIPictureButton uiBtnOpen;
         private CustomControls.CustomUIControls.UIGroupBox grpRecordRun;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnRecordSequence;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnRecordUISequence;
         private CustomControls.CustomUIControls.UIPictureButton uiBtnDebugScript;
         private CustomControls.CustomUIControls.UIPictureButton uiBtnScheduleManagement;
         private CustomControls.CustomUIControls.UIGroupBox grpVariable;
@@ -1948,8 +1958,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private ToolStripMenuItem runToolStripMenuItem;
         private CustomControls.CustomUIControls.UIPictureButton uiBtnRunScript;
         private ToolStripMenuItem elementManagerToolStripMenuItem;
-        private ToolStripMenuItem elementRecorderToolStripMenuItem;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnElementRecorder;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnRecordElementSequence;
         private CustomControls.CustomUIControls.UIPictureButton uiBtnAddElement;
         private TableLayoutPanel tlpProject;
         private Panel pnlProjectButtons;
@@ -1962,6 +1971,9 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private TextBox txtCommandSearch;
         private PictureBox pbMainLogo;
         private CustomControls.CustomUIControls.UIPictureButton uiBtnSaveSequence;
+        private ToolStripMenuItem recorderToolStripMenuItem;
+        private ToolStripMenuItem uiRecorderToolStripMenuItem;
+        private ToolStripMenuItem elementRecorderToolStripMenuItem;
     }
 }
 

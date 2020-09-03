@@ -13,6 +13,7 @@ using taskt.Core.Utilities.CommonUtilities;
 using taskt.Server;
 using taskt.UI.CustomControls.CustomUIControls;
 using taskt.UI.Forms.Supplement_Forms;
+using taskt.UI.Supplement_Forms;
 
 namespace taskt.UI.Forms.ScriptBuilder_Forms
 {
@@ -759,6 +760,8 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private void elementRecorderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmHTMLElementRecorder elementRecorder = new frmHTMLElementRecorder(HTMLElementRecorderURL);
+            elementRecorder.CallBackForm = this;
+            elementRecorder.IsRecordingSequence = true;
             elementRecorder.ScriptElements = _scriptElements;
             elementRecorder.chkStopOnClick.Visible = false;
 

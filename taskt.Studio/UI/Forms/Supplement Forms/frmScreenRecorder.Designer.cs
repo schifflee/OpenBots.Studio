@@ -1,4 +1,4 @@
-﻿namespace taskt.UI.Forms
+﻿namespace taskt.UI.Supplement_Forms
 {
     partial class frmScreenRecorder
     {

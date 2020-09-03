@@ -4,7 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using taskt.Commands;
+using taskt.Core.Command;
 using taskt.Core.Script;
+using taskt.UI.Forms.ScriptBuilder_Forms;
 using taskt.Utilities;
 
 namespace taskt.UI.Forms.Supplement_Forms
@@ -15,6 +18,11 @@ namespace taskt.UI.Forms.Supplement_Forms
         public Dictionary<string, object> SearchParameters { get; set; }
         public string LastItemClicked { get; set; }
         public string StartURL { get; set; }
+        public bool IsRecordingSequence { get; set; }
+        public frmScriptBuilder CallBackForm { get; set; }
+        public List<ScriptCommand> _sequenceCommandList;
+        private string _browserInstanceName;
+        private bool _isFirstRecordClick;
         private string _homeURL = "https://www.google.com/"; //TODO replace with openbots url;
         private string _xPath;
         private string _name;
@@ -23,10 +31,12 @@ namespace taskt.UI.Forms.Supplement_Forms
         private string _className;
         private string _linkText;
         private List<string> _cssSelectors;
-        private bool _isRecording = false;
+        private bool _isRecording;
+        private bool _isHookStopped;
 
         public frmHTMLElementRecorder(string startURL)
         {
+            _isFirstRecordClick = true;
             if (string.IsNullOrEmpty(startURL))
                 StartURL = _homeURL;
             else
@@ -60,6 +70,13 @@ namespace taskt.UI.Forms.Supplement_Forms
                 GlobalHook.HookStopped += GlobalHook_HookStopped;
                 GlobalHook.StartElementCaptureHook(chkStopOnClick.Checked);
                 wbElementRecorder.DomClick += wbElementRecorder_DomClick;
+
+                if (IsRecordingSequence && _isFirstRecordClick)
+                {
+                    _isFirstRecordClick = false;
+                    _sequenceCommandList = new List<ScriptCommand>();
+                    BuildCreateBrowserCommand();
+                }
             }
             else
             {
@@ -75,6 +92,7 @@ namespace taskt.UI.Forms.Supplement_Forms
         private void GlobalHook_HookStopped(object sender, EventArgs e)
         {
             wbElementRecorder_DomClick(null, null);
+            _isHookStopped = true;
             Close();
         }
 
@@ -117,6 +135,9 @@ namespace taskt.UI.Forms.Supplement_Forms
                     SearchParameters.Add("Class Name", _className);
                     SearchParameters.Add("CSS Selector", _cssSelectors);
                     SearchParameters.Add("Link Text", _linkText);
+
+                    if (IsRecordingSequence)
+                        BuildElementActionCommand();
                 }
                 catch (Exception)
                 {
@@ -151,6 +172,8 @@ namespace taskt.UI.Forms.Supplement_Forms
         private void pbGo_Click(object sender, EventArgs e)
         {
             wbElementRecorder.Navigate(tbURL.Text);
+            if (IsRecordingSequence && _isRecording)
+                BuildNavigateToURLCommand(tbURL.Text);
         }
 
         private void pbBack_Click(object sender, EventArgs e)
@@ -215,7 +238,7 @@ namespace taskt.UI.Forms.Supplement_Forms
         {
             if(e.KeyCode == Keys.Enter)
             {
-                wbElementRecorder.Navigate(tbURL.Text);
+                pbGo_Click(null, null);
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
@@ -223,9 +246,15 @@ namespace taskt.UI.Forms.Supplement_Forms
 
         private void frmHTMLElementRecorder_FormClosing(object sender, FormClosingEventArgs e)
         {
-            StartURL = wbElementRecorder.Url.ToString();
-            wbElementRecorder.Dispose();
-            wbElementRecorder = null;
+            if (wbElementRecorder != null)
+            {
+                StartURL = wbElementRecorder.Url.ToString();
+                wbElementRecorder.Dispose();
+                wbElementRecorder = null;
+
+                if (IsRecordingSequence && _isHookStopped)
+                    FinalizeRecording();
+            }          
             DialogResult = DialogResult.Cancel;
         }
 
@@ -250,6 +279,66 @@ namespace taskt.UI.Forms.Supplement_Forms
                 attributeList.Add($"{tagName}[{attribute.NodeName}='{attribute.NodeValue}']");
 
             return attributeList;
+        }
+
+        private void BuildCreateBrowserCommand()
+        {
+            _browserInstanceName = $"SequenceBrowserInstance{DateTime.Now:MM-dd-yyyy hh:mm:ss}";
+
+            var createBrowserCommand = new SeleniumCreateBrowserCommand
+            {
+                v_InstanceName = _browserInstanceName,
+                v_URL = wbElementRecorder.Url.ToString()
+            };
+            _sequenceCommandList.Add(createBrowserCommand);
+        }
+
+        private void BuildNavigateToURLCommand(string url)
+        {
+            var navigateToURLCommand = new SeleniumNavigateToURLCommand
+            {
+                v_InstanceName = _browserInstanceName,
+                v_URL = url
+            };
+            _sequenceCommandList.Add(navigateToURLCommand);
+        }
+
+        private void BuildElementActionCommand()
+        {
+            var waitElementActionCommand = new SeleniumElementActionCommand
+            {
+                v_InstanceName = _browserInstanceName,
+                v_SeleniumSearchType = "Find Element By XPath",
+                v_SeleniumSearchParameter = _xPath,
+                v_SeleniumElementAction = "Wait For Element To Exist"
+            };
+
+            DataTable webActionDT = waitElementActionCommand.v_WebActionParameterTable;
+            DataRow timeoutRow = webActionDT.NewRow();
+            timeoutRow["Parameter Name"] = "Timeout (Seconds)";
+            timeoutRow["Parameter Value"] = "30";
+            webActionDT.Rows.Add(timeoutRow);
+
+            _sequenceCommandList.Add(waitElementActionCommand);
+
+            var clickElementActionCommand = new SeleniumElementActionCommand
+            {
+                v_InstanceName = _browserInstanceName,
+                v_SeleniumSearchType = "Find Element By XPath",
+                v_SeleniumSearchParameter = _xPath,
+                v_SeleniumElementAction = "Invoke Click"
+            };
+            _sequenceCommandList.Add(clickElementActionCommand);
+        }
+
+        private void FinalizeRecording()
+        {
+            var sequenceCommand = new SequenceCommand 
+            { 
+                ScriptActions = _sequenceCommandList,
+                v_Comment = $"Web Command Sequence Created On {DateTime.Now}"
+            };
+            CallBackForm.AddCommandToListView(sequenceCommand);
         }
     }
 }

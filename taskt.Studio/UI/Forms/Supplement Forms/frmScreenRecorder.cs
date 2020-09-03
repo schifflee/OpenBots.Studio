@@ -4,10 +4,11 @@ using System.Drawing;
 using taskt.Commands;
 using taskt.Core.Command;
 using taskt.Properties;
+using taskt.UI.Forms;
 using taskt.UI.Forms.ScriptBuilder_Forms;
 using taskt.Utilities;
 
-namespace taskt.UI.Forms
+namespace taskt.UI.Supplement_Forms
 {
     public partial class frmScreenRecorder : UIForm
     {

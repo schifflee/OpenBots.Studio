@@ -13,6 +13,7 @@ namespace taskt.Utilities
     {
         private const int _whKeyboardLl = 13;
         private const int _wmKeyDown = 0x0100;
+        private const int _wmKeyUp = 0x0101;
         private static readonly LowLevelKeyboardProc _kbProc = KeyboardHookEvent;
         private static readonly LowLevelMouseProc _mouseProc = MouseHookEvent;
         private static readonly LowLevelMouseProc _mouseLeftUpProc = MouseHookForLeftClickUpEvent;
@@ -20,6 +21,7 @@ namespace taskt.Utilities
         private static IntPtr _mouseHookID = IntPtr.Zero;
         private static Stopwatch _stopWatch;
         private static Stopwatch _lastMouseMove;
+        private static bool _isKeyPressed;
 
         private static bool _performMouseClickCapture;
         private static bool _groupMouseMovesIntoSequence;
@@ -207,10 +209,15 @@ namespace taskt.Utilities
         //mouse and keyboard hook event triggers
         private static IntPtr KeyboardHookEvent(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if (nCode >= 0 && wParam == (IntPtr)_wmKeyDown)
+            if (nCode >= 0 && wParam == (IntPtr)_wmKeyDown && !_isKeyPressed)
             {
                 int vkCode = Marshal.ReadInt32(lParam);
                 BuildKeyboardCommand((Keys)vkCode);
+                _isKeyPressed = true;
+            }
+            else if (nCode >= 0 && wParam == (IntPtr)_wmKeyUp)
+            {
+                _isKeyPressed = false;
             }
 
             return CallNextHookEx(_keyboardHookID, nCode, wParam, lParam);

@@ -57,17 +57,17 @@
             this.tlpMain.RowCount = 2;
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
-            this.tlpMain.Size = new System.Drawing.Size(2160, 858);
+            this.tlpMain.Size = new System.Drawing.Size(1405, 858);
             this.tlpMain.TabIndex = 0;
             // 
             // webBrowserHTML
             // 
             this.webBrowserHTML.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowserHTML.Location = new System.Drawing.Point(1084, 4);
+            this.webBrowserHTML.Location = new System.Drawing.Point(706, 4);
             this.webBrowserHTML.Margin = new System.Windows.Forms.Padding(4);
             this.webBrowserHTML.MinimumSize = new System.Drawing.Size(27, 25);
             this.webBrowserHTML.Name = "webBrowserHTML";
-            this.webBrowserHTML.Size = new System.Drawing.Size(1072, 776);
+            this.webBrowserHTML.Size = new System.Drawing.Size(695, 776);
             this.webBrowserHTML.TabIndex = 0;
             // 
             // flwAcceptIcons
@@ -79,7 +79,7 @@
             this.flwAcceptIcons.Location = new System.Drawing.Point(4, 788);
             this.flwAcceptIcons.Margin = new System.Windows.Forms.Padding(4);
             this.flwAcceptIcons.Name = "flwAcceptIcons";
-            this.flwAcceptIcons.Size = new System.Drawing.Size(2152, 66);
+            this.flwAcceptIcons.Size = new System.Drawing.Size(1397, 66);
             this.flwAcceptIcons.TabIndex = 2;
             // 
             // uiBtnOK
@@ -126,7 +126,7 @@
             this.rtbHTML.Location = new System.Drawing.Point(4, 4);
             this.rtbHTML.Margin = new System.Windows.Forms.Padding(4);
             this.rtbHTML.Name = "rtbHTML";
-            this.rtbHTML.Size = new System.Drawing.Size(1072, 776);
+            this.rtbHTML.Size = new System.Drawing.Size(694, 776);
             this.rtbHTML.TabIndex = 3;
             this.rtbHTML.Text = "";
             this.rtbHTML.TextChanged += new System.EventHandler(this.rtbHTML_TextChanged);
@@ -135,11 +135,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2160, 858);
+            this.ClientSize = new System.Drawing.Size(1405, 858);
             this.Controls.Add(this.tlpMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmHTMLBuilder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "HTML Builder";
             this.tlpMain.ResumeLayout(false);
             this.flwAcceptIcons.ResumeLayout(false);

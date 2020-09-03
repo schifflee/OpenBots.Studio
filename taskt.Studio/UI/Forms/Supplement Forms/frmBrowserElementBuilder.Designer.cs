@@ -187,6 +187,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmBrowserElementBuilder";
             this.Text = "Web Element Builder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.frmBrowserElementBuilder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearchParameters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnRefresh)).EndInit();

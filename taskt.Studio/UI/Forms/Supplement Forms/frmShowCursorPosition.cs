@@ -61,15 +61,16 @@ namespace taskt.UI.Forms.Supplement_Forms
         private void ShowCursorPosition_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space)
-            {
                 DialogResult = DialogResult.OK;
-            }
         }
 
         private void frmShowCursorPosition_MouseEnter(object sender, EventArgs e)
         {
             //move to bottom right if form is in the way
-            MoveFormToBottomRight(this);
+            if (Location.X == 0 && Location.Y == 0)
+                MoveFormToBottomRight(this);
+            else
+                Location = new Point(0, 0);
         }
     }
 }

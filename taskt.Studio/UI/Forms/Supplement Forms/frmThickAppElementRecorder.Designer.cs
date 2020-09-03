@@ -51,7 +51,7 @@
             this.tlpControls.Controls.Add(this.pnlHeader, 0, 0);
             this.tlpControls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpControls.Location = new System.Drawing.Point(0, 0);
-            this.tlpControls.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tlpControls.Margin = new System.Windows.Forms.Padding(4);
             this.tlpControls.Name = "tlpControls";
             this.tlpControls.RowCount = 1;
             this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 234F));
@@ -80,7 +80,7 @@
             // 
             this.pbRefresh.Image = global::taskt.Properties.Resources.command_startloop;
             this.pbRefresh.Location = new System.Drawing.Point(19, 151);
-            this.pbRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.pbRefresh.Name = "pbRefresh";
             this.pbRefresh.Size = new System.Drawing.Size(43, 39);
             this.pbRefresh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -105,7 +105,7 @@
             // 
             this.pbRecord.Image = global::taskt.Properties.Resources.various_record_button;
             this.pbRecord.Location = new System.Drawing.Point(545, 151);
-            this.pbRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbRecord.Margin = new System.Windows.Forms.Padding(4);
             this.pbRecord.Name = "pbRecord";
             this.pbRecord.Size = new System.Drawing.Size(43, 39);
             this.pbRecord.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -132,7 +132,7 @@
             this.chkStopOnClick.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkStopOnClick.ForeColor = System.Drawing.Color.White;
             this.chkStopOnClick.Location = new System.Drawing.Point(24, 198);
-            this.chkStopOnClick.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkStopOnClick.Margin = new System.Windows.Forms.Padding(4);
             this.chkStopOnClick.Name = "chkStopOnClick";
             this.chkStopOnClick.Size = new System.Drawing.Size(249, 27);
             this.chkStopOnClick.TabIndex = 20;
@@ -155,12 +155,12 @@
             // 
             this.lblHeader.AutoSize = true;
             this.lblHeader.BackColor = System.Drawing.Color.Transparent;
-            this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeader.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblHeader.Location = new System.Drawing.Point(9, 11);
+            this.lblHeader.Location = new System.Drawing.Point(13, 9);
             this.lblHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(337, 46);
+            this.lblHeader.Size = new System.Drawing.Size(289, 39);
             this.lblHeader.TabIndex = 14;
             this.lblHeader.Text = "element recorder";
             // 
@@ -174,8 +174,9 @@
             this.Controls.Add(this.tlpControls);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmThickAppElementRecorder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "element recorder";
             this.Load += new System.EventHandler(this.frmThickAppElementRecorder_Load);
             this.tlpControls.ResumeLayout(false);

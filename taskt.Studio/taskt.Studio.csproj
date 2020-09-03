@@ -696,7 +696,7 @@
       <DependentUpon>UIForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
-    <None Include="Firefox\omni.ja" />
+    <None Include="Resources\Firefox\omni.ja" />
     <None Include="LICENSE" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -771,25 +771,25 @@
     <None Include="Resources\command-remote.png" />
     <None Include="Resources\command-begin-multi-if.png" />
     <None Include="Resources\command-nextloop.png" />
-    <Content Include="Firefox\AccessibleMarshal.dll" />
-    <Content Include="Firefox\breakpadinjector.dll" />
-    <Content Include="Firefox\d3dcompiler_47.dll" />
-    <Content Include="Firefox\freebl3.dll" />
-    <Content Include="Firefox\icudt58.dll" />
-    <Content Include="Firefox\icuin58.dll" />
-    <Content Include="Firefox\icuuc58.dll" />
-    <Content Include="Firefox\lgpllibs.dll" />
-    <Content Include="Firefox\libEGL.dll" />
-    <Content Include="Firefox\libGLESv2.dll" />
-    <Content Include="Firefox\mozglue.dll" />
-    <Content Include="Firefox\nss3.dll" />
-    <Content Include="Firefox\nssckbi.dll" />
-    <Content Include="Firefox\nssdbm3.dll" />
-    <Content Include="Firefox\plugin-container.exe" />
-    <Content Include="Firefox\plugin-hang-ui.exe" />
-    <Content Include="Firefox\sandboxbroker.dll" />
-    <Content Include="Firefox\softokn3.dll" />
-    <Content Include="Firefox\xul.dll" />
+    <Content Include="Resources\Firefox\AccessibleMarshal.dll" />
+    <Content Include="Resources\Firefox\breakpadinjector.dll" />
+    <Content Include="Resources\Firefox\d3dcompiler_47.dll" />
+    <Content Include="Resources\Firefox\freebl3.dll" />
+    <Content Include="Resources\Firefox\icudt58.dll" />
+    <Content Include="Resources\Firefox\icuin58.dll" />
+    <Content Include="Resources\Firefox\icuuc58.dll" />
+    <Content Include="Resources\Firefox\lgpllibs.dll" />
+    <Content Include="Resources\Firefox\libEGL.dll" />
+    <Content Include="Resources\Firefox\libGLESv2.dll" />
+    <Content Include="Resources\Firefox\mozglue.dll" />
+    <Content Include="Resources\Firefox\nss3.dll" />
+    <Content Include="Resources\Firefox\nssckbi.dll" />
+    <Content Include="Resources\Firefox\nssdbm3.dll" />
+    <Content Include="Resources\Firefox\plugin-container.exe" />
+    <Content Include="Resources\Firefox\plugin-hang-ui.exe" />
+    <Content Include="Resources\Firefox\sandboxbroker.dll" />
+    <Content Include="Resources\Firefox\softokn3.dll" />
+    <Content Include="Resources\Firefox\xul.dll" />
     <Content Include="Resources\7z.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

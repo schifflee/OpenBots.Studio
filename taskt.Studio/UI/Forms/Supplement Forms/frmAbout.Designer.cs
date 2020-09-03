@@ -116,6 +116,7 @@
             this.Name = "frmAbout";
             this.Text = "about";
             this.Load += new System.EventHandler(this.frmAbout_Load);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ResumeLayout(false);
             this.PerformLayout();
 

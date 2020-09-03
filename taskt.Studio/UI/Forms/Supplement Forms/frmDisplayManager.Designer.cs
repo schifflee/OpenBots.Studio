@@ -278,6 +278,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDisplayManager";
             this.Text = "Display Manager for VMs";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.frmDisplayManager_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMachines)).EndInit();
             this.tlpDisplayManager.ResumeLayout(false);

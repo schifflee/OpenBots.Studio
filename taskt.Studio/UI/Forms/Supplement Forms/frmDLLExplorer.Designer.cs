@@ -184,6 +184,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmDLLExplorer";
             this.Text = "DLL Explorer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             ((System.ComponentModel.ISupportInitialize)(this.upbLoadDLL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOk)).EndInit();
             this.ResumeLayout(false);

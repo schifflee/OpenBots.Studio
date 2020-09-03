@@ -68,17 +68,7 @@ namespace taskt.Commands
             var dataRowValue = v_DataRowValue.ConvertUserVariableToString(engine);
 
             var dataRowVariable = v_DataRow.ConvertUserVariableToObject(engine);
-
-            DataRow dataRow;
-            var loopIndexVariable = "Loop.CurrentIndex".ConvertUserVariableToString(engine);
-            //check in case of looping through datatable using BeginListLoopCommand
-            if (dataRowVariable is DataTable && loopIndexVariable != null)
-            {
-                int loopIndex = int.Parse(loopIndexVariable.ToString());
-                dataRow = ((DataTable)dataRowVariable).Rows[loopIndex - 1];
-            }
-
-            else dataRow = (DataRow)dataRowVariable;
+            DataRow dataRow = (DataRow)dataRowVariable;
 
             var valueIndex = v_DataValueIndex.ConvertUserVariableToString(engine);
 
@@ -86,7 +76,6 @@ namespace taskt.Commands
             {
                 int index = int.Parse(valueIndex);
                 dataRow[index] = dataRowValue;
-
             }
             else if (v_Option == "Column Name")
             {

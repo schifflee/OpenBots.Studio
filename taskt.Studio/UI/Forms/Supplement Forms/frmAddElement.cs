@@ -8,10 +8,11 @@ namespace taskt.UI.Forms.Supplement_Forms
 {
     public partial class frmAddElement : ThemedForm
     {
-        public Dictionary<ScriptElementType, string> ElementValueDict { get; set; }
+        public Dictionary<ScriptElementType, object> ElementValueDict { get; set; }
         public List<ScriptElement> ScriptElements { get; set; }
         private bool _isEditMode;
         private string _editingVariableName;
+
         public frmAddElement()
         {
             InitializeComponent();
@@ -26,6 +27,9 @@ namespace taskt.UI.Forms.Supplement_Forms
             lblHeader.Text = "edit element";
             txtElementName.Text = elementName;
             cbxElementType.SelectedIndex = cbxElementType.Items.IndexOf(elementType.Description());
+
+            cbxDefaultValue.Visible = false;
+            txtDefaultValue.Visible = true;
             txtDefaultValue.Text = elementValue;
 
             _isEditMode = true;
@@ -76,10 +80,37 @@ namespace taskt.UI.Forms.Supplement_Forms
             if (ElementValueDict != null)
             {
                 ComboBox typeBox = cbxElementType;
-                ScriptElementType selectedType = (ScriptElementType)Enum.Parse(typeof(ScriptElementType), typeBox.SelectedItem.ToString().Replace(" ",""));
-                string elementValue = ElementValueDict[selectedType];
-                txtDefaultValue.Text = elementValue;
+                ScriptElementType selectedType = (ScriptElementType)Enum.Parse(typeof(ScriptElementType), 
+                                                  typeBox.SelectedItem.ToString().Replace(" ",""));
+                string elementValue;
+                cbxDefaultValue.Items.Clear();
+
+                if (selectedType == ScriptElementType.CSSSelector)
+                {
+                    txtDefaultValue.Visible = false;
+                    cbxDefaultValue.Visible = true;
+                    
+                    List<string> cssSelectors = (List<string>)ElementValueDict[selectedType];
+                    cbxDefaultValue.Items.AddRange(cssSelectors.ToArray());
+
+                    elementValue = cssSelectors.FirstOrDefault();
+                    cbxDefaultValue.Text = elementValue;
+                }
+                else
+                {
+                    cbxDefaultValue.Visible = false;
+                    txtDefaultValue.Visible = true;
+                    elementValue = ElementValueDict[selectedType] == null ? "" : 
+                                   ElementValueDict[selectedType].ToString();
+                    txtDefaultValue.Text = elementValue;
+                }                   
             }
+        }
+
+        private void cbxDefaultValue_MouseClick(object sender, MouseEventArgs e)
+        {
+            ComboBox clickedComboBox = (ComboBox)sender;
+            clickedComboBox.DroppedDown = true;
         }
     }
 }

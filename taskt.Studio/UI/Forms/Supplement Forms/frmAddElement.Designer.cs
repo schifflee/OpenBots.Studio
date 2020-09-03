@@ -42,6 +42,7 @@
             this.cbxElementType = new System.Windows.Forms.ComboBox();
             this.lblDefineTypeDescription = new System.Windows.Forms.Label();
             this.lblElementNameError = new System.Windows.Forms.Label();
+            this.cbxDefaultValue = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnCancel)).BeginInit();
             this.SuspendLayout();
@@ -223,11 +224,26 @@
             this.lblElementNameError.Size = new System.Drawing.Size(577, 36);
             this.lblElementNameError.TabIndex = 26;
             // 
+            // cbxDefaultValue
+            // 
+            this.cbxDefaultValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxDefaultValue.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.cbxDefaultValue.ForeColor = System.Drawing.Color.SteelBlue;
+            this.cbxDefaultValue.FormattingEnabled = true;
+            this.cbxDefaultValue.Location = new System.Drawing.Point(21, 461);
+            this.cbxDefaultValue.Name = "cbxDefaultValue";
+            this.cbxDefaultValue.Size = new System.Drawing.Size(563, 33);
+            this.cbxDefaultValue.TabIndex = 27;
+            this.cbxDefaultValue.Visible = false;
+            this.cbxDefaultValue.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cbxDefaultValue_MouseClick);
+            // 
             // frmAddElement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(609, 583);
+            this.Controls.Add(this.cbxDefaultValue);
             this.Controls.Add(this.lblElementNameError);
             this.Controls.Add(this.lblDefineTypeDescription);
             this.Controls.Add(this.cbxElementType);
@@ -270,5 +286,6 @@
         public System.Windows.Forms.ComboBox cbxElementType;
         private System.Windows.Forms.Label lblDefineTypeDescription;
         private System.Windows.Forms.Label lblElementNameError;
+        public System.Windows.Forms.ComboBox cbxDefaultValue;
     }
 }

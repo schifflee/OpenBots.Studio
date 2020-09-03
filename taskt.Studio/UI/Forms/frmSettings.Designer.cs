@@ -1429,6 +1429,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmSettings";
             this.Text = "Settings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.frmSettings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOpen)).EndInit();
             this.uiSettingTabs.ResumeLayout(false);

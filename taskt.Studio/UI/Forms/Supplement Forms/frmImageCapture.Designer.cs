@@ -178,6 +178,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmImageCapture";
             this.Text = "Capture Image";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.frmImageCapture_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmImageCapture_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pbMainImage)).EndInit();

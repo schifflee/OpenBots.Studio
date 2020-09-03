@@ -136,7 +136,6 @@ namespace taskt.Core.Common
             systemVariableList.Add(new ScriptVariable { VariableName = "Env.ActiveWindowTitle", VariableValue = User32Functions.GetActiveWindowTitle() });
             systemVariableList.Add(new ScriptVariable { VariableName = "taskt.EngineContext", VariableValue = "{JsonContext}" });
             systemVariableList.Add(new ScriptVariable { VariableName = "taskt.Location", VariableValue = Assembly.GetEntryAssembly().Location });
-            systemVariableList.Add(new ScriptVariable { VariableName = "Loop.CurrentIndex", VariableValue = "0" });
             return systemVariableList;
         }
 

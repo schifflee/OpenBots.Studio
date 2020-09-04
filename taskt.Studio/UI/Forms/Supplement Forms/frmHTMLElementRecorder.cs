@@ -190,11 +190,21 @@ namespace taskt.UI.Forms.Supplement_Forms
         private void pbHome_Click(object sender, EventArgs e)
         {
             wbElementRecorder.Navigate(_homeURL);
+            if (IsRecordingSequence && _isRecording)
+                BuildNavigateToURLCommand(_homeURL);
         }
 
         private void pbRefresh_Click(object sender, EventArgs e)
         {
             wbElementRecorder.Reload();
+            if (IsRecordingSequence && _isRecording)
+            {
+                var refreshBrowserCommand = new SeleniumRefreshCommand
+                {
+                    v_InstanceName = _browserInstanceName
+                };
+                _sequenceCommandList.Add(refreshBrowserCommand);
+            }
         }
 
         private void uiBtnOk_Click(object sender, EventArgs e)
@@ -217,11 +227,27 @@ namespace taskt.UI.Forms.Supplement_Forms
         private void pbBack_Click(object sender, EventArgs e)
         {
             wbElementRecorder.GoBack();
+            if (IsRecordingSequence && _isRecording)
+            {
+                var navigateBackBrowserCommand = new SeleniumNavigateBackCommand
+                {
+                    v_InstanceName = _browserInstanceName
+                };
+                _sequenceCommandList.Add(navigateBackBrowserCommand);
+            }
         }
 
         private void pbForward_Click(object sender, EventArgs e)
         {
             wbElementRecorder.GoForward();
+            if (IsRecordingSequence && _isRecording)
+            {
+                var navigateForwardBrowserCommand = new SeleniumNavigateForwardCommand
+                {
+                    v_InstanceName = _browserInstanceName
+                };
+                _sequenceCommandList.Add(navigateForwardBrowserCommand);
+            }
         }
 
         private void pbSave_Click(object sender, EventArgs e)

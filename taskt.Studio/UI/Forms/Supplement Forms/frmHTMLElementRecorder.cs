@@ -16,7 +16,7 @@ namespace taskt.UI.Forms.Supplement_Forms
     public partial class frmHTMLElementRecorder : UIForm
     {
         public List<ScriptElement> ScriptElements { get; set; }
-        public Dictionary<string, object> SearchParameters { get; set; }
+        public DataTable SearchParameters { get; set; }
         public string LastItemClicked { get; set; }
         public string StartURL { get; set; }
         public bool IsRecordingSequence { get; set; }
@@ -65,7 +65,14 @@ namespace taskt.UI.Forms.Supplement_Forms
                 if (!chkStopOnClick.Checked)
                     lblDescription.Text = "Recording. Press F2 to save and close.";
 
-                SearchParameters = new Dictionary<string, object>();            
+                SearchParameters = new DataTable();
+                SearchParameters.Columns.Add("Enabled");
+                SearchParameters.Columns.Add("Parameter Name");
+                SearchParameters.Columns.Add("Parameter Value");
+                SearchParameters.TableName = DateTime.Now.ToString("UIASearchParamTable" + DateTime.Now.ToString("MMddyy.hhmmss"));
+
+                //clear all
+                SearchParameters.Rows.Clear();
 
                 //start global hook and wait for left mouse down event
                 GlobalHook.StartEngineCancellationHook(Keys.F2);
@@ -152,14 +159,15 @@ namespace taskt.UI.Forms.Supplement_Forms
                     LastItemClicked = $"[XPath:{_xPath}].[ID:{_id}].[Name:{_name}].[Tag Name:{_tagName}].[Class:{_className}].[Link Text:{_linkText}].[CSS Selector:{cssSelectorString}]";
                     lblSubHeader.Text = LastItemClicked;
 
-                    SearchParameters.Clear();
-                    SearchParameters.Add("XPath", _xPath);
-                    SearchParameters.Add("ID", _id);
-                    SearchParameters.Add("Name", _name);
-                    SearchParameters.Add("Tag Name", _tagName);
-                    SearchParameters.Add("Class Name", _className);
-                    SearchParameters.Add("CSS Selector", _cssSelectors);
-                    SearchParameters.Add("Link Text", _linkText);
+                    SearchParameters.Rows.Clear();
+                    SearchParameters.Rows.Add(true, "XPath", _xPath);
+                    SearchParameters.Rows.Add(false, "ID", _id);
+                    SearchParameters.Rows.Add(false, "Name", _name);
+                    SearchParameters.Rows.Add(false, "Tag Name", _tagName);
+                    SearchParameters.Rows.Add(false, "Class Name", _className);
+                    SearchParameters.Rows.Add(false, "Link Text", _linkText);
+                    for (int i = 0; i < _cssSelectors.Count; i++)
+                        SearchParameters.Rows.Add(false, $"CSS Selector {i+1}", _cssSelectors[i]);
 
                     if (IsRecordingSequence)
                         BuildElementClickActionCommand();
@@ -363,8 +371,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             var clickElementActionCommand = new SeleniumElementActionCommand
             {
                 v_InstanceName = _browserInstanceName,
-                v_SeleniumSearchType = "Find Element By XPath",
-                v_SeleniumSearchParameter = _xPath,
+                v_SeleniumSearchParameters = SearchParameters,
                 v_SeleniumElementAction = "Invoke Click"
             };
             _sequenceCommandList.Add(clickElementActionCommand);
@@ -375,8 +382,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             var waitElementActionCommand = new SeleniumElementActionCommand
             {
                 v_InstanceName = _browserInstanceName,
-                v_SeleniumSearchType = "Find Element By XPath",
-                v_SeleniumSearchParameter = _xPath,
+                v_SeleniumSearchParameters = SearchParameters,
                 v_SeleniumElementAction = "Wait For Element To Exist"
             };
 
@@ -458,8 +464,7 @@ namespace taskt.UI.Forms.Supplement_Forms
                     var waitElementActionCommand = new SeleniumElementActionCommand
                     {
                         v_InstanceName = _browserInstanceName,
-                        v_SeleniumSearchType = "Find Element By XPath",
-                        v_SeleniumSearchParameter = _xPath,
+                        v_SeleniumSearchParameters = SearchParameters,
                         v_SeleniumElementAction = "Set Text"
                     };
 
@@ -487,8 +492,7 @@ namespace taskt.UI.Forms.Supplement_Forms
                 var waitElementActionCommand = new SeleniumElementActionCommand
                 {
                     v_InstanceName = _browserInstanceName,
-                    v_SeleniumSearchType = "Find Element By XPath",
-                    v_SeleniumSearchParameter = _xPath,
+                    v_SeleniumSearchParameters = SearchParameters,
                     v_SeleniumElementAction = "Set Text"
                 };
 

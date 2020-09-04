@@ -652,7 +652,6 @@ namespace taskt.Commands
 
 
                 SeleniumElementActionCommand newElementActionCommand = new SeleniumElementActionCommand();
-                newElementActionCommand.v_SeleniumSearchType = searchMethod;
                 newElementActionCommand.v_InstanceName = instanceName.ConvertUserVariableToString(engine);
                 bool elementExists = newElementActionCommand.ElementExists(sender, searchMethod, parameterName);
                 ifResult = elementExists;
@@ -934,12 +933,12 @@ namespace taskt.Commands
                     ifActionParameterBox.Rows[3].Cells[1] = comparisonComboBox;
 
                     comparisonComboBox = new DataGridViewComboBoxCell();
-                    comparisonComboBox.Items.Add("Find Element By XPath");
-                    comparisonComboBox.Items.Add("Find Element By ID");
-                    comparisonComboBox.Items.Add("Find Element By Name");
-                    comparisonComboBox.Items.Add("Find Element By Tag Name");
-                    comparisonComboBox.Items.Add("Find Element By Class Name");
-                    comparisonComboBox.Items.Add("Find Element By CSS Selector");
+                    comparisonComboBox.Items.Add("XPath");
+                    comparisonComboBox.Items.Add("ID");
+                    comparisonComboBox.Items.Add("Name");
+                    comparisonComboBox.Items.Add("Tag Name");
+                    comparisonComboBox.Items.Add("Class Name");
+                    comparisonComboBox.Items.Add("CSS Selector");
 
                     //assign cell as a combobox
                     ifActionParameterBox.Rows[1].Cells[1] = comparisonComboBox;

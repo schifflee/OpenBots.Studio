@@ -580,7 +580,7 @@ namespace taskt.UI.CustomControls
                         return;
                     }
 
-                    targetDGV.SelectedCells[0].Value = targetDGV.SelectedCells[0].Value + "<" + newElementSelector.lstElements.SelectedItem.ToString() + ">";
+                    targetDGV.SelectedCells[0].Value = targetDGV.SelectedCells[0].Value + "<" + regex.Replace(newElementSelector.lstElements.SelectedItem.ToString(), "") + ">";
                 }
             }
         }

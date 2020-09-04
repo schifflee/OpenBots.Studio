@@ -129,10 +129,37 @@ namespace taskt.Commands
             v_SeleniumSearchParameters.Columns.Add("Parameter Value");
             v_SeleniumSearchParameters.TableName = DateTime.Now.ToString("v_SeleniumSearchParameters" + DateTime.Now.ToString("MMddyy.hhmmss"));
 
+            //create search param grid
+            _searchParametersGridViewHelper = new DataGridView();
+            _searchParametersGridViewHelper.Width = 400;
+            _searchParametersGridViewHelper.Height = 150;
+            _searchParametersGridViewHelper.DataBindings.Add("DataSource", this, "v_SeleniumSearchParameters", false, DataSourceUpdateMode.OnPropertyChanged);
+
+            DataGridViewCheckBoxColumn enabled = new DataGridViewCheckBoxColumn();
+            enabled.HeaderText = "Enabled";
+            enabled.DataPropertyName = "Enabled";
+            enabled.FillWeight = 30;
+            _searchParametersGridViewHelper.Columns.Add(enabled);
+
+            DataGridViewTextBoxColumn propertyName = new DataGridViewTextBoxColumn();
+            propertyName.HeaderText = "Parameter Name";
+            propertyName.DataPropertyName = "Parameter Name";
+            propertyName.FillWeight = 40;
+            _searchParametersGridViewHelper.Columns.Add(propertyName);
+
+            DataGridViewTextBoxColumn propertyValue = new DataGridViewTextBoxColumn();
+            propertyValue.HeaderText = "Parameter Value";
+            propertyValue.DataPropertyName = "Parameter Value";
+            _searchParametersGridViewHelper.Columns.Add(propertyValue);
+            _searchParametersGridViewHelper.ColumnHeadersHeight = 30;
+            _searchParametersGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _searchParametersGridViewHelper.AllowUserToAddRows = true;
+            _searchParametersGridViewHelper.AllowUserToDeleteRows = true;
+
             _elementsGridViewHelper = new DataGridView();
             _elementsGridViewHelper.AllowUserToAddRows = true;
             _elementsGridViewHelper.AllowUserToDeleteRows = true;
-            _elementsGridViewHelper.Size = new Size(400, 250);
+            _elementsGridViewHelper.Size = new Size(400, 150);
             _elementsGridViewHelper.ColumnHeadersHeight = 30;
             _elementsGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _elementsGridViewHelper.DataBindings.Add("DataSource", this, "v_WebActionParameterTable", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -498,30 +525,7 @@ namespace taskt.Commands
 
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
 
-            //create search param grid
-            _searchParametersGridViewHelper = new DataGridView();
-            _searchParametersGridViewHelper.Width = 500;
-            _searchParametersGridViewHelper.Height = 140;
-            _searchParametersGridViewHelper.DataBindings.Add("DataSource", this, "v_SeleniumSearchParameters", false, DataSourceUpdateMode.OnPropertyChanged);
-
-            DataGridViewCheckBoxColumn enabled = new DataGridViewCheckBoxColumn();
-            enabled.HeaderText = "Enabled";
-            enabled.DataPropertyName = "Enabled";
-            _searchParametersGridViewHelper.Columns.Add(enabled);
-
-            DataGridViewTextBoxColumn propertyName = new DataGridViewTextBoxColumn();
-            propertyName.HeaderText = "Parameter Name";
-            propertyName.DataPropertyName = "Parameter Name";
-            _searchParametersGridViewHelper.Columns.Add(propertyName);
-
-            DataGridViewTextBoxColumn propertyValue = new DataGridViewTextBoxColumn();
-            propertyValue.HeaderText = "Parameter Value";
-            propertyValue.DataPropertyName = "Parameter Value";
-            _searchParametersGridViewHelper.Columns.Add(propertyValue);
-            _searchParametersGridViewHelper.ColumnHeadersHeight = 30;
-            _searchParametersGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            _searchParametersGridViewHelper.AllowUserToAddRows = false;
-            _searchParametersGridViewHelper.AllowUserToDeleteRows = false;
+            
 
             if (v_SeleniumSearchParameters.Rows.Count == 0)
             {
@@ -613,31 +617,31 @@ namespace taskt.Commands
 
             switch (searchType)
             {
-                case "XPath":
+                case string a when a.ToLower().Contains("xpath"):
                     element = seleniumInstance.FindElement(By.XPath(searchParameter));
                     break;
 
-                case "ID":
+                case string a when a.ToLower().Contains("id"):
                     element = seleniumInstance.FindElement(By.Id(searchParameter));
                     break;
 
-                case "Name":
+                case string a when a.ToLower().Contains("name"):
                     element = seleniumInstance.FindElement(By.Name(searchParameter));
                     break;
 
-                case "Tag Name":
+                case string a when a.ToLower().Contains("tag name"):
                     element = seleniumInstance.FindElement(By.TagName(searchParameter));
                     break;
 
-                case "Class Name":
+                case string a when a.ToLower().Contains("class name"):
                     element = seleniumInstance.FindElement(By.ClassName(searchParameter));
                     break;
 
-                case string a when a.StartsWith("CSS Selector"):
+                case string a when a.ToLower().Contains("css selector"):
                     element = seleniumInstance.FindElement(By.CssSelector(searchParameter));
                     break;
 
-                case "Link Text":
+                case string a when a.ToLower().Contains("link text"):
                     element = seleniumInstance.FindElement(By.LinkText(searchParameter));
                     break;
 
@@ -689,13 +693,16 @@ namespace taskt.Commands
 
             try
             {
-                v_SeleniumSearchParameters.Rows.Clear();
+                if (newElementRecorder.SearchParameters != null)
+                {
+                    v_SeleniumSearchParameters.Rows.Clear();
 
-                foreach (DataRow rw in newElementRecorder.SearchParameters.Rows)
-                    v_SeleniumSearchParameters.ImportRow(rw);
+                    foreach (DataRow rw in newElementRecorder.SearchParameters.Rows)
+                        v_SeleniumSearchParameters.ImportRow(rw);
 
-                _searchParametersGridViewHelper.DataSource = v_SeleniumSearchParameters;
-                _searchParametersGridViewHelper.Refresh();
+                    _searchParametersGridViewHelper.DataSource = v_SeleniumSearchParameters;
+                    _searchParametersGridViewHelper.Refresh();
+                }               
             }
             catch (Exception)
             {

@@ -930,7 +930,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.pbMainLogo.Image = global::taskt.Properties.Resources.openbots_logo;
             this.pbMainLogo.Location = new System.Drawing.Point(8, 5);
             this.pbMainLogo.Name = "pbMainLogo";
-            this.pbMainLogo.Size = new System.Drawing.Size(189, 50);
+            this.pbMainLogo.Size = new System.Drawing.Size(270, 50);
             this.pbMainLogo.TabIndex = 1;
             this.pbMainLogo.TabStop = false;
             this.pbMainLogo.Click += new System.EventHandler(this.pbMainLogo_Click);
@@ -1607,7 +1607,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.elementRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.elementRecorderToolStripMenuItem.Image = global::taskt.Properties.Resources.action_bar_element;
             this.elementRecorderToolStripMenuItem.Name = "elementRecorderToolStripMenuItem";
-            this.elementRecorderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.elementRecorderToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
             this.elementRecorderToolStripMenuItem.Text = "Element Recorder";
             this.elementRecorderToolStripMenuItem.Click += new System.EventHandler(this.elementRecorderToolStripMenuItem_Click);
             // 
@@ -1616,7 +1616,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.uiRecorderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("uiRecorderToolStripMenuItem.Image")));
             this.uiRecorderToolStripMenuItem.Name = "uiRecorderToolStripMenuItem";
-            this.uiRecorderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.uiRecorderToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
             this.uiRecorderToolStripMenuItem.Text = "UI Recorder";
             this.uiRecorderToolStripMenuItem.Click += new System.EventHandler(this.uiRecorderToolStripMenuItem_Click);
             // 
@@ -1640,7 +1640,6 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // 
             // tsSearchBox
             // 
-            this.tsSearchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tsSearchBox.Name = "tsSearchBox";
             this.tsSearchBox.Size = new System.Drawing.Size(124, 34);
             this.tsSearchBox.Visible = false;

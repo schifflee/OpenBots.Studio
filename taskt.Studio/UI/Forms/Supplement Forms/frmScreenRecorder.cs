@@ -37,6 +37,8 @@ namespace taskt.UI.Supplement_Forms
 
         private void FinalizeRecording()
         {
+            string sequenceComment = $"UI Sequence Recorded {DateTime.Now}";
+
             _scriptCommandList = GlobalHook.GeneratedCommands;
             var outputList = new List<ScriptCommand>();
 
@@ -53,6 +55,7 @@ namespace taskt.UI.Supplement_Forms
             else if (chkGroupMovesIntoSequences.Checked)
             {
                 var newSequence = new SequenceCommand();
+                newSequence.v_Comment = sequenceComment;
 
                 foreach (ScriptCommand cmd in _scriptCommandList)
                 {
@@ -64,6 +67,7 @@ namespace taskt.UI.Supplement_Forms
                         {
                             outputList.Add(newSequence);
                             newSequence = new SequenceCommand();
+                            newSequence.v_Comment = sequenceComment;
                             outputList.Add(cmd);
                         }
                         else
@@ -73,6 +77,7 @@ namespace taskt.UI.Supplement_Forms
                     {
                         outputList.Add(newSequence);
                         newSequence = new SequenceCommand();
+                        newSequence.v_Comment = sequenceComment;
                         outputList.Add(cmd);
                     }
                     else
@@ -86,8 +91,10 @@ namespace taskt.UI.Supplement_Forms
             else
                 outputList = _scriptCommandList;
 
-            var commentCommand = new AddCodeCommentCommand();
-            commentCommand.v_Comment = "Sequence Recorded " + DateTime.Now.ToString();
+            var commentCommand = new AddCodeCommentCommand
+            {
+                v_Comment = sequenceComment
+            };
             outputList.Insert(0, commentCommand);
 
             foreach (var cmd in outputList)

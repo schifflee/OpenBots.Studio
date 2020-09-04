@@ -3,6 +3,7 @@ using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using System.Windows.Forms;
 using taskt.Commands;
 using taskt.Core.Command;
@@ -33,6 +34,7 @@ namespace taskt.UI.Forms.Supplement_Forms
         private List<string> _cssSelectors;
         private bool _isRecording;
         private bool _isHookStopped;
+        private SeleniumCreateBrowserCommand _createBrowserCommand;
 
         public frmHTMLElementRecorder(string startURL)
         {
@@ -70,12 +72,33 @@ namespace taskt.UI.Forms.Supplement_Forms
                 GlobalHook.HookStopped += GlobalHook_HookStopped;
                 GlobalHook.StartElementCaptureHook(chkStopOnClick.Checked);
                 wbElementRecorder.DomClick += wbElementRecorder_DomClick;
+                wbElementRecorder.DomKeyDown += WbElementRecorder_DomKeyDown;
+                //wbElementRecorder.DomKeyPress += WbElementRecorder_DomKeyPress;
 
                 if (IsRecordingSequence && _isFirstRecordClick)
                 {
                     _isFirstRecordClick = false;
                     _sequenceCommandList = new List<ScriptCommand>();
-                    BuildCreateBrowserCommand();
+
+                    frmInputBox browserInstanceInputBox = new frmInputBox("Please provide a browser instance name", 
+                                                                          "Browser Instance Name");
+                    browserInstanceInputBox.txtInput.Text = "DefaultBrowser";
+                    browserInstanceInputBox.ShowDialog();
+
+                    if (browserInstanceInputBox.DialogResult == DialogResult.OK)
+                        _browserInstanceName = browserInstanceInputBox.txtInput.Text;
+                    else
+                    {
+                        pbRecord_Click(null, null);
+                        return;
+                    }
+
+                    _createBrowserCommand = new SeleniumCreateBrowserCommand
+                    {
+                        v_InstanceName = _browserInstanceName,
+                        //v_EngineType = "Firefox",
+                        v_URL = wbElementRecorder.Url.ToString()
+                    };
                 }
             }
             else
@@ -86,6 +109,8 @@ namespace taskt.UI.Forms.Supplement_Forms
 
                 //remove wait for left mouse down event
                 wbElementRecorder.DomClick -= wbElementRecorder_DomClick;
+                wbElementRecorder.DomKeyDown -= WbElementRecorder_DomKeyDown;
+                //wbElementRecorder.DomKeyPress -= WbElementRecorder_DomKeyPress;
             }
         }
 
@@ -137,7 +162,7 @@ namespace taskt.UI.Forms.Supplement_Forms
                     SearchParameters.Add("Link Text", _linkText);
 
                     if (IsRecordingSequence)
-                        BuildElementActionCommand();
+                        BuildElementClickActionCommand();
                 }
                 catch (Exception)
                 {
@@ -147,6 +172,19 @@ namespace taskt.UI.Forms.Supplement_Forms
 
             if (chkStopOnClick.Checked)
                 Close();
+        }
+
+        private void WbElementRecorder_DomKeyDown(object sender, DomKeyEventArgs e)
+        {
+            if (IsRecordingSequence && _isRecording)
+                BuildElementSetTextActionCommand(e.KeyCode);
+        }
+
+        private void WbElementRecorder_DomKeyPress(object sender, DomKeyEventArgs e)
+        {
+            if (IsRecordingSequence && _isRecording)
+                BuildElementSetTextActionCommand(e.KeyCode);
+
         }
 
         private void pbHome_Click(object sender, EventArgs e)
@@ -280,19 +318,7 @@ namespace taskt.UI.Forms.Supplement_Forms
 
             return attributeList;
         }
-
-        private void BuildCreateBrowserCommand()
-        {
-            _browserInstanceName = $"SequenceBrowserInstance{DateTime.Now:MM-dd-yyyy hh:mm:ss}";
-
-            var createBrowserCommand = new SeleniumCreateBrowserCommand
-            {
-                v_InstanceName = _browserInstanceName,
-                v_URL = wbElementRecorder.Url.ToString()
-            };
-            _sequenceCommandList.Add(createBrowserCommand);
-        }
-
+        
         private void BuildNavigateToURLCommand(string url)
         {
             var navigateToURLCommand = new SeleniumNavigateToURLCommand
@@ -303,7 +329,22 @@ namespace taskt.UI.Forms.Supplement_Forms
             _sequenceCommandList.Add(navigateToURLCommand);
         }
 
-        private void BuildElementActionCommand()
+        private void BuildElementClickActionCommand()
+        {
+
+            BuildWaitForElementActionCommand();
+
+            var clickElementActionCommand = new SeleniumElementActionCommand
+            {
+                v_InstanceName = _browserInstanceName,
+                v_SeleniumSearchType = "Find Element By XPath",
+                v_SeleniumSearchParameter = _xPath,
+                v_SeleniumElementAction = "Invoke Click"
+            };
+            _sequenceCommandList.Add(clickElementActionCommand);
+        }
+
+        private void BuildWaitForElementActionCommand()
         {
             var waitElementActionCommand = new SeleniumElementActionCommand
             {
@@ -320,25 +361,146 @@ namespace taskt.UI.Forms.Supplement_Forms
             webActionDT.Rows.Add(timeoutRow);
 
             _sequenceCommandList.Add(waitElementActionCommand);
-
-            var clickElementActionCommand = new SeleniumElementActionCommand
-            {
-                v_InstanceName = _browserInstanceName,
-                v_SeleniumSearchType = "Find Element By XPath",
-                v_SeleniumSearchParameter = _xPath,
-                v_SeleniumElementAction = "Invoke Click"
-            };
-            _sequenceCommandList.Add(clickElementActionCommand);
         }
+
+        private void BuildElementSetTextActionCommand(uint key)
+        {
+            bool toUpperCase = false;
+
+            //determine if casing is needed
+            if (GlobalHook.IsKeyDown(Keys.ShiftKey) && GlobalHook.IsKeyToggled(Keys.Capital))
+                toUpperCase = false;
+            else if (!GlobalHook.IsKeyDown(Keys.ShiftKey) && GlobalHook.IsKeyToggled(Keys.Capital))
+                toUpperCase = true;
+            else if (GlobalHook.IsKeyDown(Keys.ShiftKey) && !GlobalHook.IsKeyToggled(Keys.Capital))
+                toUpperCase = true;
+            else if (!GlobalHook.IsKeyDown(Keys.ShiftKey) && !GlobalHook.IsKeyToggled(Keys.Capital))
+                toUpperCase = false;
+
+            var buf = new StringBuilder(256);
+            var keyboardState = new byte[256];
+
+            if (toUpperCase)
+                keyboardState[(int)Keys.ShiftKey] = 0xff;
+
+            GlobalHook.ToUnicode(key, 0, keyboardState, buf, 256, 0);
+
+            var selectedKey = buf.ToString();
+
+            if ((selectedKey == "") || (selectedKey == "\r"))
+                selectedKey = key.ToString();
+
+            //translate key press to sendkeys identifier
+            if (selectedKey == GlobalHook.StopHookKey)
+            {
+                //STOP HOOK
+                GlobalHook.StopHook();
+                return;
+            }
+            else if (selectedKey == "Return")
+                selectedKey = "ENTER";
+            else if (selectedKey == "Space")
+                selectedKey = " ";
+            else if (selectedKey == "OemPeriod")
+                selectedKey = ".";
+            else if (selectedKey == "Oemcomma")
+                selectedKey = ",";
+            else if (selectedKey == "OemQuestion")
+                selectedKey = "?";
+            else if (selectedKey.Contains("ShiftKey"))
+                return;
+
+            //add braces
+            if (selectedKey.Length > 1)
+            {
+                //selectedKey = "{" + selectedKey + "}";
+                return;
+            }
+
+            //generate sendkeys together
+            if ((_sequenceCommandList.Count > 1) && (_sequenceCommandList[_sequenceCommandList.Count - 1] is SeleniumElementActionCommand) 
+                && (_sequenceCommandList[_sequenceCommandList.Count - 1] as SeleniumElementActionCommand).v_SeleniumElementAction == "Set Text")
+            {
+                var lastCreatedSendKeysCommand = (SeleniumElementActionCommand)_sequenceCommandList[_sequenceCommandList.Count - 1];
+
+                if (lastCreatedSendKeysCommand.v_WebActionParameterTable.Rows.Count > 0 && 
+                    lastCreatedSendKeysCommand.v_WebActionParameterTable.Rows[0][1].ToString().Contains("{ENTER}"))
+                {
+                    BuildWaitForElementActionCommand();
+
+                    //build keyboard command
+                    var waitElementActionCommand = new SeleniumElementActionCommand
+                    {
+                        v_InstanceName = _browserInstanceName,
+                        v_SeleniumSearchType = "Find Element By XPath",
+                        v_SeleniumSearchParameter = _xPath,
+                        v_SeleniumElementAction = "Set Text"
+                    };
+
+                    DataTable webActionDT = waitElementActionCommand.v_WebActionParameterTable;
+                    DataRow textToSetRow = webActionDT.NewRow();
+                    textToSetRow["Parameter Name"] = "Text To Set";
+                    textToSetRow["Parameter Value"] = selectedKey;
+                    webActionDT.Rows.Add(textToSetRow);
+
+                    _sequenceCommandList.Add(waitElementActionCommand);
+                }
+                else
+                {
+                    //append chars to previously created command
+                    //this makes editing easier for the user because only 1 command is issued rather than multiples
+                    var previouslyInputChars = lastCreatedSendKeysCommand.v_WebActionParameterTable.Rows[0][1].ToString();
+                    lastCreatedSendKeysCommand.v_WebActionParameterTable.Rows[0][1] = previouslyInputChars + selectedKey;
+                }
+            }
+            else
+            {
+                BuildWaitForElementActionCommand();
+
+                //build keyboard command
+                var waitElementActionCommand = new SeleniumElementActionCommand
+                {
+                    v_InstanceName = _browserInstanceName,
+                    v_SeleniumSearchType = "Find Element By XPath",
+                    v_SeleniumSearchParameter = _xPath,
+                    v_SeleniumElementAction = "Set Text"
+                };
+
+                DataTable webActionDT = waitElementActionCommand.v_WebActionParameterTable;
+                DataRow textToSetRow = webActionDT.NewRow();
+                textToSetRow["Parameter Name"] = "Text To Set";
+                textToSetRow["Parameter Value"] = selectedKey;
+                webActionDT.Rows.Add(textToSetRow);
+
+                _sequenceCommandList.Add(waitElementActionCommand);
+            }
+        }       
 
         private void FinalizeRecording()
         {
+            string sequenceComment = $"Web Sequence Recorded {DateTime.Now}";
+            //_browserInstanceName = $"SequenceBrowserInstance{DateTime.Now:MM-dd-yyyy hh:mm:ss}";
+
+            var commentCommand = new AddCodeCommentCommand
+            {
+                v_Comment = sequenceComment
+            };
+
+            var closeBrowserCommand = new SeleniumCloseBrowserCommand
+            {
+                v_InstanceName = _browserInstanceName
+            };
+          
             var sequenceCommand = new SequenceCommand 
             { 
                 ScriptActions = _sequenceCommandList,
-                v_Comment = $"Web Command Sequence Created On {DateTime.Now}"
+                v_Comment = sequenceComment
             };
+
+            CallBackForm.AddCommandToListView(commentCommand);
+            CallBackForm.AddCommandToListView(_createBrowserCommand);
             CallBackForm.AddCommandToListView(sequenceCommand);
+            CallBackForm.AddCommandToListView(closeBrowserCommand);
         }
     }
 }

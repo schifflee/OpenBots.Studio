@@ -110,8 +110,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmInputBox";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmInputBox";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.btnOkay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             this.ResumeLayout(false);

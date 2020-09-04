@@ -97,7 +97,7 @@ namespace taskt.Utilities
         private static extern IntPtr ChildWindowFromPoint(IntPtr hWndParent, Point Point);
 
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
-        private static extern int ToUnicode(uint virtualKeyCode, uint scanCode, byte[] keyboardState, StringBuilder receivingBuffer, int bufferSize, uint flags);
+        public static extern int ToUnicode(uint virtualKeyCode, uint scanCode, byte[] keyboardState, StringBuilder receivingBuffer, int bufferSize, uint flags);
 
         //enums and structs
         private const int _whMouseLl = 14;
@@ -216,9 +216,7 @@ namespace taskt.Utilities
                 _isKeyPressed = true;
             }
             else if (nCode >= 0 && wParam == (IntPtr)_wmKeyUp)
-            {
                 _isKeyPressed = false;
-            }
 
             return CallNextHookEx(_keyboardHookID, nCode, wParam, lParam);
         }

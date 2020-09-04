@@ -421,12 +421,11 @@ namespace taskt.Commands
 
                     var ieClientLocation = User32Functions.GetWindowPosition(new IntPtr(browserInstance.HWND));
 
-                    SendMouseMoveCommand newMouseMove = new SendMouseMoveCommand();
+                    var mouseX = ((elementXposition + ieClientLocation.left + 10) + userXAdjust).ToString(); // + 10 gives extra padding
+                    var mouseY = ((elementYposition + ieClientLocation.top + 90 + SystemInformation.CaptionHeight) + userYAdjust).ToString(); // +90 accounts for title bar height
+                    var mouseClick = v_WebAction;
 
-                    newMouseMove.v_XMousePosition = ((elementXposition + ieClientLocation.left + 10) + userXAdjust).ToString(); // + 10 gives extra padding
-                    newMouseMove.v_YMousePosition = ((elementYposition + ieClientLocation.top + 90 + SystemInformation.CaptionHeight) + userYAdjust).ToString(); // +90 accounts for title bar height
-                    newMouseMove.v_MouseClick = v_WebAction;
-                    newMouseMove.RunCommand(sender);
+                    User32Functions.SendMouseMove(mouseX, mouseY, v_WebAction);
                     break;
                 case "Set Attribute":
                     string setAttributeName = (from rw in v_WebActionParameterTable.AsEnumerable()

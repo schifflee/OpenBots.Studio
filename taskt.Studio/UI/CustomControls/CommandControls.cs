@@ -199,7 +199,7 @@ namespace taskt.UI.CustomControls
         private static void InputBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Modifiers == Keys.Shift && e.KeyCode == Keys.Enter)
-                return;              
+                return;
             else if (e.KeyCode == Keys.Enter)
                 CurrentEditor.uiBtnAdd_Click(null, null);
         }
@@ -223,7 +223,7 @@ namespace taskt.UI.CustomControls
             dropdownBox.DataBindings.Add("Text", parent, parameterName, false, DataSourceUpdateMode.OnPropertyChanged);
             dropdownBox.Height = 30;
             dropdownBox.Width = 300;
-            dropdownBox.Name = parameterName;       
+            dropdownBox.Name = parameterName;
 
             var variableProperties = parent.GetType().GetProperties().Where(f => f.Name == parameterName).FirstOrDefault();
             var propertyAttributesAssigned = variableProperties.GetCustomAttributes(typeof(PropertyUISelectionOption), true);
@@ -243,7 +243,7 @@ namespace taskt.UI.CustomControls
         private static void DropdownBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != (char)Keys.Return)
-                 e.Handled = true;
+                e.Handled = true;
         }
 
         private static void DropdownBox_KeyDown(object sender, KeyEventArgs e)
@@ -529,7 +529,7 @@ namespace taskt.UI.CustomControls
         {
             //create element selector form
             frmElementSelector newElementSelector = new frmElementSelector();
-            
+
             //get copy of user element and append system elements, then load to combobox
             var elementList = CurrentEditor.ScriptElements.Select(f => "(" + f.ElementType.Description() + ") " + f.ElementName).ToList();
 
@@ -584,7 +584,7 @@ namespace taskt.UI.CustomControls
                 }
             }
         }
-		private static void ShowFileSelector(object sender, EventArgs e, IfrmCommandEditor editor)
+        private static void ShowFileSelector(object sender, EventArgs e, IfrmCommandEditor editor)
         {
             OpenFileDialog ofd = new OpenFileDialog();
 
@@ -602,7 +602,7 @@ namespace taskt.UI.CustomControls
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
 
-            if(fbd.ShowDialog() == DialogResult.OK)
+            if (fbd.ShowDialog() == DialogResult.OK)
             {
                 CommandItemControl inputBox = (CommandItemControl)sender;
                 TextBox targetTextBox = (TextBox)inputBox.Tag;
@@ -900,7 +900,7 @@ namespace taskt.UI.CustomControls
                                  .ToList();
 
             var cmdAssemblyPaths = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*Commands.dll");
-            foreach(var path in cmdAssemblyPaths)
+            foreach (var path in cmdAssemblyPaths)
             {
                 commandClasses.AddRange(Assembly.LoadFrom(path).GetTypes()
                                  .Where(t => t.Namespace == "taskt.Commands")

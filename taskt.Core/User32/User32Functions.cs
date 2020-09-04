@@ -405,5 +405,17 @@ namespace taskt.Core.User32
 
             return screenshot;
         }
+
+        public static void SendMouseMove(string xPosition, string yPosition, string clickType)
+        {
+            if (!int.TryParse(xPosition, out int xPos))
+                throw new Exception("X Position Invalid - " + xPosition);
+
+            if (!int.TryParse(yPosition, out int yPos))
+                throw new Exception("Y Position Invalid - " + yPosition);
+
+            SetCursorPosition(xPos, yPos);
+            SendMouseClick(clickType, xPos, yPos);
+        }
     }
 }

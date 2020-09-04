@@ -72,14 +72,7 @@ namespace taskt.Commands
             var mouseX = v_XMousePosition.ConvertUserVariableToString(engine);
             var mouseY = v_YMousePosition.ConvertUserVariableToString(engine);
 
-            if (!int.TryParse(mouseX, out int xPos))
-                throw new Exception("X Position Invalid - " + v_XMousePosition);
-
-            if (!int.TryParse(mouseY, out int yPos))
-                throw new Exception("Y Position Invalid - " + v_YMousePosition);
-
-            User32Functions.SetCursorPosition(xPos, yPos);
-            User32Functions.SendMouseClick(v_MouseClick, xPos, yPos);           
+            User32Functions.SendMouseMove(mouseX, mouseY, v_MouseClick);
         }
 
         public override List<Control> Render(IfrmCommandEditor editor)

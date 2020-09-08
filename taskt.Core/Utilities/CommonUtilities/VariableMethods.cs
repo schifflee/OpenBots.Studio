@@ -33,20 +33,6 @@ namespace taskt.Core.Utilities.CommonUtilities
             variableSearchList.AddRange(variableList);
             variableSearchList.AddRange(systemVariables);
 
-            var elementSearchList = engine.ElementList;
-
-            //check if it's an element first
-            if (userInputString.StartsWith("<") && userInputString.EndsWith(">"))
-            {
-                string potentialElement = userInputString.TrimStart('<').TrimEnd('>');
-                var matchingElement = elementSearchList.Where(elem => elem.ElementName == potentialElement).FirstOrDefault();
-                if (matchingElement != null)
-                {
-                    //if element found, store it in userInputString and continue checking for variables
-                    userInputString = matchingElement.ElementValue;
-                }
-            }
-
             //variable markers
             var startVariableMarker = "{";
             var endVariableMarker = "}";

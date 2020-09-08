@@ -214,7 +214,7 @@ namespace taskt.Engine
 
                         if (elementFound != null)
                         {
-                            elementFound.ElementType = elem.ElementType;
+                            //elementFound.ElementType = elem.ElementType;
                             elementFound.ElementValue = elem.ElementValue;
                         }
                     }

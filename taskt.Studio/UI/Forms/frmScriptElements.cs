@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 using taskt.Core.Script;
 using taskt.UI.Forms.Supplement_Forms;
+using System.Linq;
 
 namespace taskt.UI.Forms
 {
@@ -11,10 +13,7 @@ namespace taskt.UI.Forms
         public List<ScriptElement> ScriptElements { get; set; }
         public string ScriptName { get; set; }
         private TreeNode _userElementParentNode;
-        private string _leadingValue = "Default Value: ";
         private string _emptyValue = "(no default value)";
-        private string _leadingType = "Default Type: ";
-        private string _emptyType = "(no default type)";
 
         #region Initialization and Form Load
         public frmScriptElements()
@@ -37,9 +36,7 @@ namespace taskt.UI.Forms
 
             //add each item to parent
             foreach (var item in elements)
-            {
-                AddUserElementNode(parentNode, "<" + item.ElementName + ">", item.ElementType, item.ElementValue);
-            }
+                AddUserElementNode(parentNode, "<" + item.ElementName + ">", item.ElementValue);
 
             //add parent to treeview
             tvScriptElements.Nodes.Add(parentNode);
@@ -52,23 +49,7 @@ namespace taskt.UI.Forms
 
         #region Add/Cancel Buttons
         private void uiBtnOK_Click(object sender, EventArgs e)
-        {
-            //remove all elements
-            ScriptElements.Clear();
-
-            //loop each element and add
-            for (int i = 0; i < _userElementParentNode.Nodes.Count; i++)
-            {
-                //get name and value
-                var elementName = _userElementParentNode.Nodes[i].Text.Replace("<", "").Replace(">", "");
-                var elementType = (ScriptElementType)Enum.Parse(typeof(ScriptElementType), _userElementParentNode.Nodes[i].Nodes[0].Text
-                                                         .Replace(_leadingType, "").Replace(_emptyType, "").Replace(" ", ""));
-                var elementValue = _userElementParentNode.Nodes[i].Nodes[1].Text.Replace(_leadingValue, "").Replace(_emptyValue, "");
-
-                //add to list
-                ScriptElements.Add(new ScriptElement() { ElementName = elementName, ElementType = elementType, ElementValue = elementValue });
-            }
-
+        {          
             //return success result
             DialogResult = DialogResult.OK;
         }
@@ -92,15 +73,14 @@ namespace taskt.UI.Forms
             //validate if user added element
             if (addElementForm.ShowDialog() == DialogResult.OK)
             {
-                ScriptElementType addElementFormType = (ScriptElementType)Enum.Parse(typeof(ScriptElementType),
-                                                        addElementForm.cbxElementType.SelectedItem.ToString().Replace(" ", ""));
                 //add newly edited node
-                if (addElementFormType == ScriptElementType.CSSSelector)
-                    AddUserElementNode(_userElementParentNode, addElementForm.txtElementName.Text, addElementFormType,
-                                       addElementForm.cbxDefaultValue.Text);
-                else
-                    AddUserElementNode(_userElementParentNode, addElementForm.txtElementName.Text, addElementFormType, 
-                                       addElementForm.txtDefaultValue.Text);
+                AddUserElementNode(_userElementParentNode, addElementForm.txtElementName.Text, addElementForm.ElementValueDT);
+
+                ScriptElements.Add(new ScriptElement
+                {
+                    ElementName = addElementForm.txtElementName.Text.Replace("<", "").Replace(">", ""),
+                    ElementValue = addElementForm.ElementValueDT
+                });
             }
         }
 
@@ -108,48 +88,39 @@ namespace taskt.UI.Forms
         {
             //handle double clicks outside
             if (tvScriptElements.SelectedNode == null)
-            {
                 return;
-            }
 
             //if parent was selected return
             if (tvScriptElements.SelectedNode.Parent == null)
-            {
-                //user selected top parent
                 return;
-            }
 
             //top node check
             var topNode = GetSelectedTopNode();
 
             if (topNode.Text != "My Task Elements")
-            {
                 return;
-            }
 
-            string elementName, elementValue;
-            ScriptElementType elementType;
+            ScriptElement element;
+            string elementName;
+            DataTable elementValue;
             TreeNode parentNode;
 
             if(tvScriptElements.SelectedNode.Nodes.Count == 0)
             {
                 parentNode = tvScriptElements.SelectedNode.Parent;
-                elementName = tvScriptElements.SelectedNode.Parent.Text;
-                elementType = (ScriptElementType)Enum.Parse(typeof(ScriptElementType), tvScriptElements.SelectedNode.Parent.Nodes[0].Text
-                                                     .Replace(_leadingType, "").Replace(_emptyType, "").Replace(" ", ""));
-                elementValue = tvScriptElements.SelectedNode.Parent.Nodes[1].Text.Replace(_leadingValue, "").Replace(_emptyValue, "");
+                elementName = tvScriptElements.SelectedNode.Parent.Text;               
             }
             else
             {
                 parentNode = tvScriptElements.SelectedNode;
                 elementName = tvScriptElements.SelectedNode.Text;
-                elementType = (ScriptElementType)Enum.Parse(typeof(ScriptElementType), tvScriptElements.SelectedNode.Nodes[0].Text
-                                                     .Replace(_leadingType, "").Replace(_emptyType, "").Replace(" ", ""));
-                elementValue = tvScriptElements.SelectedNode.Nodes[1].Text.Replace(_leadingValue, "").Replace(_emptyValue, "");
             }
 
+            element = ScriptElements.Where(x => x.ElementName == elementName.Replace("<", "").Replace(">", "")).FirstOrDefault();
+            elementValue = element.ElementValue;
+
             //create element editing form
-            frmAddElement addElementForm = new frmAddElement(elementName, elementType, elementValue);
+            frmAddElement addElementForm = new frmAddElement(elementName, elementValue);
             addElementForm.ScriptElements = ScriptElements;
 
             ExpandUserElementNode();
@@ -159,39 +130,34 @@ namespace taskt.UI.Forms
             {
                 //remove parent
                 parentNode.Remove();
-
-                ScriptElementType addElementFormType = (ScriptElementType)Enum.Parse(typeof(ScriptElementType), 
-                                                        addElementForm.cbxElementType.SelectedItem.ToString().Replace(" ", ""));
-
-                //add newly edited node
-                if (addElementFormType == ScriptElementType.CSSSelector)
-                    AddUserElementNode(_userElementParentNode, addElementForm.txtElementName.Text, addElementFormType,
-                                       addElementForm.cbxDefaultValue.Text);
-                else
-                    AddUserElementNode(_userElementParentNode, addElementForm.txtElementName.Text, addElementFormType, 
-                                       addElementForm.txtDefaultValue.Text);
+                AddUserElementNode(_userElementParentNode, addElementForm.txtElementName.Text, addElementForm.ElementValueDT);
             }
         }
 
-        private void AddUserElementNode(TreeNode parentNode, string elementName, ScriptElementType elementType, string elementText)
+        private void AddUserElementNode(TreeNode parentNode, string elementName, DataTable elementValue)
         {
             //add new node and sort
             var childNode = new TreeNode(elementName);
 
-            if (elementText == string.Empty)
+           for (int i = 0; i < elementValue.Rows.Count; i++)
             {
-                elementText = _emptyValue;
+                if (!string.IsNullOrEmpty(elementValue.Rows[i][2].ToString()))
+                {
+                    TreeNode elementValueNode = new TreeNode($"ValueNode{i}");
+                    elementValueNode.Text = $"{elementValue.Rows[i][1]} - {elementValue.Rows[i][2]}";
+                    childNode.Nodes.Add(elementValueNode);
+                }               
+            }           
+
+           if (childNode.Nodes.Count == 0)
+            {
+                TreeNode elementValueNode = new TreeNode($"ValueNodeEmpty");
+                elementValueNode.Text = _emptyValue;
+                childNode.Nodes.Add(elementValueNode);
             }
 
-            TreeNode elementTypeNode = new TreeNode("TypeNode");
-            elementTypeNode.Text = _leadingType + elementType.Description();
-            TreeNode elementValueNode = new TreeNode("ValueNode");
-            elementValueNode.Text = _leadingValue + elementText;
-
-            childNode.Nodes.Add(elementTypeNode);
-            childNode.Nodes.Add(elementValueNode);
-
             parentNode.Nodes.Add(childNode);
+
             tvScriptElements.Sort();
             ExpandUserElementNode();
         }
@@ -199,18 +165,14 @@ namespace taskt.UI.Forms
         private void ExpandUserElementNode()
         {
             if (_userElementParentNode != null)
-            {
                 _userElementParentNode.ExpandAll();
-            }
         }
 
         private void tvScriptElements_KeyDown(object sender, KeyEventArgs e)
         {
             //handling outside
             if (tvScriptElements.SelectedNode == null)
-            {
                 return;
-            }
 
             //if parent was selected return
             if (tvScriptElements.SelectedNode.Parent == null)
@@ -223,9 +185,7 @@ namespace taskt.UI.Forms
             var topNode = GetSelectedTopNode();
 
             if (topNode.Text != "My Task Elements")
-            {
                 return;
-            }
 
             //if user selected delete
             if (e.KeyCode == Keys.Delete)
@@ -233,13 +193,9 @@ namespace taskt.UI.Forms
                 //determine which node is the parent
                 TreeNode parentNode;
                 if (tvScriptElements.SelectedNode.Nodes.Count == 0)
-                {
                     parentNode = tvScriptElements.SelectedNode.Parent;
-                }
                 else
-                {
                     parentNode = tvScriptElements.SelectedNode;
-                }
 
                 //remove parent node
                 parentNode.Remove();
@@ -249,10 +205,10 @@ namespace taskt.UI.Forms
         private TreeNode GetSelectedTopNode()
         {
             TreeNode node = tvScriptElements.SelectedNode;
+
             while (node.Parent != null)
-            {
                 node = node.Parent;
-            }
+
             return node;
         }
         #endregion

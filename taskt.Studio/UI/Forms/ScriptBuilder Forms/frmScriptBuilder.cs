@@ -545,11 +545,14 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         #region TreeView Events
         private void tvCommands_DoubleClick(object sender, EventArgs e)
         {
+            //handle double clicks outside
+            if (tvCommands.SelectedNode == null)
+                return;
+
             //exit if parent node is clicked
             if (tvCommands.SelectedNode.Parent == null)
-            {
                 return;
-            }
+
             AddNewCommand(tvCommands.SelectedNode.Parent.Text + " - " + tvCommands.SelectedNode.Text);
         }
 

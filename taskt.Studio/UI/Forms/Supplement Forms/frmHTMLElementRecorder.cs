@@ -80,7 +80,6 @@ namespace taskt.UI.Forms.Supplement_Forms
                 GlobalHook.StartElementCaptureHook(chkStopOnClick.Checked);
                 wbElementRecorder.DomClick += wbElementRecorder_DomClick;
                 wbElementRecorder.DomKeyDown += WbElementRecorder_DomKeyDown;
-                //wbElementRecorder.DomKeyPress += WbElementRecorder_DomKeyPress;
 
                 if (IsRecordingSequence && _isFirstRecordClick)
                 {
@@ -103,7 +102,6 @@ namespace taskt.UI.Forms.Supplement_Forms
                     _createBrowserCommand = new SeleniumCreateBrowserCommand
                     {
                         v_InstanceName = _browserInstanceName,
-                        //v_EngineType = "Firefox",
                         v_URL = wbElementRecorder.Url.ToString()
                     };
                 }
@@ -117,7 +115,6 @@ namespace taskt.UI.Forms.Supplement_Forms
                 //remove wait for left mouse down event
                 wbElementRecorder.DomClick -= wbElementRecorder_DomClick;
                 wbElementRecorder.DomKeyDown -= WbElementRecorder_DomKeyDown;
-                //wbElementRecorder.DomKeyPress -= WbElementRecorder_DomKeyPress;
             }
         }
 
@@ -188,13 +185,6 @@ namespace taskt.UI.Forms.Supplement_Forms
                 BuildElementSetTextActionCommand(e.KeyCode);
         }
 
-        private void WbElementRecorder_DomKeyPress(object sender, DomKeyEventArgs e)
-        {
-            if (IsRecordingSequence && _isRecording)
-                BuildElementSetTextActionCommand(e.KeyCode);
-
-        }
-
         private void pbHome_Click(object sender, EventArgs e)
         {
             wbElementRecorder.Navigate(_homeURL);
@@ -260,34 +250,18 @@ namespace taskt.UI.Forms.Supplement_Forms
 
         private void pbSave_Click(object sender, EventArgs e)
         {
-            Dictionary<ScriptElementType, object> elementValueDict = new Dictionary<ScriptElementType, object>()
-            {
-                { ScriptElementType.XPath, _xPath },
-                { ScriptElementType.Name, _name },
-                { ScriptElementType.ID, _id },
-                { ScriptElementType.TagName, _tagName },
-                { ScriptElementType.ClassName, _className },
-                { ScriptElementType.LinkText, _linkText },
-                { ScriptElementType.CSSSelector, _cssSelectors }
-            };
 
-            frmAddElement addElementForm = new frmAddElement();
+
+            frmAddElement addElementForm = new frmAddElement("", SearchParameters);
             addElementForm.ScriptElements = ScriptElements;
-            addElementForm.ElementValueDict = elementValueDict;
             addElementForm.ShowDialog();
 
             if (addElementForm.DialogResult == DialogResult.OK)
             {
-                ScriptElementType elementType = (ScriptElementType)Enum.Parse(typeof(ScriptElementType),
-                                                addElementForm.cbxElementType.SelectedItem.ToString().Replace(" ", ""));
-
-
                 ScriptElement newElement = new ScriptElement()
                 {
                     ElementName = addElementForm.txtElementName.Text.Replace("<", "").Replace(">", ""),
-                    ElementType = elementType,
-                    ElementValue = elementType == ScriptElementType.CSSSelector ? addElementForm.cbxDefaultValue.Text 
-                                                                                : addElementForm.txtDefaultValue.Text
+                    ElementValue = addElementForm.ElementValueDT
                 };
 
                 ScriptElements.Add(newElement);
@@ -301,9 +275,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             scriptElementForm.ShowDialog();
 
             if (scriptElementForm.DialogResult == DialogResult.OK)
-            {
                 ScriptElements = scriptElementForm.ScriptElements;
-            }
         }
 
         private void tbURL_KeyDown(object sender, KeyEventArgs e)
@@ -347,6 +319,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             var attributes = element.Attributes;
             string tagName = element.TagName.ToLower();
             List<string> attributeList = new List<string>();
+
             foreach (var attribute in attributes)
                 attributeList.Add($"{tagName}[{attribute.NodeName}='{attribute.NodeValue}']");
 
@@ -444,10 +417,7 @@ namespace taskt.UI.Forms.Supplement_Forms
 
             //add braces
             if (selectedKey.Length > 1)
-            {
-                //selectedKey = "{" + selectedKey + "}";
                 return;
-            }
 
             //generate sendkeys together
             if ((_sequenceCommandList.Count > 1) && (_sequenceCommandList[_sequenceCommandList.Count - 1] is SeleniumElementActionCommand) 
@@ -509,7 +479,6 @@ namespace taskt.UI.Forms.Supplement_Forms
         private void FinalizeRecording()
         {
             string sequenceComment = $"Web Sequence Recorded {DateTime.Now}";
-            //_browserInstanceName = $"SequenceBrowserInstance{DateTime.Now:MM-dd-yyyy hh:mm:ss}";
 
             var commentCommand = new AddCodeCommentCommand
             {

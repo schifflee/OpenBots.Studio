@@ -143,8 +143,6 @@
     <Compile Include="Script\Script.cs" />
     <Compile Include="Script\ScriptAction.cs" />
     <Compile Include="Script\ScriptElement.cs" />
-    <Compile Include="Script\ScriptElementExtensions.cs" />
-    <Compile Include="Script\ScriptElementType.cs" />
     <Compile Include="Script\ScriptObject.cs" />
     <Compile Include="Script\ScriptVariable.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />

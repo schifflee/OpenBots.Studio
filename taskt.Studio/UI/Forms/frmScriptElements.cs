@@ -23,7 +23,8 @@ namespace taskt.UI.Forms
 
         private void frmScriptElements_Load(object sender, EventArgs e)
         {
-           //initialize
+            //initialize
+            ScriptElements = ScriptElements.OrderBy(x => x.ElementName).ToList();
             _userElementParentNode = InitializeNodes("My Task Elements", ScriptElements);
             ExpandUserElementNode();
             lblMainLogo.Text = ScriptName + " elements";
@@ -136,7 +137,7 @@ namespace taskt.UI.Forms
 
         private void AddUserElementNode(TreeNode parentNode, string elementName, DataTable elementValue)
         {
-            //add new node and sort
+            //add new node
             var childNode = new TreeNode(elementName);
 
            for (int i = 0; i < elementValue.Rows.Count; i++)
@@ -144,7 +145,9 @@ namespace taskt.UI.Forms
                 if (!string.IsNullOrEmpty(elementValue.Rows[i][2].ToString()))
                 {
                     TreeNode elementValueNode = new TreeNode($"ValueNode{i}");
-                    elementValueNode.Text = $"{elementValue.Rows[i][1]} - {elementValue.Rows[i][2]}";
+                    string enabled = elementValue.Rows[i][0].ToString();
+                    enabled = enabled == "True" ? "Enabled" : "Disabled";
+                    elementValueNode.Text = $"{enabled} - {elementValue.Rows[i][1]} - {elementValue.Rows[i][2]}";
                     childNode.Nodes.Add(elementValueNode);
                 }               
             }           
@@ -157,15 +160,13 @@ namespace taskt.UI.Forms
             }
 
             parentNode.Nodes.Add(childNode);
-
-            tvScriptElements.Sort();
             ExpandUserElementNode();
         }
 
         private void ExpandUserElementNode()
         {
             if (_userElementParentNode != null)
-                _userElementParentNode.ExpandAll();
+                _userElementParentNode.Expand();
         }
 
         private void tvScriptElements_KeyDown(object sender, KeyEventArgs e)
@@ -198,6 +199,9 @@ namespace taskt.UI.Forms
                     parentNode = tvScriptElements.SelectedNode;
 
                 //remove parent node
+                string elementName = parentNode.Text.Replace("<", "").Replace(">", "");
+                ScriptElement element = ScriptElements.Where(x => x.ElementName == elementName).FirstOrDefault();
+                ScriptElements.Remove(element);
                 parentNode.Remove();
             }
         }

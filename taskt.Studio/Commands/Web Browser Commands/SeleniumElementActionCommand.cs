@@ -55,7 +55,8 @@ namespace taskt.Commands
                      "\n\tCSS Selector: [attribute=value]" +
                      "\n\tLink Text: https://www.mylink.com/"
                     )]
-        [Remarks("If multiple parameters are enabled, they will be used in the order that they are listed until an element is found.")]
+        [Remarks("If multiple parameters are enabled, they will be used in the order that they are listed until an element is found."+
+                 "Drag and drop rows to reorder the search parameters.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowElementHelper)] 
         public DataTable v_SeleniumSearchParameters { get; set; }
 
@@ -116,6 +117,13 @@ namespace taskt.Commands
         [NonSerialized]
         private DataGridView _searchParametersGridViewHelper;
 
+        [NonSerialized]
+        private int _indexOfItemUnderMouseToDrag = -1;
+        [NonSerialized]
+        private int _indexOfItemUnderMouseToDrop = -1;
+        [NonSerialized]
+        private Rectangle _dragBoxFromMouseDown = Rectangle.Empty;
+
         public SeleniumElementActionCommand()
         {
             CommandName = "SeleniumElementActionCommand";
@@ -142,7 +150,7 @@ namespace taskt.Commands
             //create search param grid
             _searchParametersGridViewHelper = new DataGridView();
             _searchParametersGridViewHelper.Width = 400;
-            _searchParametersGridViewHelper.Height = 150;
+            _searchParametersGridViewHelper.Height = 250;
             _searchParametersGridViewHelper.DataBindings.Add("DataSource", this, "v_SeleniumSearchParameters", false, DataSourceUpdateMode.OnPropertyChanged);
 
             DataGridViewCheckBoxColumn enabled = new DataGridViewCheckBoxColumn();
@@ -165,6 +173,12 @@ namespace taskt.Commands
             _searchParametersGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _searchParametersGridViewHelper.AllowUserToAddRows = true;
             _searchParametersGridViewHelper.AllowUserToDeleteRows = true;
+            _searchParametersGridViewHelper.AllowUserToResizeRows = false;
+            _searchParametersGridViewHelper.DragDrop += new DragEventHandler(SearchParametersGridViewHelper_DragDrop);
+            _searchParametersGridViewHelper.DragOver += new DragEventHandler(SearchParametersGridViewHelper_DragOver);
+            _searchParametersGridViewHelper.MouseDown += new MouseEventHandler(SearchParametersGridViewHelper_MouseDown);
+            _searchParametersGridViewHelper.MouseMove += new MouseEventHandler(SearchParametersGridViewHelper_MouseMove);
+            _searchParametersGridViewHelper.MouseUp += new MouseEventHandler(SearchParametersGridViewHelper_MouseUp);
 
             _elementsGridViewHelper = new DataGridView();
             _elementsGridViewHelper.AllowUserToAddRows = true;
@@ -176,7 +190,6 @@ namespace taskt.Commands
             _elementsGridViewHelper.AllowUserToAddRows = false;
             _elementsGridViewHelper.AllowUserToDeleteRows = false;
             _elementsGridViewHelper.AllowUserToResizeRows = false;
-            //_elementsGridViewHelper.MouseEnter += _elementsGridViewHelper_MouseEnter;
         }      
 
         public override void RunCommand(object sender)
@@ -561,8 +574,7 @@ namespace taskt.Commands
 
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
 
-            
-
+            _searchParametersGridViewHelper.AllowDrop = true;
             if (v_SeleniumSearchParameters.Rows.Count == 0)
             {
                 v_SeleniumSearchParameters.Rows.Add(true, "XPath", "");
@@ -607,19 +619,9 @@ namespace taskt.Commands
                                           where rw.Field<string>("Enabled") == "True"
                                           select rw.Field<string>("Parameter Value")).FirstOrDefault();
 
-            searchParameterName = searchParameterName == null ? "" : searchParameterName;
 
-            if (searchParameterValue != null && searchParameterValue.Contains("<") 
-                                             && searchParameterValue.Contains(">"))
-            {
-                var splitSearchType = searchParameterName.Split(' ').ToList();
-                splitSearchType.Insert(2, searchParameterValue);
-                string joinedSearchType = string.Join(" ", splitSearchType);
-
-                return base.GetDisplayValue() + $" [{joinedSearchType} - {v_SeleniumElementAction} - Instance Name '{v_InstanceName}']";
-            }
-            else
-                return base.GetDisplayValue() + $" [{searchParameterName} - {v_SeleniumElementAction} - Instance Name '{v_InstanceName}']";
+            return base.GetDisplayValue() + $" [{v_SeleniumElementAction} - {v_SeleniumSearchOption} by {searchParameterName}" + 
+                                            $" '{searchParameterValue}' - Instance Name '{v_InstanceName}']";
         }
 
         public bool ElementExists(object sender, string searchType, string elementName)
@@ -915,14 +917,77 @@ namespace taskt.Commands
             }
         }
 
-        //public override void Refresh(UI.Forms.frmCommandEditor editor)
-        //{
-        //    //seleniumAction_SelectionChangeCommitted(null, null);
-        //}
+        #region drag/drop events
+        private void SearchParametersGridViewHelper_MouseDown(object sender, MouseEventArgs e)
+        {
+            var hitTest = _searchParametersGridViewHelper.HitTest(e.X, e.Y);
+            if (hitTest.Type != DataGridViewHitTestType.Cell)
+                return;
 
-        //private void ElementsGridViewHelper_MouseEnter(object sender, EventArgs e)
-        //{
-        //    seleniumAction_SelectionChangeCommitted(null, null);
-        //}
+            _indexOfItemUnderMouseToDrag = hitTest.RowIndex;
+            if (_indexOfItemUnderMouseToDrag > -1)
+            {
+                Size dragSize = SystemInformation.DragSize;
+                _dragBoxFromMouseDown = new Rectangle(new Point(e.X - (dragSize.Width / 2), e.Y - (dragSize.Height / 2)), dragSize);
+            }
+            else
+                _dragBoxFromMouseDown = Rectangle.Empty;
+        }
+
+        private void SearchParametersGridViewHelper_MouseUp(object sender, MouseEventArgs e)
+        {
+            _dragBoxFromMouseDown = Rectangle.Empty;
+        }
+
+        private void SearchParametersGridViewHelper_MouseMove(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & MouseButtons.Left) != MouseButtons.Left)
+                return;
+            if (_dragBoxFromMouseDown == Rectangle.Empty || _dragBoxFromMouseDown.Contains(e.X, e.Y))
+                return;
+            if (_indexOfItemUnderMouseToDrag < 0)
+                return;          
+
+            var row = _searchParametersGridViewHelper.Rows[_indexOfItemUnderMouseToDrag];
+            _searchParametersGridViewHelper.DoDragDrop(row, DragDropEffects.All);
+
+            //Clear
+            _searchParametersGridViewHelper.ClearSelection();
+            //Set
+            if (_indexOfItemUnderMouseToDrop > -1)
+                _searchParametersGridViewHelper.Rows[_indexOfItemUnderMouseToDrop].Selected = true;
+        }
+
+        private void SearchParametersGridViewHelper_DragOver(object sender, DragEventArgs e)
+        {
+            Point p = _searchParametersGridViewHelper.PointToClient(new Point(e.X, e.Y));
+            var hitTest = _searchParametersGridViewHelper.HitTest(p.X, p.Y);
+            if (hitTest.Type != DataGridViewHitTestType.Cell || hitTest.RowIndex == _indexOfItemUnderMouseToDrag)
+            {
+                e.Effect = DragDropEffects.None;
+                return;
+            }
+            e.Effect = DragDropEffects.Move;
+        }
+
+        private void SearchParametersGridViewHelper_DragDrop(object sender, DragEventArgs e)
+        {
+            Point p = _searchParametersGridViewHelper.PointToClient(new Point(e.X, e.Y));
+            var hitTest = _searchParametersGridViewHelper.HitTest(p.X, p.Y);
+            if (hitTest.Type != DataGridViewHitTestType.Cell || hitTest.RowIndex == _indexOfItemUnderMouseToDrag + 1)
+                return;
+
+            _indexOfItemUnderMouseToDrop = hitTest.RowIndex;
+
+            var tempRow = v_SeleniumSearchParameters.NewRow();
+            tempRow.ItemArray = v_SeleniumSearchParameters.Rows[_indexOfItemUnderMouseToDrag].ItemArray;
+            v_SeleniumSearchParameters.Rows.RemoveAt(_indexOfItemUnderMouseToDrag);
+
+            if (_indexOfItemUnderMouseToDrag < _indexOfItemUnderMouseToDrop)
+                _indexOfItemUnderMouseToDrop--;
+
+            v_SeleniumSearchParameters.Rows.InsertAt(tempRow, _indexOfItemUnderMouseToDrop);
+        }
+        #endregion
     }
 }

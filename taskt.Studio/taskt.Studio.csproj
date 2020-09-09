@@ -235,6 +235,12 @@
     <Compile Include="Commands\Task Commands\RunTaskCommand.cs" />
     <Compile Include="Commands\Task Commands\StopCurrentTaskCommand.cs" />
     <Compile Include="UI\DTOs\SteppingCommandsItem.cs" />
+    <Compile Include="UI\Forms\Supplement Forms\frmHTMLElementRecorderSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\Supplement Forms\frmHTMLElementRecorderSettings.Designer.cs">
+      <DependentUpon>frmHTMLElementRecorderSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\GlobalHook.cs" />
     <Compile Include="Utilities\ManifestUpdate.cs" />
     <Compile Include="Commands\API Commands\ExecuteRESTAPICommand.cs" />
@@ -591,6 +597,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\frmScriptElements.resx">
       <DependentUpon>frmScriptElements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmHTMLElementRecorderSettings.resx">
+      <DependentUpon>frmHTMLElementRecorderSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\Supplement Forms\frmScreenRecorder.resx">
       <DependentUpon>frmScreenRecorder.cs</DependentUpon>

@@ -9,6 +9,7 @@ using taskt.Commands;
 using taskt.Core.Command;
 using taskt.Core.Script;
 using taskt.UI.Forms.ScriptBuilder_Forms;
+using taskt.UI.Supplement_Forms;
 using taskt.Utilities;
 
 namespace taskt.UI.Forms.Supplement_Forms
@@ -23,6 +24,8 @@ namespace taskt.UI.Forms.Supplement_Forms
         public frmScriptBuilder CallBackForm { get; set; }
         public List<ScriptCommand> _sequenceCommandList;
         private string _browserInstanceName;
+        private string _browserEngineType;
+        private DataTable _parameterSettings;
         private bool _isFirstRecordClick;
         private string _homeURL = "https://www.google.com/"; //TODO replace with openbots url;
         private string _xPath;
@@ -86,24 +89,32 @@ namespace taskt.UI.Forms.Supplement_Forms
                     _isFirstRecordClick = false;
                     _sequenceCommandList = new List<ScriptCommand>();
 
-                    frmInputBox browserInstanceInputBox = new frmInputBox("Please provide a browser instance name", 
-                                                                          "Browser Instance Name");
-                    browserInstanceInputBox.txtInput.Text = "DefaultBrowser";
-                    browserInstanceInputBox.ShowDialog();
+                    frmHTMLElementRecorderSettings settingsForm = new frmHTMLElementRecorderSettings();
+                    settingsForm.txtBrowserInstanceName.Text = "DefaultBrowser";
+                    settingsForm.cbxBrowserEngineType.SelectedIndex = 0;
+                    settingsForm.ShowDialog();
 
-                    if (browserInstanceInputBox.DialogResult == DialogResult.OK)
-                        _browserInstanceName = browserInstanceInputBox.txtInput.Text;
+                    if (settingsForm.DialogResult == DialogResult.OK)
+                    {
+                        _browserInstanceName = settingsForm.txtBrowserInstanceName.Text;
+                        _browserEngineType = settingsForm.cbxBrowserEngineType.SelectedItem.ToString();
+                        _parameterSettings = settingsForm.ParameterSettingsDT;
+                    }
                     else
                     {
                         pbRecord_Click(null, null);
                         return;
                     }
 
-                    _createBrowserCommand = new SeleniumCreateBrowserCommand
+                    if (_browserEngineType != "None")
                     {
-                        v_InstanceName = _browserInstanceName,
-                        v_URL = wbElementRecorder.Url.ToString()
-                    };
+                        _createBrowserCommand = new SeleniumCreateBrowserCommand
+                        {
+                            v_InstanceName = _browserInstanceName,
+                            v_EngineType = _browserEngineType,
+                            v_URL = wbElementRecorder.Url.ToString()
+                        };
+                    }                  
                 }
             }
             else
@@ -155,19 +166,52 @@ namespace taskt.UI.Forms.Supplement_Forms
 
                     LastItemClicked = $"[XPath:{_xPath}].[ID:{_id}].[Name:{_name}].[Tag Name:{_tagName}].[Class:{_className}].[Link Text:{_linkText}].[CSS Selector:{cssSelectorString}]";
                     lblSubHeader.Text = LastItemClicked;
-
-                    SearchParameters.Rows.Clear();
-                    SearchParameters.Rows.Add(true, "XPath", _xPath);
-                    SearchParameters.Rows.Add(false, "ID", _id);
-                    SearchParameters.Rows.Add(false, "Name", _name);
-                    SearchParameters.Rows.Add(false, "Tag Name", _tagName);
-                    SearchParameters.Rows.Add(false, "Class Name", _className);
-                    SearchParameters.Rows.Add(false, "Link Text", _linkText);
-                    for (int i = 0; i < _cssSelectors.Count; i++)
-                        SearchParameters.Rows.Add(false, $"CSS Selector {i+1}", _cssSelectors[i]);
-
+                   
                     if (IsRecordingSequence)
+                    {
+                        SearchParameters.Rows.Clear();
+                        foreach (DataRow row in _parameterSettings.Rows)
+                        {
+                            switch (row[1].ToString())
+                            {
+                                case "XPath":
+                                    SearchParameters.Rows.Add(row[0], "XPath", _xPath);
+                                    break;
+                                case "ID":
+                                    SearchParameters.Rows.Add(row[0], "ID", _xPath);
+                                    break;
+                                case "Name":
+                                    SearchParameters.Rows.Add(row[0], "Name", _xPath);
+                                    break;
+                                case "Tag Name":
+                                    SearchParameters.Rows.Add(row[0], "Tag Name", _xPath);
+                                    break;
+                                case "Class Name":
+                                    SearchParameters.Rows.Add(row[0], "Class Name", _xPath);
+                                    break;
+                                case "Link Text":
+                                    SearchParameters.Rows.Add(row[0], "Link Text", _xPath);
+                                    break;
+                                case "CSS Selector":
+                                    for (int i = 0; i < _cssSelectors.Count; i++)
+                                        SearchParameters.Rows.Add(row[0], $"CSS Selector {i + 1}", _cssSelectors[i]);
+                                    break;
+                            }
+                        }
                         BuildElementClickActionCommand();
+                    }
+                    else
+                    {
+                        SearchParameters.Rows.Clear();
+                        SearchParameters.Rows.Add(true, "XPath", _xPath);
+                        SearchParameters.Rows.Add(false, "ID", _id);
+                        SearchParameters.Rows.Add(false, "Name", _name);
+                        SearchParameters.Rows.Add(false, "Tag Name", _tagName);
+                        SearchParameters.Rows.Add(false, "Class Name", _className);
+                        SearchParameters.Rows.Add(false, "Link Text", _linkText);
+                        for (int i = 0; i < _cssSelectors.Count; i++)
+                            SearchParameters.Rows.Add(false, $"CSS Selector {i + 1}", _cssSelectors[i]);
+                    }
                 }
                 catch (Exception)
                 {
@@ -250,8 +294,6 @@ namespace taskt.UI.Forms.Supplement_Forms
 
         private void pbSave_Click(object sender, EventArgs e)
         {
-
-
             frmAddElement addElementForm = new frmAddElement("", SearchParameters);
             addElementForm.ScriptElements = ScriptElements;
             addElementForm.ShowDialog();
@@ -497,9 +539,14 @@ namespace taskt.UI.Forms.Supplement_Forms
             };
 
             CallBackForm.AddCommandToListView(commentCommand);
-            CallBackForm.AddCommandToListView(_createBrowserCommand);
+
+            if (_browserEngineType != "None")
+                CallBackForm.AddCommandToListView(_createBrowserCommand);
+
             CallBackForm.AddCommandToListView(sequenceCommand);
-            CallBackForm.AddCommandToListView(closeBrowserCommand);
+
+            if (_browserEngineType != "None")
+                CallBackForm.AddCommandToListView(closeBrowserCommand);
         }
     }
 }

@@ -45,7 +45,7 @@ namespace taskt.Commands
 
         [PropertyDescription("Element Search Parameter")]
         [InputSpecification("Use the Element Recorder to generate a listing of potential search parameters." + 
-            "Select the specific search type that you want to use to isolate the element in the web page.")]
+            "Select the specific search type(s) that you want to use to isolate the element on the web page.")]
         [SampleUsage("{vSearchParameter}" +
                      "\n\tXPath : //*[@id=\"features\"]/div[2]/div/h2" +
                      "\n\tID: 1" +
@@ -55,7 +55,7 @@ namespace taskt.Commands
                      "\n\tCSS Selector: [attribute=value]" +
                      "\n\tLink Text: https://www.mylink.com/"
                     )]
-        [Remarks("Once you have clicked on a valid window the search parameters will be populated. Select a single parameter to find the element.")]
+        [Remarks("If multiple parameters are enabled, they will be used in the order that they are listed until an element is found.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowElementHelper)] 
         public DataTable v_SeleniumSearchParameters { get; set; }
 
@@ -214,7 +214,7 @@ namespace taskt.Commands
                         {
                             try
                             {
-                                element = FindElement(seleniumInstance, seleniumSearchType[i], seleniumSearchParam[i]);
+                                element = FindElement(engine, seleniumInstance, seleniumSearchType[i], seleniumSearchParam[i]);
                                 break;
                             }
                             catch (Exception ex)
@@ -239,7 +239,7 @@ namespace taskt.Commands
                 {
                     try
                     {
-                        element = FindElement(seleniumInstance, seleniumSearchType[i], seleniumSearchParam[i]);
+                        element = FindElement(engine, seleniumInstance, seleniumSearchType[i], seleniumSearchParam[i]);
                         break;
                     }
                     catch (Exception ex)
@@ -637,7 +637,7 @@ namespace taskt.Commands
             try
             {
                 //search for element
-                var element = FindElement(seleniumInstance, searchType, seleniumSearchParam);
+                var element = FindElement(engine, seleniumInstance, searchType, seleniumSearchParam);
 
                 //element exists
                 return true;
@@ -649,8 +649,9 @@ namespace taskt.Commands
             }
         }
 
-        private object FindElement(IWebDriver seleniumInstance, string searchType, string searchParameter)
+        private object FindElement(AutomationEngineInstance engine, IWebDriver seleniumInstance, string searchType, string searchParameter)
         {
+            searchParameter = searchParameter.ConvertUserVariableToString(engine);
             object element;
 
             switch (searchType)

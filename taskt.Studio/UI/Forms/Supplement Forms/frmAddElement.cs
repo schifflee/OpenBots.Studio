@@ -75,6 +75,7 @@ namespace taskt.UI.Forms.Supplement_Forms
                 return;
             }
 
+            dgvDefaultValue.EndEdit();
             DialogResult = DialogResult.OK;
         }
 

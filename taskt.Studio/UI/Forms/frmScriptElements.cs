@@ -140,7 +140,7 @@ namespace taskt.UI.Forms
             //add new node
             var childNode = new TreeNode(elementName);
 
-           for (int i = 0; i < elementValue.Rows.Count; i++)
+            for (int i = 0; i < elementValue.Rows.Count; i++)
             {
                 if (!string.IsNullOrEmpty(elementValue.Rows[i][2].ToString()))
                 {
@@ -152,7 +152,7 @@ namespace taskt.UI.Forms
                 }               
             }           
 
-           if (childNode.Nodes.Count == 0)
+            if (childNode.Nodes.Count == 0)
             {
                 TreeNode elementValueNode = new TreeNode($"ValueNodeEmpty");
                 elementValueNode.Text = _emptyValue;

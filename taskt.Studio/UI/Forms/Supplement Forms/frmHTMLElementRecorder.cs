@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using taskt.Commands;
 using taskt.Core.Command;
 using taskt.Core.Script;
+using taskt.Core.Settings;
 using taskt.UI.Forms.ScriptBuilder_Forms;
 using taskt.UI.Supplement_Forms;
 using taskt.Utilities;
@@ -38,9 +39,13 @@ namespace taskt.UI.Forms.Supplement_Forms
         private bool _isRecording;
         private bool _isHookStopped;
         private SeleniumCreateBrowserCommand _createBrowserCommand;
+        private ApplicationSettings _appSettings;
 
         public frmHTMLElementRecorder(string startURL)
         {
+            _appSettings = new ApplicationSettings();
+            _appSettings = _appSettings.GetOrCreateApplicationSettings();
+
             _isFirstRecordClick = true;
             if (string.IsNullOrEmpty(startURL))
                 StartURL = _homeURL;
@@ -538,15 +543,30 @@ namespace taskt.UI.Forms.Supplement_Forms
                 v_Comment = sequenceComment
             };
 
-            CallBackForm.AddCommandToListView(commentCommand);
+            if (_appSettings.ClientSettings.InsertCommandsInline)
+            {
+                if (_browserEngineType != "None")
+                    CallBackForm.AddCommandToListView(closeBrowserCommand);
 
-            if (_browserEngineType != "None")
-                CallBackForm.AddCommandToListView(_createBrowserCommand);
+                CallBackForm.AddCommandToListView(sequenceCommand);
 
-            CallBackForm.AddCommandToListView(sequenceCommand);
+                if (_browserEngineType != "None")
+                    CallBackForm.AddCommandToListView(_createBrowserCommand);
 
-            if (_browserEngineType != "None")
-                CallBackForm.AddCommandToListView(closeBrowserCommand);
+                CallBackForm.AddCommandToListView(commentCommand);
+            }
+            else
+            {
+                CallBackForm.AddCommandToListView(commentCommand);
+
+                if (_browserEngineType != "None")
+                    CallBackForm.AddCommandToListView(_createBrowserCommand);
+
+                CallBackForm.AddCommandToListView(sequenceCommand);
+
+                if (_browserEngineType != "None")
+                    CallBackForm.AddCommandToListView(closeBrowserCommand);
+            }            
         }
     }
 }

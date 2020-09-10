@@ -18,7 +18,7 @@ using taskt.Core.Utilities.CommandUtilities;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
 using taskt.Properties;
-using taskt.UI.CustomControls;
+using taskt.Core.UI.CustomControls;
 using taskt.UI.Forms.Supplement_Forms;
 
 namespace taskt.Commands
@@ -389,9 +389,9 @@ namespace taskt.Commands
             }
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
             //create search param grid
             _searchParametersGridViewHelper = new DataGridView();
@@ -450,22 +450,22 @@ namespace taskt.Commands
             helperControl.Click += ShowRecorder;
 
             //window name
-            RenderedControls.AddRange(CommandControls.CreateDefaultWindowControlGroupFor("v_WindowName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultWindowControlGroupFor("v_WindowName", this, editor));
 
             //automation type
-            var automationTypeGroup = CommandControls.CreateDefaultDropdownGroupFor("v_AutomationType", this, editor);
+            var automationTypeGroup = commandControls.CreateDefaultDropdownGroupFor("v_AutomationType", this, editor);
             _automationTypeControl = (ComboBox)automationTypeGroup.Where(f => f is ComboBox).FirstOrDefault();
             _automationTypeControl.SelectionChangeCommitted += UIAType_SelectionChangeCommitted;
             RenderedControls.AddRange(automationTypeGroup);
 
             //create search parameters   
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_UIASearchParameters", this));
+            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_UIASearchParameters", this));
             RenderedControls.Add(helperControl);
             RenderedControls.Add(_searchParametersGridViewHelper);
 
             //create action parameters
             _elementParameterControls = new List<Control>();
-            _elementParameterControls.Add(CommandControls.CreateDefaultLabelFor("v_UIAActionParameters", this));
+            _elementParameterControls.Add(commandControls.CreateDefaultLabelFor("v_UIAActionParameters", this));
             _elementParameterControls.Add(_actionParametersGridViewHelper);
             RenderedControls.AddRange(_elementParameterControls);
 

@@ -7,7 +7,6 @@ using taskt.Core.Attributes.PropertyAttributes;
 using taskt.Core.Command;
 using taskt.Core.Infrastructure;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -52,11 +51,11 @@ namespace taskt.Commands
             //TODO: Add more engine preference options
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_CalculationOption", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_CalculationOption", this, editor));
 
             return RenderedControls;
         }

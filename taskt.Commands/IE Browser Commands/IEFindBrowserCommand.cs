@@ -9,7 +9,6 @@ using taskt.Core.Attributes.PropertyAttributes;
 using taskt.Core.Command;
 using taskt.Core.Infrastructure;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -84,21 +83,21 @@ namespace taskt.Commands
             }
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
 
-            _ieBrowerNameDropdown = (ComboBox)CommandControls.CreateDropdownFor("v_IEBrowserName", this);
+            _ieBrowerNameDropdown = (ComboBox)commandControls.CreateDropdownFor("v_IEBrowserName", this);
             var shellWindows = new ShellWindows();
             foreach (IWebBrowser2 shellWindow in shellWindows)
             {
                 if (shellWindow.Document is HTMLDocument)
                     _ieBrowerNameDropdown.Items.Add(shellWindow.Document.Title);
             }
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_IEBrowserName", this));
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_IEBrowserName", this, new Control[] { _ieBrowerNameDropdown }, editor));
+            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_IEBrowserName", this));
+            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_IEBrowserName", this, new Control[] { _ieBrowerNameDropdown }, editor));
             RenderedControls.Add(_ieBrowerNameDropdown);
 
             return RenderedControls;

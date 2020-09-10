@@ -10,7 +10,6 @@ using taskt.Core.Infrastructure;
 using taskt.Core.Script;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -82,11 +81,11 @@ namespace taskt.Commands
             }
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_SwitchValue", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_SwitchValue", this, editor));
 
             return RenderedControls;
         }

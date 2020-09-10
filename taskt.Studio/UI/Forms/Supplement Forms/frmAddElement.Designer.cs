@@ -36,8 +36,8 @@
             this.lblDefineDefaultValueDescriptor = new System.Windows.Forms.Label();
             this.txtDefaultValue = new System.Windows.Forms.TextBox();
             this.lblDefineDefaultValue = new System.Windows.Forms.Label();
-            this.uiBtnOk = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnOk = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnCancel = new taskt.Core.UI.Controls.UIPictureButton();
             this.lblDefineType = new System.Windows.Forms.Label();
             this.cbxElementType = new System.Windows.Forms.ComboBox();
             this.lblDefineTypeDescription = new System.Windows.Forms.Label();
@@ -278,8 +278,8 @@
         private System.Windows.Forms.Label lblDefineNameDescription;
         private System.Windows.Forms.Label lblDefineDefaultValueDescriptor;
         private System.Windows.Forms.Label lblDefineDefaultValue;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnOk;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnCancel;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnOk;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnCancel;
         public System.Windows.Forms.TextBox txtElementName;
         public System.Windows.Forms.TextBox txtDefaultValue;
         private System.Windows.Forms.Label lblDefineType;

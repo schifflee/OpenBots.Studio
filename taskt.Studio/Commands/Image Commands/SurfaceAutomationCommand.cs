@@ -18,9 +18,9 @@ using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommandUtilities;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 using taskt.UI.CustomControls.CustomUIControls;
 using taskt.UI.Forms.Supplement_Forms;
+using taskt.Utilities;
 using WindowsInput;
 
 namespace taskt.Commands
@@ -295,11 +295,11 @@ namespace taskt.Commands
                     default:
                         break;                       
                 }
-                CommandControls.ShowAllForms();
+                UIControlsHelper.ShowAllForms();
             }
             catch (Exception ex)
             {
-                CommandControls.ShowAllForms();
+                UIControlsHelper.ShowAllForms();
                 if (element == null)
                     throw new Exception("Specified image was not found in window!");
                 else
@@ -307,32 +307,32 @@ namespace taskt.Commands
             }                
         }   
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
             UIPictureBox imageCapture = new UIPictureBox();
             imageCapture.Width = 200;
             imageCapture.Height = 200;
             imageCapture.DataBindings.Add("EncodedImage", this, "v_ImageCapture", false, DataSourceUpdateMode.OnPropertyChanged);
 
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_ImageCapture", this));
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_ImageCapture", this, new Control[] { imageCapture }, editor));
+            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_ImageCapture", this));
+            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_ImageCapture", this, new Control[] { imageCapture }, editor));
             RenderedControls.Add(imageCapture);
 
-            _imageActionDropdown = (ComboBox)CommandControls.CreateDropdownFor("v_ImageAction", this);
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_ImageAction", this));
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_ImageAction", this, new Control[] { _imageActionDropdown }, editor));
+            _imageActionDropdown = (ComboBox)commandControls.CreateDropdownFor("v_ImageAction", this);
+            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_ImageAction", this));
+            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_ImageAction", this, new Control[] { _imageActionDropdown }, editor));
             _imageActionDropdown.SelectionChangeCommitted += ImageAction_SelectionChangeCommitted;
             RenderedControls.Add(_imageActionDropdown);
 
             _imageParameterControls = new List<Control>();
-            _imageParameterControls.Add(CommandControls.CreateDefaultLabelFor("v_ImageActionParameterTable", this));
-            _imageParameterControls.AddRange(CommandControls.CreateUIHelpersFor("v_ImageActionParameterTable", this, new Control[] { _imageGridViewHelper }, editor));
+            _imageParameterControls.Add(commandControls.CreateDefaultLabelFor("v_ImageActionParameterTable", this));
+            _imageParameterControls.AddRange(commandControls.CreateUIHelpersFor("v_ImageActionParameterTable", this, new Control[] { _imageGridViewHelper }, editor));
             _imageParameterControls.Add(_imageGridViewHelper);
             RenderedControls.AddRange(_imageParameterControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_MatchAccuracy", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_MatchAccuracy", this, editor));
 
             return RenderedControls;
         }
@@ -344,7 +344,7 @@ namespace taskt.Commands
 
         public ImageElement FindImageElement(Bitmap smallBmp, double accuracy)
         {
-            CommandControls.HideAllForms();
+            UIControlsHelper.HideAllForms();
             bool testMode = TestMode;
             dynamic element = null;
             double tolerance = 1.0 - accuracy;

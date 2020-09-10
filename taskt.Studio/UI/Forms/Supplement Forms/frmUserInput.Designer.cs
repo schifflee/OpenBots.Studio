@@ -34,8 +34,8 @@
             this.lblDirections = new System.Windows.Forms.Label();
             this.tlpInputs = new System.Windows.Forms.TableLayoutPanel();
             this.pnlBottom = new System.Windows.Forms.Panel();
-            this.uiBtnOk = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnOk = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnCancel = new taskt.Core.UI.Controls.UIPictureButton();
             this.tlpInputs.SuspendLayout();
             this.pnlBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOk)).BeginInit();
@@ -180,7 +180,7 @@
         private System.Windows.Forms.Label lblDirections;
         private System.Windows.Forms.TableLayoutPanel tlpInputs;
         private System.Windows.Forms.Panel pnlBottom;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnOk;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnCancel;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnOk;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnCancel;
     }
 }

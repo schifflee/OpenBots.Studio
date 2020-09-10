@@ -7,11 +7,9 @@ using System.Xml.Serialization;
 using taskt.Core.Attributes.ClassAttributes;
 using taskt.Core.Attributes.PropertyAttributes;
 using taskt.Core.Command;
-using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -61,12 +59,12 @@ namespace taskt.Commands
             envValue.StoreInUserVariable(engine, v_OutputUserVariableName);
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            var ActionNameComboBoxLabel = CommandControls.CreateDefaultLabelFor("v_EnvVariableName", this);
-            VariableNameComboBox = (ComboBox)CommandControls.CreateDropdownFor("v_EnvVariableName", this);
+            var ActionNameComboBoxLabel = commandControls.CreateDefaultLabelFor("v_EnvVariableName", this);
+            VariableNameComboBox = (ComboBox)commandControls.CreateDropdownFor("v_EnvVariableName", this);
 
             foreach (DictionaryEntry env in Environment.GetEnvironmentVariables())
             {
@@ -84,7 +82,7 @@ namespace taskt.Commands
             VariableValue.ForeColor = Color.White;
             RenderedControls.Add(VariableValue);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));          
+            RenderedControls.AddRange(commandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));          
 
             return RenderedControls;
         }

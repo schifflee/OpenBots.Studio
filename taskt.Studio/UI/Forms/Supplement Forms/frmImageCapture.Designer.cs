@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmImageCapture));
             this.pbMainImage = new System.Windows.Forms.PictureBox();
             this.pnlMouseContainer = new System.Windows.Forms.Panel();
-            this.uiAccept = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiClose = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiAccept = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiClose = new taskt.Core.UI.Controls.UIPictureButton();
             this.tabTestMode = new System.Windows.Forms.TabControl();
             this.tabSearchResult = new System.Windows.Forms.TabPage();
             this.pbSearchResult = new System.Windows.Forms.PictureBox();
@@ -195,8 +195,8 @@
         }
 
         #endregion
-        private CustomControls.CustomUIControls.UIPictureButton uiAccept;
-        private CustomControls.CustomUIControls.UIPictureButton uiClose;
+        private taskt.Core.UI.Controls.UIPictureButton uiAccept;
+        private taskt.Core.UI.Controls.UIPictureButton uiClose;
         public System.Windows.Forms.PictureBox pbMainImage;
         private System.Windows.Forms.Panel pnlMouseContainer;
         private System.Windows.Forms.TabControl tabTestMode;

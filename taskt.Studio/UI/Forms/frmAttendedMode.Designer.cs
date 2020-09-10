@@ -32,8 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAttendedMode));
             this.cboSelectedScript = new System.Windows.Forms.ComboBox();
             this.tmrBackColorFlash = new System.Windows.Forms.Timer(this.components);
-            this.uiBtnClose = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnRun = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnClose = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnRun = new taskt.Core.UI.Controls.UIPictureButton();
             this.attendedScriptWatcher = new System.IO.FileSystemWatcher();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnRun)).BeginInit();
@@ -130,8 +130,8 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cboSelectedScript;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnRun;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnClose;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnRun;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnClose;
         private System.Windows.Forms.Timer tmrBackColorFlash;
         private System.IO.FileSystemWatcher attendedScriptWatcher;
     }

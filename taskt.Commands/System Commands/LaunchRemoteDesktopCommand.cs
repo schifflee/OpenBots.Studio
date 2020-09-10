@@ -9,9 +9,9 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
-using taskt.UI.Forms;
+using taskt.Core.UI.Forms;
 
+// to be reviewed
 namespace taskt.Commands
 {
     [Serializable]
@@ -79,21 +79,24 @@ namespace taskt.Commands
             var width = int.Parse(v_RDPWidth.ConvertUserVariableToString(engine));
             var height = int.Parse(v_RDPHeight.ConvertUserVariableToString(engine));
 
-            var result = ((frmScriptEngine)engine.TasktEngineUI).Invoke(new Action(() =>
-            {
-                engine.TasktEngineUI.LaunchRDPSession(machineName, userName, password, width, height);
-            }));
+            var remoteDesktopForm = new frmRemoteDesktopViewer(machineName, userName, password, width, height, false, false);
+            remoteDesktopForm.Show();
+
+            //var result = ((frmScriptEngine)engine.TasktEngineUI).Invoke(new Action(() =>
+            //{
+            //    engine.TasktEngineUI.LaunchRDPSession(machineName, userName, password, width, height);
+            //}));
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_MachineName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_UserName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultPasswordInputGroupFor("v_Password", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_RDPWidth", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_RDPHeight", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_MachineName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_UserName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultPasswordInputGroupFor("v_Password", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_RDPWidth", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_RDPHeight", this, editor));
 
             return RenderedControls;
         }

@@ -13,9 +13,10 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.Properties;
-using taskt.UI.CustomControls;
+using taskt.Core.UI.CustomControls;
+using taskt.Core.Properties;
 
+// to be reviewed
 namespace taskt.Commands
 {
     [Serializable]
@@ -190,14 +191,14 @@ namespace taskt.Commands
                 throw new NotImplementedException($"Query Execution Type '{v_QueryType}' not implemented.");
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_QueryType", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_QueryType", this, editor));
 
-            var queryControls = CommandControls.CreateDefaultInputGroupFor("v_Query", this, editor);
+            var queryControls = commandControls.CreateDefaultInputGroupFor("v_Query", this, editor);
             var queryBox = (TextBox)queryControls[2];
             queryBox.Multiline = true;
             queryBox.Height = 150;
@@ -233,8 +234,8 @@ namespace taskt.Commands
             _queryParametersGridView.DataBindings.Add("DataSource", this, "v_QueryParameters", false, DataSourceUpdateMode.OnPropertyChanged);
          
             _queryParametersControls = new List<Control>();
-            _queryParametersControls.Add(CommandControls.CreateDefaultLabelFor("v_QueryParameters", this));
-            _queryParametersControls.AddRange(CommandControls.CreateUIHelpersFor("v_QueryParameters", this, new Control[] { _queryParametersGridView }, editor));
+            _queryParametersControls.Add(commandControls.CreateDefaultLabelFor("v_QueryParameters", this));
+            _queryParametersControls.AddRange(commandControls.CreateUIHelpersFor("v_QueryParameters", this, new Control[] { _queryParametersGridView }, editor));
 
             CommandItemControl helperControl = new CommandItemControl();
             helperControl.Padding = new Padding(10, 0, 0, 0);
@@ -249,7 +250,7 @@ namespace taskt.Commands
             _queryParametersControls.Add(_queryParametersGridView);
             RenderedControls.AddRange(_queryParametersControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
             return RenderedControls;
         }
 

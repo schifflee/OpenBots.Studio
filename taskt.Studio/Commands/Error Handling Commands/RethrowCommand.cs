@@ -25,9 +25,9 @@ namespace taskt.Commands
             throw new Exception("Rethrowing Original Exception");
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
             return RenderedControls;
         }

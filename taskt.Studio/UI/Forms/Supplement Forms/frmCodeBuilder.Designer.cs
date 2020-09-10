@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCodeBuilder));
             this.tlpBuilder = new System.Windows.Forms.TableLayoutPanel();
             this.pnlTop = new System.Windows.Forms.Panel();
-            this.uiBtnSample = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnSave = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnSample = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnSave = new taskt.Core.UI.Controls.UIPictureButton();
             this.chkRunAfterCompile = new System.Windows.Forms.CheckBox();
             this.lblHeader = new System.Windows.Forms.Label();
-            this.uiBtnCompile = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnCompile = new taskt.Core.UI.Controls.UIPictureButton();
             this.lstCompilerResults = new System.Windows.Forms.ListBox();
             this.rtbCode = new System.Windows.Forms.RichTextBox();
             this.tlpBuilder.SuspendLayout();
@@ -208,12 +208,12 @@
 
         private System.Windows.Forms.TableLayoutPanel tlpBuilder;
         private System.Windows.Forms.Panel pnlTop;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnCompile;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnCompile;
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.ListBox lstCompilerResults;
         private System.Windows.Forms.CheckBox chkRunAfterCompile;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnSave;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnSave;
         public System.Windows.Forms.RichTextBox rtbCode;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnSample;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnSample;
     }
 }

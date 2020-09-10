@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScriptElements));
             this.lblMainLogo = new System.Windows.Forms.Label();
-            this.uiBtnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnOK = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnCancel = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnOK = new taskt.Core.UI.Controls.UIPictureButton();
             this.tlpElements = new System.Windows.Forms.TableLayoutPanel();
             this.tvScriptElements = new taskt.UI.CustomControls.CustomUIControls.UITreeView();
             this.pnlTop = new System.Windows.Forms.Panel();
             this.lblDefineName = new System.Windows.Forms.Label();
-            this.uiBtnNew = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnNew = new taskt.Core.UI.Controls.UIPictureButton();
             this.pnlBottom = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOK)).BeginInit();
@@ -215,13 +215,13 @@
 
         #endregion
         private System.Windows.Forms.Label lblMainLogo;
-        private taskt.UI.CustomControls.CustomUIControls.UIPictureButton uiBtnCancel;
-        private taskt.UI.CustomControls.CustomUIControls.UIPictureButton uiBtnOK;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnCancel;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnOK;
         private System.Windows.Forms.TableLayoutPanel tlpElements;
         private System.Windows.Forms.Panel pnlTop;
         private System.Windows.Forms.Panel pnlBottom;
         private CustomControls.CustomUIControls.UITreeView tvScriptElements;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnNew;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnNew;
         private System.Windows.Forms.Label lblDefineName;
     }
 }

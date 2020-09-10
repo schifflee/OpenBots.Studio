@@ -17,8 +17,9 @@ using taskt.Core.User32;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
 using taskt.Properties;
-using taskt.UI.CustomControls;
+using taskt.Core.UI.CustomControls;
 using taskt.UI.Forms.Supplement_Forms;
+using taskt.Utilities;
 
 namespace taskt.Commands
 {
@@ -143,20 +144,20 @@ namespace taskt.Commands
             }
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            _actionDropdown = (ComboBox)CommandControls.CreateDropdownFor("v_LoopActionType", this);
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_LoopActionType", this));
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_LoopActionType", this, new Control[] { _actionDropdown }, editor));
+            _actionDropdown = (ComboBox)commandControls.CreateDropdownFor("v_LoopActionType", this);
+            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_LoopActionType", this));
+            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_LoopActionType", this, new Control[] { _actionDropdown }, editor));
             _actionDropdown.SelectionChangeCommitted += loopAction_SelectionChangeCommitted;
             RenderedControls.Add(_actionDropdown);
 
             _parameterControls = new List<Control>();
-            _parameterControls.Add(CommandControls.CreateDefaultLabelFor("v_LoopActionParameterTable", this));
+            _parameterControls.Add(commandControls.CreateDefaultLabelFor("v_LoopActionParameterTable", this));
             _parameterControls.Add(_recorderControl);
-            _parameterControls.AddRange(CommandControls.CreateUIHelpersFor("v_LoopActionParameterTable", this, new Control[] { _loopGridViewHelper }, editor));
+            _parameterControls.AddRange(commandControls.CreateUIHelpersFor("v_LoopActionParameterTable", this, new Control[] { _loopGridViewHelper }, editor));
             _parameterControls.Add(_loopGridViewHelper);
             RenderedControls.AddRange(_parameterControls);
 
@@ -1021,7 +1022,7 @@ namespace taskt.Commands
 
                 SurfaceAutomationCommand surfaceACommand = new SurfaceAutomationCommand();
                 var element = surfaceACommand.FindImageElement(capturedImage, accuracy);
-                CommandControls.ShowAllForms();
+                UIControlsHelper.ShowAllForms();
                 if (element != null)
                     loopResult = true;
                 else

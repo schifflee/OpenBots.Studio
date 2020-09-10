@@ -16,7 +16,6 @@ using taskt.Core.Infrastructure;
 using taskt.Core.User32;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -178,28 +177,28 @@ namespace taskt.Commands
             }
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
 
             _searchParameterControls = new List<Control>();
-            _searchParameterControls.Add(CommandControls.CreateDefaultLabelFor("v_WebSearchParameter", this));
-            _searchParameterControls.AddRange(CommandControls.CreateUIHelpersFor("v_WebSearchParameter", this, new Control[] { _searchGridViewHelper }, editor));
+            _searchParameterControls.Add(commandControls.CreateDefaultLabelFor("v_WebSearchParameter", this));
+            _searchParameterControls.AddRange(commandControls.CreateUIHelpersFor("v_WebSearchParameter", this, new Control[] { _searchGridViewHelper }, editor));
 
             _searchParameterControls.Add(_searchGridViewHelper);
             RenderedControls.AddRange(_searchParameterControls);
 
-            _elementActionDropdown = (ComboBox)CommandControls.CreateDropdownFor("v_WebAction", this);
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_WebAction", this));
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_WebAction", this, new Control[] { _elementActionDropdown }, editor));
+            _elementActionDropdown = (ComboBox)commandControls.CreateDropdownFor("v_WebAction", this);
+            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_WebAction", this));
+            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_WebAction", this, new Control[] { _elementActionDropdown }, editor));
             _elementActionDropdown.SelectionChangeCommitted += ElementActionDropdown_SelectionChangeCommitted;
             RenderedControls.Add(_elementActionDropdown);
 
             _elementParameterControls = new List<Control>();
-            _elementParameterControls.Add(CommandControls.CreateDefaultLabelFor("v_WebActionParameterTable", this));
-            _elementParameterControls.AddRange(CommandControls.CreateUIHelpersFor("v_WebActionParameterTable", this, new Control[] { _elementsGridViewHelper }, editor));
+            _elementParameterControls.Add(commandControls.CreateDefaultLabelFor("v_WebActionParameterTable", this));
+            _elementParameterControls.AddRange(commandControls.CreateUIHelpersFor("v_WebActionParameterTable", this, new Control[] { _elementsGridViewHelper }, editor));
             _elementParameterControls.Add(_elementsGridViewHelper);
             RenderedControls.AddRange(_elementParameterControls);
 

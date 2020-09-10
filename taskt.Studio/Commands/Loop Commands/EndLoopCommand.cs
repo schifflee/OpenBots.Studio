@@ -22,9 +22,9 @@ namespace taskt.Commands
             CustomRendering = true;
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
             return RenderedControls;
         }

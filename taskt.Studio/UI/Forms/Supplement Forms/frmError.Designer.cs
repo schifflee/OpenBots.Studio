@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmError));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblErrorMessage = new System.Windows.Forms.Label();
-            this.uiBtnIgnore = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnContinue = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnCopyError = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnBreak = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnIgnore = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnContinue = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnCopyError = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnBreak = new taskt.Core.UI.Controls.UIPictureButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnIgnore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnContinue)).BeginInit();
@@ -167,10 +167,10 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnIgnore;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnContinue;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnIgnore;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnContinue;
         private System.Windows.Forms.Label lblErrorMessage;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnCopyError;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnBreak;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnCopyError;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnBreak;
     }
 }

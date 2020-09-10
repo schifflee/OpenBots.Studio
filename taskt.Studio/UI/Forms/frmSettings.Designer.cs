@@ -42,7 +42,7 @@
             this.chkEnableLogging = new System.Windows.Forms.CheckBox();
             this.chkAutoCloseWindow = new System.Windows.Forms.CheckBox();
             this.chkShowDebug = new System.Windows.Forms.CheckBox();
-            this.uiBtnOpen = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnOpen = new taskt.Core.UI.Controls.UIPictureButton();
             this.lblMainLogo = new System.Windows.Forms.Label();
             this.lblAutomationEngine = new System.Windows.Forms.Label();
             this.lblApplicationSettings = new System.Windows.Forms.Label();
@@ -1460,7 +1460,7 @@
         private System.Windows.Forms.Label lblConnectKey;
         private System.Windows.Forms.CheckBox chkAutoCloseWindow;
         private System.Windows.Forms.CheckBox chkShowDebug;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnOpen;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnOpen;
         private System.Windows.Forms.CheckBox chkEnableLogging;
         private System.Windows.Forms.Label lblMainLogo;
         private System.Windows.Forms.Label lblAutomationEngine;

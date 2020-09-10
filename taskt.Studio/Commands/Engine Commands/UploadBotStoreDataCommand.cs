@@ -10,7 +10,6 @@ using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
 using taskt.Server;
-using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -60,12 +59,12 @@ namespace taskt.Commands
             }
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_Key", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_Value", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_Key", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_Value", this, editor));
 
             return RenderedControls;
         }

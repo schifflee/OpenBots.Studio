@@ -23,7 +23,7 @@ using taskt.Core.Utilities.CommandUtilities;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
 using taskt.Properties;
-using taskt.UI.CustomControls;
+using taskt.Core.UI.CustomControls;
 using taskt.UI.Forms.Supplement_Forms;
 using Group = taskt.Core.Attributes.ClassAttributes.Group;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
@@ -490,9 +490,9 @@ namespace taskt.Commands
             }
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
             //create helper control
             CommandItemControl helperControl = new CommandItemControl();
@@ -503,26 +503,26 @@ namespace taskt.Commands
             helperControl.CommandDisplay = "Element Recorder";
             helperControl.Click += new EventHandler((s, e) => ShowRecorder(s, e, editor));
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_SeleniumSearchType", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_SeleniumSearchType", this, editor));
 
             _searchParameterControls = new List<Control>();
-            _searchParameterControls.Add(CommandControls.CreateDefaultLabelFor("v_SeleniumSearchParameter", this));
+            _searchParameterControls.Add(commandControls.CreateDefaultLabelFor("v_SeleniumSearchParameter", this));
             _searchParameterControls.Add(helperControl);
-            var searchParameterDropDown = CommandControls.CreateStandardComboboxFor("v_SeleniumSearchParameter", this);
-            _searchParameterControls.AddRange(CommandControls.CreateUIHelpersFor("v_SeleniumSearchParameter", this, new Control[] { searchParameterDropDown }, editor));
+            var searchParameterDropDown = commandControls.CreateStandardComboboxFor("v_SeleniumSearchParameter", this);
+            _searchParameterControls.AddRange(commandControls.CreateUIHelpersFor("v_SeleniumSearchParameter", this, new Control[] { searchParameterDropDown }, editor));
             _searchParameterControls.Add(searchParameterDropDown);
             RenderedControls.AddRange(_searchParameterControls);
 
-            _elementActionDropdown = (ComboBox)CommandControls.CreateDropdownFor("v_SeleniumElementAction", this);
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_SeleniumElementAction", this));
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_SeleniumElementAction", this, new Control[] { _elementActionDropdown }, editor));
+            _elementActionDropdown = (ComboBox)commandControls.CreateDropdownFor("v_SeleniumElementAction", this);
+            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_SeleniumElementAction", this));
+            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_SeleniumElementAction", this, new Control[] { _elementActionDropdown }, editor));
             _elementActionDropdown.SelectionChangeCommitted += SeleniumAction_SelectionChangeCommitted;
             RenderedControls.Add(_elementActionDropdown);
 
             _elementParameterControls = new List<Control>();
-            _elementParameterControls.Add(CommandControls.CreateDefaultLabelFor("v_WebActionParameterTable", this));
-            _elementParameterControls.AddRange(CommandControls.CreateUIHelpersFor("v_WebActionParameterTable", this, new Control[] { _elementsGridViewHelper }, editor));
+            _elementParameterControls.Add(commandControls.CreateDefaultLabelFor("v_WebActionParameterTable", this));
+            _elementParameterControls.AddRange(commandControls.CreateUIHelpersFor("v_WebActionParameterTable", this, new Control[] { _elementsGridViewHelper }, editor));
             _elementParameterControls.Add(_elementsGridViewHelper);
             RenderedControls.AddRange(_elementParameterControls);
 

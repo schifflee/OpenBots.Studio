@@ -11,7 +11,6 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 using taskt.UI.CustomControls.CustomUIControls;
 
 namespace taskt.Commands
@@ -55,20 +54,20 @@ namespace taskt.Commands
             capturedBmp.StoreInUserVariable(engine, v_OutputUserVariableName);
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
             UIPictureBox imageCapture = new UIPictureBox();
             imageCapture.Width = 200;
             imageCapture.Height = 200;
             imageCapture.DataBindings.Add("EncodedImage", this, "v_ImageCapture", false, DataSourceUpdateMode.OnPropertyChanged);
 
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_ImageCapture", this));
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_ImageCapture", this, new Control[] { imageCapture }, editor));
+            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_ImageCapture", this));
+            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_ImageCapture", this, new Control[] { imageCapture }, editor));
             RenderedControls.Add(imageCapture);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
 
             return RenderedControls;
         }

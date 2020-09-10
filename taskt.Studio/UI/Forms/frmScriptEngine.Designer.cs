@@ -36,10 +36,10 @@
             this.lblMainLogo = new System.Windows.Forms.Label();
             this.lblKillProcNote = new System.Windows.Forms.Label();
             this.lblAction = new System.Windows.Forms.Label();
-            this.uiBtnStepInto = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnStepOver = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnPause = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnStepInto = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnStepOver = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnCancel = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnPause = new taskt.Core.UI.Controls.UIPictureButton();
             this.pbBotIcon = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnStepInto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnStepOver)).BeginInit();
@@ -243,12 +243,12 @@
         private System.Windows.Forms.Timer tmrNotify;
         private System.Windows.Forms.Label lblCloseTimer;
         private System.Windows.Forms.Label lblMainLogo;
-        private taskt.UI.CustomControls.CustomUIControls.UIPictureButton uiBtnCancel;
-        private taskt.UI.CustomControls.CustomUIControls.UIPictureButton uiBtnPause;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnCancel;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnPause;
         private System.Windows.Forms.Label lblKillProcNote;
         private System.Windows.Forms.PictureBox pbBotIcon;
         private System.Windows.Forms.Label lblAction;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnStepInto;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnStepOver;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnStepInto;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnStepOver;
     }
 }

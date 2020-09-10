@@ -27,6 +27,7 @@ using taskt.Core.Model.EngineModel;
 using taskt.Core.Model.ServerModel;
 using taskt.Core.Script;
 using taskt.Core.Settings;
+using taskt.Core.UI.Forms;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
 using taskt.Server;
@@ -501,15 +502,15 @@ namespace taskt.UI.Forms
             }
         }
 
-        public void LaunchRDPSession(string machineName, string userName, string password, int width, int height)
-        {
-            if (InvokeRequired)
-            {
-                Invoke((Action)(() => LaunchRDPSession(machineName, userName, password, width, height)));
-            }
-            var remoteDesktopForm = new frmRemoteDesktopViewer(machineName, userName, password, width, height, false, false);
-            remoteDesktopForm.Show();
-        }
+        //public void LaunchRDPSession(string machineName, string userName, string password, int width, int height)
+        //{
+        //    if (InvokeRequired)
+        //    {
+        //        Invoke((Action)(() => LaunchRDPSession(machineName, userName, password, width, height)));
+        //    }
+        //    var remoteDesktopForm = new frmRemoteDesktopViewer(machineName, userName, password, width, height, false, false);
+        //    remoteDesktopForm.Show();
+        //}
 
         public delegate List<string> ShowInputDelegate(InputCommand inputs);
         public List<string> ShowInput(InputCommand inputs)

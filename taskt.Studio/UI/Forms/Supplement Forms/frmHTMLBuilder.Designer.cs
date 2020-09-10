@@ -32,8 +32,8 @@
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.webBrowserHTML = new System.Windows.Forms.WebBrowser();
             this.flwAcceptIcons = new System.Windows.Forms.FlowLayoutPanel();
-            this.uiBtnOK = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnOK = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnCancel = new taskt.Core.UI.Controls.UIPictureButton();
             this.rtbHTML = new System.Windows.Forms.RichTextBox();
             this.tlpMain.SuspendLayout();
             this.flwAcceptIcons.SuspendLayout();
@@ -155,8 +155,8 @@
         private System.Windows.Forms.TableLayoutPanel tlpMain;
         private System.Windows.Forms.WebBrowser webBrowserHTML;
         private System.Windows.Forms.FlowLayoutPanel flwAcceptIcons;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnOK;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnCancel;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnOK;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnCancel;
         public System.Windows.Forms.RichTextBox rtbHTML;
     }
 }

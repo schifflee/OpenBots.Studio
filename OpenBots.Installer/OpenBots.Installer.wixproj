@@ -26,7 +26,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="OpenBotsStudio.wxs" />
-    <Compile Include="HeatGeneratedFileList.wxs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\taskt.Studio\taskt.Studio.csproj">

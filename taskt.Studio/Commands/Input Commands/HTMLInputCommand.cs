@@ -9,7 +9,7 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.Properties;
+using taskt.Core.Properties;
 using taskt.UI.Forms;
 
 namespace taskt.Commands

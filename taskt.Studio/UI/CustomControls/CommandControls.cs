@@ -18,7 +18,7 @@ using taskt.Core.Infrastructure;
 using taskt.Core.Script;
 using taskt.Core.Settings;
 using taskt.Core.Utilities.CommandUtilities;
-using taskt.Properties;
+using taskt.Core.Properties;
 using taskt.UI.CustomControls.CustomUIControls;
 using taskt.Core.UI.CustomControls;
 using taskt.UI.Forms;

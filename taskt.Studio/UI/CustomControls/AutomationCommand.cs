@@ -7,6 +7,7 @@ using taskt.Core.Command;
 using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.UI.Forms;
+using taskt.Core.UI.CustomControls;
 
 namespace taskt.UI.CustomControls
 {

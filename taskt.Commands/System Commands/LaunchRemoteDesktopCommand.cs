@@ -9,9 +9,7 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.Core.UI.Forms;
 
-// to be reviewed
 namespace taskt.Commands
 {
     [Serializable]
@@ -79,13 +77,10 @@ namespace taskt.Commands
             var width = int.Parse(v_RDPWidth.ConvertUserVariableToString(engine));
             var height = int.Parse(v_RDPHeight.ConvertUserVariableToString(engine));
 
-            var remoteDesktopForm = new frmRemoteDesktopViewer(machineName, userName, password, width, height, false, false);
-            remoteDesktopForm.Show();
-
-            //var result = ((frmScriptEngine)engine.TasktEngineUI).Invoke(new Action(() =>
-            //{
-            //    engine.TasktEngineUI.LaunchRDPSession(machineName, userName, password, width, height);
-            //}));
+            var result = ((Form)engine.TasktEngineUI).Invoke(new Action(() =>
+            {
+                engine.TasktEngineUI.LaunchRDPSession(machineName, userName, password, width, height);
+            }));
         }
 
         public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)

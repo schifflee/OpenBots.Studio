@@ -113,6 +113,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTable Commands\Forms\DataTableVariableSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataTable Commands\Forms\DataTableVariableSelector.Designer.cs">
+      <DependentUpon>DataTableVariableSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Email Commands\DeleteIMAPEmailCommand.cs" />
     <Compile Include="Email Commands\ForwardSMTPEmailCommand.cs" />
     <Compile Include="Email Commands\GetIMAPEmailsCommand.cs" />
@@ -241,10 +247,6 @@
       <Project>{d0ff030d-bc12-4e57-a9ad-130feed9be4a}</Project>
       <Name>taskt.Server</Name>
     </ProjectReference>
-    <ProjectReference Include="..\taskt.Studio\taskt.Studio.csproj">
-      <Project>{c1be3204-94d1-4a9a-ae30-c3e302383182}</Project>
-      <Name>taskt.Studio</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -287,6 +289,11 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataTable Commands\Forms\DataTableVariableSelector.resx">
+      <DependentUpon>DataTableVariableSelector.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

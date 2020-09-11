@@ -30,7 +30,7 @@ namespace taskt.Core.Infrastructure
 
         void ShowMessage(string message, string title, DialogType dialogType, int closeAfter);
         void ShowEngineContext(string context, int closeAfter);
-        //void LaunchRDPSession(string machineName, string userName, string password, int width, int height);
+        void LaunchRDPSession(string machineName, string userName, string password, int width, int height);
         //List<string> ShowInput(IInputCommand inputs);
         List<ScriptVariable> ShowHTMLInput(string htmlTemplate);
         void AddStatus(string text, Color? statusColor = null);

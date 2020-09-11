@@ -79,7 +79,7 @@
             this.uiAccept.DisplayText = "Accept";
             this.uiAccept.DisplayTextBrush = System.Drawing.Color.Black;
             this.uiAccept.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.uiAccept.Image = global::taskt.Properties.Resources.action_bar_save;
+            this.uiAccept.Image = global::taskt.Core.Properties.Resources.action_bar_save;
             this.uiAccept.IsMouseOver = false;
             this.uiAccept.Location = new System.Drawing.Point(4, 4);
             this.uiAccept.Margin = new System.Windows.Forms.Padding(4);
@@ -97,7 +97,7 @@
             this.uiClose.DisplayText = "Close";
             this.uiClose.DisplayTextBrush = System.Drawing.Color.Black;
             this.uiClose.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.uiClose.Image = global::taskt.Properties.Resources.command_error;
+            this.uiClose.Image = global::taskt.Core.Properties.Resources.command_error;
             this.uiClose.IsMouseOver = false;
             this.uiClose.Location = new System.Drawing.Point(71, 4);
             this.uiClose.Margin = new System.Windows.Forms.Padding(4);

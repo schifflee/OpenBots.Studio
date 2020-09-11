@@ -63,7 +63,7 @@
             this.uiBtnClose.DisplayText = "Close";
             this.uiBtnClose.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnClose.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnClose.Image = global::taskt.Properties.Resources.command_exitloop;
+            this.uiBtnClose.Image = global::taskt.Core.Properties.Resources.command_exitloop;
             this.uiBtnClose.IsMouseOver = false;
             this.uiBtnClose.Location = new System.Drawing.Point(5, 4);
             this.uiBtnClose.Margin = new System.Windows.Forms.Padding(4);
@@ -81,7 +81,7 @@
             this.uiBtnRun.DisplayText = "Run";
             this.uiBtnRun.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnRun.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnRun.Image = global::taskt.Properties.Resources.action_bar_run;
+            this.uiBtnRun.Image = global::taskt.Core.Properties.Resources.action_bar_run;
             this.uiBtnRun.IsMouseOver = false;
             this.uiBtnRun.Location = new System.Drawing.Point(527, 4);
             this.uiBtnRun.Margin = new System.Windows.Forms.Padding(4);

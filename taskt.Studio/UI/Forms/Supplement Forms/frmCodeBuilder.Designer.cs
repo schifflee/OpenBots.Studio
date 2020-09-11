@@ -85,7 +85,7 @@
             this.uiBtnSample.DisplayText = "Sample";
             this.uiBtnSample.DisplayTextBrush = System.Drawing.Color.White;
             this.uiBtnSample.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.uiBtnSample.Image = global::taskt.Properties.Resources.action_bar_new;
+            this.uiBtnSample.Image = global::taskt.Core.Properties.Resources.action_bar_new;
             this.uiBtnSample.IsMouseOver = false;
             this.uiBtnSample.Location = new System.Drawing.Point(290, 4);
             this.uiBtnSample.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -103,7 +103,7 @@
             this.uiBtnSave.DisplayText = "Save";
             this.uiBtnSave.DisplayTextBrush = System.Drawing.Color.White;
             this.uiBtnSave.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.uiBtnSave.Image = global::taskt.Properties.Resources.action_bar_save;
+            this.uiBtnSave.Image = global::taskt.Core.Properties.Resources.action_bar_save;
             this.uiBtnSave.IsMouseOver = false;
             this.uiBtnSave.Location = new System.Drawing.Point(410, 4);
             this.uiBtnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -147,7 +147,7 @@
             this.uiBtnCompile.DisplayText = "Compile";
             this.uiBtnCompile.DisplayTextBrush = System.Drawing.Color.White;
             this.uiBtnCompile.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.uiBtnCompile.Image = global::taskt.Properties.Resources.action_bar_run;
+            this.uiBtnCompile.Image = global::taskt.Core.Properties.Resources.action_bar_run;
             this.uiBtnCompile.IsMouseOver = false;
             this.uiBtnCompile.Location = new System.Drawing.Point(350, 4);
             this.uiBtnCompile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

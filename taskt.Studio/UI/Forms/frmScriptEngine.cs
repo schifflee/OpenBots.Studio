@@ -35,6 +35,7 @@ using taskt.UI.DTOs;
 using taskt.UI.Forms.ScriptBuilder_Forms;
 using taskt.UI.Forms.Supplement_Forms;
 using taskt.Utilities;
+using taskt.Core.Properties;
 
 namespace taskt.UI.Forms
 {
@@ -216,7 +217,7 @@ namespace taskt.UI.Forms
             if (IsNewTaskSteppedInto)
             {
                 EngineInstance.PauseScript();
-                uiBtnPause.Image = Properties.Resources.command_resume;
+                uiBtnPause.Image = Resources.command_resume;
                 uiBtnPause.DisplayText = "Resume";
                 uiBtnStepOver.Visible = true;
                 uiBtnStepInto.Visible = true;
@@ -436,7 +437,7 @@ namespace taskt.UI.Forms
 
                 if ((!_advancedDebug) && (mainLogoText.Contains("(error)")))
                 {
-                    pbBotIcon.Image = Properties.Resources.error;
+                    pbBotIcon.Image = Resources.error;
                 }
 
                 if (mainLogoText.Contains("(error)"))
@@ -502,15 +503,15 @@ namespace taskt.UI.Forms
             }
         }
 
-        //public void LaunchRDPSession(string machineName, string userName, string password, int width, int height)
-        //{
-        //    if (InvokeRequired)
-        //    {
-        //        Invoke((Action)(() => LaunchRDPSession(machineName, userName, password, width, height)));
-        //    }
-        //    var remoteDesktopForm = new frmRemoteDesktopViewer(machineName, userName, password, width, height, false, false);
-        //    remoteDesktopForm.Show();
-        //}
+        public void LaunchRDPSession(string machineName, string userName, string password, int width, int height)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((Action)(() => LaunchRDPSession(machineName, userName, password, width, height)));
+            }
+            var remoteDesktopForm = new frmRemoteDesktopViewer(machineName, userName, password, width, height, false, false);
+            remoteDesktopForm.Show();
+        }
 
         public delegate List<string> ShowInputDelegate(InputCommand inputs);
         public List<string> ShowInput(InputCommand inputs)
@@ -671,7 +672,7 @@ namespace taskt.UI.Forms
                         Color = Color.Red
                     };
                     lstSteppingCommands.Items.Add(commandsItem);
-                    uiBtnPause.Image = Properties.Resources.command_resume;
+                    uiBtnPause.Image = Resources.command_resume;
                     uiBtnPause.DisplayText = "Resume";
                     EngineInstance.PauseScript();
                 }
@@ -683,7 +684,7 @@ namespace taskt.UI.Forms
                         Color = Color.Green
                     };
                     lstSteppingCommands.Items.Add(commandsItem);
-                    uiBtnPause.Image = Properties.Resources.command_pause;
+                    uiBtnPause.Image = Resources.command_pause;
                     uiBtnPause.DisplayText = "Pause";
                     uiBtnStepOver.Visible = false;
                     uiBtnStepInto.Visible = false;
@@ -711,7 +712,7 @@ namespace taskt.UI.Forms
             }
             else
             {
-                uiBtnPause.Image = Properties.Resources.command_pause;
+                uiBtnPause.Image = Resources.command_pause;
                 uiBtnPause.DisplayText = "Pause";
                 uiBtnStepOver.Visible = false;
                 uiBtnStepInto.Visible = false;

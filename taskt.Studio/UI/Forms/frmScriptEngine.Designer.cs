@@ -125,7 +125,7 @@
             this.uiBtnStepInto.DisplayText = "Step Into";
             this.uiBtnStepInto.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnStepInto.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnStepInto.Image = global::taskt.Properties.Resources.command_step_into;
+            this.uiBtnStepInto.Image = global::taskt.Core.Properties.Resources.command_step_into;
             this.uiBtnStepInto.IsMouseOver = false;
             this.uiBtnStepInto.Location = new System.Drawing.Point(717, 2);
             this.uiBtnStepInto.Margin = new System.Windows.Forms.Padding(4);
@@ -144,7 +144,7 @@
             this.uiBtnStepOver.DisplayText = "Step Over";
             this.uiBtnStepOver.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnStepOver.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnStepOver.Image = global::taskt.Properties.Resources.command_step_over;
+            this.uiBtnStepOver.Image = global::taskt.Core.Properties.Resources.command_step_over;
             this.uiBtnStepOver.IsMouseOver = false;
             this.uiBtnStepOver.Location = new System.Drawing.Point(653, 2);
             this.uiBtnStepOver.Margin = new System.Windows.Forms.Padding(4);
@@ -163,7 +163,7 @@
             this.uiBtnCancel.DisplayText = "Cancel";
             this.uiBtnCancel.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnCancel.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnCancel.Image = global::taskt.Properties.Resources.command_cancel;
+            this.uiBtnCancel.Image = global::taskt.Core.Properties.Resources.command_cancel;
             this.uiBtnCancel.IsMouseOver = false;
             this.uiBtnCancel.Location = new System.Drawing.Point(845, 2);
             this.uiBtnCancel.Margin = new System.Windows.Forms.Padding(4);
@@ -181,7 +181,7 @@
             this.uiBtnPause.DisplayText = "Pause";
             this.uiBtnPause.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnPause.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnPause.Image = global::taskt.Properties.Resources.command_pause;
+            this.uiBtnPause.Image = global::taskt.Core.Properties.Resources.command_pause;
             this.uiBtnPause.IsMouseOver = false;
             this.uiBtnPause.Location = new System.Drawing.Point(781, 2);
             this.uiBtnPause.Margin = new System.Windows.Forms.Padding(4);
@@ -195,7 +195,7 @@
             // pbBotIcon
             // 
             this.pbBotIcon.BackColor = System.Drawing.Color.Transparent;
-            this.pbBotIcon.Image = global::taskt.Properties.Resources.executing;
+            this.pbBotIcon.Image = global::taskt.Core.Properties.Resources.executing;
             this.pbBotIcon.Location = new System.Drawing.Point(16, 69);
             this.pbBotIcon.Margin = new System.Windows.Forms.Padding(4);
             this.pbBotIcon.Name = "pbBotIcon";

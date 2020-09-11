@@ -250,7 +250,7 @@
             this.uiBtnShowScheduleManager.DisplayText = "Scheduler";
             this.uiBtnShowScheduleManager.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnShowScheduleManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.uiBtnShowScheduleManager.Image = global::taskt.Properties.Resources.command_files;
+            this.uiBtnShowScheduleManager.Image = global::taskt.Core.Properties.Resources.command_files;
             this.uiBtnShowScheduleManager.IsMouseOver = false;
             this.uiBtnShowScheduleManager.Location = new System.Drawing.Point(768, 12);
             this.uiBtnShowScheduleManager.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -268,7 +268,7 @@
             this.uiBtnOk.DisplayText = "Add";
             this.uiBtnOk.DisplayTextBrush = System.Drawing.Color.White;
             this.uiBtnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.uiBtnOk.Image = global::taskt.Properties.Resources.logo;
+            this.uiBtnOk.Image = global::taskt.Core.Properties.Resources.logo;
             this.uiBtnOk.IsMouseOver = false;
             this.uiBtnOk.Location = new System.Drawing.Point(10, 521);
             this.uiBtnOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

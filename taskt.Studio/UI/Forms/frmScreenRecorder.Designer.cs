@@ -330,7 +330,7 @@
             this.uiBtnRecord.DisplayText = "Start";
             this.uiBtnRecord.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnRecord.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.uiBtnRecord.Image = global::taskt.Properties.Resources.various_record_button;
+            this.uiBtnRecord.Image = global::taskt.Core.Properties.Resources.various_record_button;
             this.uiBtnRecord.IsMouseOver = false;
             this.uiBtnRecord.Location = new System.Drawing.Point(20, 546);
             this.uiBtnRecord.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using taskt.Commands;
 using taskt.Core.Command;
-using taskt.Properties;
+using taskt.Core.Properties;
 using taskt.UI.Forms.ScriptBuilder_Forms;
 using taskt.Utilities;
 

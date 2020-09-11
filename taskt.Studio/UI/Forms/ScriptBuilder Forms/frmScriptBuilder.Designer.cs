@@ -1040,7 +1040,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnCollapse.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.uiBtnCollapse.DisplayText = null;
             this.uiBtnCollapse.DisplayTextBrush = System.Drawing.Color.White;
-            this.uiBtnCollapse.Image = global::taskt.Properties.Resources.project_collapse;
+            this.uiBtnCollapse.Image = global::taskt.Core.Properties.Resources.project_collapse;
             this.uiBtnCollapse.IsMouseOver = false;
             this.uiBtnCollapse.Location = new System.Drawing.Point(56, 1);
             this.uiBtnCollapse.Name = "uiBtnCollapse";
@@ -1056,7 +1056,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnOpenDirectory.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.uiBtnOpenDirectory.DisplayText = null;
             this.uiBtnOpenDirectory.DisplayTextBrush = System.Drawing.Color.White;
-            this.uiBtnOpenDirectory.Image = global::taskt.Properties.Resources.project_open_directory;
+            this.uiBtnOpenDirectory.Image = global::taskt.Core.Properties.Resources.project_open_directory;
             this.uiBtnOpenDirectory.IsMouseOver = false;
             this.uiBtnOpenDirectory.Location = new System.Drawing.Point(84, 1);
             this.uiBtnOpenDirectory.Name = "uiBtnOpenDirectory";
@@ -1072,7 +1072,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnExpand.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.uiBtnExpand.DisplayText = null;
             this.uiBtnExpand.DisplayTextBrush = System.Drawing.Color.White;
-            this.uiBtnExpand.Image = global::taskt.Properties.Resources.project_expand;
+            this.uiBtnExpand.Image = global::taskt.Core.Properties.Resources.project_expand;
             this.uiBtnExpand.IsMouseOver = false;
             this.uiBtnExpand.Location = new System.Drawing.Point(28, 1);
             this.uiBtnExpand.Name = "uiBtnExpand";
@@ -1088,7 +1088,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnRefresh.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.uiBtnRefresh.DisplayText = null;
             this.uiBtnRefresh.DisplayTextBrush = System.Drawing.Color.White;
-            this.uiBtnRefresh.Image = global::taskt.Properties.Resources.browser_refresh;
+            this.uiBtnRefresh.Image = global::taskt.Core.Properties.Resources.browser_refresh;
             this.uiBtnRefresh.IsMouseOver = false;
             this.uiBtnRefresh.Location = new System.Drawing.Point(0, 1);
             this.uiBtnRefresh.Name = "uiBtnRefresh";

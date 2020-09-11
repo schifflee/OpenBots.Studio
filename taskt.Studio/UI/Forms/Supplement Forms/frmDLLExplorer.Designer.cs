@@ -136,7 +136,7 @@
             this.upbLoadDLL.DisplayText = "Load DLL";
             this.upbLoadDLL.DisplayTextBrush = System.Drawing.Color.White;
             this.upbLoadDLL.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.upbLoadDLL.Image = global::taskt.Properties.Resources.command_run_code;
+            this.upbLoadDLL.Image = global::taskt.Core.Properties.Resources.command_run_code;
             this.upbLoadDLL.IsMouseOver = false;
             this.upbLoadDLL.Location = new System.Drawing.Point(15, 46);
             this.upbLoadDLL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

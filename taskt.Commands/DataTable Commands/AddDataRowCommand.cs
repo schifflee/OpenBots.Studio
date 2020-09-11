@@ -16,7 +16,6 @@ using taskt.Core.Properties;
 using taskt.Core.UI.CustomControls;
 using taskt.Commands.Forms;
 
-// to be reviewed
 namespace taskt.Commands
 {
     [Serializable]

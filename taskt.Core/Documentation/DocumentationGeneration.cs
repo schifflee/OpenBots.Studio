@@ -108,7 +108,7 @@ namespace taskt.Core.Documentation
                 stringBuilder.AppendLine("This page was generated on " + DateTime.Now.ToString("MM/dd/yy hh:mm tt"));
                 stringBuilder.AppendLine(Environment.NewLine);
                 stringBuilder.AppendLine("## Help");
-                stringBuilder.AppendLine("[Open/Report an issue on GitHub]((https://github.com/OpenBotsAI/OpenBots.Studio/issues/new)");
+                stringBuilder.AppendLine("[Open/Report an issue on GitHub](https://github.com/OpenBotsAI/OpenBots.Studio/issues/new)");
                 stringBuilder.AppendLine("[Ask a question on the OpenBots Forum](https://openbots.ai/forums/)");
 
                 //create kebob destination and command file name

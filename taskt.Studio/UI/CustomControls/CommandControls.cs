@@ -20,7 +20,7 @@ using taskt.Core.Settings;
 using taskt.Core.Utilities.CommandUtilities;
 using taskt.Core.Properties;
 using taskt.UI.CustomControls.CustomUIControls;
-using taskt.Core.UI.CustomControls;
+using taskt.Core.UI.Controls;
 using taskt.UI.Forms;
 using taskt.UI.Forms.Supplement_Forms;
 using Group = taskt.Core.Attributes.ClassAttributes.Group;

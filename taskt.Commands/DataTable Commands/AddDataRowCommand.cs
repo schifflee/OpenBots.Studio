@@ -13,7 +13,7 @@ using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
 using taskt.Core.Properties;
-using taskt.Core.UI.CustomControls;
+using taskt.Core.UI.Controls;
 using taskt.Commands.Forms;
 
 namespace taskt.Commands

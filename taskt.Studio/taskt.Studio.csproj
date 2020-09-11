@@ -291,23 +291,17 @@
     <Compile Include="Commands\Window Commands\SetWindowStateCommand.cs" />
     <Compile Include="Commands\Window Commands\WaitForWindowToExistCommand.cs" />
     <Compile Include="Utilities\Project.cs" />
-    <Compile Include="Utilities\Theme.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="UI\CustomControls\AutomationCommand.cs" />
-    <Compile Include="UI\CustomControls\CommandControl.cs" />
     <Compile Include="UI\CustomControls\CommandGroupControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\CustomControls\CommandGroupControl.Designer.cs">
       <DependentUpon>CommandGroupControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\CustomControls\CommandItemControl.cs" />
-    <Compile Include="UI\CustomControls\CommandItemControl.Designer.cs">
-      <DependentUpon>CommandItemControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\CustomControls\CustomUIControls\UIElement.cs" />
     <Compile Include="UI\CustomControls\CustomUIControls\UIFlowPanel.cs">
@@ -333,7 +327,6 @@
     <Compile Include="UI\CustomControls\CustomUIControls\UIIconButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\CustomControls\CustomUIControls\UIPictureButton.cs" />
     <Compile Include="UI\CustomControls\CustomUIControls\UISplitContainer.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -348,7 +341,6 @@
     <Compile Include="UI\DTOs\Parameter.cs" />
     <Compile Include="UI\DTOs\MachineConfiguration.cs" />
     <Compile Include="UI\DTOs\ScriptActionTag.cs" />
-    <Compile Include="UI\FormEventArgs\LoginResultEventArgs.cs" />
     <Compile Include="UI\Forms\frmAttendedMode.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -457,10 +449,6 @@
     <Compile Include="UI\Forms\Supplement Forms\frmImageCapture.Designer.cs">
       <DependentUpon>frmImageCapture.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Forms\Supplement Forms\frmRemoteDesktopViewer.cs" />
-    <Compile Include="UI\Forms\Supplement Forms\frmRemoteDesktopViewer.Designer.cs">
-      <DependentUpon>frmRemoteDesktopViewer.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Forms\Supplement Forms\frmSplash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -502,10 +490,6 @@
     </Compile>
     <Compile Include="UI\Forms\Supplement Forms\frmUpdate.Designer.cs">
       <DependentUpon>frmUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Forms\ThemedForm.cs" />
-    <Compile Include="UI\Forms\ThemedForm.Designer.cs">
-      <DependentUpon>ThemedForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Forms\UIForm.cs">
       <SubType>Form</SubType>
@@ -572,9 +556,6 @@
     <Compile Include="Utilities\UIControlsHelper.cs" />
     <EmbeddedResource Include="UI\CustomControls\CommandGroupControl.resx">
       <DependentUpon>CommandGroupControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\CustomControls\CommandItemControl.resx">
-      <DependentUpon>CommandItemControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\frmAttendedMode.resx">
       <DependentUpon>frmAttendedMode.cs</DependentUpon>
@@ -651,9 +632,6 @@
     <EmbeddedResource Include="UI\Forms\frmScriptVariables.resx">
       <DependentUpon>frmScriptVariables.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmRemoteDesktopViewer.resx">
-      <DependentUpon>frmRemoteDesktopViewer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\Supplement Forms\frmShowCursorPosition.resx">
       <DependentUpon>frmShowCursorPosition.cs</DependentUpon>
     </EmbeddedResource>
@@ -682,9 +660,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\Supplement Forms\frmUpdate.resx">
       <DependentUpon>frmUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Forms\ThemedForm.resx">
-      <DependentUpon>ThemedForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\UIForm.resx">
       <DependentUpon>UIForm.cs</DependentUpon>
@@ -885,6 +860,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sample Scripts\" />
+    <Folder Include="UI\FormEventArgs\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using taskt.Core.Enums;
-using taskt.Core.UI.FormsEventArgs;
+using taskt.Core.UI.Forms.EventsArgs;
 
 namespace taskt.Core.UI.Forms
 {

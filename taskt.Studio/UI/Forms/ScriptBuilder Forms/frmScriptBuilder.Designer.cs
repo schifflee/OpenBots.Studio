@@ -159,6 +159,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tsmiCloseTab = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCloseAllButThis = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsProjectMainFolderActions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.uiAdvancedRecorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsProjectFolderActions.SuspendLayout();
             this.cmsScriptActions.SuspendLayout();
             this.pnlControlContainer.SuspendLayout();
@@ -1595,7 +1596,8 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // 
             this.recorderToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.elementRecorderToolStripMenuItem,
-            this.uiRecorderToolStripMenuItem});
+            this.uiRecorderToolStripMenuItem,
+            this.uiAdvancedRecorderToolStripMenuItem});
             this.recorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.recorderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("recorderToolStripMenuItem.Image")));
             this.recorderToolStripMenuItem.Name = "recorderToolStripMenuItem";
@@ -1607,7 +1609,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.elementRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.elementRecorderToolStripMenuItem.Image = global::taskt.Properties.Resources.action_bar_element;
             this.elementRecorderToolStripMenuItem.Name = "elementRecorderToolStripMenuItem";
-            this.elementRecorderToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.elementRecorderToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
             this.elementRecorderToolStripMenuItem.Text = "Element Recorder";
             this.elementRecorderToolStripMenuItem.Click += new System.EventHandler(this.elementRecorderToolStripMenuItem_Click);
             // 
@@ -1616,7 +1618,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.uiRecorderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("uiRecorderToolStripMenuItem.Image")));
             this.uiRecorderToolStripMenuItem.Name = "uiRecorderToolStripMenuItem";
-            this.uiRecorderToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.uiRecorderToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
             this.uiRecorderToolStripMenuItem.Text = "UI Recorder";
             this.uiRecorderToolStripMenuItem.Click += new System.EventHandler(this.uiRecorderToolStripMenuItem_Click);
             // 
@@ -1640,6 +1642,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // 
             // tsSearchBox
             // 
+            this.tsSearchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tsSearchBox.Name = "tsSearchBox";
             this.tsSearchBox.Size = new System.Drawing.Size(124, 34);
             this.tsSearchBox.Visible = false;
@@ -1765,6 +1768,15 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tsmiMainPasteFolder});
             this.cmsProjectMainFolderActions.Name = "cmsProjectMainFolderActions";
             this.cmsProjectMainFolderActions.Size = new System.Drawing.Size(199, 88);
+            // 
+            // uiAdvancedRecorderToolStripMenuItem
+            // 
+            this.uiAdvancedRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.uiAdvancedRecorderToolStripMenuItem.Image = global::taskt.Properties.Resources.action_bar_record;
+            this.uiAdvancedRecorderToolStripMenuItem.Name = "uiAdvancedRecorderToolStripMenuItem";
+            this.uiAdvancedRecorderToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
+            this.uiAdvancedRecorderToolStripMenuItem.Text = "Advanced UI Recorder";
+            this.uiAdvancedRecorderToolStripMenuItem.Click += new System.EventHandler(this.uiAdvancedRecorderToolStripMenuItem_Click);
             // 
             // frmScriptBuilder
             // 
@@ -1973,6 +1985,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private ToolStripMenuItem recorderToolStripMenuItem;
         private ToolStripMenuItem uiRecorderToolStripMenuItem;
         private ToolStripMenuItem elementRecorderToolStripMenuItem;
+        private ToolStripMenuItem uiAdvancedRecorderToolStripMenuItem;
     }
 }
 

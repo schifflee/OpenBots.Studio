@@ -765,9 +765,10 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             elementRecorder.ScriptElements = _scriptElements;
             elementRecorder.chkStopOnClick.Visible = false;
 
+            CreateUndoSnapshot();
+
             elementRecorder.ShowDialog();
 
-            CreateUndoSnapshot();
             HTMLElementRecorderURL = elementRecorder.StartURL;
             _scriptElements = elementRecorder.ScriptElements;           
         }
@@ -775,6 +776,18 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private void uiBtnRecordElementSequence_Click(object sender, EventArgs e)
         {
             elementRecorderToolStripMenuItem_Click(sender, e);
+        }
+
+        private void uiAdvancedRecorderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmThickAppElementRecorder appElementRecorder = new frmThickAppElementRecorder();
+            appElementRecorder.CallBackForm = this;
+            appElementRecorder.IsRecordingSequence = true;
+            appElementRecorder.chkStopOnClick.Visible = false;
+
+            CreateUndoSnapshot();
+
+            appElementRecorder.ShowDialog();
         }
         #endregion
         #endregion

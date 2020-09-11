@@ -235,6 +235,12 @@
     <Compile Include="Commands\Task Commands\RunTaskCommand.cs" />
     <Compile Include="Commands\Task Commands\StopCurrentTaskCommand.cs" />
     <Compile Include="UI\DTOs\SteppingCommandsItem.cs" />
+    <Compile Include="UI\Forms\Supplement Forms\frmThickAppElementRecorderSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\Supplement Forms\frmThickAppElementRecorderSettings.Designer.cs">
+      <DependentUpon>frmThickAppElementRecorderSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Forms\Supplement Forms\frmHTMLElementRecorderSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -597,6 +603,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\frmScriptElements.resx">
       <DependentUpon>frmScriptElements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmThickAppElementRecorderSettings.resx">
+      <DependentUpon>frmThickAppElementRecorderSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\Supplement Forms\frmHTMLElementRecorderSettings.resx">
       <DependentUpon>frmHTMLElementRecorderSettings.cs</DependentUpon>

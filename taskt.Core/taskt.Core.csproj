@@ -151,6 +151,7 @@
     <Compile Include="Settings\LocalListenerSettings.cs" />
     <Compile Include="Settings\ServerSettings.cs" />
     <Compile Include="Settings\WhiteListIPSettings.cs" />
+    <Compile Include="User32\KeyDownEventArgs.cs" />
     <Compile Include="User32\MouseCoordinateEventArgs.cs" />
     <Compile Include="User32\RECT.cs" />
     <Compile Include="User32\User32Functions.cs" />

@@ -178,6 +178,7 @@
             this.Name = "frmThickAppElementRecorder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "element recorder";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmThickAppElementRecorder_FormClosing);
             this.Load += new System.EventHandler(this.frmThickAppElementRecorder_Load);
             this.tlpControls.ResumeLayout(false);
             this.pnlHeader.ResumeLayout(false);
@@ -197,6 +198,6 @@
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.PictureBox pbRefresh;
         public System.Windows.Forms.ComboBox cboWindowTitle;
-        private System.Windows.Forms.CheckBox chkStopOnClick;
+        public System.Windows.Forms.CheckBox chkStopOnClick;
     }
 }

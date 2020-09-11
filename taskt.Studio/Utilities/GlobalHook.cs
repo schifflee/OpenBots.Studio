@@ -206,6 +206,8 @@ namespace taskt.Utilities
             HookStopped(null, new EventArgs());
         }
 
+        public static event EventHandler<KeyDownEventArgs> KeyDownEvent;
+
         //mouse and keyboard hook event triggers
         private static IntPtr KeyboardHookEvent(int nCode, IntPtr wParam, IntPtr lParam)
         {
@@ -213,6 +215,10 @@ namespace taskt.Utilities
             {
                 int vkCode = Marshal.ReadInt32(lParam);
                 BuildKeyboardCommand((Keys)vkCode);
+
+                Keys key = (Keys)vkCode;
+                System.Windows.Point point = new System.Windows.Point(Cursor.Position.X, Cursor.Position.Y);
+                KeyDownEvent?.Invoke(null, new KeyDownEventArgs { Key = key, MouseCoordinates = point});
                 _isKeyPressed = true;
             }
             else if (nCode >= 0 && wParam == (IntPtr)_wmKeyUp)

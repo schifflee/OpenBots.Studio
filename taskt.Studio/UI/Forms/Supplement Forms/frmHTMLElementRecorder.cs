@@ -23,10 +23,12 @@ namespace taskt.UI.Forms.Supplement_Forms
         public string StartURL { get; set; }
         public bool IsRecordingSequence { get; set; }
         public frmScriptBuilder CallBackForm { get; set; }
-        public List<ScriptCommand> _sequenceCommandList;
+        private List<ScriptCommand> _sequenceCommandList;
+
         private string _browserInstanceName;
         private string _browserEngineType;
         private DataTable _parameterSettings;
+
         private bool _isFirstRecordClick;
         private string _homeURL = "https://www.google.com/"; //TODO replace with openbots url;
         private string _xPath;
@@ -385,7 +387,6 @@ namespace taskt.UI.Forms.Supplement_Forms
 
         private void BuildElementClickActionCommand()
         {
-
             BuildWaitForElementActionCommand();
 
             var clickElementActionCommand = new SeleniumElementActionCommand
@@ -478,20 +479,20 @@ namespace taskt.UI.Forms.Supplement_Forms
                     BuildWaitForElementActionCommand();
 
                     //build keyboard command
-                    var waitElementActionCommand = new SeleniumElementActionCommand
+                    var setTextElementActionCommand = new SeleniumElementActionCommand
                     {
                         v_InstanceName = _browserInstanceName,
                         v_SeleniumSearchParameters = SearchParameters,
                         v_SeleniumElementAction = "Set Text"
                     };
 
-                    DataTable webActionDT = waitElementActionCommand.v_WebActionParameterTable;
+                    DataTable webActionDT = setTextElementActionCommand.v_WebActionParameterTable;
                     DataRow textToSetRow = webActionDT.NewRow();
                     textToSetRow["Parameter Name"] = "Text To Set";
                     textToSetRow["Parameter Value"] = selectedKey;
                     webActionDT.Rows.Add(textToSetRow);
 
-                    _sequenceCommandList.Add(waitElementActionCommand);
+                    _sequenceCommandList.Add(setTextElementActionCommand);
                 }
                 else
                 {
@@ -506,20 +507,20 @@ namespace taskt.UI.Forms.Supplement_Forms
                 BuildWaitForElementActionCommand();
 
                 //build keyboard command
-                var waitElementActionCommand = new SeleniumElementActionCommand
+                var setTextElementActionCommand = new SeleniumElementActionCommand
                 {
                     v_InstanceName = _browserInstanceName,
                     v_SeleniumSearchParameters = SearchParameters,
                     v_SeleniumElementAction = "Set Text"
                 };
 
-                DataTable webActionDT = waitElementActionCommand.v_WebActionParameterTable;
+                DataTable webActionDT = setTextElementActionCommand.v_WebActionParameterTable;
                 DataRow textToSetRow = webActionDT.NewRow();
                 textToSetRow["Parameter Name"] = "Text To Set";
                 textToSetRow["Parameter Value"] = selectedKey;
                 webActionDT.Rows.Add(textToSetRow);
 
-                _sequenceCommandList.Add(waitElementActionCommand);
+                _sequenceCommandList.Add(setTextElementActionCommand);
             }
         }       
 

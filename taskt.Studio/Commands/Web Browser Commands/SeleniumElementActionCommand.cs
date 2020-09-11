@@ -103,7 +103,7 @@ namespace taskt.Commands
 
         [XmlIgnore]
         [NonSerialized]
-        private DataGridView _elementsGridViewHelper;
+        private DataGridView _actionParametersGridViewHelper;
 
         [XmlIgnore]
         [NonSerialized]
@@ -111,7 +111,7 @@ namespace taskt.Commands
 
         [XmlIgnore]
         [NonSerialized]
-        private List<Control> _elementParameterControls;
+        private List<Control> _actionParametersControls;
 
         [XmlIgnore]
         [NonSerialized]
@@ -173,24 +173,24 @@ namespace taskt.Commands
             _searchParametersGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _searchParametersGridViewHelper.AllowUserToAddRows = true;
             _searchParametersGridViewHelper.AllowUserToDeleteRows = true;
-            _searchParametersGridViewHelper.AllowUserToResizeRows = false;
             _searchParametersGridViewHelper.DragDrop += new DragEventHandler(SearchParametersGridViewHelper_DragDrop);
             _searchParametersGridViewHelper.DragOver += new DragEventHandler(SearchParametersGridViewHelper_DragOver);
             _searchParametersGridViewHelper.MouseDown += new MouseEventHandler(SearchParametersGridViewHelper_MouseDown);
             _searchParametersGridViewHelper.MouseMove += new MouseEventHandler(SearchParametersGridViewHelper_MouseMove);
             _searchParametersGridViewHelper.MouseUp += new MouseEventHandler(SearchParametersGridViewHelper_MouseUp);
 
-            _elementsGridViewHelper = new DataGridView();
-            _elementsGridViewHelper.AllowUserToAddRows = true;
-            _elementsGridViewHelper.AllowUserToDeleteRows = true;
-            _elementsGridViewHelper.Size = new Size(400, 150);
-            _elementsGridViewHelper.ColumnHeadersHeight = 30;
-            _elementsGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            _elementsGridViewHelper.DataBindings.Add("DataSource", this, "v_WebActionParameterTable", false, DataSourceUpdateMode.OnPropertyChanged);
-            _elementsGridViewHelper.AllowUserToAddRows = false;
-            _elementsGridViewHelper.AllowUserToDeleteRows = false;
-            _elementsGridViewHelper.AllowUserToResizeRows = false;
-        }      
+            _actionParametersGridViewHelper = new DataGridView();
+            _actionParametersGridViewHelper.AllowUserToAddRows = true;
+            _actionParametersGridViewHelper.AllowUserToDeleteRows = true;
+            _actionParametersGridViewHelper.Size = new Size(400, 150);
+            _actionParametersGridViewHelper.ColumnHeadersHeight = 30;
+            _actionParametersGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _actionParametersGridViewHelper.DataBindings.Add("DataSource", this, "v_WebActionParameterTable", false, DataSourceUpdateMode.OnPropertyChanged);
+            _actionParametersGridViewHelper.AllowUserToAddRows = false;
+            _actionParametersGridViewHelper.AllowUserToDeleteRows = false;
+            _actionParametersGridViewHelper.AllowUserToResizeRows = false;
+            _actionParametersGridViewHelper.MouseEnter += ActionParametersGridViewHelper_MouseEnter;
+        }
 
         public override void RunCommand(object sender)
         {
@@ -600,11 +600,11 @@ namespace taskt.Commands
             _elementActionDropdown.SelectionChangeCommitted += SeleniumAction_SelectionChangeCommitted;
             RenderedControls.Add(_elementActionDropdown);
 
-            _elementParameterControls = new List<Control>();
-            _elementParameterControls.Add(CommandControls.CreateDefaultLabelFor("v_WebActionParameterTable", this));
-            _elementParameterControls.AddRange(CommandControls.CreateUIHelpersFor("v_WebActionParameterTable", this, new Control[] { _elementsGridViewHelper }, editor));
-            _elementParameterControls.Add(_elementsGridViewHelper);
-            RenderedControls.AddRange(_elementParameterControls);
+            _actionParametersControls = new List<Control>();
+            _actionParametersControls.Add(CommandControls.CreateDefaultLabelFor("v_WebActionParameterTable", this));
+            _actionParametersControls.AddRange(CommandControls.CreateUIHelpersFor("v_WebActionParameterTable", this, new Control[] { _actionParametersGridViewHelper }, editor));
+            _actionParametersControls.Add(_actionParametersGridViewHelper);
+            RenderedControls.AddRange(_actionParametersControls);
 
             return RenderedControls;
         }
@@ -622,6 +622,11 @@ namespace taskt.Commands
 
             return base.GetDisplayValue() + $" [{v_SeleniumElementAction} - {v_SeleniumSearchOption} by {searchParameterName}" + 
                                             $" '{searchParameterValue}' - Instance Name '{v_InstanceName}']";
+        }
+
+        private void ActionParametersGridViewHelper_MouseEnter(object sender, EventArgs e)
+        {
+            SeleniumAction_SelectionChangeCommitted(null, null);
         }
 
         public bool ElementExists(object sender, string searchType, string elementName)
@@ -756,7 +761,7 @@ namespace taskt.Commands
             {
                 case "Invoke Click":
                 case "Clear Element":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Hide();
                     break;
 
@@ -764,7 +769,7 @@ namespace taskt.Commands
                 case "Middle Click":
                 case "Right Click":
                 case "Double Left Click":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
@@ -775,7 +780,7 @@ namespace taskt.Commands
                     break;
 
                 case "Set Text":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
@@ -788,13 +793,13 @@ namespace taskt.Commands
                         DataGridViewComboBoxCell encryptedBox = new DataGridViewComboBoxCell();
                         encryptedBox.Items.Add("Not Encrypted");
                         encryptedBox.Items.Add("Encrypted");
-                        _elementsGridViewHelper.Rows[2].Cells[1] = encryptedBox;
-                        _elementsGridViewHelper.Rows[2].Cells[1].Value = "Not Encrypted";
+                        _actionParametersGridViewHelper.Rows[2].Cells[1] = encryptedBox;
+                        _actionParametersGridViewHelper.Rows[2].Cells[1].Value = "Not Encrypted";
 
                         var buttonCell = new DataGridViewButtonCell();
-                        _elementsGridViewHelper.Rows[3].Cells[1] = buttonCell;
-                        _elementsGridViewHelper.Rows[3].Cells[1].Value = "Encrypt Text";
-                        _elementsGridViewHelper.CellContentClick += ElementsGridViewHelper_CellContentClick;
+                        _actionParametersGridViewHelper.Rows[3].Cells[1] = buttonCell;
+                        _actionParametersGridViewHelper.Rows[3].Cells[1].Value = "Encrypt Text";
+                        _actionParametersGridViewHelper.CellContentClick += ElementsGridViewHelper_CellContentClick;
                     }
 
                     DataGridViewComboBoxCell comparisonComboBox = new DataGridViewComboBoxCell();
@@ -803,13 +808,15 @@ namespace taskt.Commands
 
                     //assign cell as a combobox
                     if (sender != null)
-                        _elementsGridViewHelper.Rows[1].Cells[1].Value = "No";
+                        _actionParametersGridViewHelper.Rows[1].Cells[1].Value = "No";
 
-                    _elementsGridViewHelper.Rows[1].Cells[1] = comparisonComboBox;
+                    if (_actionParametersGridViewHelper.Rows.Count > 1)
+                        _actionParametersGridViewHelper.Rows[1].Cells[1] = comparisonComboBox;
+
                     break;
 
                 case "Set Secure Text":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
@@ -823,16 +830,17 @@ namespace taskt.Commands
 
                     //assign cell as a combobox
                     if (sender != null)
-                        _elementsGridViewHelper.Rows[1].Cells[1].Value = "No";
+                        _actionParametersGridViewHelper.Rows[1].Cells[1].Value = "No";
 
-                    _elementsGridViewHelper.Rows[1].Cells[1] = _comparisonComboBox; 
+                    if (_actionParametersGridViewHelper.Rows.Count > 1)
+                        _actionParametersGridViewHelper.Rows[1].Cells[1] = _comparisonComboBox; 
                     break;
 
                 case "Get Text":
                 case "Get Matching Element(s)":
                 case "Get Table":
                 case "Get Count":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
@@ -840,7 +848,7 @@ namespace taskt.Commands
                     break;
 
                 case "Get Attribute":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
@@ -870,13 +878,14 @@ namespace taskt.Commands
 
                     //assign cell as a combobox
                     if (sender != null)
-                        _elementsGridViewHelper.Rows[0].Cells[1].Value = "Select By Text";
+                        _actionParametersGridViewHelper.Rows[0].Cells[1].Value = "Select By Text";
 
-                    _elementsGridViewHelper.Rows[0].Cells[1] = selectionTypeBox;
+                    if (_actionParametersGridViewHelper.Rows.Count > 0)
+                        _actionParametersGridViewHelper.Rows[0].Cells[1] = selectionTypeBox;
                     break;
 
                 case "Wait For Element To Exist":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
        
                     if (sender != null)
@@ -884,23 +893,23 @@ namespace taskt.Commands
                     break;
 
                 case "Switch to frame":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Hide();
                     break;
 
                 default:
                     break;
             }
-            _elementsGridViewHelper.DataSource = v_WebActionParameterTable;
+            _actionParametersGridViewHelper.DataSource = v_WebActionParameterTable;
         }
 
         private void ElementsGridViewHelper_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var targetCell = _elementsGridViewHelper.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            var targetCell = _actionParametersGridViewHelper.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
             if (targetCell is DataGridViewButtonCell && targetCell.Value.ToString() == "Encrypt Text")
             {
-                var targetElement = _elementsGridViewHelper.Rows[0].Cells[1];
+                var targetElement = _actionParametersGridViewHelper.Rows[0].Cells[1];
 
                 if (string.IsNullOrEmpty(targetElement.Value.ToString()))
                     return;
@@ -912,7 +921,7 @@ namespace taskt.Commands
                 if (warning == DialogResult.Yes)
                 {
                     targetElement.Value = EncryptionServices.EncryptString(targetElement.Value.ToString(), "OPENBOTS");
-                    _elementsGridViewHelper.Rows[2].Cells[1].Value = "Encrypted";
+                    _actionParametersGridViewHelper.Rows[2].Cells[1].Value = "Encrypted";
                 }
             }
         }

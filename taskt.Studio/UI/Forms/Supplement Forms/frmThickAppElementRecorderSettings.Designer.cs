@@ -104,7 +104,6 @@
             // 
             // dgvParameterSettings
             // 
-            this.dgvParameterSettings.AllowDrop = true;
             this.dgvParameterSettings.AllowUserToAddRows = false;
             this.dgvParameterSettings.AllowUserToDeleteRows = false;
             this.dgvParameterSettings.AllowUserToResizeColumns = false;
@@ -121,11 +120,6 @@
             this.dgvParameterSettings.RowTemplate.Height = 24;
             this.dgvParameterSettings.Size = new System.Drawing.Size(510, 241);
             this.dgvParameterSettings.TabIndex = 39;
-            this.dgvParameterSettings.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvParameterSettings_DragDrop);
-            this.dgvParameterSettings.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvParameterSettings_DragOver);
-            this.dgvParameterSettings.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvParameterSettings_MouseDown);
-            this.dgvParameterSettings.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvParameterSettings_MouseMove);
-            this.dgvParameterSettings.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dgvParameterSettings_MouseUp);
             // 
             // enabled
             // 

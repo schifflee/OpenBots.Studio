@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -55,8 +56,7 @@ namespace taskt.Commands
                      "\n\tCSS Selector: [attribute=value]" +
                      "\n\tLink Text: https://www.mylink.com/"
                     )]
-        [Remarks("If multiple parameters are enabled, they will be used in the order that they are listed until an element is found."+
-                 "Drag and drop rows to reorder the search parameters.")]
+        [Remarks("If multiple parameters are enabled, an attempt will be made to find an element(s) that matches all the selected parameters.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowElementHelper)] 
         public DataTable v_SeleniumSearchParameters { get; set; }
 
@@ -117,13 +117,6 @@ namespace taskt.Commands
         [NonSerialized]
         private DataGridView _searchParametersGridViewHelper;
 
-        [NonSerialized]
-        private int _indexOfItemUnderMouseToDrag = -1;
-        [NonSerialized]
-        private int _indexOfItemUnderMouseToDrop = -1;
-        [NonSerialized]
-        private Rectangle _dragBoxFromMouseDown = Rectangle.Empty;
-
         public SeleniumElementActionCommand()
         {
             CommandName = "SeleniumElementActionCommand";
@@ -173,11 +166,6 @@ namespace taskt.Commands
             _searchParametersGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _searchParametersGridViewHelper.AllowUserToAddRows = true;
             _searchParametersGridViewHelper.AllowUserToDeleteRows = true;
-            _searchParametersGridViewHelper.DragDrop += new DragEventHandler(SearchParametersGridViewHelper_DragDrop);
-            _searchParametersGridViewHelper.DragOver += new DragEventHandler(SearchParametersGridViewHelper_DragOver);
-            _searchParametersGridViewHelper.MouseDown += new MouseEventHandler(SearchParametersGridViewHelper_MouseDown);
-            _searchParametersGridViewHelper.MouseMove += new MouseEventHandler(SearchParametersGridViewHelper_MouseMove);
-            _searchParametersGridViewHelper.MouseUp += new MouseEventHandler(SearchParametersGridViewHelper_MouseUp);
 
             _actionParametersGridViewHelper = new DataGridView();
             _actionParametersGridViewHelper.AllowUserToAddRows = true;
@@ -196,13 +184,10 @@ namespace taskt.Commands
         {
             var engine = (AutomationEngineInstance)sender;
 
-            var seleniumSearchParam = (from rw in v_SeleniumSearchParameters.AsEnumerable()
-                                       where rw.Field<string>("Enabled") == "True"
-                                       select rw.Field<string>("Parameter Value")).ToList();
-
-            var seleniumSearchType = (from rw in v_SeleniumSearchParameters.AsEnumerable()
-                                      where rw.Field<string>("Enabled") == "True"
-                                      select rw.Field<string>("Parameter Name")).ToList();
+            var seleniumSearchParamRows = (from rw in v_SeleniumSearchParameters.AsEnumerable()
+                                       where rw.Field<string>("Enabled") == "True" &&
+                                       rw.Field<string>("Parameter Value").ToString() != ""
+                                       select rw.ItemArray.Cast<string>().ToArray()).ToList();
 
             var browserObject = v_InstanceName.GetAppInstance(engine);
             var seleniumInstance = (IWebDriver)browserObject;
@@ -223,19 +208,8 @@ namespace taskt.Commands
                 {
                     try
                     {
-                        for(int i = 0; i < seleniumSearchParam.Count; i++)
-                        {
-                            try
-                            {
-                                element = FindElement(engine, seleniumInstance, seleniumSearchType[i], seleniumSearchParam[i]);
-                                break;
-                            }
-                            catch (Exception ex)
-                            {
-                                elementSearchException = ex;
-                                //try next search parameter
-                            }
-                        }
+                        element = FindElement(engine, seleniumInstance, seleniumSearchParamRows);
+                             
                         if (element == null)
                             throw elementSearchException;
                     }
@@ -246,22 +220,8 @@ namespace taskt.Commands
                     }
                 }              
             }
-            else if (seleniumSearchParam.Count > 0)
-            {
-                for (int i = 0; i < seleniumSearchParam.Count; i++)
-                {
-                    try
-                    {
-                        element = FindElement(engine, seleniumInstance, seleniumSearchType[i], seleniumSearchParam[i]);
-                        break;
-                    }
-                    catch (Exception ex)
-                    {
-                        elementSearchException = ex;
-                        //try next search parameter
-                    }
-                }                                           
-            }
+            else if (seleniumSearchParamRows.Count > 0)
+                element = FindElement(engine, seleniumInstance, seleniumSearchParamRows);                                     
 
             if (element == null)
                 throw elementSearchException;
@@ -547,7 +507,7 @@ namespace taskt.Commands
                     break;
 
                 case "Switch to Frame":
-                    if (seleniumSearchParam.Count == 0)
+                    if (seleniumSearchParamRows.Count == 0)
                         seleniumInstance.SwitchTo().DefaultContent();
                     else
                         seleniumInstance.SwitchTo().Frame(element);
@@ -574,7 +534,6 @@ namespace taskt.Commands
 
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
 
-            _searchParametersGridViewHelper.AllowDrop = true;
             if (v_SeleniumSearchParameters.Rows.Count == 0)
             {
                 v_SeleniumSearchParameters.Rows.Add(true, "XPath", "");
@@ -633,7 +592,7 @@ namespace taskt.Commands
         {
             //get engine reference
             var engine = (AutomationEngineInstance)sender;
-            var seleniumSearchParam = elementName.ConvertUserVariableToString(engine);
+            List<string[]> seleniumSearchParamRows = new List<string[]>();
 
             //get stored app object
             var browserObject = v_InstanceName.GetAppInstance(engine);
@@ -644,7 +603,7 @@ namespace taskt.Commands
             try
             {
                 //search for element
-                var element = FindElement(engine, seleniumInstance, searchType, seleniumSearchParam);
+                var element = FindElement(engine, seleniumInstance, seleniumSearchParamRows);
 
                 //element exists
                 return true;
@@ -656,65 +615,59 @@ namespace taskt.Commands
             }
         }
 
-        private object FindElement(AutomationEngineInstance engine, IWebDriver seleniumInstance, string searchType, string searchParameter)
+        private object FindElement(AutomationEngineInstance engine, IWebDriver seleniumInstance, List<string[]> searchParameterRows)//List<string> searchType, List<string> searchParameter)
         {
-            searchParameter = searchParameter.ConvertUserVariableToString(engine);
             object element;
+            
+            List<By> byList = new List<By>();
+            By by;
 
-            switch (searchType)
+            foreach (var row in searchParameterRows)
             {
-                case string a when a.ToLower().Contains("xpath"):
-                    if (v_SeleniumSearchOption == "Find Element")
-                        element = seleniumInstance.FindElement(By.XPath(searchParameter));
-                    else
-                        element = seleniumInstance.FindElements(By.XPath(searchParameter));
-                    break;
+                string parameter = row[2].ToString().ConvertUserVariableToString(engine);
+                switch (row[1].ToString())
+                {                  
+                    case string a when a.ToLower().Contains("xpath"):
+                        by = By.XPath(parameter);
+                        break;
 
-                case string a when a.ToLower().Contains("id"):
-                    if (v_SeleniumSearchOption == "Find Element")
-                        element = seleniumInstance.FindElement(By.Id(searchParameter));
-                    else
-                        element = seleniumInstance.FindElements(By.Id(searchParameter));
-                    break;
-       
-                case string a when a.ToLower().Contains("tag name"):
-                    if (v_SeleniumSearchOption == "Find Element")
-                        element = seleniumInstance.FindElement(By.TagName(searchParameter));
-                    else
-                        element = seleniumInstance.FindElements(By.TagName(searchParameter));
-                    break;
+                    case string a when a.ToLower().Contains("id"):
+                        by = By.Id(parameter);
+                        break;
 
-                case string a when a.ToLower().Contains("class name"):
-                    if (v_SeleniumSearchOption == "Find Element")
-                        element = seleniumInstance.FindElement(By.ClassName(searchParameter));
-                    else
-                        element = seleniumInstance.FindElements(By.ClassName(searchParameter));
-                    break;
+                    case string a when a.ToLower().Contains("tag name"):
+                        by = By.TagName(parameter);
+                        break;
 
-                case string a when a.ToLower().Contains("name"):
-                    if (v_SeleniumSearchOption == "Find Element")
-                        element = seleniumInstance.FindElement(By.Name(searchParameter));
-                    else
-                        element = seleniumInstance.FindElements(By.Name(searchParameter));
-                    break;
+                    case string a when a.ToLower().Contains("class name"):
+                        by = By.ClassName(parameter);
+                        break;
 
-                case string a when a.ToLower().Contains("css selector"):
-                    if (v_SeleniumSearchOption == "Find Element")
-                        element = seleniumInstance.FindElement(By.CssSelector(searchParameter));
-                    else
-                        element = seleniumInstance.FindElements(By.CssSelector(searchParameter));
-                    break;
+                    case string a when a.ToLower().Contains("name"):
+                        by = By.Name(parameter);
+                        break;
 
-                case string a when a.ToLower().Contains("link text"):
-                    if (v_SeleniumSearchOption == "Find Element")
-                        element = seleniumInstance.FindElement(By.LinkText(searchParameter));
-                    else
-                        element = seleniumInstance.FindElements(By.LinkText(searchParameter));
-                    break;
+                    case string a when a.ToLower().Contains("css selector"):
+                        by = By.CssSelector(parameter);
+                        break;
 
-                default:
-                    throw new Exception("Element Search Type was not found: " + searchType);
+                    case string a when a.ToLower().Contains("link text"):
+                        by = By.LinkText(parameter);
+                        break;
+
+                    default:
+                        throw new Exception("Element Search Type was not found: " + row[1].ToString());
+                }
+                byList.Add(by);
             }
+
+            var byall = new ByAll(byList.ToArray());
+
+            if (v_SeleniumSearchOption == "Find Element")
+                element = seleniumInstance.FindElement(byall);
+            else
+                element = seleniumInstance.FindElements(byall);
+
             return element;
         }
 
@@ -925,78 +878,5 @@ namespace taskt.Commands
                 }
             }
         }
-
-        #region drag/drop events
-        private void SearchParametersGridViewHelper_MouseDown(object sender, MouseEventArgs e)
-        {
-            var hitTest = _searchParametersGridViewHelper.HitTest(e.X, e.Y);
-            if (hitTest.Type != DataGridViewHitTestType.Cell)
-                return;
-
-            _indexOfItemUnderMouseToDrag = hitTest.RowIndex;
-            if (_indexOfItemUnderMouseToDrag > -1)
-            {
-                Size dragSize = SystemInformation.DragSize;
-                _dragBoxFromMouseDown = new Rectangle(new Point(e.X - (dragSize.Width / 2), e.Y - (dragSize.Height / 2)), dragSize);
-            }
-            else
-                _dragBoxFromMouseDown = Rectangle.Empty;
-        }
-
-        private void SearchParametersGridViewHelper_MouseUp(object sender, MouseEventArgs e)
-        {
-            _dragBoxFromMouseDown = Rectangle.Empty;
-        }
-
-        private void SearchParametersGridViewHelper_MouseMove(object sender, MouseEventArgs e)
-        {
-            if ((e.Button & MouseButtons.Left) != MouseButtons.Left)
-                return;
-            if (_dragBoxFromMouseDown == Rectangle.Empty || _dragBoxFromMouseDown.Contains(e.X, e.Y))
-                return;
-            if (_indexOfItemUnderMouseToDrag < 0)
-                return;          
-
-            var row = _searchParametersGridViewHelper.Rows[_indexOfItemUnderMouseToDrag];
-            _searchParametersGridViewHelper.DoDragDrop(row, DragDropEffects.All);
-
-            //Clear
-            _searchParametersGridViewHelper.ClearSelection();
-            //Set
-            if (_indexOfItemUnderMouseToDrop > -1)
-                _searchParametersGridViewHelper.Rows[_indexOfItemUnderMouseToDrop].Selected = true;
-        }
-
-        private void SearchParametersGridViewHelper_DragOver(object sender, DragEventArgs e)
-        {
-            Point p = _searchParametersGridViewHelper.PointToClient(new Point(e.X, e.Y));
-            var hitTest = _searchParametersGridViewHelper.HitTest(p.X, p.Y);
-            if (hitTest.Type != DataGridViewHitTestType.Cell || hitTest.RowIndex == _indexOfItemUnderMouseToDrag)
-            {
-                e.Effect = DragDropEffects.None;
-                return;
-            }
-            e.Effect = DragDropEffects.Move;
-        }
-
-        private void SearchParametersGridViewHelper_DragDrop(object sender, DragEventArgs e)
-        {
-            Point p = _searchParametersGridViewHelper.PointToClient(new Point(e.X, e.Y));
-            var hitTest = _searchParametersGridViewHelper.HitTest(p.X, p.Y);
-            if (hitTest.Type != DataGridViewHitTestType.Cell || hitTest.RowIndex == _indexOfItemUnderMouseToDrag + 1)
-                return;
-
-            _indexOfItemUnderMouseToDrop = hitTest.RowIndex;
-
-            var tempRow = v_SeleniumSearchParameters.NewRow();
-            tempRow.ItemArray = v_SeleniumSearchParameters.Rows[_indexOfItemUnderMouseToDrag].ItemArray;
-            v_SeleniumSearchParameters.Rows.RemoveAt(_indexOfItemUnderMouseToDrag);
-
-            if (_indexOfItemUnderMouseToDrag < _indexOfItemUnderMouseToDrop)
-                _indexOfItemUnderMouseToDrop--;
-
-            v_SeleniumSearchParameters.Rows.InsertAt(tempRow, _indexOfItemUnderMouseToDrop);
-        }
-        #endregion
     }
 }

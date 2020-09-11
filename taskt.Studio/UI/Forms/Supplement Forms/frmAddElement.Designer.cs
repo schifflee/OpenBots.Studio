@@ -108,9 +108,11 @@ namespace taskt.UI.Forms.Supplement_Forms
             this.lblDefineDefaultValueDescriptor.Location = new System.Drawing.Point(16, 266);
             this.lblDefineDefaultValueDescriptor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDefineDefaultValueDescriptor.Name = "lblDefineDefaultValueDescriptor";
-            this.lblDefineDefaultValueDescriptor.Size = new System.Drawing.Size(577, 110);
+            this.lblDefineDefaultValueDescriptor.Size = new System.Drawing.Size(577, 80);
             this.lblDefineDefaultValueDescriptor.TabIndex = 20;
-            this.lblDefineDefaultValueDescriptor.Text = resources.GetString("lblDefineDefaultValueDescriptor.Text");
+            this.lblDefineDefaultValueDescriptor.Text = "Define a default value for the element.  The enabled search parameters can be use" +
+    "d in web action commands to locate web elements, provided that they contain a va" +
+    "lue.";
             // 
             // lblDefineDefaultValue
             // 
@@ -135,7 +137,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             this.uiBtnOk.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnOk.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnOk.Image")));
             this.uiBtnOk.IsMouseOver = false;
-            this.uiBtnOk.Location = new System.Drawing.Point(20, 677);
+            this.uiBtnOk.Location = new System.Drawing.Point(20, 640);
             this.uiBtnOk.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.uiBtnOk.Name = "uiBtnOk";
             this.uiBtnOk.Size = new System.Drawing.Size(60, 60);
@@ -154,7 +156,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             this.uiBtnCancel.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnCancel.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnCancel.Image")));
             this.uiBtnCancel.IsMouseOver = false;
-            this.uiBtnCancel.Location = new System.Drawing.Point(80, 677);
+            this.uiBtnCancel.Location = new System.Drawing.Point(80, 640);
             this.uiBtnCancel.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.uiBtnCancel.Name = "uiBtnCancel";
             this.uiBtnCancel.Size = new System.Drawing.Size(60, 60);
@@ -176,7 +178,6 @@ namespace taskt.UI.Forms.Supplement_Forms
             // 
             // dgvDefaultValue
             // 
-            this.dgvDefaultValue.AllowDrop = true;
             this.dgvDefaultValue.AllowUserToResizeRows = false;
             this.dgvDefaultValue.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDefaultValue.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -185,17 +186,12 @@ namespace taskt.UI.Forms.Supplement_Forms
             this.parameterName,
             this.parameterValue});
             this.dgvDefaultValue.DataBindings.Add(new System.Windows.Forms.Binding("DataSource", this, "ElementValueDT", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dgvDefaultValue.Location = new System.Drawing.Point(21, 376);
+            this.dgvDefaultValue.Location = new System.Drawing.Point(21, 345);
             this.dgvDefaultValue.Name = "dgvDefaultValue";
             this.dgvDefaultValue.RowHeadersWidth = 51;
             this.dgvDefaultValue.RowTemplate.Height = 24;
             this.dgvDefaultValue.Size = new System.Drawing.Size(563, 283);
             this.dgvDefaultValue.TabIndex = 28;
-            this.dgvDefaultValue.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvDefaultValue_DragDrop);
-            this.dgvDefaultValue.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvDefaultValue_DragOver);
-            this.dgvDefaultValue.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvDefaultValue_MouseDown);
-            this.dgvDefaultValue.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvDefaultValue_MouseMove);
-            this.dgvDefaultValue.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dgvDefaultValue_MouseUp);
             // 
             // enabled
             // 
@@ -228,7 +224,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 750);
+            this.ClientSize = new System.Drawing.Size(609, 716);
             this.Controls.Add(this.dgvDefaultValue);
             this.Controls.Add(this.lblElementNameError);
             this.Controls.Add(this.uiBtnOk);

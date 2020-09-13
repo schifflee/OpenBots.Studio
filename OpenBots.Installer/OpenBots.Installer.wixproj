@@ -25,6 +25,7 @@
     <DefineConstants>HarvestPath=..\taskt.Studio\bin\Release</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="HeatGeneratedFileList.wxs" />
     <Compile Include="OpenBotsStudio.wxs" />
   </ItemGroup>
   <ItemGroup>

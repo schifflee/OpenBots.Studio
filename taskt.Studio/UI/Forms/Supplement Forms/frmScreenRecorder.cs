@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using taskt.Commands;
 using taskt.Core.Command;
+using taskt.Core.Settings;
 using taskt.Properties;
 using taskt.UI.Forms;
 using taskt.UI.Forms.ScriptBuilder_Forms;
@@ -14,9 +15,14 @@ namespace taskt.UI.Supplement_Forms
     {
         public frmScriptBuilder CallBackForm { get; set; }
         private List<ScriptCommand> _scriptCommandList;
+        public bool IsCommandItemSelected { get; set; }
+        private ApplicationSettings _appSettings;
 
         public frmScreenRecorder()
         {
+            _appSettings = new ApplicationSettings();
+            _appSettings = _appSettings.GetOrCreateApplicationSettings();
+
             InitializeComponent();
         }
 
@@ -96,6 +102,9 @@ namespace taskt.UI.Supplement_Forms
                 v_Comment = sequenceComment
             };
             outputList.Insert(0, commentCommand);
+
+            if (_appSettings.ClientSettings.InsertCommandsInline && IsCommandItemSelected)
+                outputList.Reverse();               
 
             foreach (var cmd in outputList)
                 CallBackForm.AddCommandToListView(cmd);

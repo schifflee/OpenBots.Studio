@@ -544,6 +544,29 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             }
         }
 
+        private void elementManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenElementManager();
+        }
+
+        private void uiBtnAddElement_Click(object sender, EventArgs e)
+        {
+            OpenElementManager();
+        }
+
+        private void OpenElementManager()
+        {
+            frmScriptElements scriptElementEditor = new frmScriptElements();
+            scriptElementEditor.ScriptName = uiScriptTabControl.SelectedTab.Name;
+            scriptElementEditor.ScriptElements = _scriptElements;
+
+            if (scriptElementEditor.ShowDialog() == DialogResult.OK)
+            {
+                CreateUndoSnapshot();
+                _scriptElements = scriptElementEditor.ScriptElements;
+            }
+        }
+
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenSettingsManager();
@@ -605,34 +628,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         #endregion
 
         #region Script Events Tool Strip and Buttons
-        private void uiRecorderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RecordSequence();
-        }
-
-        private void uiBtnRecordUISequence_Click(object sender, EventArgs e)
-        {
-            RecordSequence();
-        }
-
-        private void RecordSequence()
-        {
-            Hide();
-            frmScreenRecorder sequenceRecorder = new frmScreenRecorder();
-            sequenceRecorder.CallBackForm = this;
-            sequenceRecorder.ShowDialog();
-            uiScriptTabControl.SelectedTab.Controls.Remove(pnlCommandHelper);
-            uiScriptTabControl.SelectedTab.Controls[0].Show();
-
-            Show();
-            BringToFront();
-        }
-
-        private void uiBtnSaveSequence_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
+        
 
         private void scheduleToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -733,30 +729,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         }
         #endregion
 
-        #region Element Buttons
-        private void elementManagerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenElementManager();
-        }
-
-        private void uiBtnAddElement_Click(object sender, EventArgs e)
-        {
-            OpenElementManager();
-        }
-
-        private void OpenElementManager()
-        {
-            frmScriptElements scriptElementEditor = new frmScriptElements();
-            scriptElementEditor.ScriptName = uiScriptTabControl.SelectedTab.Name;
-            scriptElementEditor.ScriptElements = _scriptElements;
-
-            if (scriptElementEditor.ShowDialog() == DialogResult.OK)
-            {
-                CreateUndoSnapshot();
-                _scriptElements = scriptElementEditor.ScriptElements;               
-            }
-        }
-
+        #region Recorder Buttons
         private void elementRecorderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmHTMLElementRecorder elementRecorder = new frmHTMLElementRecorder(HTMLElementRecorderURL);
@@ -764,6 +737,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             elementRecorder.IsRecordingSequence = true;
             elementRecorder.ScriptElements = _scriptElements;
             elementRecorder.chkStopOnClick.Visible = false;
+            elementRecorder.IsCommandItemSelected = _selectedTabScriptActions.SelectedItems.Count > 0;
 
             CreateUndoSnapshot();
 
@@ -778,16 +752,53 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             elementRecorderToolStripMenuItem_Click(sender, e);
         }
 
+        private void uiRecorderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RecordSequence();
+        }
+
+        private void uiBtnRecordUISequence_Click(object sender, EventArgs e)
+        {
+            RecordSequence();
+        }
+
+        private void RecordSequence()
+        {
+            Hide();
+            frmScreenRecorder sequenceRecorder = new frmScreenRecorder();
+            sequenceRecorder.CallBackForm = this;
+            sequenceRecorder.IsCommandItemSelected = _selectedTabScriptActions.SelectedItems.Count > 0;
+
+            sequenceRecorder.ShowDialog();
+            uiScriptTabControl.SelectedTab.Controls.Remove(pnlCommandHelper);
+            uiScriptTabControl.SelectedTab.Controls[0].Show();
+
+            Show();
+            BringToFront();
+        }
+
         private void uiAdvancedRecorderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmThickAppElementRecorder appElementRecorder = new frmThickAppElementRecorder();
             appElementRecorder.CallBackForm = this;
             appElementRecorder.IsRecordingSequence = true;
             appElementRecorder.chkStopOnClick.Visible = false;
+            appElementRecorder.IsCommandItemSelected = _selectedTabScriptActions.SelectedItems.Count > 0;
 
             CreateUndoSnapshot();
 
             appElementRecorder.ShowDialog();
+        }
+
+        private void uiBtnRecordAdvancedUISequence_Click(object sender, EventArgs e)
+        {
+            uiAdvancedRecorderToolStripMenuItem_Click(sender, e);
+        }
+
+        private void uiBtnSaveSequence_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
         }
         #endregion
         #endregion

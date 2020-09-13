@@ -144,6 +144,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.recorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementRecorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiRecorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiAdvancedRecorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsSearchBox = new System.Windows.Forms.ToolStripTextBox();
@@ -159,7 +160,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tsmiCloseTab = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCloseAllButThis = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsProjectMainFolderActions = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.uiAdvancedRecorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiBtnRecordAdvancedUISequence = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.cmsProjectFolderActions.SuspendLayout();
             this.cmsScriptActions.SuspendLayout();
             this.pnlControlContainer.SuspendLayout();
@@ -214,6 +215,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.cmsProjectFileActions.SuspendLayout();
             this.cmsScriptTabActions.SuspendLayout();
             this.cmsProjectMainFolderActions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiBtnRecordAdvancedUISequence)).BeginInit();
             this.SuspendLayout();
             // 
             // cmsProjectFolderActions
@@ -405,7 +407,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.pnlControlContainer.Location = new System.Drawing.Point(0, 89);
             this.pnlControlContainer.Margin = new System.Windows.Forms.Padding(0);
             this.pnlControlContainer.Name = "pnlControlContainer";
-            this.pnlControlContainer.Size = new System.Drawing.Size(1359, 101);
+            this.pnlControlContainer.Size = new System.Drawing.Size(1408, 97);
             this.pnlControlContainer.TabIndex = 7;
             this.pnlControlContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlControlContainer_Paint);
             // 
@@ -416,11 +418,11 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.grpSearch.Controls.Add(this.lblCurrentlyViewing);
             this.grpSearch.Controls.Add(this.lblTotalResults);
             this.grpSearch.Controls.Add(this.txtScriptSearch);
-            this.grpSearch.Location = new System.Drawing.Point(972, 8);
+            this.grpSearch.Location = new System.Drawing.Point(1029, 0);
             this.grpSearch.Margin = new System.Windows.Forms.Padding(4);
             this.grpSearch.Name = "grpSearch";
             this.grpSearch.Padding = new System.Windows.Forms.Padding(4);
-            this.grpSearch.Size = new System.Drawing.Size(240, 91);
+            this.grpSearch.Size = new System.Drawing.Size(240, 89);
             this.grpSearch.TabIndex = 20;
             this.grpSearch.TabStop = false;
             this.grpSearch.Text = "Search";
@@ -432,7 +434,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // pbSearch
             // 
             this.pbSearch.Image = ((System.Drawing.Image)(resources.GetObject("pbSearch.Image")));
-            this.pbSearch.Location = new System.Drawing.Point(198, 22);
+            this.pbSearch.Location = new System.Drawing.Point(198, 26);
             this.pbSearch.Margin = new System.Windows.Forms.Padding(4);
             this.pbSearch.Name = "pbSearch";
             this.pbSearch.Size = new System.Drawing.Size(20, 20);
@@ -448,7 +450,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.lblCurrentlyViewing.AutoSize = true;
             this.lblCurrentlyViewing.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentlyViewing.ForeColor = System.Drawing.Color.DimGray;
-            this.lblCurrentlyViewing.Location = new System.Drawing.Point(6, 70);
+            this.lblCurrentlyViewing.Location = new System.Drawing.Point(6, 74);
             this.lblCurrentlyViewing.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurrentlyViewing.Name = "lblCurrentlyViewing";
             this.lblCurrentlyViewing.Size = new System.Drawing.Size(123, 19);
@@ -461,7 +463,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.lblTotalResults.AutoSize = true;
             this.lblTotalResults.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalResults.ForeColor = System.Drawing.Color.DimGray;
-            this.lblTotalResults.Location = new System.Drawing.Point(6, 52);
+            this.lblTotalResults.Location = new System.Drawing.Point(6, 56);
             this.lblTotalResults.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalResults.Name = "lblTotalResults";
             this.lblTotalResults.Size = new System.Drawing.Size(140, 19);
@@ -472,7 +474,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // txtScriptSearch
             // 
             this.txtScriptSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScriptSearch.Location = new System.Drawing.Point(6, 20);
+            this.txtScriptSearch.Location = new System.Drawing.Point(6, 24);
             this.txtScriptSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtScriptSearch.Name = "txtScriptSearch";
             this.txtScriptSearch.Size = new System.Drawing.Size(188, 27);
@@ -485,11 +487,11 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.grpSaveClose.Controls.Add(this.uiBtnSaveSequence);
             this.grpSaveClose.Controls.Add(this.uiBtnRestart);
             this.grpSaveClose.Controls.Add(this.uiBtnClose);
-            this.grpSaveClose.Location = new System.Drawing.Point(1215, 4);
+            this.grpSaveClose.Location = new System.Drawing.Point(1272, 0);
             this.grpSaveClose.Margin = new System.Windows.Forms.Padding(4);
             this.grpSaveClose.Name = "grpSaveClose";
             this.grpSaveClose.Padding = new System.Windows.Forms.Padding(4);
-            this.grpSaveClose.Size = new System.Drawing.Size(131, 91);
+            this.grpSaveClose.Size = new System.Drawing.Size(131, 89);
             this.grpSaveClose.TabIndex = 19;
             this.grpSaveClose.TabStop = false;
             this.grpSaveClose.Text = "Save and Close";
@@ -507,7 +509,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnSaveSequence.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnSaveSequence.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnSaveSequence.Image")));
             this.uiBtnSaveSequence.IsMouseOver = false;
-            this.uiBtnSaveSequence.Location = new System.Drawing.Point(2, 21);
+            this.uiBtnSaveSequence.Location = new System.Drawing.Point(2, 24);
             this.uiBtnSaveSequence.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnSaveSequence.Name = "uiBtnSaveSequence";
             this.uiBtnSaveSequence.Size = new System.Drawing.Size(60, 62);
@@ -544,7 +546,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnClose.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnClose.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnClose.Image")));
             this.uiBtnClose.IsMouseOver = false;
-            this.uiBtnClose.Location = new System.Drawing.Point(62, 22);
+            this.uiBtnClose.Location = new System.Drawing.Point(62, 24);
             this.uiBtnClose.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnClose.Name = "uiBtnClose";
             this.uiBtnClose.Size = new System.Drawing.Size(60, 62);
@@ -562,11 +564,11 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.grpFileActions.Controls.Add(this.uiBtnSave);
             this.grpFileActions.Controls.Add(this.uiBtnNew);
             this.grpFileActions.Controls.Add(this.uiBtnOpen);
-            this.grpFileActions.Location = new System.Drawing.Point(11, 6);
+            this.grpFileActions.Location = new System.Drawing.Point(11, 0);
             this.grpFileActions.Margin = new System.Windows.Forms.Padding(4);
             this.grpFileActions.Name = "grpFileActions";
             this.grpFileActions.Padding = new System.Windows.Forms.Padding(4);
-            this.grpFileActions.Size = new System.Drawing.Size(371, 91);
+            this.grpFileActions.Size = new System.Drawing.Size(371, 89);
             this.grpFileActions.TabIndex = 16;
             this.grpFileActions.TabStop = false;
             this.grpFileActions.Text = "File Actions";
@@ -686,16 +688,17 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // grpRecordRun
             // 
             this.grpRecordRun.BackColor = System.Drawing.Color.Transparent;
+            this.grpRecordRun.Controls.Add(this.uiBtnRecordAdvancedUISequence);
             this.grpRecordRun.Controls.Add(this.uiBtnRecordElementSequence);
             this.grpRecordRun.Controls.Add(this.uiBtnRunScript);
             this.grpRecordRun.Controls.Add(this.uiBtnRecordUISequence);
             this.grpRecordRun.Controls.Add(this.uiBtnDebugScript);
             this.grpRecordRun.Controls.Add(this.uiBtnScheduleManagement);
-            this.grpRecordRun.Location = new System.Drawing.Point(651, 8);
+            this.grpRecordRun.Location = new System.Drawing.Point(651, 0);
             this.grpRecordRun.Margin = new System.Windows.Forms.Padding(4);
             this.grpRecordRun.Name = "grpRecordRun";
             this.grpRecordRun.Padding = new System.Windows.Forms.Padding(4);
-            this.grpRecordRun.Size = new System.Drawing.Size(316, 91);
+            this.grpRecordRun.Size = new System.Drawing.Size(376, 89);
             this.grpRecordRun.TabIndex = 18;
             this.grpRecordRun.TabStop = false;
             this.grpRecordRun.Text = "Record and Run";
@@ -713,7 +716,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnRecordElementSequence.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnRecordElementSequence.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnRecordElementSequence.Image")));
             this.uiBtnRecordElementSequence.IsMouseOver = false;
-            this.uiBtnRecordElementSequence.Location = new System.Drawing.Point(69, 22);
+            this.uiBtnRecordElementSequence.Location = new System.Drawing.Point(69, 24);
             this.uiBtnRecordElementSequence.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnRecordElementSequence.Name = "uiBtnRecordElementSequence";
             this.uiBtnRecordElementSequence.Size = new System.Drawing.Size(60, 62);
@@ -731,7 +734,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnRunScript.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnRunScript.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnRunScript.Image")));
             this.uiBtnRunScript.IsMouseOver = false;
-            this.uiBtnRunScript.Location = new System.Drawing.Point(189, 22);
+            this.uiBtnRunScript.Location = new System.Drawing.Point(249, 24);
             this.uiBtnRunScript.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnRunScript.Name = "uiBtnRunScript";
             this.uiBtnRunScript.Size = new System.Drawing.Size(60, 62);
@@ -749,7 +752,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnRecordUISequence.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnRecordUISequence.Image = global::taskt.Properties.Resources.action_bar_element_recorder;
             this.uiBtnRecordUISequence.IsMouseOver = false;
-            this.uiBtnRecordUISequence.Location = new System.Drawing.Point(129, 22);
+            this.uiBtnRecordUISequence.Location = new System.Drawing.Point(129, 24);
             this.uiBtnRecordUISequence.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnRecordUISequence.Name = "uiBtnRecordUISequence";
             this.uiBtnRecordUISequence.Size = new System.Drawing.Size(60, 62);
@@ -767,7 +770,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnDebugScript.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnDebugScript.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnDebugScript.Image")));
             this.uiBtnDebugScript.IsMouseOver = false;
-            this.uiBtnDebugScript.Location = new System.Drawing.Point(249, 22);
+            this.uiBtnDebugScript.Location = new System.Drawing.Point(309, 24);
             this.uiBtnDebugScript.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnDebugScript.Name = "uiBtnDebugScript";
             this.uiBtnDebugScript.Size = new System.Drawing.Size(60, 62);
@@ -785,7 +788,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnScheduleManagement.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnScheduleManagement.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnScheduleManagement.Image")));
             this.uiBtnScheduleManagement.IsMouseOver = false;
-            this.uiBtnScheduleManagement.Location = new System.Drawing.Point(4, 22);
+            this.uiBtnScheduleManagement.Location = new System.Drawing.Point(4, 24);
             this.uiBtnScheduleManagement.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnScheduleManagement.Name = "uiBtnScheduleManagement";
             this.uiBtnScheduleManagement.Size = new System.Drawing.Size(65, 62);
@@ -801,11 +804,11 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.grpVariable.Controls.Add(this.uiBtnClearAll);
             this.grpVariable.Controls.Add(this.uiBtnSettings);
             this.grpVariable.Controls.Add(this.uiBtnAddVariable);
-            this.grpVariable.Location = new System.Drawing.Point(382, 8);
+            this.grpVariable.Location = new System.Drawing.Point(382, 0);
             this.grpVariable.Margin = new System.Windows.Forms.Padding(4);
             this.grpVariable.Name = "grpVariable";
             this.grpVariable.Padding = new System.Windows.Forms.Padding(4);
-            this.grpVariable.Size = new System.Drawing.Size(261, 91);
+            this.grpVariable.Size = new System.Drawing.Size(261, 89);
             this.grpVariable.TabIndex = 17;
             this.grpVariable.TabStop = false;
             this.grpVariable.Text = "Variables/Elements and Settings";
@@ -823,7 +826,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnAddElement.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnAddElement.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnAddElement.Image")));
             this.uiBtnAddElement.IsMouseOver = false;
-            this.uiBtnAddElement.Location = new System.Drawing.Point(71, 22);
+            this.uiBtnAddElement.Location = new System.Drawing.Point(71, 24);
             this.uiBtnAddElement.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnAddElement.Name = "uiBtnAddElement";
             this.uiBtnAddElement.Size = new System.Drawing.Size(60, 62);
@@ -841,7 +844,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnClearAll.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnClearAll.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnClearAll.Image")));
             this.uiBtnClearAll.IsMouseOver = false;
-            this.uiBtnClearAll.Location = new System.Drawing.Point(191, 22);
+            this.uiBtnClearAll.Location = new System.Drawing.Point(191, 24);
             this.uiBtnClearAll.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnClearAll.Name = "uiBtnClearAll";
             this.uiBtnClearAll.Size = new System.Drawing.Size(60, 62);
@@ -859,7 +862,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnSettings.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnSettings.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnSettings.Image")));
             this.uiBtnSettings.IsMouseOver = false;
-            this.uiBtnSettings.Location = new System.Drawing.Point(131, 22);
+            this.uiBtnSettings.Location = new System.Drawing.Point(131, 24);
             this.uiBtnSettings.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnSettings.Name = "uiBtnSettings";
             this.uiBtnSettings.Size = new System.Drawing.Size(60, 62);
@@ -877,7 +880,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnAddVariable.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnAddVariable.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnAddVariable.Image")));
             this.uiBtnAddVariable.IsMouseOver = false;
-            this.uiBtnAddVariable.Location = new System.Drawing.Point(8, 22);
+            this.uiBtnAddVariable.Location = new System.Drawing.Point(8, 24);
             this.uiBtnAddVariable.Margin = new System.Windows.Forms.Padding(4);
             this.uiBtnAddVariable.Name = "uiBtnAddVariable";
             this.uiBtnAddVariable.Size = new System.Drawing.Size(63, 62);
@@ -895,7 +898,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.pnlStatus.Location = new System.Drawing.Point(0, 824);
             this.pnlStatus.Margin = new System.Windows.Forms.Padding(0);
             this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(1359, 39);
+            this.pnlStatus.Size = new System.Drawing.Size(1408, 39);
             this.pnlStatus.TabIndex = 3;
             this.pnlStatus.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlStatus_Paint);
             // 
@@ -909,7 +912,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Margin = new System.Windows.Forms.Padding(0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1359, 51);
+            this.pnlHeader.Size = new System.Drawing.Size(1408, 51);
             this.pnlHeader.TabIndex = 2;
             // 
             // pnlMain
@@ -919,7 +922,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1359, 51);
+            this.pnlMain.Size = new System.Drawing.Size(1408, 51);
             this.pnlMain.TabIndex = 2;
             theme1.BgGradientEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(50)))), ((int)(((byte)(178)))));
             theme1.BgGradientStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(136)))), ((int)(((byte)(204)))));
@@ -954,7 +957,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tlpControls.SetColumnSpan(this.splitContainerStudioControls, 3);
             this.splitContainerStudioControls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerStudioControls.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainerStudioControls.Location = new System.Drawing.Point(4, 200);
+            this.splitContainerStudioControls.Location = new System.Drawing.Point(4, 196);
             this.splitContainerStudioControls.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerStudioControls.Name = "splitContainerStudioControls";
             // 
@@ -967,7 +970,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // 
             this.splitContainerStudioControls.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainerStudioControls.Panel2.Controls.Add(this.uiScriptTabControl);
-            this.splitContainerStudioControls.Size = new System.Drawing.Size(1351, 620);
+            this.splitContainerStudioControls.Size = new System.Drawing.Size(1400, 624);
             this.splitContainerStudioControls.SplitterDistance = 328;
             this.splitContainerStudioControls.SplitterWidth = 5;
             this.splitContainerStudioControls.TabIndex = 4;
@@ -982,7 +985,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiPaneTabs.Margin = new System.Windows.Forms.Padding(4);
             this.uiPaneTabs.Name = "uiPaneTabs";
             this.uiPaneTabs.SelectedIndex = 0;
-            this.uiPaneTabs.Size = new System.Drawing.Size(328, 620);
+            this.uiPaneTabs.Size = new System.Drawing.Size(328, 624);
             this.uiPaneTabs.TabIndex = 26;
             // 
             // tpProject
@@ -993,7 +996,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tpProject.Location = new System.Drawing.Point(4, 32);
             this.tpProject.Name = "tpProject";
             this.tpProject.Padding = new System.Windows.Forms.Padding(3);
-            this.tpProject.Size = new System.Drawing.Size(320, 584);
+            this.tpProject.Size = new System.Drawing.Size(320, 588);
             this.tpProject.TabIndex = 5;
             this.tpProject.Text = "Project";
             this.tpProject.UseVisualStyleBackColor = true;
@@ -1011,7 +1014,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tlpProject.RowCount = 2;
             this.tlpProject.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tlpProject.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpProject.Size = new System.Drawing.Size(314, 578);
+            this.tlpProject.Size = new System.Drawing.Size(314, 582);
             this.tlpProject.TabIndex = 1;
             // 
             // tvProject
@@ -1026,7 +1029,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tvProject.Name = "tvProject";
             this.tvProject.SelectedImageIndex = 0;
             this.tvProject.ShowLines = false;
-            this.tvProject.Size = new System.Drawing.Size(308, 541);
+            this.tvProject.Size = new System.Drawing.Size(308, 545);
             this.tvProject.TabIndex = 0;
             this.tvProject.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvProject_BeforeExpand);
             this.tvProject.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvProject_NodeMouseClick);
@@ -1195,7 +1198,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiScriptTabControl.Name = "uiScriptTabControl";
             this.uiScriptTabControl.SelectedIndex = 0;
             this.uiScriptTabControl.ShowToolTips = true;
-            this.uiScriptTabControl.Size = new System.Drawing.Size(1018, 620);
+            this.uiScriptTabControl.Size = new System.Drawing.Size(1067, 624);
             this.uiScriptTabControl.TabIndex = 3;
             this.uiScriptTabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.uiScriptTabControl_DrawItem);
             this.uiScriptTabControl.SelectedIndexChanged += new System.EventHandler(this.uiScriptTabControl_SelectedIndexChanged);
@@ -1396,10 +1399,10 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.pnlDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.tlpControls.SetColumnSpan(this.pnlDivider, 4);
             this.pnlDivider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDivider.Location = new System.Drawing.Point(0, 190);
+            this.pnlDivider.Location = new System.Drawing.Point(0, 186);
             this.pnlDivider.Margin = new System.Windows.Forms.Padding(0);
             this.pnlDivider.Name = "pnlDivider";
-            this.pnlDivider.Size = new System.Drawing.Size(1359, 6);
+            this.pnlDivider.Size = new System.Drawing.Size(1408, 6);
             this.pnlDivider.TabIndex = 13;
             // 
             // msTasktMenu
@@ -1420,7 +1423,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tsSearchResult});
             this.msTasktMenu.Location = new System.Drawing.Point(0, 51);
             this.msTasktMenu.Name = "msTasktMenu";
-            this.msTasktMenu.Size = new System.Drawing.Size(1359, 38);
+            this.msTasktMenu.Size = new System.Drawing.Size(1408, 38);
             this.msTasktMenu.TabIndex = 1;
             this.msTasktMenu.Text = "menuStrip1";
             // 
@@ -1622,6 +1625,15 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiRecorderToolStripMenuItem.Text = "UI Recorder";
             this.uiRecorderToolStripMenuItem.Click += new System.EventHandler(this.uiRecorderToolStripMenuItem_Click);
             // 
+            // uiAdvancedRecorderToolStripMenuItem
+            // 
+            this.uiAdvancedRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.uiAdvancedRecorderToolStripMenuItem.Image = global::taskt.Properties.Resources.action_bar_record;
+            this.uiAdvancedRecorderToolStripMenuItem.Name = "uiAdvancedRecorderToolStripMenuItem";
+            this.uiAdvancedRecorderToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
+            this.uiAdvancedRecorderToolStripMenuItem.Text = "Advanced UI Recorder";
+            this.uiAdvancedRecorderToolStripMenuItem.Click += new System.EventHandler(this.uiAdvancedRecorderToolStripMenuItem_Click);
+            // 
             // runToolStripMenuItem
             // 
             this.runToolStripMenuItem.ForeColor = System.Drawing.Color.White;
@@ -1685,11 +1697,11 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tlpControls.RowCount = 6;
             this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
             this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tlpControls.Size = new System.Drawing.Size(1359, 863);
+            this.tlpControls.Size = new System.Drawing.Size(1408, 863);
             this.tlpControls.TabIndex = 2;
             // 
             // cmsProjectFileActions
@@ -1769,20 +1781,29 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.cmsProjectMainFolderActions.Name = "cmsProjectMainFolderActions";
             this.cmsProjectMainFolderActions.Size = new System.Drawing.Size(199, 88);
             // 
-            // uiAdvancedRecorderToolStripMenuItem
+            // uiBtnRecordAdvancedUISequence
             // 
-            this.uiAdvancedRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.uiAdvancedRecorderToolStripMenuItem.Image = global::taskt.Properties.Resources.action_bar_record;
-            this.uiAdvancedRecorderToolStripMenuItem.Name = "uiAdvancedRecorderToolStripMenuItem";
-            this.uiAdvancedRecorderToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
-            this.uiAdvancedRecorderToolStripMenuItem.Text = "Advanced UI Recorder";
-            this.uiAdvancedRecorderToolStripMenuItem.Click += new System.EventHandler(this.uiAdvancedRecorderToolStripMenuItem_Click);
+            this.uiBtnRecordAdvancedUISequence.BackColor = System.Drawing.Color.Transparent;
+            this.uiBtnRecordAdvancedUISequence.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.uiBtnRecordAdvancedUISequence.DisplayText = "Adv UI";
+            this.uiBtnRecordAdvancedUISequence.DisplayTextBrush = System.Drawing.Color.AliceBlue;
+            this.uiBtnRecordAdvancedUISequence.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.uiBtnRecordAdvancedUISequence.Image = global::taskt.Properties.Resources.action_bar_element_recorder;
+            this.uiBtnRecordAdvancedUISequence.IsMouseOver = false;
+            this.uiBtnRecordAdvancedUISequence.Location = new System.Drawing.Point(189, 24);
+            this.uiBtnRecordAdvancedUISequence.Margin = new System.Windows.Forms.Padding(4);
+            this.uiBtnRecordAdvancedUISequence.Name = "uiBtnRecordAdvancedUISequence";
+            this.uiBtnRecordAdvancedUISequence.Size = new System.Drawing.Size(60, 62);
+            this.uiBtnRecordAdvancedUISequence.TabIndex = 22;
+            this.uiBtnRecordAdvancedUISequence.TabStop = false;
+            this.uiBtnRecordAdvancedUISequence.Text = "Adv UI";
+            this.uiBtnRecordAdvancedUISequence.Click += new System.EventHandler(this.uiBtnRecordAdvancedUISequence_Click);
             // 
             // frmScriptBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1359, 863);
+            this.ClientSize = new System.Drawing.Size(1408, 863);
             this.Controls.Add(this.tlpControls);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1856,6 +1877,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.cmsProjectFileActions.ResumeLayout(false);
             this.cmsScriptTabActions.ResumeLayout(false);
             this.cmsProjectMainFolderActions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uiBtnRecordAdvancedUISequence)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1986,6 +2008,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private ToolStripMenuItem uiRecorderToolStripMenuItem;
         private ToolStripMenuItem elementRecorderToolStripMenuItem;
         private ToolStripMenuItem uiAdvancedRecorderToolStripMenuItem;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnRecordAdvancedUISequence;
     }
 }
 

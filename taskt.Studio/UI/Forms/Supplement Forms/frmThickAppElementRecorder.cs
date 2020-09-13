@@ -23,6 +23,7 @@ namespace taskt.UI.Forms.Supplement_Forms
         public DataTable SearchParameters;
         public string LastItemClicked;
         public bool IsRecordingSequence { get; set; }
+        public bool IsCommandItemSelected { get; set; }
         public frmScriptBuilder CallBackForm { get; set; }
         private List<ScriptCommand> _sequenceCommandList;
 
@@ -417,7 +418,7 @@ namespace taskt.UI.Forms.Supplement_Forms
                 v_Comment = sequenceComment
             };
 
-            if (_appSettings.ClientSettings.InsertCommandsInline)
+            if (_appSettings.ClientSettings.InsertCommandsInline && IsCommandItemSelected)
             {
                 CallBackForm.AddCommandToListView(sequenceCommand);
                 CallBackForm.AddCommandToListView(commentCommand);

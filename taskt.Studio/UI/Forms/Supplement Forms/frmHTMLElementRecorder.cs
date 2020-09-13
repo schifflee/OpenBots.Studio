@@ -22,6 +22,7 @@ namespace taskt.UI.Forms.Supplement_Forms
         public string LastItemClicked { get; set; }
         public string StartURL { get; set; }
         public bool IsRecordingSequence { get; set; }
+        public bool IsCommandItemSelected { get; set; }
         public frmScriptBuilder CallBackForm { get; set; }
         private List<ScriptCommand> _sequenceCommandList;
 
@@ -185,19 +186,19 @@ namespace taskt.UI.Forms.Supplement_Forms
                                     SearchParameters.Rows.Add(row[0], "XPath", _xPath);
                                     break;
                                 case "ID":
-                                    SearchParameters.Rows.Add(row[0], "ID", _xPath);
+                                    SearchParameters.Rows.Add(row[0], "ID", _id);
                                     break;
                                 case "Name":
-                                    SearchParameters.Rows.Add(row[0], "Name", _xPath);
+                                    SearchParameters.Rows.Add(row[0], "Name", _name);
                                     break;
                                 case "Tag Name":
-                                    SearchParameters.Rows.Add(row[0], "Tag Name", _xPath);
+                                    SearchParameters.Rows.Add(row[0], "Tag Name", _tagName);
                                     break;
                                 case "Class Name":
-                                    SearchParameters.Rows.Add(row[0], "Class Name", _xPath);
+                                    SearchParameters.Rows.Add(row[0], "Class Name", _className);
                                     break;
                                 case "Link Text":
-                                    SearchParameters.Rows.Add(row[0], "Link Text", _xPath);
+                                    SearchParameters.Rows.Add(row[0], "Link Text", _linkText);
                                     break;
                                 case "CSS Selector":
                                     for (int i = 0; i < _cssSelectors.Count; i++)
@@ -544,7 +545,7 @@ namespace taskt.UI.Forms.Supplement_Forms
                 v_Comment = sequenceComment
             };
 
-            if (_appSettings.ClientSettings.InsertCommandsInline)
+            if (_appSettings.ClientSettings.InsertCommandsInline && IsCommandItemSelected)
             {
                 if (_browserEngineType != "None")
                     CallBackForm.AddCommandToListView(closeBrowserCommand);

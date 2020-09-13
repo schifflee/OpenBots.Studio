@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>1.0.0.2</ProductVersion>
+    <ProductVersion>1.0.0.3</ProductVersion>
     <ProjectGuid>b38cdb6f-191d-4bb1-b74f-329d0c9abd84</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>OpenBots.Installer</OutputName>

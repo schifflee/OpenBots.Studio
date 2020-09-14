@@ -1,6 +1,6 @@
 ﻿namespace taskt.Commands.Forms
 {
-    partial class DataTableVariableSelector
+    partial class frmDataTableVariableSelector
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataTableVariableSelector));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDataTableVariableSelector));
             this.lstVariables = new System.Windows.Forms.ListBox();
             this.lblHeader = new System.Windows.Forms.Label();
             this.uiBtnOk = new taskt.Core.UI.Controls.UIPictureButton();
@@ -98,7 +98,7 @@
             this.uiBtnCancel.Text = "Cancel";
             this.uiBtnCancel.Click += new System.EventHandler(this.uiBtnCancel_Click);
             // 
-            // DataTableVariableSelector
+            // frmDataTableVariableSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -110,9 +110,9 @@
             this.Controls.Add(this.lstVariables);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "DataTableVariableSelector";
+            this.Name = "frmDataTableVariableSelector";
             this.Text = "Insert a Variable";
-            this.Load += new System.EventHandler(this.DataTableVariableSelector_Load);
+            this.Load += new System.EventHandler(this.frmDataTableVariableSelector_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnCancel)).EndInit();
             this.ResumeLayout(false);

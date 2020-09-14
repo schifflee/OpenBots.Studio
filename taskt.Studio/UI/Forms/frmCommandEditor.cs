@@ -66,10 +66,8 @@ namespace taskt.UI.Forms
 
         private void frmNewCommand_Load(object sender, EventArgs e)
         {
+            // Initialize CommandControls with Current Editor
             _commandControls = new CommandControls(this);
-
-            //declare loaded editor
-            //CommandControls.CurrentEditor = this;
 
             //order list
             _commandList = _commandList.OrderBy(itm => itm.FullName).ToList();

@@ -113,11 +113,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataTable Commands\Forms\DataTableVariableSelector.cs">
+    <Compile Include="DataTable Commands\Forms\frmDataTableVariableSelector.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DataTable Commands\Forms\DataTableVariableSelector.Designer.cs">
-      <DependentUpon>DataTableVariableSelector.cs</DependentUpon>
+    <Compile Include="DataTable Commands\Forms\frmDataTableVariableSelector.Designer.cs">
+      <DependentUpon>frmDataTableVariableSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="Email Commands\DeleteIMAPEmailCommand.cs" />
     <Compile Include="Email Commands\ForwardSMTPEmailCommand.cs" />
@@ -291,8 +291,8 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DataTable Commands\Forms\DataTableVariableSelector.resx">
-      <DependentUpon>DataTableVariableSelector.cs</DependentUpon>
+    <EmbeddedResource Include="DataTable Commands\Forms\frmDataTableVariableSelector.resx">
+      <DependentUpon>frmDataTableVariableSelector.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

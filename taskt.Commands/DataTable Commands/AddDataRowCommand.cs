@@ -108,7 +108,7 @@ namespace taskt.Commands
 
         private void LoadSchemaControl_Click(object sender, EventArgs e)
         {
-            DataTableVariableSelector selectionForm = new DataTableVariableSelector();
+            frmDataTableVariableSelector selectionForm = new frmDataTableVariableSelector();
             selectionForm.Text = "Load Schema";
             selectionForm.lblHeader.Text = "Select a DataTable from the list";
             foreach (var item in _dataTableCreationCommands)

@@ -210,8 +210,13 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                             item.Selected = true;
                         break;
                     case Keys.S:
-                        ClearSelectedListViewItems();
-                        SaveToFile(false);
+                        if (_isSequence)
+                            uiBtnSaveSequence_Click(null, null);
+                        else
+                        {
+                            ClearSelectedListViewItems();
+                            SaveToFile(false);
+                        }                        
                         break;
                 }
             }
@@ -241,29 +246,20 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                 SequenceCommand sequence = (SequenceCommand)currentCommand;
                 frmScriptBuilder newBuilder = new frmScriptBuilder();
 
-                //add variables
-                newBuilder._scriptVariables = new List<ScriptVariable>();
-                newBuilder._scriptElements = new List<ScriptElement>();
+                newBuilder.ScriptProject = ScriptProject;
+                newBuilder._scriptProjectPath = _scriptProjectPath;
 
-                foreach (var variable in _scriptVariables)
-                {
-                    newBuilder._scriptVariables.Add(variable);
-                }
-
-                foreach (var element in _scriptElements)
-                {
-                    newBuilder._scriptElements.Add(element);
-                }
+                //add variables/elements
+                newBuilder._scriptVariables = _scriptVariables;
+                newBuilder._scriptElements = _scriptElements;
 
                 TabPage newtabPage = new TabPage("Sequence");
                 newtabPage.Name = "Sequence";
                 newtabPage.ToolTipText = "Sequence";
 
                 newBuilder.uiScriptTabControl.TabPages.Add(newtabPage);
-                newtabPage.Controls.Add(NewLstScriptActions("Sequence"));
+                newtabPage.Controls.Add(newBuilder._selectedTabScriptActions);
                 newBuilder.uiScriptTabControl.SelectedTab = newtabPage;
-                newBuilder._selectedTabScriptActions = (UIListView)uiScriptTabControl.SelectedTab.Controls[0];
-                //TODO: Finish Fixing SequenceCommand
 
                 //append to new builder
                 foreach (var cmd in sequence.ScriptActions)
@@ -295,6 +291,10 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
 
                     //update label
                     selectedCommandItem.Text = sequence.GetDisplayValue();
+
+                    //update variables/elements
+                    _scriptVariables = newBuilder._scriptVariables;
+                    _scriptElements = newBuilder._scriptElements;
                 }
             }
             else
@@ -341,17 +341,21 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private void ApplyEditorFormat()
         {
             _editMode = true;
+            _isSequence = true;
             Text = "edit sequence";
-            lblMainLogo.Text = "edit sequence";
             _selectedTabScriptActions.Invalidate();
             pnlCommandHelper.Hide();
-            grpSaveClose.Location = grpFileActions.Location;
+            grpSaveClose.Location = new Point(5, grpFileActions.Location.Y - 10);
+            uiBtnRestart.Hide();
+            uiBtnSaveSequence.Show();
+            grpSaveClose.Show();
+            grpSaveClose.Text = string.Empty;
             grpRecordRun.Hide();
             grpFileActions.Hide();
-            grpVariable.Hide();
-            grpSaveClose.Show();
-            grpSearch.Left = grpSaveClose.Right + 20;
+            grpVariable.Hide();           
+            grpSearch.Hide();
             moveToParentToolStripMenuItem.Visible = true;
+            uiPaneTabs.TabPages.Remove(tpProject);    
         }
 
         private void CutRows()

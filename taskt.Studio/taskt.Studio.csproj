@@ -26,7 +26,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -236,6 +236,18 @@
     <Compile Include="Commands\Task Commands\StopCurrentTaskCommand.cs" />
     <Compile Include="UI\CustomControls\CommandControls.cs" />
     <Compile Include="UI\DTOs\SteppingCommandsItem.cs" />
+    <Compile Include="UI\Forms\Supplement Forms\frmThickAppElementRecorderSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\Supplement Forms\frmThickAppElementRecorderSettings.Designer.cs">
+      <DependentUpon>frmThickAppElementRecorderSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Forms\Supplement Forms\frmHTMLElementRecorderSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\Supplement Forms\frmHTMLElementRecorderSettings.Designer.cs">
+      <DependentUpon>frmHTMLElementRecorderSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\GlobalHook.cs" />
     <Compile Include="Utilities\ManifestUpdate.cs" />
     <Compile Include="Commands\API Commands\ExecuteRESTAPICommand.cs" />
@@ -347,10 +359,10 @@
     <Compile Include="UI\Forms\frmAttendedMode.Designer.cs">
       <DependentUpon>frmAttendedMode.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Forms\frmScreenRecorder.cs">
+    <Compile Include="UI\Forms\Supplement Forms\frmScreenRecorder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Forms\frmScreenRecorder.Designer.cs">
+    <Compile Include="UI\Forms\Supplement Forms\frmScreenRecorder.Designer.cs">
       <DependentUpon>frmScreenRecorder.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Forms\frmScriptElements.cs">
@@ -567,7 +579,13 @@
     <EmbeddedResource Include="UI\Forms\frmScriptElements.resx">
       <DependentUpon>frmScriptElements.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Forms\frmScreenRecorder.resx">
+    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmThickAppElementRecorderSettings.resx">
+      <DependentUpon>frmThickAppElementRecorderSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmHTMLElementRecorderSettings.resx">
+      <DependentUpon>frmHTMLElementRecorderSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmScreenRecorder.resx">
       <DependentUpon>frmScreenRecorder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\frmSettings.resx">
@@ -665,7 +683,7 @@
       <DependentUpon>UIForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
-    <None Include="Resources\Firefox\omni.ja" />
+    <None Include="Firefox\omni.ja" />
     <None Include="LICENSE" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -740,25 +758,25 @@
     <None Include="Resources\command-remote.png" />
     <None Include="Resources\command-begin-multi-if.png" />
     <None Include="Resources\command-nextloop.png" />
-    <Content Include="Resources\Firefox\AccessibleMarshal.dll" />
-    <Content Include="Resources\Firefox\breakpadinjector.dll" />
-    <Content Include="Resources\Firefox\d3dcompiler_47.dll" />
-    <Content Include="Resources\Firefox\freebl3.dll" />
-    <Content Include="Resources\Firefox\icudt58.dll" />
-    <Content Include="Resources\Firefox\icuin58.dll" />
-    <Content Include="Resources\Firefox\icuuc58.dll" />
-    <Content Include="Resources\Firefox\lgpllibs.dll" />
-    <Content Include="Resources\Firefox\libEGL.dll" />
-    <Content Include="Resources\Firefox\libGLESv2.dll" />
-    <Content Include="Resources\Firefox\mozglue.dll" />
-    <Content Include="Resources\Firefox\nss3.dll" />
-    <Content Include="Resources\Firefox\nssckbi.dll" />
-    <Content Include="Resources\Firefox\nssdbm3.dll" />
-    <Content Include="Resources\Firefox\plugin-container.exe" />
-    <Content Include="Resources\Firefox\plugin-hang-ui.exe" />
-    <Content Include="Resources\Firefox\sandboxbroker.dll" />
-    <Content Include="Resources\Firefox\softokn3.dll" />
-    <Content Include="Resources\Firefox\xul.dll" />
+    <Content Include="Firefox\AccessibleMarshal.dll" />
+    <Content Include="Firefox\breakpadinjector.dll" />
+    <Content Include="Firefox\d3dcompiler_47.dll" />
+    <Content Include="Firefox\freebl3.dll" />
+    <Content Include="Firefox\icudt58.dll" />
+    <Content Include="Firefox\icuin58.dll" />
+    <Content Include="Firefox\icuuc58.dll" />
+    <Content Include="Firefox\lgpllibs.dll" />
+    <Content Include="Firefox\libEGL.dll" />
+    <Content Include="Firefox\libGLESv2.dll" />
+    <Content Include="Firefox\mozglue.dll" />
+    <Content Include="Firefox\nss3.dll" />
+    <Content Include="Firefox\nssckbi.dll" />
+    <Content Include="Firefox\nssdbm3.dll" />
+    <Content Include="Firefox\plugin-container.exe" />
+    <Content Include="Firefox\plugin-hang-ui.exe" />
+    <Content Include="Firefox\sandboxbroker.dll" />
+    <Content Include="Firefox\softokn3.dll" />
+    <Content Include="Firefox\xul.dll" />
     <Content Include="Resources\7z.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -802,6 +820,7 @@
     <None Include="Resources\project-collapse.png" />
     <None Include="Resources\project-expand.png" />
     <None Include="Resources\project-open-directory.png" />
+    <None Include="Resources\openbots-logo.png" />
     <Content Include="Resources\taskt-ExtractPDFText.jar">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

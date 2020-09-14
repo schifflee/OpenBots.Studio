@@ -91,6 +91,7 @@ namespace taskt.Commands
             v_InstanceTracking = "Forget Instance";
             v_BrowserWindowOption = "Maximize";
             v_EngineType = "Chrome";
+            v_URL = "https://";
         }
 
         public override void RunCommand(object sender)
@@ -167,7 +168,19 @@ namespace taskt.Commands
             }
 
             if (!string.IsNullOrEmpty(vURL.Trim()))
-                webDriver.Navigate().GoToUrl(vURL);
+            {
+                try
+                {
+                    webDriver.Navigate().GoToUrl(vURL);
+                }
+                catch (Exception ex)
+                {
+                    if (!vURL.StartsWith("https://"))
+                        webDriver.Navigate().GoToUrl("https://" + vURL);
+                    else
+                        throw ex;
+                }
+            }
         }
 
         public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)

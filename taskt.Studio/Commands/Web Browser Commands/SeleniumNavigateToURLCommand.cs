@@ -43,6 +43,7 @@ namespace taskt.Commands
             CommandEnabled = true;
             CustomRendering = true;
             v_InstanceName = "DefaultBrowser";
+            v_URL = "https://";
         }
 
         public override void RunCommand(object sender)
@@ -52,7 +53,17 @@ namespace taskt.Commands
             var vURL = v_URL.ConvertUserVariableToString(engine);
             var seleniumInstance = (IWebDriver)browserObject;
 
-            seleniumInstance.Navigate().GoToUrl(vURL);
+            try
+            {
+                seleniumInstance.Navigate().GoToUrl(vURL);
+            }
+            catch (Exception ex)
+            {
+                if (!vURL.StartsWith("https://"))
+                    seleniumInstance.Navigate().GoToUrl("https://" + vURL);
+                else
+                    throw ex;
+            }           
         }
 
         public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)

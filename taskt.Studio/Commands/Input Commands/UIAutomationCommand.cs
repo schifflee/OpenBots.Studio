@@ -78,7 +78,7 @@ namespace taskt.Commands
 
         [XmlIgnore]
         [NonSerialized]
-        private List<Control> _elementParameterControls;
+        private List<Control> _actionParametersControls;
 
         public UIAutomationCommand()
         {
@@ -420,10 +420,14 @@ namespace taskt.Commands
 
             //create actions
             _actionParametersGridViewHelper = new DataGridView();
-            _actionParametersGridViewHelper.Width = 500;
-            _actionParametersGridViewHelper.Height = 140;
+            _actionParametersGridViewHelper.Size = new Size(400, 150);
+            _actionParametersGridViewHelper.ColumnHeadersHeight = 30;
+            _actionParametersGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _actionParametersGridViewHelper.DataBindings.Add("DataSource", this, "v_UIAActionParameters", false, DataSourceUpdateMode.OnPropertyChanged);
-            _actionParametersGridViewHelper.MouseEnter += _actionParametersGridViewHelper_MouseEnter;
+            _actionParametersGridViewHelper.AllowUserToAddRows = false;
+            _actionParametersGridViewHelper.AllowUserToDeleteRows = false;
+            _actionParametersGridViewHelper.AllowUserToResizeRows = false;
+            _actionParametersGridViewHelper.MouseEnter += ActionParametersGridViewHelper_MouseEnter;
 
             propertyName = new DataGridViewTextBoxColumn();
             propertyName.HeaderText = "Parameter Name";
@@ -464,10 +468,10 @@ namespace taskt.Commands
             RenderedControls.Add(_searchParametersGridViewHelper);
 
             //create action parameters
-            _elementParameterControls = new List<Control>();
-            _elementParameterControls.Add(CommandControls.CreateDefaultLabelFor("v_UIAActionParameters", this));
-            _elementParameterControls.Add(_actionParametersGridViewHelper);
-            RenderedControls.AddRange(_elementParameterControls);
+            _actionParametersControls = new List<Control>();
+            _actionParametersControls.Add(CommandControls.CreateDefaultLabelFor("v_UIAActionParameters", this));
+            _actionParametersControls.Add(_actionParametersGridViewHelper);
+            RenderedControls.AddRange(_actionParametersControls);
 
             return RenderedControls;
         }
@@ -512,7 +516,7 @@ namespace taskt.Commands
             }
         }
 
-        private void _actionParametersGridViewHelper_MouseEnter(object sender, EventArgs e)
+        private void ActionParametersGridViewHelper_MouseEnter(object sender, EventArgs e)
         {
             UIAType_SelectionChangeCommitted(null, null);
         }
@@ -581,7 +585,6 @@ namespace taskt.Commands
                 var parameterName = (string)param["Parameter Name"];
                 var parameterValue = (string)param["Parameter Value"];
 
-                parameterName = parameterName.ConvertUserVariableToString(engine);
                 parameterValue = parameterValue.ConvertUserVariableToString(engine);
 
                 PropertyCondition propCondition;
@@ -637,23 +640,16 @@ namespace taskt.Commands
 
         public void UIAType_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ComboBox selectedAction = _automationTypeControl;
-
-            if (selectedAction == null)
-                return;
-
-            DataGridView actionParameterView = _actionParametersGridViewHelper;
-            actionParameterView.Refresh();
-
-            DataTable actionParameters = v_UIAActionParameters;
+            UIAutomationCommand cmd = this;
+            DataTable actionParameters = cmd.v_UIAActionParameters;
 
             if (sender != null)
                 actionParameters.Rows.Clear();
 
-            switch (selectedAction.SelectedItem)
+            switch (_automationTypeControl.SelectedItem)
             {
                 case "Click Element":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     var mouseClickBox = new DataGridViewComboBoxCell();
@@ -675,10 +671,11 @@ namespace taskt.Commands
                         actionParameters.Rows.Add("Y Adjustment", 0);
                     }
 
-                    actionParameterView.Rows[0].Cells[1] = mouseClickBox;
+                    if (_actionParametersGridViewHelper.Rows.Count > 0)
+                        _actionParametersGridViewHelper.Rows[0].Cells[1] = mouseClickBox;
                     break;
                 case "Set Text":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
@@ -691,27 +688,30 @@ namespace taskt.Commands
                         DataGridViewComboBoxCell encryptedBox = new DataGridViewComboBoxCell();
                         encryptedBox.Items.Add("Not Encrypted");
                         encryptedBox.Items.Add("Encrypted");
-                        actionParameterView.Rows[2].Cells[1] = encryptedBox;
-                        actionParameterView.Rows[2].Cells[1].Value = "Not Encrypted";
+                        _actionParametersGridViewHelper.Rows[2].Cells[1] = encryptedBox;
+                        _actionParametersGridViewHelper.Rows[2].Cells[1].Value = "Not Encrypted";
 
                         var buttonCell = new DataGridViewButtonCell();
-                        actionParameterView.Rows[3].Cells[1] = buttonCell;
-                        actionParameterView.Rows[3].Cells[1].Value = "Encrypt Text";
-                        actionParameterView.CellContentClick += ElementsGridViewHelper_CellContentClick;
+                        _actionParametersGridViewHelper.Rows[3].Cells[1] = buttonCell;
+                        _actionParametersGridViewHelper.Rows[3].Cells[1].Value = "Encrypt Text";
+                        _actionParametersGridViewHelper.CellContentClick += ElementsGridViewHelper_CellContentClick;
                     }
+
                     DataGridViewComboBoxCell comparisonComboBox = new DataGridViewComboBoxCell();
                     comparisonComboBox.Items.Add("Yes");
                     comparisonComboBox.Items.Add("No");
 
                     //assign cell as a combobox
                     if (sender != null)
-                        actionParameterView.Rows[1].Cells[1].Value = "No";
+                        _actionParametersGridViewHelper.Rows[1].Cells[1].Value = "No";
 
-                    actionParameterView.Rows[1].Cells[1] = comparisonComboBox;
+                    if (_actionParametersGridViewHelper.Rows.Count > 1)
+                        _actionParametersGridViewHelper.Rows[1].Cells[1] = comparisonComboBox;
 
                     break;
+
                 case "Set Secure Text":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
@@ -726,32 +726,33 @@ namespace taskt.Commands
 
                     //assign cell as a combobox
                     if (sender != null)
-                        actionParameterView.Rows[1].Cells[1].Value = "No";
+                        _actionParametersGridViewHelper.Rows[1].Cells[1].Value = "No";
 
-                    actionParameterView.Rows[1].Cells[1] = _comparisonComboBox;
+                    if (_actionParametersGridViewHelper.Rows.Count > 1)
+                        _actionParametersGridViewHelper.Rows[1].Cells[1] = _comparisonComboBox;
                     break;
                 case "Get Text":
                 case "Check If Element Exists":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
                         actionParameters.Rows.Add("Variable Name", "");
                     break;
                 case "Clear Element":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Hide();
 
                     break;
                 case "Wait For Element To Exist":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
                         actionParameters.Rows.Add("Timeout (Seconds)");
                     break;
                 case "Get Value From Element":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     var parameterName = new DataGridViewComboBoxCell();
@@ -780,10 +781,10 @@ namespace taskt.Commands
                     {
                         actionParameters.Rows.Add("Get Value From", "");
                         actionParameters.Rows.Add("Variable Name", "");
-                        actionParameterView.Refresh();
+                        _actionParametersGridViewHelper.Refresh();
                         try
                         {
-                            actionParameterView.Rows[0].Cells[1] = parameterName;
+                            _actionParametersGridViewHelper.Rows[0].Cells[1] = parameterName;
                         }
                         catch (Exception ex)
                         {
@@ -794,7 +795,7 @@ namespace taskt.Commands
                 default:
                     break;
             }
-            actionParameterView.Refresh();
+            _actionParametersGridViewHelper.DataSource = v_UIAActionParameters;
         }
 
         private void ElementsGridViewHelper_CellContentClick(object sender, DataGridViewCellEventArgs e)

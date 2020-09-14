@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -43,30 +44,9 @@ namespace taskt.Commands
         [Remarks("Failure to enter the correct instance name or failure to first call the **Create Browser** command will cause an error.")]
         public string v_InstanceName { get; set; }
 
-        [XmlAttribute]
-        [PropertyDescription("Element Search Method")]
-        [PropertyUISelectionOption("Find Element By XPath")]
-        [PropertyUISelectionOption("Find Element By ID")]
-        [PropertyUISelectionOption("Find Element By Name")]
-        [PropertyUISelectionOption("Find Element By Tag Name")]
-        [PropertyUISelectionOption("Find Element By Class Name")]
-        [PropertyUISelectionOption("Find Element By CSS Selector")]
-        [PropertyUISelectionOption("Find Element By Link Text")]
-        [PropertyUISelectionOption("Find Elements By XPath")]
-        [PropertyUISelectionOption("Find Elements By ID")]
-        [PropertyUISelectionOption("Find Elements By Name")]
-        [PropertyUISelectionOption("Find Elements By Tag Name")]
-        [PropertyUISelectionOption("Find Elements By Class Name")]
-        [PropertyUISelectionOption("Find Elements By CSS Selector")]
-        [PropertyUISelectionOption("Find Elements By Link Text")]
-        [InputSpecification("Select the specific search type that you want to use to isolate the element in the web page.")]
-        [SampleUsage("")]
-        [Remarks("")]
-        public string v_SeleniumSearchType { get; set; }
-
-        [XmlAttribute]
         [PropertyDescription("Element Search Parameter")]
-        [InputSpecification("Enter the parameter text that matches the element based on the previously selected **Element Search Method**.")]
+        [InputSpecification("Use the Element Recorder to generate a listing of potential search parameters." + 
+            "Select the specific search type(s) that you want to use to isolate the element on the web page.")]
         [SampleUsage("{vSearchParameter}" +
                      "\n\tXPath : //*[@id=\"features\"]/div[2]/div/h2" +
                      "\n\tID: 1" +
@@ -76,9 +56,18 @@ namespace taskt.Commands
                      "\n\tCSS Selector: [attribute=value]" +
                      "\n\tLink Text: https://www.mylink.com/"
                     )]
+        [Remarks("If multiple parameters are enabled, an attempt will be made to find the element(s) that match(es) all the selected parameters.")]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowElementHelper)] 
+        public DataTable v_SeleniumSearchParameters { get; set; }
+
+        [XmlElement]
+        [PropertyDescription("Element Search Option")]
+        [PropertyUISelectionOption("Find Element")]
+        [PropertyUISelectionOption("Find Elements")]
+        [InputSpecification("Indicate whether to search for a single or multiple elements.")]
+        [SampleUsage("")]
         [Remarks("")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowElementHelper)]
-        public string v_SeleniumSearchParameter { get; set; }
+        public string v_SeleniumSearchOption { get; set; }
 
         [XmlElement]
         [PropertyDescription("Element Action")]
@@ -114,7 +103,7 @@ namespace taskt.Commands
 
         [XmlIgnore]
         [NonSerialized]
-        private DataGridView _elementsGridViewHelper;
+        private DataGridView _actionParametersGridViewHelper;
 
         [XmlIgnore]
         [NonSerialized]
@@ -122,11 +111,11 @@ namespace taskt.Commands
 
         [XmlIgnore]
         [NonSerialized]
-        private List<Control> _elementParameterControls;
+        private List<Control> _actionParametersControls;
 
         [XmlIgnore]
         [NonSerialized]
-        private List<Control> _searchParameterControls;
+        private DataGridView _searchParametersGridViewHelper;
 
         public SeleniumElementActionCommand()
         {
@@ -135,7 +124,7 @@ namespace taskt.Commands
             v_InstanceName = "DefaultBrowser";
             CommandEnabled = true;
             CustomRendering = true;
-            v_SeleniumSearchType = "Find Element By XPath";
+            v_SeleniumSearchOption = "Find Element";
 
             v_WebActionParameterTable = new DataTable
             {
@@ -144,27 +133,66 @@ namespace taskt.Commands
             v_WebActionParameterTable.Columns.Add("Parameter Name");
             v_WebActionParameterTable.Columns.Add("Parameter Value");
 
-            _elementsGridViewHelper = new DataGridView();
-            _elementsGridViewHelper.AllowUserToAddRows = true;
-            _elementsGridViewHelper.AllowUserToDeleteRows = true;
-            _elementsGridViewHelper.Size = new Size(400, 250);
-            _elementsGridViewHelper.ColumnHeadersHeight = 30;
-            _elementsGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            _elementsGridViewHelper.DataBindings.Add("DataSource", this, "v_WebActionParameterTable", false, DataSourceUpdateMode.OnPropertyChanged);
-            _elementsGridViewHelper.AllowUserToAddRows = false;
-            _elementsGridViewHelper.AllowUserToDeleteRows = false;
-            _elementsGridViewHelper.AllowUserToResizeRows = false;
-            //_elementsGridViewHelper.MouseEnter += _elementsGridViewHelper_MouseEnter;
-        }      
+            //set up search parameter table
+            v_SeleniumSearchParameters = new DataTable();
+            v_SeleniumSearchParameters.Columns.Add("Enabled");
+            v_SeleniumSearchParameters.Columns.Add("Parameter Name");
+            v_SeleniumSearchParameters.Columns.Add("Parameter Value");
+            v_SeleniumSearchParameters.TableName = DateTime.Now.ToString("v_SeleniumSearchParameters" + DateTime.Now.ToString("MMddyy.hhmmss"));
+
+            //create search param grid
+            _searchParametersGridViewHelper = new DataGridView();
+            _searchParametersGridViewHelper.Width = 400;
+            _searchParametersGridViewHelper.Height = 250;
+            _searchParametersGridViewHelper.DataBindings.Add("DataSource", this, "v_SeleniumSearchParameters", false, DataSourceUpdateMode.OnPropertyChanged);
+
+            DataGridViewCheckBoxColumn enabled = new DataGridViewCheckBoxColumn();
+            enabled.HeaderText = "Enabled";
+            enabled.DataPropertyName = "Enabled";
+            enabled.FillWeight = 30;
+            _searchParametersGridViewHelper.Columns.Add(enabled);
+
+            DataGridViewTextBoxColumn propertyName = new DataGridViewTextBoxColumn();
+            propertyName.HeaderText = "Parameter Name";
+            propertyName.DataPropertyName = "Parameter Name";
+            propertyName.FillWeight = 40;
+            _searchParametersGridViewHelper.Columns.Add(propertyName);
+
+            DataGridViewTextBoxColumn propertyValue = new DataGridViewTextBoxColumn();
+            propertyValue.HeaderText = "Parameter Value";
+            propertyValue.DataPropertyName = "Parameter Value";
+            _searchParametersGridViewHelper.Columns.Add(propertyValue);
+            _searchParametersGridViewHelper.ColumnHeadersHeight = 30;
+            _searchParametersGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _searchParametersGridViewHelper.AllowUserToAddRows = true;
+            _searchParametersGridViewHelper.AllowUserToDeleteRows = true;
+
+            _actionParametersGridViewHelper = new DataGridView();
+            _actionParametersGridViewHelper.AllowUserToAddRows = true;
+            _actionParametersGridViewHelper.AllowUserToDeleteRows = true;
+            _actionParametersGridViewHelper.Size = new Size(400, 150);
+            _actionParametersGridViewHelper.ColumnHeadersHeight = 30;
+            _actionParametersGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _actionParametersGridViewHelper.DataBindings.Add("DataSource", this, "v_WebActionParameterTable", false, DataSourceUpdateMode.OnPropertyChanged);
+            _actionParametersGridViewHelper.AllowUserToAddRows = false;
+            _actionParametersGridViewHelper.AllowUserToDeleteRows = false;
+            _actionParametersGridViewHelper.AllowUserToResizeRows = false;
+            _actionParametersGridViewHelper.MouseEnter += ActionParametersGridViewHelper_MouseEnter;
+        }
 
         public override void RunCommand(object sender)
         {
             var engine = (AutomationEngineInstance)sender;
 
-            var seleniumSearchParam = v_SeleniumSearchParameter.ConvertUserVariableToString(engine);
+            var seleniumSearchParamRows = (from rw in v_SeleniumSearchParameters.AsEnumerable()
+                                       where rw.Field<string>("Enabled") == "True" &&
+                                       rw.Field<string>("Parameter Value").ToString() != ""
+                                       select rw.ItemArray.Cast<string>().ToArray()).ToList();
+
             var browserObject = v_InstanceName.GetAppInstance(engine);
             var seleniumInstance = (IWebDriver)browserObject;
             dynamic element = null;
+            Exception elementSearchException = new Exception("Element not found");
 
             if (v_SeleniumElementAction == "Wait For Element To Exist")
             {
@@ -180,23 +208,23 @@ namespace taskt.Commands
                 {
                     try
                     {
-                        element = FindElement(seleniumInstance, seleniumSearchParam);
-                        break;
+                        element = FindElement(engine, seleniumInstance, seleniumSearchParamRows);
+                             
+                        if (element == null)
+                            throw elementSearchException;
                     }
                     catch (Exception)
                     {
                         engine.ReportProgress("Element Not Yet Found... " + (timeToEnd - DateTime.Now).Seconds + "s remain");
                         Thread.Sleep(1000);
                     }
-                }
-
-                if (element == null)
-                    throw new Exception("Element Not Found");
-
-                return;
+                }              
             }
-            else if (seleniumSearchParam != string.Empty)
-                element = FindElement(seleniumInstance, seleniumSearchParam);
+            else if (seleniumSearchParamRows.Count > 0)
+                element = FindElement(engine, seleniumInstance, seleniumSearchParamRows);                                     
+
+            if (element == null)
+                throw elementSearchException;
 
             switch (v_SeleniumElementAction)
             {
@@ -479,12 +507,13 @@ namespace taskt.Commands
                     break;
 
                 case "Switch to Frame":
-                    if (seleniumSearchParam == "")
+                    if (seleniumSearchParamRows.Count == 0)
                         seleniumInstance.SwitchTo().DefaultContent();
                     else
                         seleniumInstance.SwitchTo().Frame(element);
                     break;
-
+                case "Wait For Element To Exist":
+                    return;
                 default:
                     throw new Exception("Element Action was not found");
             }
@@ -504,15 +533,25 @@ namespace taskt.Commands
             helperControl.Click += new EventHandler((s, e) => ShowRecorder(s, e, editor));
 
             RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_SeleniumSearchType", this, editor));
 
-            _searchParameterControls = new List<Control>();
-            _searchParameterControls.Add(CommandControls.CreateDefaultLabelFor("v_SeleniumSearchParameter", this));
-            _searchParameterControls.Add(helperControl);
-            var searchParameterDropDown = CommandControls.CreateStandardComboboxFor("v_SeleniumSearchParameter", this);
-            _searchParameterControls.AddRange(CommandControls.CreateUIHelpersFor("v_SeleniumSearchParameter", this, new Control[] { searchParameterDropDown }, editor));
-            _searchParameterControls.Add(searchParameterDropDown);
-            RenderedControls.AddRange(_searchParameterControls);
+            if (v_SeleniumSearchParameters.Rows.Count == 0)
+            {
+                v_SeleniumSearchParameters.Rows.Add(true, "XPath", "");
+                v_SeleniumSearchParameters.Rows.Add(false, "ID", "");
+                v_SeleniumSearchParameters.Rows.Add(false, "Name", "");
+                v_SeleniumSearchParameters.Rows.Add(false, "Tag Name", "");
+                v_SeleniumSearchParameters.Rows.Add(false, "Class Name", "");
+                v_SeleniumSearchParameters.Rows.Add(false, "Link Text", "");
+                v_SeleniumSearchParameters.Rows.Add(false, "CSS Selector", "");
+            }
+            
+            //create search parameters   
+            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_SeleniumSearchParameters", this));
+            RenderedControls.Add(helperControl);
+            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_SeleniumSearchParameters", this, new Control[] { _searchParametersGridViewHelper }, editor));
+            RenderedControls.Add(_searchParametersGridViewHelper);
+
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_SeleniumSearchOption", this, editor));
 
             _elementActionDropdown = (ComboBox)CommandControls.CreateDropdownFor("v_SeleniumElementAction", this);
             RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_SeleniumElementAction", this));
@@ -520,34 +559,40 @@ namespace taskt.Commands
             _elementActionDropdown.SelectionChangeCommitted += SeleniumAction_SelectionChangeCommitted;
             RenderedControls.Add(_elementActionDropdown);
 
-            _elementParameterControls = new List<Control>();
-            _elementParameterControls.Add(CommandControls.CreateDefaultLabelFor("v_WebActionParameterTable", this));
-            _elementParameterControls.AddRange(CommandControls.CreateUIHelpersFor("v_WebActionParameterTable", this, new Control[] { _elementsGridViewHelper }, editor));
-            _elementParameterControls.Add(_elementsGridViewHelper);
-            RenderedControls.AddRange(_elementParameterControls);
+            _actionParametersControls = new List<Control>();
+            _actionParametersControls.Add(CommandControls.CreateDefaultLabelFor("v_WebActionParameterTable", this));
+            _actionParametersControls.AddRange(CommandControls.CreateUIHelpersFor("v_WebActionParameterTable", this, new Control[] { _actionParametersGridViewHelper }, editor));
+            _actionParametersControls.Add(_actionParametersGridViewHelper);
+            RenderedControls.AddRange(_actionParametersControls);
 
             return RenderedControls;
         }
 
         public override string GetDisplayValue()
         {
-            if (v_SeleniumSearchParameter.Contains("<") && v_SeleniumSearchParameter.Contains(">"))
-            {
-                var splitSearchType = v_SeleniumSearchType.Split(' ').ToList();
-                splitSearchType.Insert(2, v_SeleniumSearchParameter);
-                string joinedSearchType = string.Join(" ", splitSearchType);
+            string searchParameterName = (from rw in v_SeleniumSearchParameters.AsEnumerable()
+                                          where rw.Field<string>("Enabled") == "True"
+                                          select rw.Field<string>("Parameter Name")).FirstOrDefault();
 
-                return base.GetDisplayValue() + $" [{joinedSearchType} - {v_SeleniumElementAction} - Instance Name '{v_InstanceName}']";
-            }
-            else
-                return base.GetDisplayValue() + $" [{v_SeleniumSearchType} - {v_SeleniumElementAction} - Instance Name '{v_InstanceName}']";
+            string searchParameterValue = (from rw in v_SeleniumSearchParameters.AsEnumerable()
+                                          where rw.Field<string>("Enabled") == "True"
+                                          select rw.Field<string>("Parameter Value")).FirstOrDefault();
+
+
+            return base.GetDisplayValue() + $" [{v_SeleniumElementAction} - {v_SeleniumSearchOption} by {searchParameterName}" + 
+                                            $" '{searchParameterValue}' - Instance Name '{v_InstanceName}']";
+        }
+
+        private void ActionParametersGridViewHelper_MouseEnter(object sender, EventArgs e)
+        {
+            SeleniumAction_SelectionChangeCommitted(null, null);
         }
 
         public bool ElementExists(object sender, string searchType, string elementName)
         {
             //get engine reference
             var engine = (AutomationEngineInstance)sender;
-            var seleniumSearchParam = elementName.ConvertUserVariableToString(engine);
+            List<string[]> seleniumSearchParamRows = new List<string[]>();
 
             //get stored app object
             var browserObject = v_InstanceName.GetAppInstance(engine);
@@ -558,7 +603,7 @@ namespace taskt.Commands
             try
             {
                 //search for element
-                var element = FindElement(seleniumInstance, seleniumSearchParam);
+                var element = FindElement(engine, seleniumInstance, seleniumSearchParamRows);
 
                 //element exists
                 return true;
@@ -570,71 +615,59 @@ namespace taskt.Commands
             }
         }
 
-        private object FindElement(IWebDriver seleniumInstance, string searchParameter)
+        private object FindElement(AutomationEngineInstance engine, IWebDriver seleniumInstance, List<string[]> searchParameterRows)//List<string> searchType, List<string> searchParameter)
         {
             object element;
+            
+            List<By> byList = new List<By>();
+            By by;
 
-            switch (v_SeleniumSearchType)
+            foreach (var row in searchParameterRows)
             {
-                case "Find Element By XPath":
-                    element = seleniumInstance.FindElement(By.XPath(searchParameter));
-                    break;
+                string parameter = row[2].ToString().ConvertUserVariableToString(engine);
+                switch (row[1].ToString())
+                {                  
+                    case string a when a.ToLower().Contains("xpath"):
+                        by = By.XPath(parameter);
+                        break;
 
-                case "Find Element By ID":
-                    element = seleniumInstance.FindElement(By.Id(searchParameter));
-                    break;
+                    case string a when a.ToLower().Contains("id"):
+                        by = By.Id(parameter);
+                        break;
 
-                case "Find Element By Name":
-                    element = seleniumInstance.FindElement(By.Name(searchParameter));
-                    break;
+                    case string a when a.ToLower().Contains("tag name"):
+                        by = By.TagName(parameter);
+                        break;
 
-                case "Find Element By Tag Name":
-                    element = seleniumInstance.FindElement(By.TagName(searchParameter));
-                    break;
+                    case string a when a.ToLower().Contains("class name"):
+                        by = By.ClassName(parameter);
+                        break;
 
-                case "Find Element By Class Name":
-                    element = seleniumInstance.FindElement(By.ClassName(searchParameter));
-                    break;
+                    case string a when a.ToLower().Contains("name"):
+                        by = By.Name(parameter);
+                        break;
 
-                case "Find Element By CSS Selector":
-                    element = seleniumInstance.FindElement(By.CssSelector(searchParameter));
-                    break;
+                    case string a when a.ToLower().Contains("css selector"):
+                        by = By.CssSelector(parameter);
+                        break;
 
-                case "Find Element By Link Text":
-                    element = seleniumInstance.FindElement(By.LinkText(searchParameter));
-                    break;
+                    case string a when a.ToLower().Contains("link text"):
+                        by = By.LinkText(parameter);
+                        break;
 
-                case "Find Elements By XPath":
-                    element = seleniumInstance.FindElements(By.XPath(searchParameter));
-                    break;
-
-                case "Find Elements By ID":
-                    element = seleniumInstance.FindElements(By.Id(searchParameter));
-                    break;
-
-                case "Find Elements By Name":
-                    element = seleniumInstance.FindElements(By.Name(searchParameter));
-                    break;
-
-                case "Find Elements By Tag Name":
-                    element = seleniumInstance.FindElements(By.TagName(searchParameter));
-                    break;
-
-                case "Find Elements By Class Name":
-                    element = seleniumInstance.FindElements(By.ClassName(searchParameter));
-                    break;
-
-                case "Find Elements By CSS Selector":
-                    element = seleniumInstance.FindElements(By.CssSelector(searchParameter));
-                    break;
-
-                case "Find Elements By Link Text":
-                    element = seleniumInstance.FindElements(By.LinkText(searchParameter));
-                    break;
-
-                default:
-                    throw new Exception("Element Search Type was not found: " + v_SeleniumSearchType);
+                    default:
+                        throw new Exception("Element Search Type was not found: " + row[1].ToString());
+                }
+                byList.Add(by);
             }
+
+            var byall = new ByAll(byList.ToArray());
+
+            if (v_SeleniumSearchOption == "Find Element")
+                element = seleniumInstance.FindElement(byall);
+            else
+                element = seleniumInstance.FindElements(byall);
+
             return element;
         }
 
@@ -652,18 +685,16 @@ namespace taskt.Commands
 
             try
             {
-                string seleniumSearchType = Regex.Matches(v_SeleniumSearchType, @"(?<=By )[\w\s]+")[0].ToString();
-                var searchParameter = newElementRecorder.SearchParameters.AsEnumerable().Where(s => s.Key == seleniumSearchType).SingleOrDefault();
-                ((ComboBox)_searchParameterControls[3]).Items.Clear();
-
-                if (seleniumSearchType == "CSS Selector")
+                if (newElementRecorder.SearchParameters != null)
                 {
-                    var cssSelectorList = (List<string>)searchParameter.Value;
-                    ((ComboBox)_searchParameterControls[3]).Items.AddRange(cssSelectorList.ToArray());
-                    _searchParameterControls[3].Text = cssSelectorList.FirstOrDefault();
-                }
-                else
-                    _searchParameterControls[3].Text = searchParameter.Value.ToString();
+                    v_SeleniumSearchParameters.Rows.Clear();
+
+                    foreach (DataRow rw in newElementRecorder.SearchParameters.Rows)
+                        v_SeleniumSearchParameters.ImportRow(rw);
+
+                    _searchParametersGridViewHelper.DataSource = v_SeleniumSearchParameters;
+                    _searchParametersGridViewHelper.Refresh();
+                }               
             }
             catch (Exception)
             {
@@ -683,7 +714,7 @@ namespace taskt.Commands
             {
                 case "Invoke Click":
                 case "Clear Element":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Hide();
                     break;
 
@@ -691,7 +722,7 @@ namespace taskt.Commands
                 case "Middle Click":
                 case "Right Click":
                 case "Double Left Click":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
@@ -702,7 +733,7 @@ namespace taskt.Commands
                     break;
 
                 case "Set Text":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
@@ -715,13 +746,13 @@ namespace taskt.Commands
                         DataGridViewComboBoxCell encryptedBox = new DataGridViewComboBoxCell();
                         encryptedBox.Items.Add("Not Encrypted");
                         encryptedBox.Items.Add("Encrypted");
-                        _elementsGridViewHelper.Rows[2].Cells[1] = encryptedBox;
-                        _elementsGridViewHelper.Rows[2].Cells[1].Value = "Not Encrypted";
+                        _actionParametersGridViewHelper.Rows[2].Cells[1] = encryptedBox;
+                        _actionParametersGridViewHelper.Rows[2].Cells[1].Value = "Not Encrypted";
 
                         var buttonCell = new DataGridViewButtonCell();
-                        _elementsGridViewHelper.Rows[3].Cells[1] = buttonCell;
-                        _elementsGridViewHelper.Rows[3].Cells[1].Value = "Encrypt Text";
-                        _elementsGridViewHelper.CellContentClick += ElementsGridViewHelper_CellContentClick;
+                        _actionParametersGridViewHelper.Rows[3].Cells[1] = buttonCell;
+                        _actionParametersGridViewHelper.Rows[3].Cells[1].Value = "Encrypt Text";
+                        _actionParametersGridViewHelper.CellContentClick += ElementsGridViewHelper_CellContentClick;
                     }
 
                     DataGridViewComboBoxCell comparisonComboBox = new DataGridViewComboBoxCell();
@@ -730,13 +761,15 @@ namespace taskt.Commands
 
                     //assign cell as a combobox
                     if (sender != null)
-                        _elementsGridViewHelper.Rows[1].Cells[1].Value = "No";
+                        _actionParametersGridViewHelper.Rows[1].Cells[1].Value = "No";
 
-                    _elementsGridViewHelper.Rows[1].Cells[1] = comparisonComboBox;
+                    if (_actionParametersGridViewHelper.Rows.Count > 1)
+                        _actionParametersGridViewHelper.Rows[1].Cells[1] = comparisonComboBox;
+
                     break;
 
                 case "Set Secure Text":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
@@ -750,16 +783,17 @@ namespace taskt.Commands
 
                     //assign cell as a combobox
                     if (sender != null)
-                        _elementsGridViewHelper.Rows[1].Cells[1].Value = "No";
+                        _actionParametersGridViewHelper.Rows[1].Cells[1].Value = "No";
 
-                    _elementsGridViewHelper.Rows[1].Cells[1] = _comparisonComboBox; 
+                    if (_actionParametersGridViewHelper.Rows.Count > 1)
+                        _actionParametersGridViewHelper.Rows[1].Cells[1] = _comparisonComboBox; 
                     break;
 
                 case "Get Text":
                 case "Get Matching Element(s)":
                 case "Get Table":
                 case "Get Count":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
@@ -767,7 +801,7 @@ namespace taskt.Commands
                     break;
 
                 case "Get Attribute":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 
                     if (sender != null)
@@ -797,13 +831,14 @@ namespace taskt.Commands
 
                     //assign cell as a combobox
                     if (sender != null)
-                        _elementsGridViewHelper.Rows[0].Cells[1].Value = "Select By Text";
+                        _actionParametersGridViewHelper.Rows[0].Cells[1].Value = "Select By Text";
 
-                    _elementsGridViewHelper.Rows[0].Cells[1] = selectionTypeBox;
+                    if (_actionParametersGridViewHelper.Rows.Count > 0)
+                        _actionParametersGridViewHelper.Rows[0].Cells[1] = selectionTypeBox;
                     break;
 
                 case "Wait For Element To Exist":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
        
                     if (sender != null)
@@ -811,23 +846,23 @@ namespace taskt.Commands
                     break;
 
                 case "Switch to frame":
-                    foreach (var ctrl in _elementParameterControls)
+                    foreach (var ctrl in _actionParametersControls)
                         ctrl.Hide();
                     break;
 
                 default:
                     break;
             }
-            _elementsGridViewHelper.DataSource = v_WebActionParameterTable;
+            _actionParametersGridViewHelper.DataSource = v_WebActionParameterTable;
         }
 
         private void ElementsGridViewHelper_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var targetCell = _elementsGridViewHelper.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            var targetCell = _actionParametersGridViewHelper.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
             if (targetCell is DataGridViewButtonCell && targetCell.Value.ToString() == "Encrypt Text")
             {
-                var targetElement = _elementsGridViewHelper.Rows[0].Cells[1];
+                var targetElement = _actionParametersGridViewHelper.Rows[0].Cells[1];
 
                 if (string.IsNullOrEmpty(targetElement.Value.ToString()))
                     return;
@@ -839,19 +874,9 @@ namespace taskt.Commands
                 if (warning == DialogResult.Yes)
                 {
                     targetElement.Value = EncryptionServices.EncryptString(targetElement.Value.ToString(), "OPENBOTS");
-                    _elementsGridViewHelper.Rows[2].Cells[1].Value = "Encrypted";
+                    _actionParametersGridViewHelper.Rows[2].Cells[1].Value = "Encrypted";
                 }
             }
         }
-
-        //public override void Refresh(UI.Forms.frmCommandEditor editor)
-        //{
-        //    //seleniumAction_SelectionChangeCommitted(null, null);
-        //}
-
-        //private void ElementsGridViewHelper_MouseEnter(object sender, EventArgs e)
-        //{
-        //    seleniumAction_SelectionChangeCommitted(null, null);
-        //}
     }
 }

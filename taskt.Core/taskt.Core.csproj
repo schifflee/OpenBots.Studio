@@ -143,8 +143,6 @@
     <Compile Include="Script\Script.cs" />
     <Compile Include="Script\ScriptAction.cs" />
     <Compile Include="Script\ScriptElement.cs" />
-    <Compile Include="Script\ScriptElementExtensions.cs" />
-    <Compile Include="Script\ScriptElementType.cs" />
     <Compile Include="Script\ScriptObject.cs" />
     <Compile Include="Script\ScriptVariable.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
@@ -153,6 +151,7 @@
     <Compile Include="Settings\LocalListenerSettings.cs" />
     <Compile Include="Settings\ServerSettings.cs" />
     <Compile Include="Settings\WhiteListIPSettings.cs" />
+    <Compile Include="User32\KeyDownEventArgs.cs" />
     <Compile Include="User32\MouseCoordinateEventArgs.cs" />
     <Compile Include="User32\RECT.cs" />
     <Compile Include="User32\User32Functions.cs" />

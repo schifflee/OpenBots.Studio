@@ -531,7 +531,7 @@ namespace taskt.UI.CustomControls
             frmElementSelector newElementSelector = new frmElementSelector();
 
             //get copy of user element and append system elements, then load to combobox
-            var elementList = CurrentEditor.ScriptElements.Select(f => "(" + f.ElementType.Description() + ") " + f.ElementName).ToList();
+            var elementList = CurrentEditor.ScriptElements.Select(f => f.ElementName).ToList();
 
             newElementSelector.lstElements.Items.AddRange(elementList.ToArray());
 
@@ -548,39 +548,14 @@ namespace taskt.UI.CustomControls
 
                 //grab the referenced input assigned to the 'insert element' button instance
                 CommandItemControl inputBox = (CommandItemControl)sender;
-                //currently element insertion is only available for simply textboxes
 
-                Regex regex = new Regex(@"\([\w\s]+\)\s");
-                if (inputBox.Tag is TextBox)
-                {
-                    TextBox targetTextbox = (TextBox)inputBox.Tag;
-                    //concat element name with brackets <vElement> as engine searches for the same
-                    targetTextbox.Text = targetTextbox.Text + "<" + regex.Replace(newElementSelector.lstElements.SelectedItem.ToString(), "") + ">";
-                }
-                else if (inputBox.Tag is ComboBox)
-                {
-                    ComboBox targetCombobox = (ComboBox)inputBox.Tag;
-                    //concat element name with brackets <vElement> as engine searches for the same
-                    targetCombobox.Text = targetCombobox.Text + "<" + regex.Replace(newElementSelector.lstElements.SelectedItem.ToString(), "") + ">";
-                }
-                else if (inputBox.Tag is DataGridView)
+                if (inputBox.Tag is DataGridView)
                 {
                     DataGridView targetDGV = (DataGridView)inputBox.Tag;
 
-                    if (targetDGV.SelectedCells.Count == 0)
-                    {
-                        MessageBox.Show("Please make sure you have selected an action and selected a cell before attempting" +
-                            " to insert an element!", "No Cell Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    if (targetDGV.SelectedCells[0].ColumnIndex == 0)
-                    {
-                        MessageBox.Show("Invalid Cell Selected!", "Invalid Cell Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    targetDGV.SelectedCells[0].Value = targetDGV.SelectedCells[0].Value + "<" + newElementSelector.lstElements.SelectedItem.ToString() + ">";
+                    targetDGV.DataSource = CurrentEditor.ScriptElements
+                        .Where(x => x.ElementName == newElementSelector.lstElements.SelectedItem.ToString().Replace("<", "").Replace(">", ""))
+                        .FirstOrDefault().ElementValue;
                 }
             }
         }

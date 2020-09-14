@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace taskt.Core.Script
 {
@@ -6,7 +7,6 @@ namespace taskt.Core.Script
     public class ScriptElement
     {
         public string ElementName { get; set; }
-        public ScriptElementType ElementType { get; set; }
-        public string ElementValue { get; set; }
+        public DataTable ElementValue { get; set; }
     }
 }

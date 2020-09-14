@@ -13,6 +13,7 @@ namespace taskt.Utilities
     {
         private const int _whKeyboardLl = 13;
         private const int _wmKeyDown = 0x0100;
+        private const int _wmKeyUp = 0x0101;
         private static readonly LowLevelKeyboardProc _kbProc = KeyboardHookEvent;
         private static readonly LowLevelMouseProc _mouseProc = MouseHookEvent;
         private static readonly LowLevelMouseProc _mouseLeftUpProc = MouseHookForLeftClickUpEvent;
@@ -20,6 +21,7 @@ namespace taskt.Utilities
         private static IntPtr _mouseHookID = IntPtr.Zero;
         private static Stopwatch _stopWatch;
         private static Stopwatch _lastMouseMove;
+        private static bool _isKeyPressed;
 
         private static bool _performMouseClickCapture;
         private static bool _groupMouseMovesIntoSequence;
@@ -95,7 +97,7 @@ namespace taskt.Utilities
         private static extern IntPtr ChildWindowFromPoint(IntPtr hWndParent, Point Point);
 
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
-        private static extern int ToUnicode(uint virtualKeyCode, uint scanCode, byte[] keyboardState, StringBuilder receivingBuffer, int bufferSize, uint flags);
+        public static extern int ToUnicode(uint virtualKeyCode, uint scanCode, byte[] keyboardState, StringBuilder receivingBuffer, int bufferSize, uint flags);
 
         //enums and structs
         private const int _whMouseLl = 14;
@@ -151,7 +153,10 @@ namespace taskt.Utilities
             _mouseHookID = SetMouseHook(_mouseLeftUpProc);
         }
 
-        public static void StartScreenRecordingHook(bool captureClick, bool captureMouse, bool groupMouseMoves, bool captureKeyboard, bool captureWindow, bool activateTopLeft, bool trackActivatedWindowSize, bool trackWindowsOpenLocation, int eventResolution, string stopHookHotKey)
+        public static void StartScreenRecordingHook(bool captureClick, bool captureMouse, bool groupMouseMoves, 
+                                                    bool captureKeyboard, bool captureWindow, bool activateTopLeft, 
+                                                    bool trackActivatedWindowSize, bool trackWindowsOpenLocation, 
+                                                    int eventResolution, string stopHookHotKey)
         {
             //create new list for commands generated
             GeneratedCommands = new List<ScriptCommand>();
@@ -175,7 +180,8 @@ namespace taskt.Utilities
             if (_performWindowCapture)
             {
                 _winEventHookHandler = new SystemEventHandler(BuildWindowCommand);
-                _winEventHook = SetWinEventHook(_systemEvents.EventMin, _systemEvents.EventMax, IntPtr.Zero, _winEventHookHandler, 0, 0, 0);
+                _winEventHook = SetWinEventHook(_systemEvents.EventMin, _systemEvents.EventMax, 
+                                                IntPtr.Zero, _winEventHookHandler, 0, 0, 0);
             }
 
             //start stopwatch for timing all event occurences
@@ -200,14 +206,23 @@ namespace taskt.Utilities
             HookStopped(null, new EventArgs());
         }
 
+        public static event EventHandler<KeyDownEventArgs> KeyDownEvent;
+
         //mouse and keyboard hook event triggers
         private static IntPtr KeyboardHookEvent(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if (nCode >= 0 && wParam == (IntPtr)_wmKeyDown)
+            if (nCode >= 0 && wParam == (IntPtr)_wmKeyDown && !_isKeyPressed)
             {
                 int vkCode = Marshal.ReadInt32(lParam);
                 BuildKeyboardCommand((Keys)vkCode);
+
+                Keys key = (Keys)vkCode;
+                System.Windows.Point point = new System.Windows.Point(Cursor.Position.X, Cursor.Position.Y);
+                KeyDownEvent?.Invoke(null, new KeyDownEventArgs { Key = key, MouseCoordinates = point});
+                _isKeyPressed = true;
             }
+            else if (nCode >= 0 && wParam == (IntPtr)_wmKeyUp)
+                _isKeyPressed = false;
 
             return CallNextHookEx(_keyboardHookID, nCode, wParam, lParam);
         }

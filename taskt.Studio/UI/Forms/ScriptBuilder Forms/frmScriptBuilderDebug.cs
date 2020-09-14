@@ -113,11 +113,11 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                                 variableValues.Rows.Add(variable.VariableName, type,
                                     ConvertBitmapToString((Bitmap)variable.VariableValue));
                                 break;
-                            case "System.Collections.Generic.List`1[System.String]":
-                            case "System.Collections.Generic.List`1[System.Data.DataTable]":
-                            case "System.Collections.Generic.List`1[Microsoft.Office.Interop.Outlook.MailItem]":
-                            case "System.Collections.Generic.List`1[MimeKit.MimeMessage]":
-                            case "System.Collections.Generic.List`1[OpenQA.Selenium.IWebElement]":
+                            case string a when a.Contains("System.Collections.Generic.List`1[[System.String"):
+                            case string b when b.Contains("System.Collections.Generic.List`1[[System.Data.DataTable"):
+                            case string c when c.Contains("System.Collections.Generic.List`1[[Microsoft.Office.Interop.Outlook.MailItem"):
+                            case string d when d.Contains("System.Collections.Generic.List`1[[MimeKit.MimeMessage"):
+                            case string e when e.Contains("System.Collections.Generic.List`1[[OpenQA.Selenium.IWebElement"):
                                 variableValues.Rows.Add(variable.VariableName, type,
                                     ConvertListToString(variable.VariableValue));
                                 break;

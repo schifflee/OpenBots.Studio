@@ -213,10 +213,7 @@ namespace taskt.Engine
                         var elementFound = automationScript.Elements.Where(f => f.ElementName == elem.ElementName).FirstOrDefault();
 
                         if (elementFound != null)
-                        {
-                            //elementFound.ElementType = elem.ElementType;
                             elementFound.ElementValue = elem.ElementValue;
-                        }
                     }
                 }
 

@@ -38,14 +38,3 @@ namespace taskt.UI.Supplement_Forms
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-

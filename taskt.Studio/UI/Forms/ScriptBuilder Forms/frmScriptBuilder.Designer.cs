@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using taskt.Utilities;
 
 namespace taskt.UI.Forms.ScriptBuilder_Forms
 {
@@ -34,7 +33,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScriptBuilder));
-            taskt.Utilities.Theme theme1 = new taskt.Utilities.Theme();
+            taskt.Core.Utilities.FormsUtilities.Theme theme1 = new taskt.Core.Utilities.FormsUtilities.Theme();
             this.cmsProjectFolderActions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiCopyFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,28 +62,28 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.lblTotalResults = new System.Windows.Forms.Label();
             this.txtScriptSearch = new System.Windows.Forms.TextBox();
             this.grpSaveClose = new taskt.UI.CustomControls.CustomUIControls.UIGroupBox();
-            this.uiBtnSaveSequence = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnRestart = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnClose = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnSaveSequence = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnRestart = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnClose = new taskt.Core.UI.Controls.UIPictureButton();
             this.grpFileActions = new taskt.UI.CustomControls.CustomUIControls.UIGroupBox();
-            this.uiBtnProject = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnImport = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnSaveAs = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnSave = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnNew = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnOpen = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnProject = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnImport = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnSaveAs = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnSave = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnNew = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnOpen = new taskt.Core.UI.Controls.UIPictureButton();
             this.grpRecordRun = new taskt.UI.CustomControls.CustomUIControls.UIGroupBox();
-            this.uiBtnRecordAdvancedUISequence = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnRecordElementSequence = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnRunScript = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnRecordUISequence = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnDebugScript = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnScheduleManagement = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnRecordAdvancedUISequence = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnRecordElementSequence = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnRunScript = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnRecordUISequence = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnDebugScript = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnScheduleManagement = new taskt.Core.UI.Controls.UIPictureButton();
             this.grpVariable = new taskt.UI.CustomControls.CustomUIControls.UIGroupBox();
-            this.uiBtnAddElement = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnClearAll = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnSettings = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiBtnAddVariable = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnAddElement = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnClearAll = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnSettings = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnAddVariable = new taskt.Core.UI.Controls.UIPictureButton();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlMain = new taskt.UI.CustomControls.CustomUIControls.UIPanel();
@@ -714,7 +713,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnRecordAdvancedUISequence.DisplayText = "Adv UI";
             this.uiBtnRecordAdvancedUISequence.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnRecordAdvancedUISequence.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnRecordAdvancedUISequence.Image = global::taskt.Properties.Resources.action_bar_element_recorder;
+            this.uiBtnRecordAdvancedUISequence.Image = global::taskt.Core.Properties.Resources.action_bar_element_recorder;
             this.uiBtnRecordAdvancedUISequence.IsMouseOver = false;
             this.uiBtnRecordAdvancedUISequence.Location = new System.Drawing.Point(189, 24);
             this.uiBtnRecordAdvancedUISequence.Margin = new System.Windows.Forms.Padding(4);
@@ -768,7 +767,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnRecordUISequence.DisplayText = "UI";
             this.uiBtnRecordUISequence.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnRecordUISequence.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnRecordUISequence.Image = global::taskt.Properties.Resources.action_bar_element_recorder;
+            this.uiBtnRecordUISequence.Image = global::taskt.Core.Properties.Resources.action_bar_element_recorder;
             this.uiBtnRecordUISequence.IsMouseOver = false;
             this.uiBtnRecordUISequence.Location = new System.Drawing.Point(129, 24);
             this.uiBtnRecordUISequence.Margin = new System.Windows.Forms.Padding(4);
@@ -949,7 +948,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // pbMainLogo
             // 
             this.pbMainLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pbMainLogo.Image = global::taskt.Properties.Resources.openbots_logo;
+            this.pbMainLogo.Image = global::taskt.Core.Properties.Resources.openbots_logo;
             this.pbMainLogo.Location = new System.Drawing.Point(8, 5);
             this.pbMainLogo.Name = "pbMainLogo";
             this.pbMainLogo.Size = new System.Drawing.Size(270, 50);
@@ -1083,7 +1082,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnCollapse.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.uiBtnCollapse.DisplayText = null;
             this.uiBtnCollapse.DisplayTextBrush = System.Drawing.Color.White;
-            this.uiBtnCollapse.Image = global::taskt.Properties.Resources.project_collapse;
+            this.uiBtnCollapse.Image = global::taskt.Core.Properties.Resources.project_collapse;
             this.uiBtnCollapse.IsMouseOver = false;
             this.uiBtnCollapse.Location = new System.Drawing.Point(56, 1);
             this.uiBtnCollapse.Name = "uiBtnCollapse";
@@ -1099,7 +1098,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnOpenDirectory.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.uiBtnOpenDirectory.DisplayText = null;
             this.uiBtnOpenDirectory.DisplayTextBrush = System.Drawing.Color.White;
-            this.uiBtnOpenDirectory.Image = global::taskt.Properties.Resources.project_open_directory;
+            this.uiBtnOpenDirectory.Image = global::taskt.Core.Properties.Resources.project_open_directory;
             this.uiBtnOpenDirectory.IsMouseOver = false;
             this.uiBtnOpenDirectory.Location = new System.Drawing.Point(84, 1);
             this.uiBtnOpenDirectory.Name = "uiBtnOpenDirectory";
@@ -1115,7 +1114,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnExpand.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.uiBtnExpand.DisplayText = null;
             this.uiBtnExpand.DisplayTextBrush = System.Drawing.Color.White;
-            this.uiBtnExpand.Image = global::taskt.Properties.Resources.project_expand;
+            this.uiBtnExpand.Image = global::taskt.Core.Properties.Resources.project_expand;
             this.uiBtnExpand.IsMouseOver = false;
             this.uiBtnExpand.Location = new System.Drawing.Point(28, 1);
             this.uiBtnExpand.Name = "uiBtnExpand";
@@ -1131,7 +1130,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnRefresh.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.uiBtnRefresh.DisplayText = null;
             this.uiBtnRefresh.DisplayTextBrush = System.Drawing.Color.White;
-            this.uiBtnRefresh.Image = global::taskt.Properties.Resources.browser_refresh;
+            this.uiBtnRefresh.Image = global::taskt.Core.Properties.Resources.browser_refresh;
             this.uiBtnRefresh.IsMouseOver = false;
             this.uiBtnRefresh.Location = new System.Drawing.Point(0, 1);
             this.uiBtnRefresh.Name = "uiBtnRefresh";
@@ -1628,7 +1627,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // elementRecorderToolStripMenuItem
             // 
             this.elementRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.elementRecorderToolStripMenuItem.Image = global::taskt.Properties.Resources.action_bar_element;
+            this.elementRecorderToolStripMenuItem.Image = global::taskt.Core.Properties.Resources.action_bar_element;
             this.elementRecorderToolStripMenuItem.Name = "elementRecorderToolStripMenuItem";
             this.elementRecorderToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
             this.elementRecorderToolStripMenuItem.Text = "Element Recorder";
@@ -1646,7 +1645,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // uiAdvancedRecorderToolStripMenuItem
             // 
             this.uiAdvancedRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.uiAdvancedRecorderToolStripMenuItem.Image = global::taskt.Properties.Resources.action_bar_record;
+            this.uiAdvancedRecorderToolStripMenuItem.Image = global::taskt.Core.Properties.Resources.action_bar_record;
             this.uiAdvancedRecorderToolStripMenuItem.Name = "uiAdvancedRecorderToolStripMenuItem";
             this.uiAdvancedRecorderToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
             this.uiAdvancedRecorderToolStripMenuItem.Text = "Advanced UI Recorder";
@@ -1938,23 +1937,23 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private Label lblTotalResults;
         private TextBox txtScriptSearch;
         private CustomControls.CustomUIControls.UIGroupBox grpSaveClose;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnRestart;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnClose;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnRestart;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnClose;
         private CustomControls.CustomUIControls.UIGroupBox grpFileActions;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnProject;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnImport;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnSaveAs;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnSave;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnNew;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnOpen;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnProject;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnImport;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnSaveAs;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnSave;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnNew;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnOpen;
         private CustomControls.CustomUIControls.UIGroupBox grpRecordRun;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnRecordUISequence;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnDebugScript;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnScheduleManagement;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnRecordUISequence;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnDebugScript;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnScheduleManagement;
         private CustomControls.CustomUIControls.UIGroupBox grpVariable;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnClearAll;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnSettings;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnAddVariable;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnClearAll;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnSettings;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnAddVariable;
         private ToolStripMenuItem tsmiNewFolder;
         private ToolStripMenuItem tsmiMainNewFolder;
         private ToolStripMenuItem tsmiNewScriptFile;
@@ -1989,10 +1988,10 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private ToolStripMenuItem tsmiCloseAllButThis;
         private ContextMenuStrip cmsProjectMainFolderActions;
         private ToolStripMenuItem runToolStripMenuItem;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnRunScript;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnRunScript;
         private ToolStripMenuItem elementManagerToolStripMenuItem;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnRecordElementSequence;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnAddElement;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnRecordElementSequence;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnAddElement;
         private TableLayoutPanel tlpProject;
         private Panel pnlProjectButtons;
         private CustomControls.CustomUIControls.UIIconButton uiBtnCollapse;
@@ -2003,12 +2002,12 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private Panel pnlCommandSearch;
         private TextBox txtCommandSearch;
         private PictureBox pbMainLogo;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnSaveSequence;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnSaveSequence;
         private ToolStripMenuItem recorderToolStripMenuItem;
         private ToolStripMenuItem uiRecorderToolStripMenuItem;
         private ToolStripMenuItem elementRecorderToolStripMenuItem;
         private ToolStripMenuItem uiAdvancedRecorderToolStripMenuItem;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnRecordAdvancedUISequence;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnRecordAdvancedUISequence;
     }
 }
 

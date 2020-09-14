@@ -12,10 +12,9 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.Properties;
-using taskt.UI.CustomControls;
-using taskt.UI.Forms.Supplement_Forms;
-
+using taskt.Core.Properties;
+using taskt.Core.UI.Controls;
+using taskt.Commands.Forms;
 
 namespace taskt.Commands
 {
@@ -80,12 +79,12 @@ namespace taskt.Commands
             Dt.StoreInUserVariable(engine, v_DataTable);
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_DataTable", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDataGridViewGroupFor("v_DataRowDataTable", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_DataTable", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDataGridViewGroupFor("v_DataRowDataTable", this, editor));
 
             CommandItemControl loadSchemaControl = new CommandItemControl();
             loadSchemaControl.ForeColor = Color.White;
@@ -109,7 +108,7 @@ namespace taskt.Commands
 
         private void LoadSchemaControl_Click(object sender, EventArgs e)
         {
-            frmVariableSelector selectionForm = new frmVariableSelector();
+            frmDataTableVariableSelector selectionForm = new frmDataTableVariableSelector();
             selectionForm.Text = "Load Schema";
             selectionForm.lblHeader.Text = "Select a DataTable from the list";
             foreach (var item in _dataTableCreationCommands)

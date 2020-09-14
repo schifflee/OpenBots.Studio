@@ -10,7 +10,6 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -68,13 +67,13 @@ namespace taskt.Commands
                 File.WriteAllText(filePath, outputText);
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_FilePath", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_TextToWrite", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_Overwrite", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_FilePath", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_TextToWrite", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_Overwrite", this, editor));
 
             return RenderedControls;
         }

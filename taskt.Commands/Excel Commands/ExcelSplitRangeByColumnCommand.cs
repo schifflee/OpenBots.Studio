@@ -13,7 +13,6 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using DataTable = System.Data.DataTable;
 
@@ -214,16 +213,16 @@ namespace taskt.Commands
             }   
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_Range", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_ColumnName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_OutputDirectory", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_FileType", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_Range", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_ColumnName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_OutputDirectory", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_FileType", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
 
             return RenderedControls;
         }

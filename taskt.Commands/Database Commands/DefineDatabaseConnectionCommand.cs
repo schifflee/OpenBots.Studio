@@ -12,8 +12,8 @@ using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommandUtilities;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.Properties;
-using taskt.UI.CustomControls;
+using taskt.Core.Properties;
+using taskt.Core.UI.Controls;
 
 namespace taskt.Commands
 {
@@ -107,11 +107,11 @@ namespace taskt.Commands
             return new OleDbConnection(connection);
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
 
             CommandItemControl helperControl = new CommandItemControl();
             helperControl.Padding = new Padding(10, 0, 0, 0);
@@ -122,10 +122,10 @@ namespace taskt.Commands
             helperControl.CommandDisplay = "Build Connection String";
             helperControl.Click += (sender, e) => Button_Click(sender, e);
 
-            _connectionString = (TextBox)CommandControls.CreateDefaultInputFor("v_ConnectionString", this);
+            _connectionString = (TextBox)commandControls.CreateDefaultInputFor("v_ConnectionString", this);
 
-            var connectionLabel = CommandControls.CreateDefaultLabelFor("v_ConnectionString", this);
-            var connectionHelpers = CommandControls.CreateUIHelpersFor("v_ConnectionString", this, new[] { _connectionString }, editor);
+            var connectionLabel = commandControls.CreateDefaultLabelFor("v_ConnectionString", this);
+            var connectionHelpers = commandControls.CreateUIHelpersFor("v_ConnectionString", this, new[] { _connectionString }, editor);
             CommandItemControl testConnectionControl = new CommandItemControl();
             testConnectionControl.Padding = new Padding(10, 0, 0, 0);
             testConnectionControl.ForeColor = Color.AliceBlue;
@@ -141,10 +141,10 @@ namespace taskt.Commands
             RenderedControls.Add(testConnectionControl);
             RenderedControls.Add(_connectionString);
 
-            _connectionStringPassword = (TextBox)CommandControls.CreateDefaultInputFor("v_ConnectionStringPassword", this);
+            _connectionStringPassword = (TextBox)commandControls.CreateDefaultInputFor("v_ConnectionStringPassword", this);
 
-            var connectionPassLabel = CommandControls.CreateDefaultLabelFor("v_ConnectionStringPassword", this);
-            var connectionPassHelpers = CommandControls.CreateUIHelpersFor("v_ConnectionStringPassword", this, new[] { _connectionStringPassword }, editor);
+            var connectionPassLabel = commandControls.CreateDefaultLabelFor("v_ConnectionStringPassword", this);
+            var connectionPassHelpers = commandControls.CreateUIHelpersFor("v_ConnectionStringPassword", this, new[] { _connectionStringPassword }, editor);
 
             RenderedControls.Add(connectionPassLabel);
             RenderedControls.AddRange(connectionPassHelpers);
@@ -180,7 +180,7 @@ namespace taskt.Commands
             RenderedControls.Add(_connectionStringPassword);
             _connectionStringPassword.PasswordChar = '*';
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_TestConnection", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_TestConnection", this, editor));
 
             return RenderedControls;
         }

@@ -11,7 +11,6 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -74,13 +73,13 @@ namespace taskt.Commands
             Thread.Sleep(2000);
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_ProgramName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_ProgramArgs", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_WaitForExit", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_ProgramName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_ProgramArgs", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_WaitForExit", this, editor));
 
             return RenderedControls;
         }

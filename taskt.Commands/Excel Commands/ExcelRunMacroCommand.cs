@@ -9,7 +9,6 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace taskt.Commands
@@ -53,12 +52,12 @@ namespace taskt.Commands
             excelInstance.Run(vMacro);           
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_MacroName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_MacroName", this, editor));
 
             return RenderedControls;
         }

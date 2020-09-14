@@ -1,4 +1,4 @@
-﻿namespace taskt.UI.CustomControls
+﻿namespace taskt.Core.UI.Controls
 {
     partial class CommandItemControl
     {

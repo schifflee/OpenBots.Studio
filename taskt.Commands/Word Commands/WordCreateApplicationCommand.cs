@@ -11,7 +11,6 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 using Application = Microsoft.Office.Interop.Word.Application;
 
 namespace taskt.Commands
@@ -118,15 +117,15 @@ namespace taskt.Commands
             }
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_NewOpenDocument", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_FilePath", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_Visible", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_CloseAllInstances", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_NewOpenDocument", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_FilePath", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_Visible", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_CloseAllInstances", this, editor));
 
             return RenderedControls;
         }

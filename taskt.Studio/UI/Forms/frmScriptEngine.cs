@@ -27,6 +27,7 @@ using taskt.Core.Model.EngineModel;
 using taskt.Core.Model.ServerModel;
 using taskt.Core.Script;
 using taskt.Core.Settings;
+using taskt.Core.UI.Forms;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
 using taskt.Server;
@@ -34,6 +35,7 @@ using taskt.UI.DTOs;
 using taskt.UI.Forms.ScriptBuilder_Forms;
 using taskt.UI.Forms.Supplement_Forms;
 using taskt.Utilities;
+using taskt.Core.Properties;
 
 namespace taskt.UI.Forms
 {
@@ -215,7 +217,7 @@ namespace taskt.UI.Forms
             if (IsNewTaskSteppedInto)
             {
                 EngineInstance.PauseScript();
-                uiBtnPause.Image = Properties.Resources.command_resume;
+                uiBtnPause.Image = Resources.command_resume;
                 uiBtnPause.DisplayText = "Resume";
                 uiBtnStepOver.Visible = true;
                 uiBtnStepInto.Visible = true;
@@ -435,7 +437,7 @@ namespace taskt.UI.Forms
 
                 if ((!_advancedDebug) && (mainLogoText.Contains("(error)")))
                 {
-                    pbBotIcon.Image = Properties.Resources.error;
+                    pbBotIcon.Image = Resources.error;
                 }
 
                 if (mainLogoText.Contains("(error)"))
@@ -670,7 +672,7 @@ namespace taskt.UI.Forms
                         Color = Color.Red
                     };
                     lstSteppingCommands.Items.Add(commandsItem);
-                    uiBtnPause.Image = Properties.Resources.command_resume;
+                    uiBtnPause.Image = Resources.command_resume;
                     uiBtnPause.DisplayText = "Resume";
                     EngineInstance.PauseScript();
                 }
@@ -682,7 +684,7 @@ namespace taskt.UI.Forms
                         Color = Color.Green
                     };
                     lstSteppingCommands.Items.Add(commandsItem);
-                    uiBtnPause.Image = Properties.Resources.command_pause;
+                    uiBtnPause.Image = Resources.command_pause;
                     uiBtnPause.DisplayText = "Pause";
                     uiBtnStepOver.Visible = false;
                     uiBtnStepInto.Visible = false;
@@ -710,7 +712,7 @@ namespace taskt.UI.Forms
             }
             else
             {
-                uiBtnPause.Image = Properties.Resources.command_pause;
+                uiBtnPause.Image = Resources.command_pause;
                 uiBtnPause.DisplayText = "Pause";
                 uiBtnStepOver.Visible = false;
                 uiBtnStepInto.Visible = false;

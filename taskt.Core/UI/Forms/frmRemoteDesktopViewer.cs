@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using taskt.Core.Enums;
-using taskt.UI.FormEventArgs;
+using taskt.Core.UI.Forms.EventsArgs;
 
-namespace taskt.UI.Forms.Supplement_Forms
+namespace taskt.Core.UI.Forms
 {
     public partial class frmRemoteDesktopViewer : Form
     {

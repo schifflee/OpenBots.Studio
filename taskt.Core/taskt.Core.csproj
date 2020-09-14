@@ -119,6 +119,7 @@
     <Compile Include="Documentation\CommandMetaData.cs" />
     <Compile Include="Documentation\DocumentationGeneration.cs" />
     <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Infrastructure\ICommandControls.cs" />
     <Compile Include="Infrastructure\IfrmCommandEditor.cs" />
     <Compile Include="Infrastructure\IfrmDialog.cs" />
     <Compile Include="Infrastructure\IfrmScriptBuilder.cs" />
@@ -140,6 +141,11 @@
     <Compile Include="Model\ServerModel\Task.cs" />
     <Compile Include="Model\ServerModel\Worker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Script\Script.cs" />
     <Compile Include="Script\ScriptAction.cs" />
     <Compile Include="Script\ScriptElement.cs" />
@@ -151,6 +157,28 @@
     <Compile Include="Settings\LocalListenerSettings.cs" />
     <Compile Include="Settings\ServerSettings.cs" />
     <Compile Include="Settings\WhiteListIPSettings.cs" />
+    <Compile Include="UI\Controls\CommandItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\CommandItemControl.Designer.cs">
+      <DependentUpon>CommandItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UIPictureButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\EventArgs\LoginResultEventArgs.cs" />
+    <Compile Include="UI\Forms\frmRemoteDesktopViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\frmRemoteDesktopViewer.Designer.cs">
+      <DependentUpon>frmRemoteDesktopViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Forms\ThemedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\ThemedForm.Designer.cs">
+      <DependentUpon>ThemedForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="User32\KeyDownEventArgs.cs" />
     <Compile Include="User32\MouseCoordinateEventArgs.cs" />
     <Compile Include="User32\RECT.cs" />
@@ -163,12 +191,21 @@
     <Compile Include="Utilities\CommonUtilities\Logging.cs" />
     <Compile Include="Utilities\CommonUtilities\StringMethods.cs" />
     <Compile Include="Utilities\CommonUtilities\VariableMethods.cs" />
+    <Compile Include="Utilities\FormsUtilities\Theme.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <COMReference Include="AxMSTSCLib">
+      <Guid>{8C11EFA1-92C3-11D1-BC1E-00C04FA31489}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
     <COMReference Include="SHDocVw">
       <Guid>{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}</Guid>
       <VersionMajor>1</VersionMajor>
@@ -179,6 +216,148 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+	   <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\CommandItemControl.resx">
+      <DependentUpon>CommandItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms\frmRemoteDesktopViewer.resx">
+      <DependentUpon>frmRemoteDesktopViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms\ThemedForm.resx">
+      <DependentUpon>ThemedForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\7z.dll" />
+    <Content Include="Resources\7z.exe" />
+    <Content Include="Resources\action-bar-add-command.png" />
+    <Content Include="Resources\action-bar-clear.png" />
+    <Content Include="Resources\action-bar-debug.png" />
+    <Content Include="Resources\action-bar-element-recorder.png" />
+    <Content Include="Resources\action-bar-element.png" />
+    <Content Include="Resources\action-bar-import.png" />
+    <Content Include="Resources\action-bar-new.png" />
+    <Content Include="Resources\action-bar-open.png" />
+    <Content Include="Resources\action-bar-options.png" />
+    <Content Include="Resources\action-bar-project.png" />
+    <Content Include="Resources\action-bar-record.png" />
+    <Content Include="Resources\action-bar-run.png" />
+    <Content Include="Resources\action-bar-save.png" />
+    <Content Include="Resources\action-bar-saveas.png" />
+    <Content Include="Resources\action-bar-schedule.png" />
+    <Content Include="Resources\action-bar-variable.png" />
+    <Content Include="Resources\action_bar_close.png" />
+    <Content Include="Resources\action_bar_restart.png" />
+    <Content Include="Resources\browser-back.png" />
+    <Content Include="Resources\browser-elements.png" />
+    <Content Include="Resources\browser-forward.png" />
+    <Content Include="Resources\browser-home.png" />
+    <Content Include="Resources\browser-refresh.png" />
+    <Content Include="Resources\browser-save.png" />
+    <Content Include="Resources\chromedriver.exe" />
+    <Content Include="Resources\close-button.png" />
+    <Content Include="Resources\command-begin-if.png" />
+    <Content Include="Resources\command-begin-multi-if.png" />
+    <Content Include="Resources\command-begin-switch.png" />
+    <Content Include="Resources\command-breakpoint.png" />
+    <Content Include="Resources\command-camera.png" />
+    <Content Include="Resources\command-cancel.png" />
+    <Content Include="Resources\command-case.png" />
+    <Content Include="Resources\command-catch.png" />
+    <Content Include="Resources\command-comment.png" />
+    <Content Include="Resources\command-database.png" />
+    <Content Include="Resources\command-database2.png" />
+    <Content Include="Resources\command-dictionary.png" />
+    <Content Include="Resources\command-disabled.png" />
+    <Content Include="Resources\command-element.png" />
+    <Content Include="Resources\command-else.png" />
+    <Content Include="Resources\command-end-if.png" />
+    <Content Include="Resources\command-end-switch.png" />
+    <Content Include="Resources\command-end-try.png" />
+    <Content Include="Resources\command-endloop.png" />
+    <Content Include="Resources\command-error.png" />
+    <Content Include="Resources\command-exception.png" />
+    <Content Include="Resources\command-exitloop.png" />
+    <Content Include="Resources\command-files.png" />
+    <Content Include="Resources\command-folders.png" />
+    <Content Include="Resources\command-function.png" />
+    <Content Include="Resources\command-ignore.png" />
+    <Content Include="Resources\command-input.png" />
+    <Content Include="Resources\command-message.png" />
+    <Content Include="Resources\command-nextloop.png" />
+    <Content Include="Resources\command-nlg.png" />
+    <Content Include="Resources\command-parse.png" />
+    <Content Include="Resources\command-password.png" />
+    <Content Include="Resources\command-pause.png" />
+    <Content Include="Resources\command-regex.png" />
+    <Content Include="Resources\command-remote.png" />
+    <Content Include="Resources\command-resume.png" />
+    <Content Include="Resources\command-run-code.png" />
+    <Content Include="Resources\command-script.png" />
+    <Content Include="Resources\command-search.png" />
+    <Content Include="Resources\command-sequence.png" />
+    <Content Include="Resources\command-server.png" />
+    <Content Include="Resources\command-smtp.png" />
+    <Content Include="Resources\command-spreadsheet.png" />
+    <Content Include="Resources\command-start-process.png" />
+    <Content Include="Resources\command-startloop.png" />
+    <Content Include="Resources\command-step-into.png" />
+    <Content Include="Resources\command-step-over.png" />
+    <Content Include="Resources\command-stop-process.png" />
+    <Content Include="Resources\command-stopwatch.png" />
+    <Content Include="Resources\command-string.png" />
+    <Content Include="Resources\command-system.png" />
+    <Content Include="Resources\command-try.png" />
+    <Content Include="Resources\command-web.png" />
+    <Content Include="Resources\command-window-close.png" />
+    <Content Include="Resources\command-window.png" />
+    <Content Include="Resources\command_folders.bmp" />
+    <Content Include="Resources\copy.png" />
+    <Content Include="Resources\create.png" />
+    <Content Include="Resources\delete.png" />
+    <Content Include="Resources\edit.png" />
+    <Content Include="Resources\error.png" />
+    <Content Include="Resources\executing.png" />
+    <Content Include="Resources\header-backing.png" />
+    <Content Include="Resources\header_backing_dark.png" />
+    <Content Include="Resources\HTMLInputSample.html" />
+    <Content Include="Resources\IEDriverServer.exe" />
+    <Content Include="Resources\item-header.png" />
+    <Content Include="Resources\links-header - rotated.png" />
+    <Content Include="Resources\links-header.png" />
+    <Content Include="Resources\microsoft-excel-icon.png" />
+    <Content Include="Resources\microsoft-word-icon.png" />
+    <Content Include="Resources\openbots-logo.png" />
+    <Content Include="Resources\paste.png" />
+    <Content Include="Resources\pdf-icon.png" />
+    <Content Include="Resources\project-collapse.png" />
+    <Content Include="Resources\project-expand.png" />
+    <Content Include="Resources\project-open-directory.png" />
+    <Content Include="Resources\ProjectFolderIcon2.png" />
+    <Content Include="Resources\ProjectGenericFileIcon2.png" />
+    <Content Include="Resources\ProjectScriptFileIcon2.png" />
+    <Content Include="Resources\recent-files.png" />
+    <Content Include="Resources\robot source.png" />
+    <Content Include="Resources\robot-bouncing-transparent.gif" />
+    <Content Include="Resources\robot-bouncing.gif" />
+    <Content Include="Resources\robot-error.png" />
+    <Content Include="Resources\robot-error1.png" />
+    <Content Include="Resources\RPALogo.png" />
+    <Content Include="Resources\taskt-command-helper.png" />
+    <Content Include="Resources\taskt-ExtractPDFText.jar" />
+    <Content Include="Resources\taskt-logo.png" />
+    <Content Include="Resources\taskt-splash.png" />
+    <Content Include="Resources\taskt-updater.exe" />
+    <Content Include="Resources\taskt_icon.ico" />
+    <Content Include="Resources\various-chat-icon.png" />
+    <Content Include="Resources\various-question.png" />
+    <Content Include="Resources\various-record-button.png" />
+    <Content Include="Resources\various-stop-button.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

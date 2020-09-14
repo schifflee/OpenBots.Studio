@@ -89,7 +89,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             // 
             // pbHome
             // 
-            this.pbHome.Image = global::taskt.Properties.Resources.browser_home;
+            this.pbHome.Image = global::taskt.Core.Properties.Resources.browser_home;
             resources.ApplyResources(this.pbHome, "pbHome");
             this.pbHome.Name = "pbHome";
             this.pbHome.TabStop = false;
@@ -108,7 +108,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             // pbElements
             // 
             resources.ApplyResources(this.pbElements, "pbElements");
-            this.pbElements.Image = global::taskt.Properties.Resources.browser_elements;
+            this.pbElements.Image = global::taskt.Core.Properties.Resources.browser_elements;
             this.pbElements.Name = "pbElements";
             this.pbElements.TabStop = false;
             this.ttElementRecorder.SetToolTip(this.pbElements, resources.GetString("pbElements.ToolTip"));
@@ -117,7 +117,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             // pbSave
             // 
             resources.ApplyResources(this.pbSave, "pbSave");
-            this.pbSave.Image = global::taskt.Properties.Resources.browser_save;
+            this.pbSave.Image = global::taskt.Core.Properties.Resources.browser_save;
             this.pbSave.Name = "pbSave";
             this.pbSave.TabStop = false;
             this.ttElementRecorder.SetToolTip(this.pbSave, resources.GetString("pbSave.ToolTip"));
@@ -126,7 +126,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             // pbBack
             // 
             resources.ApplyResources(this.pbBack, "pbBack");
-            this.pbBack.Image = global::taskt.Properties.Resources.browser_back;
+            this.pbBack.Image = global::taskt.Core.Properties.Resources.browser_back;
             this.pbBack.Name = "pbBack";
             this.pbBack.TabStop = false;
             this.ttElementRecorder.SetToolTip(this.pbBack, resources.GetString("pbBack.ToolTip"));
@@ -143,7 +143,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             // pgGo
             // 
             resources.ApplyResources(this.pgGo, "pgGo");
-            this.pgGo.Image = global::taskt.Properties.Resources.command_resume;
+            this.pgGo.Image = global::taskt.Core.Properties.Resources.command_resume;
             this.pgGo.Name = "pgGo";
             this.pgGo.TabStop = false;
             this.ttElementRecorder.SetToolTip(this.pgGo, resources.GetString("pgGo.ToolTip"));
@@ -158,7 +158,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             // pbRefresh
             // 
             resources.ApplyResources(this.pbRefresh, "pbRefresh");
-            this.pbRefresh.Image = global::taskt.Properties.Resources.browser_refresh;
+            this.pbRefresh.Image = global::taskt.Core.Properties.Resources.browser_refresh;
             this.pbRefresh.Name = "pbRefresh";
             this.pbRefresh.TabStop = false;
             this.ttElementRecorder.SetToolTip(this.pbRefresh, resources.GetString("pbRefresh.ToolTip"));
@@ -167,7 +167,7 @@ namespace taskt.UI.Forms.Supplement_Forms
             // pbRecord
             // 
             resources.ApplyResources(this.pbRecord, "pbRecord");
-            this.pbRecord.Image = global::taskt.Properties.Resources.various_record_button;
+            this.pbRecord.Image = global::taskt.Core.Properties.Resources.various_record_button;
             this.pbRecord.Name = "pbRecord";
             this.pbRecord.TabStop = false;
             this.ttElementRecorder.SetToolTip(this.pbRecord, resources.GetString("pbRecord.ToolTip"));

@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-using taskt.Utilities;
+using taskt.Core.Utilities.FormsUtilities;
 
 namespace taskt.UI.CustomControls.CustomUIControls
 {

@@ -4,7 +4,7 @@ using System.Drawing;
 using taskt.Commands;
 using taskt.Core.Command;
 using taskt.Core.Settings;
-using taskt.Properties;
+using taskt.Core.Properties;
 using taskt.UI.Forms;
 using taskt.UI.Forms.ScriptBuilder_Forms;
 using taskt.Utilities;

@@ -12,8 +12,8 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.Properties;
-using taskt.UI.CustomControls;
+using taskt.Core.Properties;
+using taskt.Core.UI.Controls;
 using taskt.UI.Forms;
 
 namespace taskt.Commands
@@ -131,9 +131,9 @@ namespace taskt.Commands
             }));
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
             _userInputGridViewHelper = new DataGridView();
             _userInputGridViewHelper.KeyDown += UserInputDataGridView_KeyDown;
@@ -180,12 +180,12 @@ namespace taskt.Commands
             _addRowControl.CommandDisplay = "Add Input Parameter";
             _addRowControl.Click += (sender, e) => AddInputParameter(sender, e, editor);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InputHeader", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InputDirections", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_InputHeader", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_InputDirections", this, editor));
 
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_UserInputConfig", this));
+            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_UserInputConfig", this));
             RenderedControls.Add(_addRowControl);
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_UserInputConfig", this, new Control[] { _userInputGridViewHelper }, editor));
+            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_UserInputConfig", this, new Control[] { _userInputGridViewHelper }, editor));
             RenderedControls.Add(_userInputGridViewHelper);
 
             return RenderedControls;

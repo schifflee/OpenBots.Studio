@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using taskt.Utilities;
+using taskt.Core.Utilities.FormsUtilities;
 
-namespace taskt.UI.Forms
+namespace taskt.Core.UI.Forms
 {
     public partial class ThemedForm : Form
     {

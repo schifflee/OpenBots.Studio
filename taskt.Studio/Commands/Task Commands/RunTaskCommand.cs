@@ -14,7 +14,6 @@ using taskt.Core.Infrastructure;
 using taskt.Core.Script;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 using taskt.UI.Forms;
 using taskt.UI.Forms.ScriptBuilder_Forms;
 
@@ -233,14 +232,14 @@ namespace taskt.Commands
             }          
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
             //create file path and helpers
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_taskPath", this));
-            var taskPathControl = CommandControls.CreateDefaultInputFor("v_taskPath", this);
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_taskPath", this, new Control[] { taskPathControl }, editor));
+            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_taskPath", this));
+            var taskPathControl = commandControls.CreateDefaultInputFor("v_taskPath", this);
+            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_taskPath", this, new Control[] { taskPathControl }, editor));
             RenderedControls.Add(taskPathControl);
             taskPathControl.TextChanged += TaskPathControl_TextChanged;
 
@@ -251,11 +250,11 @@ namespace taskt.Commands
             _passParameters.ForeColor = Color.White;
             _passParameters.DataBindings.Add("Checked", this, "v_AssignVariables", false, DataSourceUpdateMode.OnPropertyChanged);
             _passParameters.CheckedChanged += (sender, e) => PassParametersCheckbox_CheckedChanged(sender, e, editor.ScriptVariables, editor.ScriptElements);
-            CommandControls.CreateDefaultToolTipFor("v_AssignVariables", this, _passParameters);
+            commandControls.CreateDefaultToolTipFor("v_AssignVariables", this, _passParameters);
             RenderedControls.Add(_passParameters);
 
-            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_VariableAssignments", this));
-            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_VariableAssignments", this, new Control[] { _assignmentsGridViewHelper }, editor));
+            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_VariableAssignments", this));
+            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_VariableAssignments", this, new Control[] { _assignmentsGridViewHelper }, editor));
             RenderedControls.Add(_assignmentsGridViewHelper);
 
             return RenderedControls;

@@ -1,4 +1,4 @@
-﻿namespace taskt.UI.Forms
+﻿namespace taskt.Core.UI.Forms
 {
     partial class ThemedForm
     {

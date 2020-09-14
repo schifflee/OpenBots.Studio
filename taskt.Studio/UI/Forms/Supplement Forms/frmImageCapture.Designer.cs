@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmImageCapture));
             this.pbMainImage = new System.Windows.Forms.PictureBox();
             this.pnlMouseContainer = new System.Windows.Forms.Panel();
-            this.uiAccept = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.uiClose = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiAccept = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiClose = new taskt.Core.UI.Controls.UIPictureButton();
             this.tabTestMode = new System.Windows.Forms.TabControl();
             this.tabSearchResult = new System.Windows.Forms.TabPage();
             this.pbSearchResult = new System.Windows.Forms.PictureBox();
@@ -79,7 +79,7 @@
             this.uiAccept.DisplayText = "Accept";
             this.uiAccept.DisplayTextBrush = System.Drawing.Color.Black;
             this.uiAccept.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.uiAccept.Image = global::taskt.Properties.Resources.action_bar_save;
+            this.uiAccept.Image = global::taskt.Core.Properties.Resources.action_bar_save;
             this.uiAccept.IsMouseOver = false;
             this.uiAccept.Location = new System.Drawing.Point(4, 4);
             this.uiAccept.Margin = new System.Windows.Forms.Padding(4);
@@ -97,7 +97,7 @@
             this.uiClose.DisplayText = "Close";
             this.uiClose.DisplayTextBrush = System.Drawing.Color.Black;
             this.uiClose.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.uiClose.Image = global::taskt.Properties.Resources.command_error;
+            this.uiClose.Image = global::taskt.Core.Properties.Resources.command_error;
             this.uiClose.IsMouseOver = false;
             this.uiClose.Location = new System.Drawing.Point(71, 4);
             this.uiClose.Margin = new System.Windows.Forms.Padding(4);
@@ -195,8 +195,8 @@
         }
 
         #endregion
-        private CustomControls.CustomUIControls.UIPictureButton uiAccept;
-        private CustomControls.CustomUIControls.UIPictureButton uiClose;
+        private taskt.Core.UI.Controls.UIPictureButton uiAccept;
+        private taskt.Core.UI.Controls.UIPictureButton uiClose;
         public System.Windows.Forms.PictureBox pbMainImage;
         private System.Windows.Forms.Panel pnlMouseContainer;
         private System.Windows.Forms.TabControl tabTestMode;

@@ -15,6 +15,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using taskt.Core.Properties;
 
 namespace taskt.UI.CustomControls
 {
@@ -45,7 +46,7 @@ namespace taskt.UI.CustomControls
 
         private void CommandSelectionControl_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImage(Properties.Resources.command_files, 5, 0, 32, 32);
+            e.Graphics.DrawImage(Resources.command_files, 5, 0, 32, 32);
             e.Graphics.DrawString(this.GroupName, this.Font, new SolidBrush(this.ForeColor), 39, 10);
         }
 

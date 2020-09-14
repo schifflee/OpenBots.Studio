@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace taskt.Utilities
+namespace taskt.Core.Utilities.FormsUtilities
 {
     public class Theme
     {

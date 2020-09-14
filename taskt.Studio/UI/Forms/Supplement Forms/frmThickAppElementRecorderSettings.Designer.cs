@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmThickAppElementRecorderSettings));
-            this.btnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.btnOkay = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.btnCancel = new taskt.Core.UI.Controls.UIPictureButton();
+            this.btnOkay = new taskt.Core.UI.Controls.UIPictureButton();
             this.lblScreenRecorder = new System.Windows.Forms.Label();
             this.lblSearchParameterOrder = new System.Windows.Forms.Label();
             this.dgvParameterSettings = new System.Windows.Forms.DataGridView();
@@ -169,8 +169,8 @@
 
         #endregion
 
-        private CustomControls.CustomUIControls.UIPictureButton btnCancel;
-        private CustomControls.CustomUIControls.UIPictureButton btnOkay;
+        private taskt.Core.UI.Controls.UIPictureButton btnCancel;
+        private taskt.Core.UI.Controls.UIPictureButton btnOkay;
         private System.Windows.Forms.Label lblScreenRecorder;
         private System.Windows.Forms.Label lblSearchParameterOrder;
         private System.Windows.Forms.DataGridView dgvParameterSettings;

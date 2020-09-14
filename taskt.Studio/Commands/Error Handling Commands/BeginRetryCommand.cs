@@ -12,10 +12,11 @@ using taskt.Core.Command;
 using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Script;
+using taskt.Core.UI.Controls;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 using taskt.UI.Forms;
+using taskt.Utilities;
 
 namespace taskt.Commands
 {
@@ -111,19 +112,19 @@ namespace taskt.Commands
             }
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_RetryCount", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_RetryInterval", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_RetryCount", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_RetryInterval", this, editor));
 
             //get script variables for feeding into if builder form
             _scriptVariables = editor.ScriptVariables;
             _scriptElements = editor.ScriptElements;
 
             //create controls
-            var controls = CommandControls.CreateDataGridViewGroupFor("v_IfConditionsTable", this, editor);
+            var controls = commandControls.CreateDataGridViewGroupFor("v_IfConditionsTable", this, editor);
             _ifConditionHelper = controls[2] as DataGridView;
 
             //handle helper click
@@ -171,7 +172,7 @@ namespace taskt.Commands
 
                     var ifCommand = JsonConvert.DeserializeObject<BeginIfCommand>(commandData);
 
-                    var automationCommands = CommandControls.GenerateCommandsandControls().Where(f => f.Command is BeginIfCommand).ToList();
+                    var automationCommands = UIControlsHelper.GenerateCommandsandControls().Where(f => f.Command is BeginIfCommand).ToList();
                     frmCommandEditor editor = new frmCommandEditor(automationCommands, null);
                     editor.SelectedCommand = ifCommand;
                     editor.EditingCommand = ifCommand;
@@ -204,7 +205,7 @@ namespace taskt.Commands
 
         private void CreateIfCondition(object sender, EventArgs e)
         {
-            var automationCommands = CommandControls.GenerateCommandsandControls().Where(f => f.Command is BeginIfCommand).ToList();
+            var automationCommands = UIControlsHelper.GenerateCommandsandControls().Where(f => f.Command is BeginIfCommand).ToList();
 
             frmCommandEditor editor = new frmCommandEditor(automationCommands, null);
             editor.SelectedCommand = new BeginIfCommand();

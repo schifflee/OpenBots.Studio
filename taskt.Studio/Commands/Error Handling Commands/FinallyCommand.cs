@@ -26,9 +26,9 @@ namespace taskt.Commands
             //no execution required, used as a marker by the Automation Engine
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
             return RenderedControls;
         }

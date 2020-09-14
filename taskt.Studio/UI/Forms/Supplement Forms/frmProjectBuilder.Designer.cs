@@ -39,8 +39,8 @@
             this.btnFileManager = new System.Windows.Forms.Button();
             this.btnFolderManager = new System.Windows.Forms.Button();
             this.lblProjectLocation = new System.Windows.Forms.Label();
-            this.btnOpenProject = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.btnCreateProject = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.btnOpenProject = new taskt.Core.UI.Controls.UIPictureButton();
+            this.btnCreateProject = new taskt.Core.UI.Controls.UIPictureButton();
             this.lblError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.btnOpenProject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCreateProject)).BeginInit();
@@ -244,7 +244,7 @@
         private System.Windows.Forms.Label lblNewProject;
         private System.Windows.Forms.Label lblProjectName;
         private System.Windows.Forms.Label lblOpenProjectDescription;
-        private CustomControls.CustomUIControls.UIPictureButton btnCreateProject;
+        private taskt.Core.UI.Controls.UIPictureButton btnCreateProject;
         public System.Windows.Forms.TextBox txtNewProjectName;
         public System.Windows.Forms.TextBox txtExistingProjectLocation;
         private System.Windows.Forms.Label lblOpenProject;
@@ -252,7 +252,7 @@
         private System.Windows.Forms.Button btnFileManager;
         private System.Windows.Forms.Button btnFolderManager;
         private System.Windows.Forms.Label lblProjectLocation;
-        private CustomControls.CustomUIControls.UIPictureButton btnOpenProject;
+        private taskt.Core.UI.Controls.UIPictureButton btnOpenProject;
         public System.Windows.Forms.Label lblError;
     }
 }

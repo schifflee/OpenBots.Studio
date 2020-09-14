@@ -159,7 +159,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private void frmScriptBuilder_Load(object sender, EventArgs e)
         {
             //load all commands
-            _automationCommands = CommandControls.GenerateCommandsandControls();
+            _automationCommands = UIControlsHelper.GenerateCommandsandControls();
 
             //set controls double buffered
             foreach (Control control in Controls)

@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInputBox));
             this.lblInput = new System.Windows.Forms.Label();
             this.txtInput = new System.Windows.Forms.TextBox();
-            this.btnOkay = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
-            this.btnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.btnOkay = new taskt.Core.UI.Controls.UIPictureButton();
+            this.btnCancel = new taskt.Core.UI.Controls.UIPictureButton();
             ((System.ComponentModel.ISupportInitialize)(this.btnOkay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             this.SuspendLayout();
@@ -123,7 +123,7 @@
 
         private System.Windows.Forms.Label lblInput;
         public System.Windows.Forms.TextBox txtInput;
-        private CustomControls.CustomUIControls.UIPictureButton btnOkay;
-        private CustomControls.CustomUIControls.UIPictureButton btnCancel;
+        private taskt.Core.UI.Controls.UIPictureButton btnOkay;
+        private taskt.Core.UI.Controls.UIPictureButton btnCancel;
     }
 }

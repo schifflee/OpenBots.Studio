@@ -8,7 +8,6 @@ using taskt.Core.Command;
 using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
-using taskt.UI.CustomControls;
 using taskt.UI.Forms;
 
 namespace taskt.Commands
@@ -118,12 +117,12 @@ namespace taskt.Commands
             ));
 
         }
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_Message", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_AutoCloseAfter", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_Message", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_AutoCloseAfter", this, editor));
 
             return RenderedControls;
         }

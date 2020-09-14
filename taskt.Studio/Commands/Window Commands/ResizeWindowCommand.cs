@@ -10,7 +10,6 @@ using taskt.Core.Infrastructure;
 using taskt.Core.User32;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -79,13 +78,13 @@ namespace taskt.Commands
             }
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor)
+        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
         {
-            base.Render(editor);
+            base.Render(editor, commandControls);
 
-            RenderedControls.AddRange(CommandControls.CreateDefaultWindowControlGroupFor("v_WindowName", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_XWindowSize", this, editor));
-            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_YWindowSize", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultWindowControlGroupFor("v_WindowName", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_XWindowSize", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_YWindowSize", this, editor));
       
             return RenderedControls;
         }

@@ -6,7 +6,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using taskt.Commands;
@@ -15,12 +14,11 @@ using taskt.Core.Command;
 using taskt.Core.Common;
 using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
-using taskt.Core.Script;
-using taskt.Core.Settings;
-using taskt.Core.Utilities.CommandUtilities;
 using taskt.Core.Properties;
-using taskt.UI.CustomControls.CustomUIControls;
+using taskt.Core.Settings;
 using taskt.Core.UI.Controls;
+using taskt.Core.Utilities.CommandUtilities;
+using taskt.UI.CustomControls.CustomUIControls;
 using taskt.UI.Forms;
 using taskt.UI.Forms.Supplement_Forms;
 using Group = taskt.Core.Attributes.ClassAttributes.Group;
@@ -563,7 +561,7 @@ namespace taskt.UI.CustomControls
                 {
                     DataGridView targetDGV = (DataGridView)inputBox.Tag;
 
-                    targetDGV.DataSource = CurrentEditor.ScriptElements
+                    targetDGV.DataSource = _currentEditor.ScriptElements
                         .Where(x => x.ElementName == newElementSelector.lstElements.SelectedItem.ToString().Replace("<", "").Replace(">", ""))
                         .FirstOrDefault().ElementValue;
                 }

@@ -902,22 +902,17 @@ namespace taskt.Core.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
-        ///
-        ///&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        ///&lt;html lang=&quot;en&quot;&gt;
         ///&lt;head&gt;
         ///    &lt;meta charset=&quot;utf-8&quot; /&gt;
+        ///    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;&gt;
+        ///    &lt;!-- Bootstrap CSS --&gt;
+        ///    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css&quot; integrity=&quot;sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z&quot;
+        ///          crossorigin=&quot;anonymous&quot;&gt;
         ///    &lt;title&gt;Please Provide Information&lt;/title&gt;
-        ///
-        ///    &lt;style type=&quot;text/css&quot;&gt;
-        ///        /*!
-        /// * Bootstrap v4.0.0 (https://getbootstrap.com)
-        /// * Copyright 2011-2018 The Bootstrap Authors
-        /// * Copyright 2011-2018 Twitter, Inc.
-        /// * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-        /// */ :root {
-        ///            --blue: #007bff;
-        ///            --indigo: #6610f2;
-        ///            --purple: # [rest of string was truncated]&quot;;.
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///    &lt;nav class=&quot;navbar navb [rest of string was truncated]&quot;;.
         /// </summary>
         public static string HTMLInputSample {
             get {
@@ -971,6 +966,16 @@ namespace taskt.Core.Properties {
         public static System.Drawing.Bitmap message {
             get {
                 object obj = ResourceManager.GetObject("message", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap openbots_logo {
+            get {
+                object obj = ResourceManager.GetObject("openbots_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -469,7 +469,7 @@ namespace taskt.Commands
 
             //create action parameters
             _actionParametersControls = new List<Control>();
-            _actionParametersControls.Add(CommandControls.CreateDefaultLabelFor("v_UIAActionParameters", this));
+            _actionParametersControls.Add(commandControls.CreateDefaultLabelFor("v_UIAActionParameters", this));
             _actionParametersControls.Add(_actionParametersGridViewHelper);
             RenderedControls.AddRange(_actionParametersControls);
 

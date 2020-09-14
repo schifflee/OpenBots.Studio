@@ -2002,12 +2002,12 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private Panel pnlCommandSearch;
         private TextBox txtCommandSearch;
         private PictureBox pbMainLogo;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnSaveSequence;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnSaveSequence;
         private ToolStripMenuItem recorderToolStripMenuItem;
         private ToolStripMenuItem uiRecorderToolStripMenuItem;
         private ToolStripMenuItem elementRecorderToolStripMenuItem;
         private ToolStripMenuItem uiAdvancedRecorderToolStripMenuItem;
-        private CustomControls.CustomUIControls.UIPictureButton uiBtnRecordAdvancedUISequence;
+        private taskt.Core.UI.Controls.UIPictureButton uiBtnRecordAdvancedUISequence;
     }
 }
 

@@ -248,19 +248,10 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
 
                 newBuilder.ScriptProject = ScriptProject;
                 newBuilder._scriptProjectPath = _scriptProjectPath;
-                //add variables
-                newBuilder._scriptVariables = new List<ScriptVariable>();
-                newBuilder._scriptElements = new List<ScriptElement>();
 
-                foreach (var variable in _scriptVariables)
-                {
-                    newBuilder._scriptVariables.Add(variable);
-                }
-
-                foreach (var element in _scriptElements)
-                {
-                    newBuilder._scriptElements.Add(element);
-                }
+                //add variables/elements
+                newBuilder._scriptVariables = _scriptVariables;
+                newBuilder._scriptElements = _scriptElements;
 
                 TabPage newtabPage = new TabPage("Sequence");
                 newtabPage.Name = "Sequence";
@@ -300,6 +291,10 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
 
                     //update label
                     selectedCommandItem.Text = sequence.GetDisplayValue();
+
+                    //update variables/elements
+                    _scriptVariables = newBuilder._scriptVariables;
+                    _scriptElements = newBuilder._scriptElements;
                 }
             }
             else
@@ -353,13 +348,14 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             grpSaveClose.Location = new Point(5, grpFileActions.Location.Y - 10);
             uiBtnRestart.Hide();
             uiBtnSaveSequence.Show();
-            grpSaveClose.Show(); 
+            grpSaveClose.Show();
+            grpSaveClose.Text = string.Empty;
             grpRecordRun.Hide();
             grpFileActions.Hide();
             grpVariable.Hide();           
             grpSearch.Hide();
             moveToParentToolStripMenuItem.Visible = true;
-            uiPaneTabs.TabPages.Remove(tpProject);
+            uiPaneTabs.TabPages.Remove(tpProject);    
         }
 
         private void CutRows()

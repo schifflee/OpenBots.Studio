@@ -3,6 +3,9 @@ using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using taskt.Commands;
@@ -43,6 +46,7 @@ namespace taskt.UI.Forms.Supplement_Forms
         private bool _isHookStopped;
         private SeleniumCreateBrowserCommand _createBrowserCommand;
         private ApplicationSettings _appSettings;
+        private Point _lastSavedPoint;
 
         public frmHTMLElementRecorder(string startURL)
         {
@@ -57,6 +61,7 @@ namespace taskt.UI.Forms.Supplement_Forms
 
             InitializeComponent();
 
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             Xpcom.Initialize("Firefox");
             wbElementRecorder.Navigate(StartURL);
             tbURL.Text = StartURL;
@@ -151,75 +156,10 @@ namespace taskt.UI.Forms.Supplement_Forms
             {
                 try
                 {
-                    GeckoElement element = wbElementRecorder.DomDocument.ElementFromPoint(e.ClientX, e.ClientY);
-
-                    string savedId = element.GetAttribute("id");
-                    string uniqueId = Guid.NewGuid().ToString();
-                    element.SetAttribute("id", uniqueId);
-
-                    HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-                    doc.LoadHtml(element.OwnerDocument.GetElementsByTagName("html")[0].OuterHtml);
-                    element.SetAttribute("id", savedId);
-                    HtmlNode node = doc.GetElementbyId(uniqueId);
-
-                    _xPath = node.XPath.Replace("[1]", "");
-                    _name = element.GetAttribute("name") == null ? "" : element.GetAttribute("name");
-                    _id = element.GetAttribute("id") == null ? "" : element.GetAttribute("id"); ;
-                    _tagName = element.TagName;
-                    _className = element.GetAttribute("class") == null ? "" : element.GetAttribute("class");
-                    _linkText = element.TagName.ToLower() != "a" ? "" : element.TextContent;
-                    _cssSelectors = GetCSSSelectors(element);
-
-                    string cssSelectorString = string.Join(", ", GetCSSSelectors(element));
-
-                    LastItemClicked = $"[XPath:{_xPath}].[ID:{_id}].[Name:{_name}].[Tag Name:{_tagName}].[Class:{_className}].[Link Text:{_linkText}].[CSS Selector:{cssSelectorString}]";
-                    lblSubHeader.Text = LastItemClicked;
-                   
-                    if (IsRecordingSequence)
-                    {
-                        SearchParameters.Rows.Clear();
-                        foreach (DataRow row in _parameterSettings.Rows)
-                        {
-                            switch (row[1].ToString())
-                            {
-                                case "XPath":
-                                    SearchParameters.Rows.Add(row[0], "XPath", _xPath);
-                                    break;
-                                case "ID":
-                                    SearchParameters.Rows.Add(row[0], "ID", _id);
-                                    break;
-                                case "Name":
-                                    SearchParameters.Rows.Add(row[0], "Name", _name);
-                                    break;
-                                case "Tag Name":
-                                    SearchParameters.Rows.Add(row[0], "Tag Name", _tagName);
-                                    break;
-                                case "Class Name":
-                                    SearchParameters.Rows.Add(row[0], "Class Name", _className);
-                                    break;
-                                case "Link Text":
-                                    SearchParameters.Rows.Add(row[0], "Link Text", _linkText);
-                                    break;
-                                case "CSS Selector":
-                                    for (int i = 0; i < _cssSelectors.Count; i++)
-                                        SearchParameters.Rows.Add(row[0], $"CSS Selector {i + 1}", _cssSelectors[i]);
-                                    break;
-                            }
-                        }
+                    _lastSavedPoint = new Point(e.ClientX, e.ClientY);
+                    LoadSearchParameters(_lastSavedPoint);
+                    if (IsRecordingSequence && _isRecording)
                         BuildElementClickActionCommand();
-                    }
-                    else
-                    {
-                        SearchParameters.Rows.Clear();
-                        SearchParameters.Rows.Add(true, "XPath", _xPath);
-                        SearchParameters.Rows.Add(false, "ID", _id);
-                        SearchParameters.Rows.Add(false, "Name", _name);
-                        SearchParameters.Rows.Add(false, "Tag Name", _tagName);
-                        SearchParameters.Rows.Add(false, "Class Name", _className);
-                        SearchParameters.Rows.Add(false, "Link Text", _linkText);
-                        for (int i = 0; i < _cssSelectors.Count; i++)
-                            SearchParameters.Rows.Add(false, $"CSS Selector {i + 1}", _cssSelectors[i]);
-                    }
                 }
                 catch (Exception)
                 {
@@ -233,8 +173,92 @@ namespace taskt.UI.Forms.Supplement_Forms
 
         private void WbElementRecorder_DomKeyDown(object sender, DomKeyEventArgs e)
         {
-            if (IsRecordingSequence && _isRecording)
-                BuildElementSetTextActionCommand(e.KeyCode);
+            //mouse down has occured
+            if (e != null)
+            {
+                try
+                {
+                    LoadSearchParameters(_lastSavedPoint);
+                    if (IsRecordingSequence && _isRecording)
+                        BuildElementSetTextActionCommand(e.KeyCode);
+                }
+                catch (Exception)
+                {
+                    lblDescription.Text = "Error cloning element. Please Try Again.";
+                }
+            }
+        }
+
+        private void LoadSearchParameters(Point point)
+        {
+            GeckoElement element = wbElementRecorder.DomDocument.ElementFromPoint(point.X, point.Y);
+
+            string savedId = element.GetAttribute("id");
+            string uniqueId = Guid.NewGuid().ToString();
+            element.SetAttribute("id", uniqueId);
+
+            HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+            doc.LoadHtml(element.OwnerDocument.GetElementsByTagName("html")[0].OuterHtml);
+            element.SetAttribute("id", savedId);
+            HtmlNode node = doc.GetElementbyId(uniqueId);
+
+            _xPath = node.XPath.Replace("[1]", "");
+            _name = element.GetAttribute("name") == null ? "" : element.GetAttribute("name");
+            _id = element.GetAttribute("id") == null ? "" : element.GetAttribute("id"); ;
+            _tagName = element.TagName;
+            _className = element.GetAttribute("class") == null ? "" : element.GetAttribute("class");
+            _linkText = element.TagName.ToLower() != "a" ? "" : element.TextContent;
+            _cssSelectors = GetCSSSelectors(element);
+
+            string cssSelectorString = string.Join(", ", GetCSSSelectors(element));
+
+            LastItemClicked = $"[XPath:{_xPath}].[ID:{_id}].[Name:{_name}].[Tag Name:{_tagName}].[Class:{_className}].[Link Text:{_linkText}].[CSS Selector:{cssSelectorString}]";
+            lblSubHeader.Text = LastItemClicked;
+
+            if (IsRecordingSequence)
+            {
+                SearchParameters.Rows.Clear();
+                foreach (DataRow row in _parameterSettings.Rows)
+                {
+                    switch (row[1].ToString())
+                    {
+                        case "XPath":
+                            SearchParameters.Rows.Add(row[0], "XPath", _xPath);
+                            break;
+                        case "ID":
+                            SearchParameters.Rows.Add(row[0], "ID", _id);
+                            break;
+                        case "Name":
+                            SearchParameters.Rows.Add(row[0], "Name", _name);
+                            break;
+                        case "Tag Name":
+                            SearchParameters.Rows.Add(row[0], "Tag Name", _tagName);
+                            break;
+                        case "Class Name":
+                            SearchParameters.Rows.Add(row[0], "Class Name", _className);
+                            break;
+                        case "Link Text":
+                            SearchParameters.Rows.Add(row[0], "Link Text", _linkText);
+                            break;
+                        case "CSS Selector":
+                            for (int i = 0; i < _cssSelectors.Count; i++)
+                                SearchParameters.Rows.Add(row[0], $"CSS Selector {i + 1}", _cssSelectors[i]);
+                            break;
+                    }
+                }               
+            }
+            else
+            {
+                SearchParameters.Rows.Clear();
+                SearchParameters.Rows.Add(true, "XPath", _xPath);
+                SearchParameters.Rows.Add(false, "ID", _id);
+                SearchParameters.Rows.Add(false, "Name", _name);
+                SearchParameters.Rows.Add(false, "Tag Name", _tagName);
+                SearchParameters.Rows.Add(false, "Class Name", _className);
+                SearchParameters.Rows.Add(false, "Link Text", _linkText);
+                for (int i = 0; i < _cssSelectors.Count; i++)
+                    SearchParameters.Rows.Add(false, $"CSS Selector {i + 1}", _cssSelectors[i]);
+            }
         }
 
         private void pbHome_Click(object sender, EventArgs e)

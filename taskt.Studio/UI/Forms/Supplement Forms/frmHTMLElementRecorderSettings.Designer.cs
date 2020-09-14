@@ -36,7 +36,7 @@
             this.lblScreenRecorder = new System.Windows.Forms.Label();
             this.lblBrowserEngineType = new System.Windows.Forms.Label();
             this.cbxBrowserEngineType = new System.Windows.Forms.ComboBox();
-            this.lblSearchParameterOrder = new System.Windows.Forms.Label();
+            this.lblSearchParameters = new System.Windows.Forms.Label();
             this.dgvParameterSettings = new System.Windows.Forms.DataGridView();
             this.enabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.parameterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -145,17 +145,17 @@
             this.cbxBrowserEngineType.Size = new System.Drawing.Size(510, 33);
             this.cbxBrowserEngineType.TabIndex = 37;
             // 
-            // lblSearchParameterOrder
+            // lblSearchParameters
             // 
-            this.lblSearchParameterOrder.BackColor = System.Drawing.Color.Transparent;
-            this.lblSearchParameterOrder.Font = new System.Drawing.Font("Segoe UI Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchParameterOrder.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblSearchParameterOrder.Location = new System.Drawing.Point(15, 200);
-            this.lblSearchParameterOrder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSearchParameterOrder.Name = "lblSearchParameterOrder";
-            this.lblSearchParameterOrder.Size = new System.Drawing.Size(483, 29);
-            this.lblSearchParameterOrder.TabIndex = 38;
-            this.lblSearchParameterOrder.Text = "Search Parameter Order";
+            this.lblSearchParameters.BackColor = System.Drawing.Color.Transparent;
+            this.lblSearchParameters.Font = new System.Drawing.Font("Segoe UI Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchParameters.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lblSearchParameters.Location = new System.Drawing.Point(15, 200);
+            this.lblSearchParameters.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSearchParameters.Name = "lblSearchParameters";
+            this.lblSearchParameters.Size = new System.Drawing.Size(483, 29);
+            this.lblSearchParameters.TabIndex = 38;
+            this.lblSearchParameters.Text = "Default Search Parameters";
             // 
             // dgvParameterSettings
             // 
@@ -202,7 +202,7 @@
             this.BackgroundChangeIndex = 1000;
             this.ClientSize = new System.Drawing.Size(547, 558);
             this.Controls.Add(this.dgvParameterSettings);
-            this.Controls.Add(this.lblSearchParameterOrder);
+            this.Controls.Add(this.lblSearchParameters);
             this.Controls.Add(this.cbxBrowserEngineType);
             this.Controls.Add(this.lblBrowserEngineType);
             this.Controls.Add(this.lblScreenRecorder);
@@ -235,7 +235,7 @@
         private System.Windows.Forms.Label lblScreenRecorder;
         private System.Windows.Forms.Label lblBrowserEngineType;
         public System.Windows.Forms.ComboBox cbxBrowserEngineType;
-        private System.Windows.Forms.Label lblSearchParameterOrder;
+        private System.Windows.Forms.Label lblSearchParameters;
         private System.Windows.Forms.DataGridView dgvParameterSettings;
         private System.Windows.Forms.DataGridViewCheckBoxColumn enabled;
         private System.Windows.Forms.DataGridViewTextBoxColumn parameterName;

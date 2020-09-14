@@ -57,7 +57,6 @@ namespace taskt.UI.Forms.Supplement_Forms
             {
                 _isRecording = true;
                
-
                 SearchParameters = new DataTable();
                 SearchParameters.Columns.Add("Enabled");
                 SearchParameters.Columns.Add("Parameter Name");
@@ -70,22 +69,6 @@ namespace taskt.UI.Forms.Supplement_Forms
                 //get window name and find window
                 _windowName = cboWindowTitle.Text;
                 IntPtr hWnd = User32Functions.FindWindow(_windowName);
-
-                //check if window is found
-                if (hWnd != IntPtr.Zero)
-                {
-                    //set window state and move to 0,0
-                    User32Functions.SetWindowState(hWnd, Enums.WindowState.SwShowNormal);
-                    User32Functions.SetForegroundWindow(hWnd);
-                    User32Functions.SetWindowPosition(hWnd, 0, 0);
-
-                    //start global hook and wait for left mouse down event
-                    GlobalHook.StartEngineCancellationHook(Keys.F2);
-                    GlobalHook.HookStopped += GlobalHook_HookStopped;
-                    GlobalHook.StartElementCaptureHook(chkStopOnClick.Checked);
-                    GlobalHook.MouseEvent += GlobalHook_MouseEvent;
-                    GlobalHook.KeyDownEvent += GlobalHook_KeyDownEvent;       
-                }
 
                 if (IsRecordingSequence && _isFirstRecordClick)
                 {
@@ -110,6 +93,22 @@ namespace taskt.UI.Forms.Supplement_Forms
                         v_WindowName = _windowName
                     };
                     _sequenceCommandList.Add(activateWindowCommand);
+                }
+
+                //check if window is found
+                if (hWnd != IntPtr.Zero)
+                {
+                    //set window state and move to 0,0
+                    User32Functions.SetWindowState(hWnd, Enums.WindowState.SwShowNormal);
+                    User32Functions.SetForegroundWindow(hWnd);
+                    User32Functions.SetWindowPosition(hWnd, 0, 0);
+
+                    //start global hook and wait for left mouse down event
+                    GlobalHook.StartEngineCancellationHook(Keys.F2);
+                    GlobalHook.HookStopped += GlobalHook_HookStopped;
+                    GlobalHook.StartElementCaptureHook(chkStopOnClick.Checked);
+                    GlobalHook.MouseEvent += GlobalHook_MouseEvent;
+                    GlobalHook.KeyDownEvent += GlobalHook_KeyDownEvent;
                 }
 
                 if (!chkStopOnClick.Checked)
@@ -149,7 +148,7 @@ namespace taskt.UI.Forms.Supplement_Forms
                 try
                 {
                     LoadSearchParameters(e.MouseCoordinates);
-                    if (IsRecordingSequence)
+                    if (IsRecordingSequence && _isRecording)
                         BuildElementClickActionCommand();
                 }
                 catch (Exception)
@@ -405,7 +404,7 @@ namespace taskt.UI.Forms.Supplement_Forms
 
         private void FinalizeRecording()
         {
-            string sequenceComment = $"Web Sequence Recorded {DateTime.Now}";
+            string sequenceComment = $"Advanced UI Sequence Recorded {DateTime.Now}";
 
             var commentCommand = new AddCodeCommentCommand
             {

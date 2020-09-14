@@ -293,10 +293,22 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
 
         private void frmScriptBuilder_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_isSequence)
-                return;
+            DialogResult result;
 
-            DialogResult result = CheckForUnsavedScripts();
+            if (_isSequence)
+            {
+                result = MessageBox.Show($"Would you like to save the sequence before closing?",
+                                         $"Save Sequence", MessageBoxButtons.YesNoCancel);
+
+                if (result == DialogResult.Yes)
+                    DialogResult = DialogResult.OK;
+                else if (result == DialogResult.Cancel)
+                    e.Cancel = true;
+
+                return;
+            }
+
+            result = CheckForUnsavedScripts();
             if (result == DialogResult.Cancel)
                 e.Cancel = true;
         }

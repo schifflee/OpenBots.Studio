@@ -616,6 +616,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
 
         private void uiBtnClearAll_Click(object sender, EventArgs e)
         {
+            CreateUndoSnapshot();
             HideSearchInfo();
             _selectedTabScriptActions.Items.Clear();
         }

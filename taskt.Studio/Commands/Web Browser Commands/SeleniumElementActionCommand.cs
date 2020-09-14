@@ -56,7 +56,7 @@ namespace taskt.Commands
                      "\n\tCSS Selector: [attribute=value]" +
                      "\n\tLink Text: https://www.mylink.com/"
                     )]
-        [Remarks("If multiple parameters are enabled, an attempt will be made to find an element(s) that matches all the selected parameters.")]
+        [Remarks("If multiple parameters are enabled, an attempt will be made to find the element(s) that match(es) all the selected parameters.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowElementHelper)] 
         public DataTable v_SeleniumSearchParameters { get; set; }
 

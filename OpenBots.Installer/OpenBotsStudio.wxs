@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?if $(var.taskt.Studio.Platform)=x64 ?>
+  <?define ProductCode = "{DE3B1CBB-BF7B-46BA-BCBB-4B1542C9B3BB}" ?>
+<?else?>
+  <?define ProductCode = "{B6C0672A-D365-4D2B-B6A1-42E908D181E0}" ?>
+<?endif?>
+
+<!-- The name of the product -->
+<?define Name = "OpenBots Studio" ?>
+<!-- The Description of the product -->
+<?define Description = "Free and Open-Source Automation by OpenBots Inc." ?>
+<!-- The manufacturer, for setup package publisher and folder info -->
+<?define Manufacturer = "OpenBots Inc." ?>
+<!-- The version number of this setup package-->
+<?define Version = "!(wix.ProductVersion)" ?>
+<!-- UpgradeCode must be unique and not changed once the first version of the program is installed. -->
+<?define UpgradeCode = "{8C197FE6-57DF-41FD-A0CD-84B5D3B97BDC}" ?>
+<!-- The name of the Cabinet -->
+<?define CabName = "OpenBotsStudio.cab" ?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Give product a unique ID per platform -->
+  
+	<Product Id="*" 
+           Name="$(var.Name)" 
+           Language="1033" 
+           Version="$(var.Version)" 
+           Manufacturer="$(var.Manufacturer)" 
+           UpgradeCode="$(var.UpgradeCode)">
+		<Package InstallerVersion="200" 
+             Compressed="yes" 
+             InstallScope="perMachine" 
+             Description="$(var.Description)" 
+             Manufacturer='$(var.Manufacturer)'/>
+    <!-- AllowSameVersionUpgrades - Allows for revisions.-->
+    <MajorUpgrade AllowSameVersionUpgrades="yes" 
+                  DowngradeErrorMessage="A newer version of [ProductName] is already installed. If you are sure you want to downgrade, remove the existing installation via Programs and Features." />
+    <Media Id='1' Cabinet='$(var.CabName)' EmbedCab='yes' />
+    
+    <Property Id="WixAppFolder" Value="WixPerMachineFolder" />
+    <Property Id="ApplicationFolderName" Value="$(var.Name)" />
+    <Property Id="ARPPRODUCTICON" Value="TaskT.exe" />
+
+    <Feature Id="ProductFeature" Title="$(var.Name)" Level="1">
+      <ComponentGroupRef Id="HeatGenerated" />
+      <ComponentRef Id="ApplicationShortcut" />
+      <ComponentRef Id="DesktopShortcut" />
+    </Feature>
+
+    <UIRef Id="WixUI_Advanced" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+    <WixVariable Id="WixUILicenseRtf" Value="resources\License.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="resources\TaskT-Banner.png" />
+	</Product>
+  
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+        <Directory Id="APPLICATIONFOLDER" Name="OpenBots Studio">
+        </Directory>
+			</Directory>
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ApplicationProgramsFolder" Name="$(var.Name)"/>
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop"/>
+		</Directory>
+	</Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="{dc1d967b-4543-493e-900f-989bdd90a11e}">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="$(var.Name)"
+                  Description="$(var.Description)"
+                  Target="[APPLICATIONFOLDER]taskt.Studio.exe"
+                  WorkingDirectory="INSTALLFOLDER"
+                  Icon="TaskT.exe"
+                  IconIndex="0" />
+        <RemoveFolder Id="ApplicationCleanUpShortCut"
+                      On="uninstall"/>
+        <RegistryValue Root="HKCU"
+                       Key="Software\$(var.Manufacturer)\$(var.Name)"
+                       Name="installed"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="DesktopShortcut" Guid="{fb97b929-73ab-498d-8bb2-68ce73651984}">
+        <Shortcut Id="AppDesktopShortcut"
+                  Name="$(var.Name)"
+                  Description="$(var.Description)"
+                  Target="[APPLICATIONFOLDER]taskt.Studio.exe"
+                  WorkingDirectory="INSTALLFOLDER"
+                  Icon="TaskT.exe"
+                  IconIndex="0" />
+        <RemoveFolder Id="DesktopFolder" 
+                      On="uninstall"/>
+        <RegistryValue Root="HKCU" 
+                       Key="Software\$(var.Manufacturer)\$(var.Name)"
+                       Name="installed2" 
+                       Type="integer" 
+                       Value="1" 
+                       KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <Fragment>
+    <!-- Define main app icon -->
+    <Icon Id="TaskT.exe" SourceFile="$(var.taskt.Studio.ProjectDir)\taskt_logo_alt.ico" />
+  </Fragment>
+</Wix>

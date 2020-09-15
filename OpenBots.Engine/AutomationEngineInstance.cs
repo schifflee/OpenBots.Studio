@@ -11,20 +11,20 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using taskt.Core.App;
-using taskt.Core.Command;
-using taskt.Core.Common;
-using taskt.Core.Enums;
-using taskt.Core.Infrastructure;
-using taskt.Core.IO;
-using taskt.Core.Model.EngineModel;
-using taskt.Core.Model.ServerModel;
-using taskt.Core.Script;
-using taskt.Core.Settings;
-using taskt.Core.Utilities.CommonUtilities;
-using taskt.Server;
+using OpenBots.Core.App;
+using OpenBots.Core.Command;
+using OpenBots.Core.Common;
+using OpenBots.Core.Enums;
+using OpenBots.Core.Infrastructure;
+using OpenBots.Core.IO;
+using OpenBots.Core.Model.EngineModel;
+using OpenBots.Core.Model.ServerModel;
+using OpenBots.Core.Script;
+using OpenBots.Core.Settings;
+using OpenBots.Core.Utilities.CommonUtilities;
+using OpenBots.Server;
 
-namespace taskt.Engine
+namespace OpenBots.Engine
 {
     public class AutomationEngineInstance : IEngine
     {
@@ -46,7 +46,7 @@ namespace taskt.Engine
         private bool _isScriptSteppedOverBeforeException { get; set; }
         private bool _isScriptSteppedIntoBeforeException { get; set; }
         [JsonIgnore]
-        public IfrmScriptEngine TasktEngineUI { get; set; }
+        public IfrmScriptEngine ScriptEngineUI { get; set; }
         private Stopwatch _stopWatch { get; set; }
         private EngineStatus _currentStatus { get; set; }
         public EngineSettings EngineSettings { get; set; }
@@ -58,7 +58,7 @@ namespace taskt.Engine
         public bool ServerExecution { get; set; }
         public List<IRestResponse> ServiceResponses { get; set; }
         public bool AutoCalculateVariables { get; set; }
-        public string TasktResult { get; set; } = "";
+        public string TaskResult { get; set; } = "";
         //events
         public event EventHandler<ReportProgressEventArgs> ReportProgressEvent;
         public event EventHandler<ScriptFinishedEventArgs> ScriptFinishedEvent;
@@ -104,7 +104,7 @@ namespace taskt.Engine
         {
             EngineLogger.Information("Client requesting to execute script using frmEngine");
 
-            TasktEngineUI = scriptEngine;
+            ScriptEngineUI = scriptEngine;
 
             if (variables != null)
                 VariableList = variables;
@@ -264,7 +264,7 @@ namespace taskt.Engine
             ScriptCommand parentCommand = command.ScriptCommand;
 
             if (parentCommand.CommandName == "RunTaskCommand" || parentCommand.CommandName == "MessageBoxCommand")
-                parentCommand.CurrentScriptBuilder = TasktEngineUI.CallBackForm;
+                parentCommand.CurrentScriptBuilder = ScriptEngineUI.CallBackForm;
 
             //set LastCommadExecuted
             LastExecutedCommand = command.ScriptCommand;
@@ -273,11 +273,11 @@ namespace taskt.Engine
             LineNumberChanged(parentCommand.LineNumber);
 
             //handle pause request
-            if (parentCommand.PauseBeforeExecution && TasktEngineUI.IsDebugMode && !ChildScriptFailed)
+            if (parentCommand.PauseBeforeExecution && ScriptEngineUI.IsDebugMode && !ChildScriptFailed)
             {
                 ReportProgress("Pausing Before Execution");
                 _isScriptPaused = true;
-                TasktEngineUI.IsHiddenTaskEngine = false;
+                ScriptEngineUI.IsHiddenTaskEngine = false;
             }
 
             //handle pause
@@ -297,9 +297,9 @@ namespace taskt.Engine
                 if (_isScriptSteppedInto && parentCommand.CommandName == "RunTaskCommand")
                 {
                     parentCommand.IsSteppedInto = true;
-                    parentCommand.CurrentScriptBuilder = TasktEngineUI.CallBackForm;
+                    parentCommand.CurrentScriptBuilder = ScriptEngineUI.CallBackForm;
                     _isScriptSteppedInto = false;
-                    TasktEngineUI.IsHiddenTaskEngine = true;
+                    ScriptEngineUI.IsHiddenTaskEngine = true;
                     
                     break;
                 }
@@ -358,8 +358,8 @@ namespace taskt.Engine
                 }
                 else if (parentCommand.CommandName == "StopCurrentTaskCommand")
                 {
-                    if (TasktEngineUI != null && TasktEngineUI.CallBackForm != null)
-                        TasktEngineUI.CallBackForm.IsScriptRunning = false;
+                    if (ScriptEngineUI != null && ScriptEngineUI.CallBackForm != null)
+                        ScriptEngineUI.CallBackForm.IsScriptRunning = false;
 
                     IsCancellationPending = true;
                     return;
@@ -430,16 +430,16 @@ namespace taskt.Engine
                 }
                 else
                 {
-                    if (!command.IsExceptionIgnored && TasktEngineUI.IsDebugMode)
+                    if (!command.IsExceptionIgnored && ScriptEngineUI.IsDebugMode)
                     {
                         //load error form if exception is not handled
-                        TasktEngineUI.CallBackForm.IsUnhandledException = true;
-                        TasktEngineUI.AddStatus("Pausing Before Exception");
+                        ScriptEngineUI.CallBackForm.IsUnhandledException = true;
+                        ScriptEngineUI.AddStatus("Pausing Before Exception");
 
-                        DialogResult result = TasktEngineUI.CallBackForm.LoadErrorForm(errorMessage);
+                        DialogResult result = ScriptEngineUI.CallBackForm.LoadErrorForm(errorMessage);
                        
                         ReportProgress("Error Occured at Line " + parentCommand.LineNumber + ":" + ex.ToString(), LogEventLevel.Error);
-                        TasktEngineUI.CallBackForm.IsUnhandledException = false;
+                        ScriptEngineUI.CallBackForm.IsUnhandledException = false;
 
                         if (result == DialogResult.OK)
                         {                           
@@ -448,22 +448,22 @@ namespace taskt.Engine
 
                             if (_isScriptSteppedIntoBeforeException)
                             {
-                                TasktEngineUI.CallBackForm.IsScriptSteppedInto = true;
+                                ScriptEngineUI.CallBackForm.IsScriptSteppedInto = true;
                                 _isScriptSteppedIntoBeforeException = false;
                             }
                             else if (_isScriptSteppedOverBeforeException)
                             {
-                                TasktEngineUI.CallBackForm.IsScriptSteppedOver = true;
+                                ScriptEngineUI.CallBackForm.IsScriptSteppedOver = true;
                                 _isScriptSteppedOverBeforeException = false;
                             }
 
-                            TasktEngineUI.uiBtnPause_Click(null, null);
+                            ScriptEngineUI.uiBtnPause_Click(null, null);
                         }
                         else if (result == DialogResult.Abort || result == DialogResult.Cancel)
                         {
                             ReportProgress("Continuing Per User Choice");
-                            TasktEngineUI.CallBackForm.RemoveDebugTab();
-                            TasktEngineUI.uiBtnPause_Click(null, null);                           
+                            ScriptEngineUI.CallBackForm.RemoveDebugTab();
+                            ScriptEngineUI.uiBtnPause_Click(null, null);                           
                             throw ex;
                         }
                         //TODO: Add Break Option
@@ -559,12 +559,12 @@ namespace taskt.Engine
             }
 
             //add result variable if missing
-            var resultVar = VariableList.Where(f => f.VariableName == "taskt.Result").FirstOrDefault();
+            var resultVar = VariableList.Where(f => f.VariableName == "OpenBots.Result").FirstOrDefault();
 
             //handle if variable is missing
             if (resultVar == null)
             {
-                resultVar = new ScriptVariable() { VariableName = "taskt.Result", VariableValue = "" };
+                resultVar = new ScriptVariable() { VariableName = "OpenBots.Result", VariableValue = "" };
             }
 
             //check value
@@ -581,11 +581,11 @@ namespace taskt.Engine
 
                 if (string.IsNullOrEmpty(resultValue))
                 {
-                    TasktResult = "Successfully Completed Script";
+                    TaskResult = "Successfully Completed Script";
                 }
                 else
                 {
-                    TasktResult = resultValue;
+                    TaskResult = resultValue;
                 }
             }
 
@@ -599,10 +599,10 @@ namespace taskt.Engine
                     HttpServerClient.UpdateTask(TaskModel.TaskID, "Error", error);
                 }
 
-                TasktResult = error;
+                TaskResult = error;
             }
 
-            if (!TasktEngineUI.IsChildEngine)
+            if (!ScriptEngineUI.IsChildEngine)
                 EngineLogger.Dispose();
 
             _currentStatus = EngineStatus.Finished;
@@ -625,7 +625,7 @@ namespace taskt.Engine
                 string summaryLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots Execution Summary Logs.txt");
                 Logger summaryLogger = new Logging().CreateJsonFileLogger(summaryLoggerFilePath, Serilog.RollingInterval.Infinite);
                 summaryLogger.Information(serializedArguments);
-                if (!TasktEngineUI.IsChildEngine)
+                if (!ScriptEngineUI.IsChildEngine)
                     summaryLogger.Dispose();
             }
 

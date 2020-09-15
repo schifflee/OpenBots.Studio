@@ -3,7 +3,7 @@
 namespace OpenBots.Core.Settings
 {
     /// <summary>
-    /// Defines Server settings for tasktServer if using the server component to manage the client
+    /// Defines Server settings for OpenBots Server if using the server component to manage the client
     /// </summary>
     [Serializable]
     public class ServerSettings

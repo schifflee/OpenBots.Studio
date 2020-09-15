@@ -85,7 +85,7 @@ namespace OpenBots.Core.Common
         public static List<IGrouping<Attribute, Type>> GetGroupedCommands()
         {
             var groupedCommands = Assembly.GetExecutingAssembly().GetTypes()
-                                          .Where(t => t.Namespace == "taskt.Core.Automation.Commands")
+                                          .Where(t => t.Namespace == "OpenBots.Core.Automation.Commands")
                                           .Where(t => t.Name != "ScriptCommand")
                                           .Where(t => t.IsAbstract == false)
                                           .Where(t => t.BaseType.Name == "ScriptCommand")

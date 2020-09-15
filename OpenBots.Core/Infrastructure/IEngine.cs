@@ -27,7 +27,7 @@ namespace OpenBots.Core.Infrastructure
         bool CurrentLoopCancelled { get; set; }
         bool CurrentLoopContinuing { get; set; }
         [JsonIgnore]
-        IfrmScriptEngine OpenBotsEngineUI { get; set; }
+        IfrmScriptEngine ScriptEngineUI { get; set; }
         EngineSettings EngineSettings { get; set; }
         List<DataTable> DataTables { get; set; }
         string FileName { get; set; }
@@ -35,7 +35,7 @@ namespace OpenBots.Core.Infrastructure
         bool ServerExecution { get; set; }
         List<IRestResponse> ServiceResponses { get; set; }
         bool AutoCalculateVariables { get; set; }
-        string OpenBotsResult { get; set; }
+        string TaskResult { get; set; }
         Logger EngineLogger { get; set; }
 
         event EventHandler<ReportProgressEventArgs> ReportProgressEvent;

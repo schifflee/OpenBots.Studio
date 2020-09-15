@@ -7,8 +7,8 @@
     <ProjectGuid>{ED8F6540-C341-4B5F-8966-26A08E39AF87}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>taskt.Engine</RootNamespace>
-    <AssemblyName>taskt.Engine</AssemblyName>
+    <RootNamespace>OpenBots.Engine</RootNamespace>
+    <AssemblyName>OpenBots.Engine</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -83,13 +83,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\taskt.Core\taskt.Core.csproj">
+    <ProjectReference Include="..\OpenBots.Core\OpenBots.Core.csproj">
       <Project>{6956836d-d2b0-4b7a-b06d-fa3a22b4c4ff}</Project>
-      <Name>taskt.Core</Name>
+      <Name>OpenBots.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\taskt.Server\taskt.Server.csproj">
+    <ProjectReference Include="..\taskt.Server\OpenBots.Server.csproj">
       <Project>{d0ff030d-bc12-4e57-a9ad-130feed9be4a}</Project>
-      <Name>taskt.Server</Name>
+      <Name>OpenBots.Server</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

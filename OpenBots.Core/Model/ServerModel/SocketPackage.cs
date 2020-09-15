@@ -1,7 +1,7 @@
 ﻿namespace OpenBots.Core.Model.ServerModel
 {
     /// <summary>
-    /// Model for sending data to taskt Server
+    /// Model for sending data to OpenBots Server
     /// </summary>
     public class SocketPackage
     {

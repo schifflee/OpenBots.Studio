@@ -664,19 +664,19 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         #region Link Labels
         private void lnkGitProject_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/saucepleez/taskt");
+            Process.Start("https://github.com/OpenBotsAI/OpenBots.Studio");
         }
         private void lnkGitLatestReleases_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/saucepleez/taskt/releases");
+            Process.Start("https://github.com/OpenBotsAI/OpenBots.Studio/releases");
         }
         private void lnkGitIssue_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/saucepleez/taskt/issues/new");
+            Process.Start("https://github.com/OpenBotsAI/OpenBots.Studio/issues/new");
         }
         private void lnkGitWiki_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://wiki.taskt.net/");
+            Process.Start("https://openbots.ai/api/execute-dll/");
         }
         private void NewFileLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

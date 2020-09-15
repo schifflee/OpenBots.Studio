@@ -303,6 +303,11 @@
     <Compile Include="Commands\Window Commands\SetWindowStateCommand.cs" />
     <Compile Include="Commands\Window Commands\WaitForWindowToExistCommand.cs" />
     <Compile Include="Utilities\Project.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UI\CustomControls\AutomationCommand.cs" />
     <Compile Include="UI\CustomControls\CommandGroupControl.cs">
       <SubType>UserControl</SubType>
@@ -648,6 +653,11 @@
     <EmbeddedResource Include="UI\Forms\Supplement Forms\frmShowCursorPosition.resx">
       <DependentUpon>frmShowCursorPosition.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\Supplement Forms\frmSplash.resx">
       <DependentUpon>frmSplash.cs</DependentUpon>
     </EmbeddedResource>
@@ -722,6 +732,32 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\robot-bouncing.gif" />
+    <None Include="Resources\robot-bouncing-transparent.gif" />
+    <None Include="Resources\robot-error.png" />
+    <None Include="Resources\robot-error1.png" />
+    <None Include="Resources\robot source.png" />
+    <None Include="Resources\command-exitloop.png" />
+    <None Include="Resources\command-run-code.png" />
+    <None Include="Resources\action-bar-saveas.png" />
+    <None Include="Resources\action-bar-clear.png" />
+    <None Include="Resources\action-bar-import.png" />
+    <None Include="Resources\command-parse.png" />
+    <None Include="Resources\command-server.png" />
+    <None Include="Resources\recent-files.png" />
+    <None Include="Resources\executing.png" />
+    <None Include="Resources\error.png" />
+    <None Include="Resources\taskt-command-helper.png" />
+    <None Include="Resources\action_bar_restart.png" />
+    <None Include="Resources\action_bar_close.png" />
+    <None Include="Resources\command-stopwatch.png" />
+    <None Include="Resources\command-system.png" />
+    <None Include="Resources\command-nlg.png" />
+    <None Include="Resources\command-database.png" />
+    <None Include="Resources\command-try.png" />
+    <None Include="Resources\command-remote.png" />
+    <None Include="Resources\command-begin-multi-if.png" />
+    <None Include="Resources\command-nextloop.png" />
     <Content Include="Firefox\AccessibleMarshal.dll" />
     <Content Include="Firefox\breakpadinjector.dll" />
     <Content Include="Firefox\d3dcompiler_47.dll" />
@@ -741,8 +777,105 @@
     <Content Include="Firefox\sandboxbroker.dll" />
     <Content Include="Firefox\softokn3.dll" />
     <Content Include="Firefox\xul.dll" />
+    <Content Include="Resources\7z.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\7z.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\command-dictionary.png" />
+    <None Include="Resources\command-step-over.png" />
+    <None Include="Resources\command-step-into.png" />
+    <None Include="Resources\command-resume.png" />
+    <None Include="Resources\command-cancel.png" />
+    <None Include="Resources\command-folders.png" />
+    <None Include="Resources\command-database2.png" />
+    <None Include="Resources\command-password.png" />
+    <None Include="Resources\action-bar-project.png" />
+    <None Include="Resources\command-breakpoint.png" />
+    <None Include="Resources\command-disabled.png" />
+    <None Include="Resources\copy.png" />
+    <None Include="Resources\command-ignore.png" />
+    <None Include="Resources\action-bar-element.png" />
+    <None Include="Resources\action-bar-element-recorder.png" />
+    <None Include="Resources\command-element.png" />
+    <None Include="Resources\browser-refresh.png" />
+    <None Include="Resources\browser-back.png" />
+    <None Include="Resources\browser-forward.png" />
+    <None Include="Resources\browser-save.png" />
+    <None Include="Resources\browser-elements.png" />
+    <None Include="Resources\command-begin-switch.png" />
+    <None Include="Resources\command-case.png" />
+    <None Include="Resources\command-end-switch.png" />
+    <None Include="Resources\command-regex.png" />
+    <None Include="Resources\command-message.png" />
+    <None Include="Resources\command-end-try.png" />
+    <None Include="Resources\command-catch.png" />
+    <None Include="Resources\command-exception.png" />
+    <None Include="Resources\browser-home.png" />
+    <Content Include="Resources\HTMLInputSample.html" />
+    <Content Include="Resources\IEDriverServer.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\project-collapse.png" />
+    <None Include="Resources\project-expand.png" />
+    <None Include="Resources\project-open-directory.png" />
+    <None Include="Resources\openbots-logo.png" />
+    <Content Include="Resources\taskt-ExtractPDFText.jar">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\taskt-splash.png" />
+    <None Include="Resources\taskt-logo.png" />
+    <Content Include="Resources\taskt-updater.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\taskt_icon.ico" />
     <Content Include="taskt_logo_alt.ico" />
+    <None Include="Resources\item-header.png" />
+    <None Include="Resources\action-bar-new.png" />
+    <None Include="Resources\action-bar-open.png" />
+    <None Include="Resources\action-bar-save.png" />
+    <None Include="Resources\action-bar-options.png" />
+    <None Include="Resources\action-bar-add-command.png" />
+    <None Include="Resources\action-bar-variable.png" />
+    <None Include="Resources\action-bar-schedule.png" />
+    <None Include="Resources\action-bar-run.png" />
+    <None Include="Resources\command-pause.png" />
+    <None Include="Resources\command-comment.png" />
+    <None Include="Resources\command-startloop.png" />
+    <None Include="Resources\command-endloop.png" />
+    <None Include="Resources\command-begin-if.png" />
+    <None Include="Resources\command-else.png" />
+    <None Include="Resources\command-end-if.png" />
+    <None Include="Resources\command-window.png" />
+    <None Include="Resources\command-window-close.png" />
+    <None Include="Resources\command-stop-process.png" />
+    <None Include="Resources\command-start-process.png" />
+    <None Include="Resources\command-function.png" />
+    <None Include="Resources\command-script.png" />
+    <None Include="Resources\command-search.png" />
+    <None Include="Resources\command-string.png" />
+    <None Include="Resources\command-web.png" />
+    <None Include="Resources\command-camera.png" />
+    <None Include="Resources\command-input.png" />
+    <None Include="Resources\command-spreadsheet.png" />
+    <None Include="Resources\command-error.png" />
+    <None Include="Resources\command-smtp.png" />
+    <None Include="Resources\command-files.png" />
+    <None Include="Resources\links-header.png" />
+    <None Include="Resources\command-sequence.png" />
+    <None Include="Resources\various-record-button.png" />
+    <None Include="Resources\action-bar-record.png" />
+    <None Include="Resources\various-stop-button.png" />
+    <None Include="Resources\header-backing.png" />
+    <None Include="Resources\various-question.png" />
+    <None Include="Resources\header_backing_dark.png" />
     <Content Include="rpalogo.ico" />
+    <Content Include="Resources\chromedriver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\RPALogo.png" />
+    <None Include="Resources\various-chat-icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sample Scripts\" />

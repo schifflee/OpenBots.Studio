@@ -713,7 +713,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnRecordAdvancedUISequence.DisplayText = "Adv UI";
             this.uiBtnRecordAdvancedUISequence.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnRecordAdvancedUISequence.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnRecordAdvancedUISequence.Image = global::taskt.Core.Properties.Resources.action_bar_element_recorder;
+            this.uiBtnRecordAdvancedUISequence.Image = global::taskt.Properties.Resources.action_bar_element_recorder;
             this.uiBtnRecordAdvancedUISequence.IsMouseOver = false;
             this.uiBtnRecordAdvancedUISequence.Location = new System.Drawing.Point(189, 24);
             this.uiBtnRecordAdvancedUISequence.Margin = new System.Windows.Forms.Padding(4);
@@ -767,7 +767,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnRecordUISequence.DisplayText = "UI";
             this.uiBtnRecordUISequence.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnRecordUISequence.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnRecordUISequence.Image = global::taskt.Core.Properties.Resources.action_bar_element_recorder;
+            this.uiBtnRecordUISequence.Image = global::taskt.Properties.Resources.action_bar_element_recorder;
             this.uiBtnRecordUISequence.IsMouseOver = false;
             this.uiBtnRecordUISequence.Location = new System.Drawing.Point(129, 24);
             this.uiBtnRecordUISequence.Margin = new System.Windows.Forms.Padding(4);
@@ -948,7 +948,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // pbMainLogo
             // 
             this.pbMainLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pbMainLogo.Image = global::taskt.Core.Properties.Resources.openbots_logo;
+            this.pbMainLogo.Image = global::taskt.Properties.Resources.openbots_logo;
             this.pbMainLogo.Location = new System.Drawing.Point(8, 5);
             this.pbMainLogo.Name = "pbMainLogo";
             this.pbMainLogo.Size = new System.Drawing.Size(270, 50);
@@ -1627,7 +1627,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // elementRecorderToolStripMenuItem
             // 
             this.elementRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.elementRecorderToolStripMenuItem.Image = global::taskt.Core.Properties.Resources.action_bar_element;
+            this.elementRecorderToolStripMenuItem.Image = global::taskt.Properties.Resources.action_bar_element;
             this.elementRecorderToolStripMenuItem.Name = "elementRecorderToolStripMenuItem";
             this.elementRecorderToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
             this.elementRecorderToolStripMenuItem.Text = "Element Recorder";
@@ -1645,7 +1645,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // uiAdvancedRecorderToolStripMenuItem
             // 
             this.uiAdvancedRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.uiAdvancedRecorderToolStripMenuItem.Image = global::taskt.Core.Properties.Resources.action_bar_record;
+            this.uiAdvancedRecorderToolStripMenuItem.Image = global::taskt.Properties.Resources.action_bar_record;
             this.uiAdvancedRecorderToolStripMenuItem.Name = "uiAdvancedRecorderToolStripMenuItem";
             this.uiAdvancedRecorderToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
             this.uiAdvancedRecorderToolStripMenuItem.Text = "Advanced UI Recorder";

@@ -53,7 +53,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>taskt_logo_alt.ico</ApplicationIcon>
+    <ApplicationIcon>openbots-ico.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -754,8 +754,7 @@
     <Content Include="Firefox\sandboxbroker.dll" />
     <Content Include="Firefox\softokn3.dll" />
     <Content Include="Firefox\xul.dll" />
-    <Content Include="taskt_logo_alt.ico" />
-    <Content Include="rpalogo.ico" />
+    <Content Include="openbots-ico.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sample Scripts\" />

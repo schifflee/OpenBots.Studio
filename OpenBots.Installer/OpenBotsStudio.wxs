@@ -41,7 +41,7 @@
     
     <Property Id="WixAppFolder" Value="WixPerMachineFolder" />
     <Property Id="ApplicationFolderName" Value="$(var.Name)" />
-    <Property Id="ARPPRODUCTICON" Value="TaskT.exe" />
+    <Property Id="ARPPRODUCTICON" Value="OpenBotsStudio.exe" />
 
     <Feature Id="ProductFeature" Title="$(var.Name)" Level="1">
       <ComponentGroupRef Id="HeatGenerated" />
@@ -52,7 +52,7 @@
     <UIRef Id="WixUI_Advanced" />
     <UIRef Id="WixUI_ErrorProgressText" />
     <WixVariable Id="WixUILicenseRtf" Value="resources\License.rtf" />
-    <WixVariable Id="WixUIBannerBmp" Value="resources\TaskT-Banner.png" />
+    <WixVariable Id="WixUIBannerBmp" Value="resources\OpenBots-Banner.png" />
 	</Product>
   
 	<Fragment>
@@ -76,7 +76,7 @@
                   Description="$(var.Description)"
                   Target="[APPLICATIONFOLDER]taskt.Studio.exe"
                   WorkingDirectory="INSTALLFOLDER"
-                  Icon="TaskT.exe"
+                  Icon="OpenBotsStudio.exe"
                   IconIndex="0" />
         <RemoveFolder Id="ApplicationCleanUpShortCut"
                       On="uninstall"/>
@@ -96,7 +96,7 @@
                   Description="$(var.Description)"
                   Target="[APPLICATIONFOLDER]taskt.Studio.exe"
                   WorkingDirectory="INSTALLFOLDER"
-                  Icon="TaskT.exe"
+                  Icon="OpenBotsStudio.exe"
                   IconIndex="0" />
         <RemoveFolder Id="DesktopFolder" 
                       On="uninstall"/>
@@ -112,6 +112,6 @@
 
   <Fragment>
     <!-- Define main app icon -->
-    <Icon Id="TaskT.exe" SourceFile="$(var.taskt.Studio.ProjectDir)\taskt_logo_alt.ico" />
+    <Icon Id="OpenBotsStudio.exe" SourceFile="resources\OpenBots.ico" />
   </Fragment>
 </Wix>

@@ -41,15 +41,16 @@ namespace taskt.UI.Forms
 
         private void InitializeComponent()
         {
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(UIForm));
-            SuspendLayout();
-
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UIForm));
+            this.SuspendLayout();
+            // 
             // UIForm
-            ClientSize = new Size(284, 261);
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "UIForm";
-            Load += new EventHandler(UIForm_Load);
-            ResumeLayout(false);
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "UIForm";
+            this.Load += new System.EventHandler(this.UIForm_Load);
+            this.ResumeLayout(false);
 
         }
         private void UIForm_Load(object sender, EventArgs e)

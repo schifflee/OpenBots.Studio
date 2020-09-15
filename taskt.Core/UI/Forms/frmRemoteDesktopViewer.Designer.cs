@@ -42,10 +42,9 @@
             // 
             this.pnlCover.BackColor = System.Drawing.Color.DimGray;
             this.pnlCover.Controls.Add(this.lblLogo);
-            this.pnlCover.Location = new System.Drawing.Point(16, 15);
-            this.pnlCover.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlCover.Location = new System.Drawing.Point(12, 12);
             this.pnlCover.Name = "pnlCover";
-            this.pnlCover.Size = new System.Drawing.Size(267, 123);
+            this.pnlCover.Size = new System.Drawing.Size(200, 100);
             this.pnlCover.TabIndex = 1;
             this.pnlCover.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pnlCover_MouseDoubleClick);
             // 
@@ -57,10 +56,9 @@
             this.lblLogo.AutoSize = true;
             this.lblLogo.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogo.ForeColor = System.Drawing.Color.White;
-            this.lblLogo.Location = new System.Drawing.Point(991, 464);
-            this.lblLogo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLogo.Location = new System.Drawing.Point(743, 377);
             this.lblLogo.Name = "lblLogo";
-            this.lblLogo.Size = new System.Drawing.Size(448, 106);
+            this.lblLogo.Size = new System.Drawing.Size(361, 86);
             this.lblLogo.TabIndex = 0;
             this.lblLogo.Text = "vm window";
             // 
@@ -74,21 +72,19 @@
             this.axRDP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.axRDP.Enabled = true;
             this.axRDP.Location = new System.Drawing.Point(0, 0);
-            this.axRDP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.axRDP.Name = "axRDP";
             this.axRDP.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axRDP.OcxState")));
-            this.axRDP.Size = new System.Drawing.Size(2539, 1281);
+            this.axRDP.Size = new System.Drawing.Size(1083, 716);
             this.axRDP.TabIndex = 2;
             // 
             // frmRemoteDesktopViewer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2539, 1281);
+            this.ClientSize = new System.Drawing.Size(1083, 716);
             this.Controls.Add(this.pnlCover);
             this.Controls.Add(this.axRDP);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmRemoteDesktopViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Remote Desktop";

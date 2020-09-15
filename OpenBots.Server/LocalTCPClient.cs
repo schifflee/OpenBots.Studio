@@ -8,17 +8,17 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
-using taskt.Core.Command;
-using taskt.Core.Common;
-using taskt.Core.Enums;
-using taskt.Core.Infrastructure;
-using taskt.Core.IO;
-using taskt.Core.Model.EngineModel;
-using taskt.Core.Script;
-using taskt.Core.Settings;
-using taskt.Core.Utilities.CommonUtilities;
+using OpenBots.Core.Command;
+using OpenBots.Core.Common;
+using OpenBots.Core.Enums;
+using OpenBots.Core.Infrastructure;
+using OpenBots.Core.IO;
+using OpenBots.Core.Model.EngineModel;
+using OpenBots.Core.Script;
+using OpenBots.Core.Settings;
+using OpenBots.Core.Utilities.CommonUtilities;
 
-namespace taskt.Server
+namespace OpenBots.Server
 {
     /// <summary>
     /// Exposes a local API which enables other (taskt) clients to send automation
@@ -337,7 +337,7 @@ namespace taskt.Server
                     } while (TasktResult == string.Empty);
 
                     //send response back to client
-                    SendResponse(HttpStatusCode.OK, AutomationInstance.TasktResult, stream);
+                    SendResponse(HttpStatusCode.OK, AutomationInstance.TaskResult, stream);
                 }
                 else
                 {
@@ -393,7 +393,7 @@ namespace taskt.Server
         private static void AutomationInstance_ScriptFinishedEvent(object sender, ScriptFinishedEventArgs e)
         {
             //set result once script completes
-            TasktResult = AutomationInstance.TasktResult;
+            TasktResult = AutomationInstance.TaskResult;
         }
 
         public static void SendResponse(HttpStatusCode ResponseCode, string content, Stream networkStream)

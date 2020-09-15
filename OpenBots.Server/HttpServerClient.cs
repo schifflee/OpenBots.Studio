@@ -6,15 +6,15 @@ using System.IO;
 using System.Net;
 using System.Timers;
 using System.Windows.Forms;
-using taskt.Core.Common;
-using taskt.Core.Enums;
-using taskt.Core.Infrastructure;
-using taskt.Core.IO;
-using taskt.Core.Model.ServerModel;
-using taskt.Core.Settings;
-using taskt.Core.Utilities.CommonUtilities;
+using OpenBots.Core.Common;
+using OpenBots.Core.Enums;
+using OpenBots.Core.Infrastructure;
+using OpenBots.Core.IO;
+using OpenBots.Core.Model.ServerModel;
+using OpenBots.Core.Settings;
+using OpenBots.Core.Utilities.CommonUtilities;
 
-namespace taskt.Server
+namespace OpenBots.Server
 {
     /// <summary>
     /// Used by the taskt client for tasktServer integration

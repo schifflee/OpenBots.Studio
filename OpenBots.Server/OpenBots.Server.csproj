@@ -7,8 +7,8 @@
     <ProjectGuid>{D0FF030D-BC12-4E57-A9AD-130FEED9BE4A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>taskt.Server</RootNamespace>
-    <AssemblyName>taskt.Server</AssemblyName>
+    <RootNamespace>OpenBots.Server</RootNamespace>
+    <AssemblyName>OpenBots.Server</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -158,14 +158,14 @@
     <Compile Include="WebSocketClient.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\taskt.Core\taskt.Core.csproj">
-      <Project>{6956836d-d2b0-4b7a-b06d-fa3a22b4c4ff}</Project>
-      <Name>taskt.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenBots.Core\OpenBots.Core.csproj">
+      <Project>{6956836d-d2b0-4b7a-b06d-fa3a22b4c4ff}</Project>
+      <Name>OpenBots.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

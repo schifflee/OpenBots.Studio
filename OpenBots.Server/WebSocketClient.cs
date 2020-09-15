@@ -6,18 +6,18 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
-using taskt.Core.Common;
-using taskt.Core.Enums;
-using taskt.Core.Infrastructure;
-using taskt.Core.IO;
-using taskt.Core.Model.ServerModel;
-using taskt.Core.Settings;
-using taskt.Core.Utilities.CommonUtilities;
-using taskt.Server.Exceptions;
+using OpenBots.Core.Common;
+using OpenBots.Core.Enums;
+using OpenBots.Core.Infrastructure;
+using OpenBots.Core.IO;
+using OpenBots.Core.Model.ServerModel;
+using OpenBots.Core.Settings;
+using OpenBots.Core.Utilities.CommonUtilities;
+using OpenBots.Server.Exceptions;
 using WebSocket4Net; // Used for WebSocket and MessageReceivedEventArgs
 using ErrorEventArgs = SuperSocket.ClientEngine.ErrorEventArgs;
 
-namespace taskt.Server
+namespace OpenBots.Server
 {
     /// <summary>
     /// taskt SocketClient wraps WebSocket4Net and manages local client connection to taskt Server

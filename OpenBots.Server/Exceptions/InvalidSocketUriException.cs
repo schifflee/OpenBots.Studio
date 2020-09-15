@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace taskt.Server.Exceptions
+namespace OpenBots.Server.Exceptions
 {
     /// <summary>
     /// Exception defines Invalid Socket URI passed by user

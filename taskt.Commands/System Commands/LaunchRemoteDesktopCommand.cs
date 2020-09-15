@@ -9,6 +9,8 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
+using taskt.UI.CustomControls;
+using taskt.UI.Forms;
 
 namespace taskt.Commands
 {
@@ -77,21 +79,21 @@ namespace taskt.Commands
             var width = int.Parse(v_RDPWidth.ConvertUserVariableToString(engine));
             var height = int.Parse(v_RDPHeight.ConvertUserVariableToString(engine));
 
-            var result = ((Form)engine.TasktEngineUI).Invoke(new Action(() =>
+            var result = ((frmScriptEngine)engine.TasktEngineUI).Invoke(new Action(() =>
             {
                 engine.TasktEngineUI.LaunchRDPSession(machineName, userName, password, width, height);
             }));
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_MachineName", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_UserName", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultPasswordInputGroupFor("v_Password", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_RDPWidth", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_RDPHeight", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_MachineName", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_UserName", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultPasswordInputGroupFor("v_Password", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_RDPWidth", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_RDPHeight", this, editor));
 
             return RenderedControls;
         }

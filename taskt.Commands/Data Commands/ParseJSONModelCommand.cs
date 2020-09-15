@@ -12,6 +12,7 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
+using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -108,15 +109,15 @@ namespace taskt.Commands
             }
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
             //create standard group controls
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_JsonObject", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_JsonObject", this, editor));
 
-            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_ParseObjects", this));
-            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_ParseObjects", this, new[] { _parseObjectsGridViewHelper }, editor));
+            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_ParseObjects", this));
+            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_ParseObjects", this, new[] { _parseObjectsGridViewHelper }, editor));
             RenderedControls.Add(_parseObjectsGridViewHelper);
 
             return RenderedControls;

@@ -24,9 +24,9 @@ using taskt.Core.Common;
 using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Script;
-using taskt.Core.UI.Forms;
 using taskt.UI.CustomControls;
 using taskt.UI.CustomControls.CustomUIControls;
+using taskt.UI.Forms.ScriptBuilder_Forms;
 
 namespace taskt.UI.Forms
 {
@@ -52,8 +52,6 @@ namespace taskt.UI.Forms
         public List<ScriptCommand> ConfiguredCommands { get; set; }
         public string HTMLElementRecorderURL { get; set; }
 
-        private CommandControls _commandControls;
-
         #region Form Events
         //handle events for the form
 
@@ -66,8 +64,8 @@ namespace taskt.UI.Forms
 
         private void frmNewCommand_Load(object sender, EventArgs e)
         {
-            // Initialize CommandControls with Current Editor
-            _commandControls = new CommandControls(this);
+            //declare loaded editor
+            CommandControls.CurrentEditor = this;
 
             //order list
             _commandList = _commandList.OrderBy(itm => itm.FullName).ToList();
@@ -186,7 +184,7 @@ namespace taskt.UI.Forms
             userSelectedCommand.Command = SelectedCommand;
 
             //bind controls to new data source
-            userSelectedCommand.Bind(this, _commandControls);
+            userSelectedCommand.Bind(this);
 
             //add each control
             foreach (var ctrl in userSelectedCommand.UIControls)

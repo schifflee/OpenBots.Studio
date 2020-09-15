@@ -12,9 +12,8 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Script;
 using taskt.Engine;
-using taskt.Core.UI.Controls;
+using taskt.UI.CustomControls;
 using taskt.UI.Forms;
-using taskt.Utilities;
 
 namespace taskt.Commands
 {
@@ -88,16 +87,16 @@ namespace taskt.Commands
             }
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
             //get script variables for feeding into loop builder form
             _scriptVariables = editor.ScriptVariables;
             _scriptElements = editor.ScriptElements;
 
             //create controls
-            var controls = commandControls.CreateDataGridViewGroupFor("v_LoopConditionsTable", this, editor);
+            var controls = CommandControls.CreateDataGridViewGroupFor("v_LoopConditionsTable", this, editor);
             _loopConditionHelper = controls[2] as DataGridView;
 
             //handle helper click
@@ -170,7 +169,7 @@ namespace taskt.Commands
                     var commandData = selectedRow["CommandData"].ToString();
                     var loopCommand = JsonConvert.DeserializeObject<BeginLoopCommand>(commandData);
 
-                    var automationCommands = UIControlsHelper.GenerateCommandsandControls().Where(f => f.Command is BeginLoopCommand).ToList();
+                    var automationCommands = CommandControls.GenerateCommandsandControls().Where(f => f.Command is BeginLoopCommand).ToList();
                     frmCommandEditor editor = new frmCommandEditor(automationCommands, null);
                     editor.SelectedCommand = loopCommand;
                     editor.EditingCommand = loopCommand;
@@ -203,7 +202,7 @@ namespace taskt.Commands
 
         private void CreateLoopCondition(object sender, EventArgs e)
         {
-            var automationCommands = UIControlsHelper.GenerateCommandsandControls().Where(f => f.Command is BeginLoopCommand).ToList();
+            var automationCommands = CommandControls.GenerateCommandsandControls().Where(f => f.Command is BeginLoopCommand).ToList();
 
             frmCommandEditor editor = new frmCommandEditor(automationCommands, null);
             editor.SelectedCommand = new BeginLoopCommand();

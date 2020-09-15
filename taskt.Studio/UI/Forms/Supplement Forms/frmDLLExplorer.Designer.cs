@@ -36,8 +36,8 @@
             this.lblClasses = new System.Windows.Forms.Label();
             this.lblMethods = new System.Windows.Forms.Label();
             this.lblParameters = new System.Windows.Forms.Label();
-            this.upbLoadDLL = new taskt.Core.UI.Controls.UIPictureButton();
-            this.uiBtnOk = new taskt.Core.UI.Controls.UIPictureButton();
+            this.upbLoadDLL = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnOk = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             ((System.ComponentModel.ISupportInitialize)(this.upbLoadDLL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOk)).BeginInit();
             this.SuspendLayout();
@@ -136,7 +136,7 @@
             this.upbLoadDLL.DisplayText = "Load DLL";
             this.upbLoadDLL.DisplayTextBrush = System.Drawing.Color.White;
             this.upbLoadDLL.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.upbLoadDLL.Image = global::taskt.Core.Properties.Resources.command_run_code;
+            this.upbLoadDLL.Image = global::taskt.Properties.Resources.command_run_code;
             this.upbLoadDLL.IsMouseOver = false;
             this.upbLoadDLL.Location = new System.Drawing.Point(15, 46);
             this.upbLoadDLL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -197,8 +197,8 @@
         private System.Windows.Forms.Label lblClasses;
         private System.Windows.Forms.Label lblMethods;
         private System.Windows.Forms.Label lblParameters;
-        private taskt.Core.UI.Controls.UIPictureButton upbLoadDLL;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnOk;
+        private CustomControls.CustomUIControls.UIPictureButton upbLoadDLL;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnOk;
         public System.Windows.Forms.ListBox lstClasses;
         public System.Windows.Forms.ListBox lstMethods;
         public System.Windows.Forms.ListBox lstParameters;

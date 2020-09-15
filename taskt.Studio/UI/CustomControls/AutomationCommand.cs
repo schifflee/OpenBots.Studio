@@ -5,9 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using taskt.Core.Command;
 using taskt.Core.Enums;
-using taskt.Core.Infrastructure;
 using taskt.UI.Forms;
-using taskt.Core.UI.Controls;
 
 namespace taskt.UI.CustomControls
 {
@@ -20,7 +18,7 @@ namespace taskt.UI.CustomControls
         public ScriptCommand Command { get; set; }
         public List<Control> UIControls { get; set; }
 
-        private void RenderUIComponents(frmCommandEditor editorForm, ICommandControls commandControls)
+        private void RenderUIComponents(frmCommandEditor editorForm)
         {
             if (Command == null)
             {
@@ -30,7 +28,7 @@ namespace taskt.UI.CustomControls
             UIControls = new List<Control>();
             if (Command.CustomRendering)
             {
-                var renderedControls = Command.Render(editorForm, commandControls);
+                var renderedControls = Command.Render(editorForm);
 
                 foreach (var ctrl in renderedControls)
                 {
@@ -45,8 +43,8 @@ namespace taskt.UI.CustomControls
                     FlowLayoutPanel flpCheckBox = new FlowLayoutPanel();
                     flpCheckBox.Height = 30;
                     flpCheckBox.FlowDirection = FlowDirection.LeftToRight;
-                    flpCheckBox.Controls.Add(commandControls.CreateCheckBoxFor("v_IsPrivate", Command));
-                    flpCheckBox.Controls.Add(commandControls.CreateDefaultLabelFor("v_IsPrivate", Command));
+                    flpCheckBox.Controls.Add(CommandControls.CreateCheckBoxFor("v_IsPrivate", Command));
+                    flpCheckBox.Controls.Add(CommandControls.CreateDefaultLabelFor("v_IsPrivate", Command));
                     UIControls.Add(flpCheckBox);
                 }
 
@@ -55,8 +53,8 @@ namespace taskt.UI.CustomControls
 
                 if (!commentControlExists)
                 {
-                    UIControls.Add(commandControls.CreateDefaultLabelFor("v_Comment", Command));
-                    UIControls.Add(commandControls.CreateDefaultInputFor("v_Comment", Command, 100, 300));
+                    UIControls.Add(CommandControls.CreateDefaultLabelFor("v_Comment", Command));
+                    UIControls.Add(CommandControls.CreateDefaultInputFor("v_Comment", Command, 100, 300));
                 }
             }
             else
@@ -70,12 +68,12 @@ namespace taskt.UI.CustomControls
             }
         }
 
-        public void Bind(frmCommandEditor editor, ICommandControls commandControls)
+        public void Bind(frmCommandEditor editor)
         {
             //preference to preload is false
             //if (UIControls is null)
             //{
-            this.RenderUIComponents(editor, commandControls);
+            this.RenderUIComponents(editor);
             //}
 
             foreach (var ctrl in UIControls)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using taskt.Core.Attributes.ClassAttributes;
@@ -8,8 +9,10 @@ using taskt.Core.Attributes.PropertyAttributes;
 using taskt.Core.Command;
 using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
+using taskt.Core.Script;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
+using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -114,13 +117,13 @@ namespace taskt.Commands
 
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_SourceDataTable", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_DestinationDataTable", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_MissingSchemaAction", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_SourceDataTable", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_DestinationDataTable", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_MissingSchemaAction", this, editor));
 
             return RenderedControls;
         }

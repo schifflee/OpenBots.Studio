@@ -6,6 +6,7 @@ using taskt.Core.Attributes.ClassAttributes;
 using taskt.Core.Attributes.PropertyAttributes;
 using taskt.Core.Command;
 using taskt.Core.Infrastructure;
+using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -55,11 +56,11 @@ namespace taskt.Commands
             //no execution required, used as a marker by the Automation Engine
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_ExceptionType", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_ExceptionType", this, editor));
 
             return RenderedControls;
         }

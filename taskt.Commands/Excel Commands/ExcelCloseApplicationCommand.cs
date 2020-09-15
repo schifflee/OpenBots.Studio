@@ -8,6 +8,7 @@ using taskt.Core.Command;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
+using taskt.UI.CustomControls;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace taskt.Commands
@@ -67,12 +68,12 @@ namespace taskt.Commands
             v_InstanceName.RemoveAppInstance(engine);
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_ExcelSaveOnExit", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_ExcelSaveOnExit", this, editor));
 
             return RenderedControls;
         }

@@ -10,6 +10,7 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
+using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -43,11 +44,11 @@ namespace taskt.Commands
             Thread.Sleep(pauseLength);
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_PauseLength", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_PauseLength", this, editor));
 
             return RenderedControls;
         }

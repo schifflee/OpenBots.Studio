@@ -36,8 +36,8 @@
             this.lblDefineDefaultValueDescriptor = new System.Windows.Forms.Label();
             this.txtDefaultValue = new System.Windows.Forms.TextBox();
             this.lblDefineDefaultValue = new System.Windows.Forms.Label();
-            this.uiBtnOk = new taskt.Core.UI.Controls.UIPictureButton();
-            this.uiBtnCancel = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnOk = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.lblVariableNameError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnCancel)).BeginInit();
@@ -217,8 +217,8 @@
         private System.Windows.Forms.Label lblDefineNameDescription;
         private System.Windows.Forms.Label lblDefineDefaultValueDescriptor;
         private System.Windows.Forms.Label lblDefineDefaultValue;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnOk;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnCancel;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnOk;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnCancel;
         public System.Windows.Forms.TextBox txtVariableName;
         public System.Windows.Forms.TextBox txtDefaultValue;
         private System.Windows.Forms.Label lblVariableNameError;

@@ -16,9 +16,9 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using taskt.Core.Enums;
-using taskt.Core.Properties;
+using taskt.Properties;
 
-namespace taskt.Core.UI.Controls
+namespace taskt.UI.CustomControls
 {
     public partial class CommandItemControl : UserControl
     {

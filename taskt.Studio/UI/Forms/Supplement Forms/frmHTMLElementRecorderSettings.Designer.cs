@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHTMLElementRecorderSettings));
-            this.btnCancel = new taskt.Core.UI.Controls.UIPictureButton();
-            this.btnOkay = new taskt.Core.UI.Controls.UIPictureButton();
+            this.btnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.btnOkay = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.txtBrowserInstanceName = new System.Windows.Forms.TextBox();
             this.lblBrowserInstanceName = new System.Windows.Forms.Label();
             this.lblScreenRecorder = new System.Windows.Forms.Label();
@@ -228,8 +228,8 @@
 
         #endregion
 
-        private taskt.Core.UI.Controls.UIPictureButton btnCancel;
-        private taskt.Core.UI.Controls.UIPictureButton btnOkay;
+        private CustomControls.CustomUIControls.UIPictureButton btnCancel;
+        private CustomControls.CustomUIControls.UIPictureButton btnOkay;
         public System.Windows.Forms.TextBox txtBrowserInstanceName;
         private System.Windows.Forms.Label lblBrowserInstanceName;
         private System.Windows.Forms.Label lblScreenRecorder;

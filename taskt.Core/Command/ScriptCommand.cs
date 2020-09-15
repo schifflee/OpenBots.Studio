@@ -89,7 +89,7 @@ namespace taskt.Core.Command
                 return SelectionName + $" [{v_Comment}]";
         }
 
-        public virtual List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public virtual List<Control> Render(IfrmCommandEditor editor)
         {
             RenderedControls = new List<Control>();
             return RenderedControls;

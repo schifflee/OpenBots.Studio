@@ -16,10 +16,9 @@ using taskt.Core.Script;
 using taskt.Core.User32;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
-using taskt.Core.Properties;
-using taskt.Core.UI.Controls;
+using taskt.Properties;
+using taskt.UI.CustomControls;
 using taskt.UI.Forms.Supplement_Forms;
-using taskt.Utilities;
 
 namespace taskt.Commands
 {
@@ -150,20 +149,20 @@ namespace taskt.Commands
 
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
-            _actionDropdown = (ComboBox)commandControls.CreateDropdownFor("v_IfActionType", this);
-            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_IfActionType", this));
-            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_IfActionType", this, new Control[] { _actionDropdown }, editor));
+            _actionDropdown = (ComboBox)CommandControls.CreateDropdownFor("v_IfActionType", this);
+            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_IfActionType", this));
+            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_IfActionType", this, new Control[] { _actionDropdown }, editor));
             _actionDropdown.SelectionChangeCommitted += ifAction_SelectionChangeCommitted;
             RenderedControls.Add(_actionDropdown);
 
             _parameterControls = new List<Control>();
-            _parameterControls.Add(commandControls.CreateDefaultLabelFor("v_IfActionParameterTable", this));
+            _parameterControls.Add(CommandControls.CreateDefaultLabelFor("v_IfActionParameterTable", this));
             _parameterControls.Add(_recorderControl);
-            _parameterControls.AddRange(commandControls.CreateUIHelpersFor("v_IfActionParameterTable", this, new Control[] { _ifGridViewHelper }, editor));
+            _parameterControls.AddRange(CommandControls.CreateUIHelpersFor("v_IfActionParameterTable", this, new Control[] { _ifGridViewHelper }, editor));
             _parameterControls.Add(_ifGridViewHelper);
             RenderedControls.AddRange(_parameterControls);
 
@@ -724,7 +723,7 @@ namespace taskt.Commands
 
                 SurfaceAutomationCommand surfaceACommand = new SurfaceAutomationCommand();
                 var element = surfaceACommand.FindImageElement(capturedImage, accuracy);
-                UIControlsHelper.ShowAllForms();
+                CommandControls.ShowAllForms();
 
                 if (element != null)
                     ifResult = true;

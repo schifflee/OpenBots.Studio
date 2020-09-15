@@ -37,8 +37,8 @@ namespace taskt.UI.Forms.Supplement_Forms
             this.lblDefineNameDescription = new System.Windows.Forms.Label();
             this.lblDefineDefaultValueDescriptor = new System.Windows.Forms.Label();
             this.lblDefineDefaultValue = new System.Windows.Forms.Label();
-            this.uiBtnOk = new taskt.Core.UI.Controls.UIPictureButton();
-            this.uiBtnCancel = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnOk = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.lblElementNameError = new System.Windows.Forms.Label();
             this.dgvDefaultValue = new System.Windows.Forms.DataGridView();
             this.enabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -257,8 +257,8 @@ namespace taskt.UI.Forms.Supplement_Forms
         private System.Windows.Forms.Label lblDefineNameDescription;
         private System.Windows.Forms.Label lblDefineDefaultValueDescriptor;
         private System.Windows.Forms.Label lblDefineDefaultValue;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnOk;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnCancel;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnOk;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnCancel;
         public System.Windows.Forms.TextBox txtElementName;
         private System.Windows.Forms.Label lblElementNameError;
         private System.Windows.Forms.DataGridView dgvDefaultValue;

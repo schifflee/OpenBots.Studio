@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using taskt.Core.Properties;
+using taskt.Properties;
 
-namespace taskt.Core.UI.Controls
+namespace taskt.UI.CustomControls.CustomUIControls
 {
     public partial class UIPictureButton : PictureBox
     {

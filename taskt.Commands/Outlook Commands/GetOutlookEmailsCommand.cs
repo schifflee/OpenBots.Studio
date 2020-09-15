@@ -11,6 +11,7 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
+using taskt.UI.CustomControls;
 using Application = Microsoft.Office.Interop.Outlook.Application;
 
 namespace taskt.Commands
@@ -161,20 +162,20 @@ namespace taskt.Commands
                 }
                 outMail.StoreInUserVariable(engine, v_OutputUserVariableName);
             }
-        }
+        }      
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_SourceFolder", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_Filter", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_GetUnreadOnly", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_MarkAsRead", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_SaveMessagesAndAttachments", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_MessageDirectory", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_AttachmentDirectory", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_SourceFolder", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_Filter", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_GetUnreadOnly", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_MarkAsRead", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_SaveMessagesAndAttachments", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_MessageDirectory", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_AttachmentDirectory", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
 
             return RenderedControls;
         }

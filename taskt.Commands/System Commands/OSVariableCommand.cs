@@ -7,9 +7,11 @@ using System.Xml.Serialization;
 using taskt.Core.Attributes.ClassAttributes;
 using taskt.Core.Attributes.PropertyAttributes;
 using taskt.Core.Command;
+using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
+using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -72,12 +74,12 @@ namespace taskt.Commands
             throw new Exception("System Property '" + systemVariable + "' not found!");
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
-            var ActionNameComboBoxLabel = commandControls.CreateDefaultLabelFor("v_OSVariableName", this);
-            VariableNameComboBox = (ComboBox)commandControls.CreateDropdownFor("v_OSVariableName", this);
+            var ActionNameComboBoxLabel = CommandControls.CreateDefaultLabelFor("v_OSVariableName", this);
+            VariableNameComboBox = (ComboBox)CommandControls.CreateDropdownFor("v_OSVariableName", this);
 
             ObjectQuery wql = new ObjectQuery("SELECT * FROM Win32_OperatingSystem");
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(wql);
@@ -98,7 +100,7 @@ namespace taskt.Commands
             VariableValue.ForeColor = Color.White;
             RenderedControls.Add(VariableValue);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));      
+            RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));      
 
             return RenderedControls;
         }

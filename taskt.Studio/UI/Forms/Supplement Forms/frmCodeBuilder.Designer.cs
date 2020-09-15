@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCodeBuilder));
             this.tlpBuilder = new System.Windows.Forms.TableLayoutPanel();
             this.pnlTop = new System.Windows.Forms.Panel();
-            this.uiBtnSample = new taskt.Core.UI.Controls.UIPictureButton();
-            this.uiBtnSave = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnSample = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnSave = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.chkRunAfterCompile = new System.Windows.Forms.CheckBox();
             this.lblHeader = new System.Windows.Forms.Label();
-            this.uiBtnCompile = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnCompile = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.lstCompilerResults = new System.Windows.Forms.ListBox();
             this.rtbCode = new System.Windows.Forms.RichTextBox();
             this.tlpBuilder.SuspendLayout();
@@ -85,7 +85,7 @@
             this.uiBtnSample.DisplayText = "Sample";
             this.uiBtnSample.DisplayTextBrush = System.Drawing.Color.White;
             this.uiBtnSample.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.uiBtnSample.Image = global::taskt.Core.Properties.Resources.action_bar_new;
+            this.uiBtnSample.Image = global::taskt.Properties.Resources.action_bar_new;
             this.uiBtnSample.IsMouseOver = false;
             this.uiBtnSample.Location = new System.Drawing.Point(290, 4);
             this.uiBtnSample.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -103,7 +103,7 @@
             this.uiBtnSave.DisplayText = "Save";
             this.uiBtnSave.DisplayTextBrush = System.Drawing.Color.White;
             this.uiBtnSave.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.uiBtnSave.Image = global::taskt.Core.Properties.Resources.action_bar_save;
+            this.uiBtnSave.Image = global::taskt.Properties.Resources.action_bar_save;
             this.uiBtnSave.IsMouseOver = false;
             this.uiBtnSave.Location = new System.Drawing.Point(410, 4);
             this.uiBtnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -147,7 +147,7 @@
             this.uiBtnCompile.DisplayText = "Compile";
             this.uiBtnCompile.DisplayTextBrush = System.Drawing.Color.White;
             this.uiBtnCompile.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.uiBtnCompile.Image = global::taskt.Core.Properties.Resources.action_bar_run;
+            this.uiBtnCompile.Image = global::taskt.Properties.Resources.action_bar_run;
             this.uiBtnCompile.IsMouseOver = false;
             this.uiBtnCompile.Location = new System.Drawing.Point(350, 4);
             this.uiBtnCompile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -208,12 +208,12 @@
 
         private System.Windows.Forms.TableLayoutPanel tlpBuilder;
         private System.Windows.Forms.Panel pnlTop;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnCompile;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnCompile;
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.ListBox lstCompilerResults;
         private System.Windows.Forms.CheckBox chkRunAfterCompile;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnSave;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnSave;
         public System.Windows.Forms.RichTextBox rtbCode;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnSample;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnSample;
     }
 }

@@ -13,6 +13,7 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
+using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -240,15 +241,15 @@ namespace taskt.Commands
             }
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_BaseURL", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_APIEndPoint", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_BaseURL", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_APIEndPoint", this, editor));
 
-            var apiMethodLabel = commandControls.CreateDefaultLabelFor("v_APIMethodType", this);
-            var apiMethodDropdown = (ComboBox)commandControls.CreateDropdownFor("v_APIMethodType", this);
+            var apiMethodLabel = CommandControls.CreateDefaultLabelFor("v_APIMethodType", this);
+            var apiMethodDropdown = (ComboBox)CommandControls.CreateDropdownFor("v_APIMethodType", this);
             foreach (Method method in (Method[])Enum.GetValues(typeof(Method)))
             {
                 apiMethodDropdown.Items.Add(method.ToString());
@@ -256,8 +257,8 @@ namespace taskt.Commands
             RenderedControls.Add(apiMethodLabel);
             RenderedControls.Add(apiMethodDropdown);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_RequestFormat", this, editor));
-            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_RESTParameters", this));
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_RequestFormat", this, editor));
+            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_RESTParameters", this));
 
             _RESTParametersGridViewHelper = new DataGridView();
             _RESTParametersGridViewHelper.Width = 500;
@@ -285,7 +286,7 @@ namespace taskt.Commands
             _RESTParametersGridViewHelper.DataBindings.Add("DataSource", this, "v_RESTParameters", false, DataSourceUpdateMode.OnPropertyChanged);
             RenderedControls.Add(_RESTParametersGridViewHelper);
 
-            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_AdvancedParameters", this));
+            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_AdvancedParameters", this));
 
             //advanced parameters
             _advancedRESTParametersGridViewHelper = new DataGridView();
@@ -319,7 +320,7 @@ namespace taskt.Commands
             _advancedRESTParametersGridViewHelper.DataBindings.Add("DataSource", this, "v_AdvancedParameters", false, DataSourceUpdateMode.OnPropertyChanged);
             RenderedControls.Add(_advancedRESTParametersGridViewHelper);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
 
             return RenderedControls;
         }

@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
-using taskt.Core.Properties;
+using taskt.Properties;
 
 namespace taskt.UI.CustomControls.CustomUIControls
 {

@@ -1,4 +1,4 @@
-﻿namespace taskt.Core.UI.Forms
+﻿namespace taskt.UI.Forms.Supplement_Forms
 {
     partial class frmRemoteDesktopViewer
     {

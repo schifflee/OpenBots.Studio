@@ -78,7 +78,7 @@
             // 
             // pbRefresh
             // 
-            this.pbRefresh.Image = global::taskt.Core.Properties.Resources.command_startloop;
+            this.pbRefresh.Image = global::taskt.Properties.Resources.command_startloop;
             this.pbRefresh.Location = new System.Drawing.Point(19, 151);
             this.pbRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.pbRefresh.Name = "pbRefresh";
@@ -103,7 +103,7 @@
             // 
             // pbRecord
             // 
-            this.pbRecord.Image = global::taskt.Core.Properties.Resources.various_record_button;
+            this.pbRecord.Image = global::taskt.Properties.Resources.various_record_button;
             this.pbRecord.Location = new System.Drawing.Point(545, 151);
             this.pbRecord.Margin = new System.Windows.Forms.Padding(4);
             this.pbRecord.Name = "pbRecord";

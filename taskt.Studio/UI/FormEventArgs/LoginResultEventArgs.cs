@@ -1,6 +1,6 @@
 ﻿using taskt.Core.Enums;
 
-namespace taskt.Core.UI.Forms.EventsArgs
+namespace taskt.UI.FormEventArgs
 {
     public class LoginResultEventArgs
     {

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using taskt.Commands;
@@ -14,10 +15,10 @@ using taskt.Core.Command;
 using taskt.Core.Common;
 using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
-using taskt.Core.Properties;
+using taskt.Core.Script;
 using taskt.Core.Settings;
-using taskt.Core.UI.Controls;
 using taskt.Core.Utilities.CommandUtilities;
+using taskt.Properties;
 using taskt.UI.CustomControls.CustomUIControls;
 using taskt.UI.Forms;
 using taskt.UI.Forms.Supplement_Forms;
@@ -25,20 +26,11 @@ using Group = taskt.Core.Attributes.ClassAttributes.Group;
 
 namespace taskt.UI.CustomControls
 {
-    public class CommandControls : ICommandControls
+    public static class CommandControls
     {
-        private frmCommandEditor _currentEditor;
+        public static frmCommandEditor CurrentEditor { get; set; }
 
-        public CommandControls()
-        {
-
-        }
-        public CommandControls(frmCommandEditor editor)
-        {
-            _currentEditor = editor;
-        }
-
-        public List<Control> CreateDefaultInputGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor, int height = 30, int width = 300)
+        public static List<Control> CreateDefaultInputGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor, int height = 30, int width = 300)
         {
             var controlList = new List<Control>();
             var label = CreateDefaultLabelFor(parameterName, parent);
@@ -52,7 +44,7 @@ namespace taskt.UI.CustomControls
             return controlList;
         }
 
-        public List<Control> CreateDefaultPasswordInputGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor)
+        public static List<Control> CreateDefaultPasswordInputGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor)
         {
             var controlList = new List<Control>();
             var label = CreateDefaultLabelFor(parameterName, parent);
@@ -68,11 +60,11 @@ namespace taskt.UI.CustomControls
             return controlList;
         }
 
-        public List<Control> CreateDefaultOutputGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor)
+        public static List<Control> CreateDefaultOutputGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor)
         {
             var controlList = new List<Control>();
             var label = CreateDefaultLabelFor(parameterName, parent);
-            var variableNameControl = AddVariableNames(CreateStandardComboboxFor(parameterName, parent), editor);
+            var variableNameControl = CreateStandardComboboxFor(parameterName, parent).AddVariableNames((frmCommandEditor)editor);
             var helpers = CreateUIHelpersFor(parameterName, parent, new Control[] { variableNameControl }, editor);
 
             controlList.Add(label);
@@ -81,7 +73,7 @@ namespace taskt.UI.CustomControls
             return controlList;
         }
 
-        public List<Control> CreateDefaultDropdownGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor)
+        public static List<Control> CreateDefaultDropdownGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor)
         {
             var controlList = new List<Control>();
             var label = CreateDefaultLabelFor(parameterName, parent);
@@ -95,7 +87,7 @@ namespace taskt.UI.CustomControls
             return controlList;
         }
 
-        public List<Control> CreateDataGridViewGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor)
+        public static List<Control> CreateDataGridViewGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor)
         {
             var controlList = new List<Control>();
             var label = CreateDefaultLabelFor(parameterName, parent);
@@ -109,11 +101,11 @@ namespace taskt.UI.CustomControls
             return controlList;
         }
 
-        public List<Control> CreateDefaultWindowControlGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor)
+        public static List<Control> CreateDefaultWindowControlGroupFor(string parameterName, ScriptCommand parent, IfrmCommandEditor editor)
         {
             var controlList = new List<Control>();
             var label = CreateDefaultLabelFor(parameterName, parent);
-            var windowNameControl = AddWindowNames(CreateStandardComboboxFor(parameterName, parent));
+            var windowNameControl = CreateStandardComboboxFor(parameterName, parent).AddWindowNames();
             var helpers = CreateUIHelpersFor(parameterName, parent, new Control[] { windowNameControl }, (frmCommandEditor)editor);
 
             controlList.Add(label);
@@ -123,7 +115,7 @@ namespace taskt.UI.CustomControls
             return controlList;
         }
 
-        public Control CreateDefaultLabelFor(string parameterName, ScriptCommand parent)
+        public static Control CreateDefaultLabelFor(string parameterName, ScriptCommand parent)
         {
             var variableProperties = parent.GetType().GetProperties().Where(f => f.Name == parameterName).FirstOrDefault();
 
@@ -148,7 +140,7 @@ namespace taskt.UI.CustomControls
             return inputLabel;
         }
 
-        public void CreateDefaultToolTipFor(string parameterName, ScriptCommand parent, Control label)
+        public static void CreateDefaultToolTipFor(string parameterName, ScriptCommand parent, Control label)
         {
             var variableProperties = parent.GetType().GetProperties().Where(f => f.Name == parameterName).FirstOrDefault();
             var inputSpecificationAttributesAssigned = variableProperties.GetCustomAttributes(typeof(InputSpecification), true);
@@ -183,7 +175,7 @@ namespace taskt.UI.CustomControls
             inputToolTip.SetToolTip(label, toolTipText);
         }
 
-        public Control CreateDefaultInputFor(string parameterName, ScriptCommand parent, int height = 30, int width = 300)
+        public static Control CreateDefaultInputFor(string parameterName, ScriptCommand parent, int height = 30, int width = 300)
         {
             var inputBox = new TextBox();
             inputBox.Font = new Font("Segoe UI", 12, FontStyle.Regular);
@@ -204,15 +196,15 @@ namespace taskt.UI.CustomControls
             return inputBox;
         }
 
-        private void InputBox_KeyDown(object sender, KeyEventArgs e)
+        private static void InputBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Modifiers == Keys.Shift && e.KeyCode == Keys.Enter)
                 return;
             else if (e.KeyCode == Keys.Enter)
-                _currentEditor.uiBtnAdd_Click(null, null);
+                CurrentEditor.uiBtnAdd_Click(null, null);
         }
 
-        public CheckBox CreateCheckBoxFor(string parameterName, ScriptCommand parent)
+        public static CheckBox CreateCheckBoxFor(string parameterName, ScriptCommand parent)
         {
             var checkBox = new CheckBox();
             checkBox.DataBindings.Add("Checked", parent, parameterName, false, DataSourceUpdateMode.OnPropertyChanged);
@@ -224,7 +216,7 @@ namespace taskt.UI.CustomControls
             return checkBox;
         }
 
-        public Control CreateDropdownFor(string parameterName, ScriptCommand parent)
+        public static Control CreateDropdownFor(string parameterName, ScriptCommand parent)
         {
             var dropdownBox = new ComboBox();
             dropdownBox.Font = new Font("Segoe UI", 12, FontStyle.Regular);
@@ -248,25 +240,25 @@ namespace taskt.UI.CustomControls
             return dropdownBox;
         }
 
-        private void DropdownBox_KeyPress(object sender, KeyPressEventArgs e)
+        private static void DropdownBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != (char)Keys.Return)
                 e.Handled = true;
         }
 
-        private void DropdownBox_KeyDown(object sender, KeyEventArgs e)
+        private static void DropdownBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Down && e.KeyCode != Keys.Up && e.KeyCode != Keys.Enter)
                 e.Handled = true;
         }
 
-        private void DropdownBox_Click(object sender, EventArgs e)
+        private static void DropdownBox_Click(object sender, EventArgs e)
         {
             ComboBox clickedDropdownBox = (ComboBox)sender;
             clickedDropdownBox.DroppedDown = true;
         }
 
-        public ComboBox CreateStandardComboboxFor(string parameterName, ScriptCommand parent)
+        public static ComboBox CreateStandardComboboxFor(string parameterName, ScriptCommand parent)
         {
             var standardComboBox = new ComboBox();
             standardComboBox.Font = new Font("Segoe UI", 12, FontStyle.Regular);
@@ -279,13 +271,13 @@ namespace taskt.UI.CustomControls
             return standardComboBox;
         }
 
-        private void StandardComboBox_Click(object sender, EventArgs e)
+        private static void StandardComboBox_Click(object sender, EventArgs e)
         {
             ComboBox clickedStandardComboBox = (ComboBox)sender;
             clickedStandardComboBox.DroppedDown = true;
         }
 
-        public List<Control> CreateUIHelpersFor(string parameterName, ScriptCommand parent, Control[] targetControls,
+        public static List<Control> CreateUIHelpersFor(string parameterName, ScriptCommand parent, Control[] targetControls,
             IfrmCommandEditor editor)
         {
             var variableProperties = parent.GetType().GetProperties().Where(f => f.Name == parameterName).FirstOrDefault();
@@ -426,7 +418,7 @@ namespace taskt.UI.CustomControls
             return controlList;
         }
 
-        public DataGridView CreateDataGridView(object sourceCommand, string dataSourceName)
+        public static DataGridView CreateDataGridView(object sourceCommand, string dataSourceName)
         {
             var gridView = new DataGridView();
             gridView.AllowUserToAddRows = true;
@@ -439,7 +431,7 @@ namespace taskt.UI.CustomControls
             return gridView;
         }
 
-        private void ShowCodeBuilder(object sender, EventArgs e, IfrmCommandEditor editor)
+        private static void ShowCodeBuilder(object sender, EventArgs e, IfrmCommandEditor editor)
         {
             //get textbox text
             CommandItemControl commandItem = (CommandItemControl)sender;
@@ -453,7 +445,7 @@ namespace taskt.UI.CustomControls
             }
         }
 
-        private void ShowMouseCaptureForm(object sender, EventArgs e, IfrmCommandEditor editor)
+        private static void ShowMouseCaptureForm(object sender, EventArgs e, IfrmCommandEditor editor)
         {
             frmShowCursorPosition frmShowCursorPos = new frmShowCursorPosition();
 
@@ -466,13 +458,13 @@ namespace taskt.UI.CustomControls
             }
         }
 
-        public void ShowVariableSelector(object sender, EventArgs e)
+        public static void ShowVariableSelector(object sender, EventArgs e)
         {
             //create variable selector form
             frmVariableSelector newVariableSelector = new frmVariableSelector();
 
             //get copy of user variables and append system variables, then load to combobox
-            var variableList = _currentEditor.ScriptVariables.Select(f => f.VariableName).ToList();
+            var variableList = CurrentEditor.ScriptVariables.Select(f => f.VariableName).ToList();
             variableList.AddRange(Common.GenerateSystemVariables().Select(f => f.VariableName));
             newVariableSelector.lstVariables.Items.AddRange(variableList.ToArray());
 
@@ -533,13 +525,13 @@ namespace taskt.UI.CustomControls
             }
         }
 
-        public void ShowElementSelector(object sender, EventArgs e)
+        public static void ShowElementSelector(object sender, EventArgs e)
         {
             //create element selector form
             frmElementSelector newElementSelector = new frmElementSelector();
 
             //get copy of user element and append system elements, then load to combobox
-            var elementList = _currentEditor.ScriptElements.Select(f => f.ElementName).ToList();
+            var elementList = CurrentEditor.ScriptElements.Select(f => f.ElementName).ToList();
 
             newElementSelector.lstElements.Items.AddRange(elementList.ToArray());
 
@@ -561,13 +553,13 @@ namespace taskt.UI.CustomControls
                 {
                     DataGridView targetDGV = (DataGridView)inputBox.Tag;
 
-                    targetDGV.DataSource = _currentEditor.ScriptElements
+                    targetDGV.DataSource = CurrentEditor.ScriptElements
                         .Where(x => x.ElementName == newElementSelector.lstElements.SelectedItem.ToString().Replace("<", "").Replace(">", ""))
                         .FirstOrDefault().ElementValue;
                 }
             }
         }
-        private void ShowFileSelector(object sender, EventArgs e, IfrmCommandEditor editor)
+        private static void ShowFileSelector(object sender, EventArgs e, IfrmCommandEditor editor)
         {
             OpenFileDialog ofd = new OpenFileDialog();
 
@@ -581,7 +573,7 @@ namespace taskt.UI.CustomControls
             }
         }
 
-        private void ShowFolderSelector(object sender, EventArgs e, IfrmCommandEditor editor)
+        private static void ShowFolderSelector(object sender, EventArgs e, IfrmCommandEditor editor)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
 
@@ -593,7 +585,7 @@ namespace taskt.UI.CustomControls
             }
         }
 
-        private void ShowImageCapture(object sender, EventArgs e)
+        private static void ShowImageCapture(object sender, EventArgs e)
         {
             ApplicationSettings settings = new ApplicationSettings().GetOrCreateApplicationSettings();
             var minimizePreference = settings.ClientSettings.MinimizeToTray;
@@ -636,7 +628,7 @@ namespace taskt.UI.CustomControls
             }
         }
 
-        private void RunImageCapture(object sender, EventArgs e)
+        private static void RunImageCapture(object sender, EventArgs e)
         {
             //get input control
             CommandItemControl inputBox = (CommandItemControl)sender;
@@ -668,7 +660,7 @@ namespace taskt.UI.CustomControls
             ShowAllForms();
         }
 
-        private void ShowElementRecorder(object sender, EventArgs e, IfrmCommandEditor editor)
+        private static void ShowElementRecorder(object sender, EventArgs e, IfrmCommandEditor editor)
         {
             //get command reference
             UIAutomationCommand cmd = (UIAutomationCommand)((frmCommandEditor)editor).SelectedCommand;
@@ -687,14 +679,14 @@ namespace taskt.UI.CustomControls
             ((frmCommandEditor)editor).BringToFront();
         }
 
-        private void GenerateDLLParameters(object sender, EventArgs e)
+        private static void GenerateDLLParameters(object sender, EventArgs e)
         {
-            ExecuteDLLCommand cmd = (ExecuteDLLCommand)_currentEditor.SelectedCommand;
+            ExecuteDLLCommand cmd = (ExecuteDLLCommand)CurrentEditor.SelectedCommand;
 
-            var filePath = _currentEditor.flw_InputVariables.Controls["v_FilePath"].Text;
-            var className = _currentEditor.flw_InputVariables.Controls["v_ClassName"].Text;
-            var methodName = _currentEditor.flw_InputVariables.Controls["v_MethodName"].Text;
-            DataGridView parameterBox = (DataGridView)_currentEditor.flw_InputVariables.Controls["v_MethodParameters"];
+            var filePath = CurrentEditor.flw_InputVariables.Controls["v_FilePath"].Text;
+            var className = CurrentEditor.flw_InputVariables.Controls["v_ClassName"].Text;
+            var methodName = CurrentEditor.flw_InputVariables.Controls["v_MethodName"].Text;
+            DataGridView parameterBox = (DataGridView)CurrentEditor.flw_InputVariables.Controls["v_MethodParameters"];
 
             //clear all rows
             cmd.v_MethodParameters.Rows.Clear();
@@ -750,7 +742,7 @@ namespace taskt.UI.CustomControls
             }
         }
 
-        private void ShowDLLExplorer(object sender, EventArgs e)
+        private static void ShowDLLExplorer(object sender, EventArgs e)
         {
             //create form
             frmDLLExplorer dllExplorer = new frmDLLExplorer();
@@ -760,24 +752,24 @@ namespace taskt.UI.CustomControls
             {
                 //user accepted the selections
                 //declare command
-                ExecuteDLLCommand cmd = (ExecuteDLLCommand)_currentEditor.SelectedCommand;
+                ExecuteDLLCommand cmd = (ExecuteDLLCommand)CurrentEditor.SelectedCommand;
 
                 //add file name
                 if (!string.IsNullOrEmpty(dllExplorer.FileName))
                 {
-                    _currentEditor.flw_InputVariables.Controls["v_FilePath"].Text = dllExplorer.FileName;
+                    CurrentEditor.flw_InputVariables.Controls["v_FilePath"].Text = dllExplorer.FileName;
                 }
 
                 //add class name
                 if (dllExplorer.lstClasses.SelectedItem != null)
                 {
-                    _currentEditor.flw_InputVariables.Controls["v_ClassName"].Text = dllExplorer.lstClasses.SelectedItem.ToString();
+                    CurrentEditor.flw_InputVariables.Controls["v_ClassName"].Text = dllExplorer.lstClasses.SelectedItem.ToString();
                 }
 
                 //add method name
                 if (dllExplorer.lstMethods.SelectedItem != null)
                 {
-                    _currentEditor.flw_InputVariables.Controls["v_MethodName"].Text = dllExplorer.lstMethods.SelectedItem.ToString();
+                    CurrentEditor.flw_InputVariables.Controls["v_MethodName"].Text = dllExplorer.lstMethods.SelectedItem.ToString();
                 }
 
                 cmd.v_MethodParameters.Rows.Clear();
@@ -794,16 +786,16 @@ namespace taskt.UI.CustomControls
             }
         }
 
-        private void AddInputParameter(object sender, EventArgs e, IfrmCommandEditor editor)
+        private static void AddInputParameter(object sender, EventArgs e, IfrmCommandEditor editor)
         {
-            DataGridView inputControl = (DataGridView)_currentEditor.flw_InputVariables.Controls["v_UserInputConfig"];
+            DataGridView inputControl = (DataGridView)CurrentEditor.flw_InputVariables.Controls["v_UserInputConfig"];
             var inputTable = (DataTable)inputControl.DataSource;
             var newRow = inputTable.NewRow();
             newRow["Size"] = "500,100";
             inputTable.Rows.Add(newRow);
         }
 
-        private void ShowHTMLBuilder(object sender, EventArgs e, IfrmCommandEditor editor)
+        private static void ShowHTMLBuilder(object sender, EventArgs e, IfrmCommandEditor editor)
         {
             var htmlForm = new frmHTMLBuilder();
 
@@ -816,7 +808,7 @@ namespace taskt.UI.CustomControls
             }
         }
 
-        private void EncryptText(object sender, EventArgs e, IfrmCommandEditor editor)
+        private static void EncryptText(object sender, EventArgs e, IfrmCommandEditor editor)
         {
             CommandItemControl inputBox = (CommandItemControl)sender;
             TextBox targetTextbox = (TextBox)inputBox.Tag;
@@ -831,7 +823,7 @@ namespace taskt.UI.CustomControls
             comboBoxControl.Text = "Encrypted";
         }
 
-        public void ShowAllForms()
+        public static void ShowAllForms()
         {
             foreach (Form form in Application.OpenForms)
                 ShowForm(form);
@@ -840,7 +832,7 @@ namespace taskt.UI.CustomControls
         }
 
         public delegate void ShowFormDelegate(Form form);
-        public void ShowForm(Form form)
+        public static void ShowForm(Form form)
         {
             if (form.InvokeRequired)
             {
@@ -851,7 +843,7 @@ namespace taskt.UI.CustomControls
                 form.WindowState = FormWindowState.Normal;
         }
 
-        public void HideAllForms()
+        public static void HideAllForms()
         {
             foreach (Form form in Application.OpenForms)
                 HideForm(form);
@@ -860,7 +852,7 @@ namespace taskt.UI.CustomControls
         }
 
         public delegate void HideFormDelegate(Form form);
-        public void HideForm(Form form)
+        public static void HideForm(Form form)
         {
             if (form.InvokeRequired)
             {
@@ -871,7 +863,7 @@ namespace taskt.UI.CustomControls
                 form.WindowState = FormWindowState.Minimized;
         }
 
-        public List<AutomationCommand> GenerateCommandsandControls()
+        public static List<AutomationCommand> GenerateCommandsandControls()
         {
             var commandList = new List<AutomationCommand>();
 
@@ -931,7 +923,7 @@ namespace taskt.UI.CustomControls
             return commandList;
         }
 
-        public ComboBox AddWindowNames(ComboBox cbo)
+        public static ComboBox AddWindowNames(this ComboBox cbo)
         {
             if (cbo == null)
                 return null;
@@ -954,7 +946,7 @@ namespace taskt.UI.CustomControls
             return cbo;
         }
 
-        public ComboBox AddVariableNames(ComboBox cbo, IfrmCommandEditor editor)
+        public static ComboBox AddVariableNames(this ComboBox cbo, IfrmCommandEditor editor)
         {
             if (cbo == null)
                 return null;
@@ -969,7 +961,7 @@ namespace taskt.UI.CustomControls
             return cbo;
         }
 
-        public ComboBox AddElementNames(ComboBox cbo, frmCommandEditor editor)
+        public static ComboBox AddElementNames(this ComboBox cbo, frmCommandEditor editor)
         {
             if (cbo == null)
                 return null;

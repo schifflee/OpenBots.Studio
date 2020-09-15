@@ -10,7 +10,7 @@ using taskt.Core.Command;
 using taskt.Core.Common;
 using taskt.Core.Enums;
 using taskt.Core.Script;
-using taskt.Core.Properties;
+using taskt.Properties;
 using taskt.UI.CustomControls.CustomUIControls;
 using taskt.UI.DTOs;
 using taskt.UI.Forms.Supplement_Forms;

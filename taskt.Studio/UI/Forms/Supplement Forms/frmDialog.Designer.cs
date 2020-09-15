@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            taskt.Core.Utilities.FormsUtilities.Theme theme1 = new taskt.Core.Utilities.FormsUtilities.Theme();
+            taskt.Utilities.Theme theme1 = new taskt.Utilities.Theme();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDialog));
             this.autoCloseTimer = new System.Windows.Forms.Timer(this.components);
             this.lblAutoClose = new System.Windows.Forms.Label();
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.txtMessage = new System.Windows.Forms.RichTextBox();
             this.pnlControlContainer = new taskt.UI.CustomControls.CustomUIControls.UIPanel();
-            this.uiBtnOk = new taskt.Core.UI.Controls.UIPictureButton();
-            this.uiBtnCancel = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnOk = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.tlpMain.SuspendLayout();
             this.pnlControlContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOk)).BeginInit();
@@ -174,8 +174,8 @@
 
         #endregion
 
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnOk;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnCancel;
+        private taskt.UI.CustomControls.CustomUIControls.UIPictureButton uiBtnOk;
+        private taskt.UI.CustomControls.CustomUIControls.UIPictureButton uiBtnCancel;
         private System.Windows.Forms.Timer autoCloseTimer;
         private System.Windows.Forms.Label lblAutoClose;
         private System.Windows.Forms.TableLayoutPanel tlpMain;

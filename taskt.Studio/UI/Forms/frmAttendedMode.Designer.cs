@@ -32,8 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAttendedMode));
             this.cboSelectedScript = new System.Windows.Forms.ComboBox();
             this.tmrBackColorFlash = new System.Windows.Forms.Timer(this.components);
-            this.uiBtnClose = new taskt.Core.UI.Controls.UIPictureButton();
-            this.uiBtnRun = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnClose = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnRun = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.attendedScriptWatcher = new System.IO.FileSystemWatcher();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnRun)).BeginInit();
@@ -63,7 +63,7 @@
             this.uiBtnClose.DisplayText = "Close";
             this.uiBtnClose.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnClose.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnClose.Image = global::taskt.Core.Properties.Resources.command_exitloop;
+            this.uiBtnClose.Image = global::taskt.Properties.Resources.command_exitloop;
             this.uiBtnClose.IsMouseOver = false;
             this.uiBtnClose.Location = new System.Drawing.Point(5, 4);
             this.uiBtnClose.Margin = new System.Windows.Forms.Padding(4);
@@ -81,7 +81,7 @@
             this.uiBtnRun.DisplayText = "Run";
             this.uiBtnRun.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnRun.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnRun.Image = global::taskt.Core.Properties.Resources.action_bar_run;
+            this.uiBtnRun.Image = global::taskt.Properties.Resources.action_bar_run;
             this.uiBtnRun.IsMouseOver = false;
             this.uiBtnRun.Location = new System.Drawing.Point(527, 4);
             this.uiBtnRun.Margin = new System.Windows.Forms.Padding(4);
@@ -130,8 +130,8 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cboSelectedScript;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnRun;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnClose;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnRun;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnClose;
         private System.Windows.Forms.Timer tmrBackColorFlash;
         private System.IO.FileSystemWatcher attendedScriptWatcher;
     }

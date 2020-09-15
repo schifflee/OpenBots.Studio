@@ -116,9 +116,9 @@ namespace taskt.Commands
             engine.ErrorsOccured.Clear();
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
             return RenderedControls;
         }

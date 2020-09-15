@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVariableSelector));
             this.lstVariables = new System.Windows.Forms.ListBox();
             this.lblHeader = new System.Windows.Forms.Label();
-            this.uiBtnOk = new taskt.Core.UI.Controls.UIPictureButton();
-            this.uiBtnCancel = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnOk = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnCancel)).BeginInit();
             this.SuspendLayout();
@@ -121,8 +121,8 @@
         }
 
         #endregion
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnOk;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnCancel;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnOk;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnCancel;
         public System.Windows.Forms.ListBox lstVariables;
         public System.Windows.Forms.Label lblHeader;
     }

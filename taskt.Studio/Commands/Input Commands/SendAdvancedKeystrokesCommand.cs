@@ -12,6 +12,7 @@ using taskt.Core.Infrastructure;
 using taskt.Core.User32;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
+using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -136,11 +137,11 @@ namespace taskt.Commands
             }       
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultWindowControlGroupFor("v_WindowName", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultWindowControlGroupFor("v_WindowName", this, editor));
 
             _keystrokeGridHelper = new DataGridView();
             _keystrokeGridHelper.DataBindings.Add("DataSource", this, "v_KeyActions", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -166,10 +167,10 @@ namespace taskt.Commands
             _keystrokeGridHelper.AllowUserToAddRows = true;
             _keystrokeGridHelper.AllowUserToDeleteRows = true;
 
-            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_KeyActions", this));
+            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_KeyActions", this));
             RenderedControls.Add(_keystrokeGridHelper);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_KeyUpDefault", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_KeyUpDefault", this, editor));
 
             return RenderedControls;
         }

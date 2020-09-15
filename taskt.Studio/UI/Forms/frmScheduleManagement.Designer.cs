@@ -48,8 +48,8 @@
             this.colChangeTaskStatus = new System.Windows.Forms.DataGridViewButtonColumn();
             this.bgwGetSchedulingInfo = new System.ComponentModel.BackgroundWorker();
             this.tmrGetSchedulingInfo = new System.Windows.Forms.Timer(this.components);
-            this.uiBtnShowScheduleManager = new taskt.Core.UI.Controls.UIPictureButton();
-            this.uiBtnOk = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnShowScheduleManager = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnOk = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cboRecurType = new System.Windows.Forms.ComboBox();
             this.lblRecurrence = new System.Windows.Forms.Label();
@@ -250,7 +250,7 @@
             this.uiBtnShowScheduleManager.DisplayText = "Scheduler";
             this.uiBtnShowScheduleManager.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnShowScheduleManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.uiBtnShowScheduleManager.Image = global::taskt.Core.Properties.Resources.command_files;
+            this.uiBtnShowScheduleManager.Image = global::taskt.Properties.Resources.command_files;
             this.uiBtnShowScheduleManager.IsMouseOver = false;
             this.uiBtnShowScheduleManager.Location = new System.Drawing.Point(768, 12);
             this.uiBtnShowScheduleManager.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -268,7 +268,7 @@
             this.uiBtnOk.DisplayText = "Add";
             this.uiBtnOk.DisplayTextBrush = System.Drawing.Color.White;
             this.uiBtnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.uiBtnOk.Image = global::taskt.Core.Properties.Resources.logo;
+            this.uiBtnOk.Image = global::taskt.Properties.Resources.logo;
             this.uiBtnOk.IsMouseOver = false;
             this.uiBtnOk.Location = new System.Drawing.Point(10, 521);
             this.uiBtnOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -445,7 +445,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtAppPath;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnOk;
+        private taskt.UI.CustomControls.CustomUIControls.UIPictureButton uiBtnOk;
         private System.Windows.Forms.ComboBox cboSelectedScript;
         private System.Windows.Forms.Label lblMainLogo;
         private System.Windows.Forms.Label lblScheduledScripts;
@@ -460,7 +460,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn colChangeTaskStatus;
         private System.ComponentModel.BackgroundWorker bgwGetSchedulingInfo;
         private System.Windows.Forms.Timer tmrGetSchedulingInfo;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnShowScheduleManager;
+        private taskt.UI.CustomControls.CustomUIControls.UIPictureButton uiBtnShowScheduleManager;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DateTimePicker dtStartTime;
         private System.Windows.Forms.RadioButton rdoEndByDate;

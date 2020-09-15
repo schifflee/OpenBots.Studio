@@ -20,9 +20,9 @@ namespace taskt.Commands
             CommandEnabled = true;
             CustomRendering = true;
         }
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
             return RenderedControls;
         }

@@ -13,6 +13,7 @@ using taskt.Core.Enums;
 using taskt.Core.Infrastructure;
 using taskt.Core.Utilities.CommonUtilities;
 using taskt.Engine;
+using taskt.UI.CustomControls;
 using Group = taskt.Core.Attributes.ClassAttributes.Group;
 
 namespace taskt.Commands
@@ -120,15 +121,15 @@ namespace taskt.Commands
             extractedText.StoreInUserVariable(engine, v_OutputUserVariableName);
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_InputText", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultInputGroupFor("v_InputText", this, editor));
 
-            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_TextExtractionType", this));
-            var selectionControl = (ComboBox)commandControls.CreateDropdownFor("v_TextExtractionType", this);
-            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_TextExtractionType", this, new Control[] { selectionControl }, editor));
+            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_TextExtractionType", this));
+            var selectionControl = (ComboBox)CommandControls.CreateDropdownFor("v_TextExtractionType", this);
+            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_TextExtractionType", this, new Control[] { selectionControl }, editor));
             selectionControl.SelectionChangeCommitted += TextExtraction_SelectionChangeCommitted;
             RenderedControls.Add(selectionControl);
 
@@ -139,11 +140,11 @@ namespace taskt.Commands
             _parametersGridViewHelper.ColumnHeadersHeight = 30;
             _parametersGridViewHelper.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _parametersGridViewHelper.DataBindings.Add("DataSource", this, "v_TextExtractionTable", false, DataSourceUpdateMode.OnPropertyChanged);
-            RenderedControls.Add(commandControls.CreateDefaultLabelFor("v_TextExtractionTable", this));
-            RenderedControls.AddRange(commandControls.CreateUIHelpersFor("v_TextExtractionTable", this, new Control[] { _parametersGridViewHelper }, editor));
+            RenderedControls.Add(CommandControls.CreateDefaultLabelFor("v_TextExtractionTable", this));
+            RenderedControls.AddRange(CommandControls.CreateUIHelpersFor("v_TextExtractionTable", this, new Control[] { _parametersGridViewHelper }, editor));
             RenderedControls.Add(_parametersGridViewHelper);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
 
             return RenderedControls;
         }

@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScriptVariables));
             this.lblMainLogo = new System.Windows.Forms.Label();
-            this.uiBtnCancel = new taskt.Core.UI.Controls.UIPictureButton();
-            this.uiBtnOK = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnOK = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.tlpVariables = new System.Windows.Forms.TableLayoutPanel();
             this.tvScriptVariables = new taskt.UI.CustomControls.CustomUIControls.UITreeView();
             this.pnlTop = new System.Windows.Forms.Panel();
             this.lblDefineName = new System.Windows.Forms.Label();
-            this.uiBtnNew = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnNew = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.pnlBottom = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOK)).BeginInit();
@@ -165,7 +165,7 @@
             this.uiBtnNew.DisplayText = "Add";
             this.uiBtnNew.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.uiBtnNew.Image = global::taskt.Core.Properties.Resources.action_bar_new;
+            this.uiBtnNew.Image = global::taskt.Properties.Resources.action_bar_new;
             this.uiBtnNew.IsMouseOver = false;
             this.uiBtnNew.Location = new System.Drawing.Point(10, 55);
             this.uiBtnNew.Margin = new System.Windows.Forms.Padding(4);
@@ -215,13 +215,13 @@
 
         #endregion
         private System.Windows.Forms.Label lblMainLogo;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnCancel;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnOK;
+        private taskt.UI.CustomControls.CustomUIControls.UIPictureButton uiBtnCancel;
+        private taskt.UI.CustomControls.CustomUIControls.UIPictureButton uiBtnOK;
         private System.Windows.Forms.TableLayoutPanel tlpVariables;
         private System.Windows.Forms.Panel pnlTop;
         private System.Windows.Forms.Panel pnlBottom;
         private CustomControls.CustomUIControls.UITreeView tvScriptVariables;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnNew;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnNew;
         private System.Windows.Forms.Label lblDefineName;
     }
 }

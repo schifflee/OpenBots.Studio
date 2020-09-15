@@ -33,8 +33,8 @@
             this.flw_InputVariables = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.uiBtnAdd = new taskt.Core.UI.Controls.UIPictureButton();
-            this.uiBtnCancel = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnAdd = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
+            this.uiBtnCancel = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnAdd)).BeginInit();
@@ -166,8 +166,8 @@
 
         #endregion
         private System.Windows.Forms.ComboBox cboSelectedCommand;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnCancel;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnAdd;
+        private taskt.UI.CustomControls.CustomUIControls.UIPictureButton uiBtnCancel;
+        private taskt.UI.CustomControls.CustomUIControls.UIPictureButton uiBtnAdd;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         public System.Windows.Forms.FlowLayoutPanel flw_InputVariables;

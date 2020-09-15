@@ -48,7 +48,7 @@
             this.chkCaptureWindowEvents = new System.Windows.Forms.CheckBox();
             this.chkGroupIntoSequence = new System.Windows.Forms.CheckBox();
             this.chkCaptureClicks = new System.Windows.Forms.CheckBox();
-            this.uiBtnRecord = new taskt.Core.UI.Controls.UIPictureButton();
+            this.uiBtnRecord = new taskt.UI.CustomControls.CustomUIControls.UIPictureButton();
             this.pnlOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnRecord)).BeginInit();
             this.SuspendLayout();
@@ -327,7 +327,7 @@
             this.uiBtnRecord.DisplayText = "Start";
             this.uiBtnRecord.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnRecord.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.uiBtnRecord.Image = global::taskt.Core.Properties.Resources.various_record_button;
+            this.uiBtnRecord.Image = global::taskt.Properties.Resources.various_record_button;
             this.uiBtnRecord.IsMouseOver = false;
             this.uiBtnRecord.Location = new System.Drawing.Point(19, 511);
             this.uiBtnRecord.Margin = new System.Windows.Forms.Padding(5);
@@ -367,7 +367,7 @@
         private System.Windows.Forms.CheckBox chkCaptureKeyboard;
         private System.Windows.Forms.Label lblRecording;
         private System.Windows.Forms.Panel pnlOptions;
-        private taskt.Core.UI.Controls.UIPictureButton uiBtnRecord;
+        private CustomControls.CustomUIControls.UIPictureButton uiBtnRecord;
         private System.Windows.Forms.CheckBox chkCaptureClicks;
         private System.Windows.Forms.CheckBox chkGroupIntoSequence;
         private System.Windows.Forms.CheckBox chkCaptureWindowEvents;

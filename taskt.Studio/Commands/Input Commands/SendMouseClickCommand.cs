@@ -7,6 +7,7 @@ using taskt.Core.Attributes.PropertyAttributes;
 using taskt.Core.Command;
 using taskt.Core.Infrastructure;
 using taskt.Core.User32;
+using taskt.UI.CustomControls;
 
 namespace taskt.Commands
 {
@@ -47,11 +48,11 @@ namespace taskt.Commands
             User32Functions.SendMouseClick(v_MouseClick, mousePosition.X, mousePosition.Y);
         }
 
-        public override List<Control> Render(IfrmCommandEditor editor, ICommandControls commandControls)
+        public override List<Control> Render(IfrmCommandEditor editor)
         {
-            base.Render(editor, commandControls);
+            base.Render(editor);
 
-            RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_MouseClick", this, editor));
+            RenderedControls.AddRange(CommandControls.CreateDefaultDropdownGroupFor("v_MouseClick", this, editor));
        
             return RenderedControls;
         }

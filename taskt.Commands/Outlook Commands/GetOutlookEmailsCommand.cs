@@ -159,6 +159,8 @@ namespace taskt.Commands
                         }   
                     }
                 }
+
+                outMail = (List<MailItem>)outMail;
                 outMail.StoreInUserVariable(engine, v_OutputUserVariableName);
             }
         }

@@ -219,7 +219,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-	   <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\CommandItemControl.resx">
@@ -327,7 +327,6 @@
     <Content Include="Resources\header_backing_dark.png" />
     <Content Include="Resources\HTMLInputSample.html" />
     <Content Include="Resources\IEDriverServer.exe" />
-    <Content Include="Resources\item-header.png" />
     <Content Include="Resources\links-header - rotated.png" />
     <Content Include="Resources\links-header.png" />
     <Content Include="Resources\microsoft-excel-icon.png" />
@@ -338,23 +337,14 @@
     <Content Include="Resources\project-collapse.png" />
     <Content Include="Resources\project-expand.png" />
     <Content Include="Resources\project-open-directory.png" />
-    <Content Include="Resources\ProjectFolderIcon2.png" />
-    <Content Include="Resources\ProjectGenericFileIcon2.png" />
-    <Content Include="Resources\ProjectScriptFileIcon2.png" />
     <Content Include="Resources\recent-files.png" />
     <Content Include="Resources\robot source.png" />
     <Content Include="Resources\robot-bouncing-transparent.gif" />
     <Content Include="Resources\robot-bouncing.gif" />
     <Content Include="Resources\robot-error.png" />
     <Content Include="Resources\robot-error1.png" />
-    <Content Include="Resources\RPALogo.png" />
-    <Content Include="Resources\taskt-command-helper.png" />
     <Content Include="Resources\taskt-ExtractPDFText.jar" />
-    <Content Include="Resources\taskt-logo.png" />
-    <Content Include="Resources\taskt-splash.png" />
     <Content Include="Resources\taskt-updater.exe" />
-    <Content Include="Resources\taskt_icon.ico" />
-    <Content Include="Resources\various-chat-icon.png" />
     <Content Include="Resources\various-question.png" />
     <Content Include="Resources\various-record-button.png" />
     <Content Include="Resources\various-stop-button.png" />

@@ -106,7 +106,7 @@
             this.Controls.Add(this.txtInput);
             this.Controls.Add(this.lblInput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmInputBox";

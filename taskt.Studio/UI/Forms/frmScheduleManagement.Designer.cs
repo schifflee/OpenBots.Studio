@@ -268,7 +268,7 @@
             this.uiBtnOk.DisplayText = "Add";
             this.uiBtnOk.DisplayTextBrush = System.Drawing.Color.White;
             this.uiBtnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.uiBtnOk.Image = global::taskt.Core.Properties.Resources.logo;
+            this.uiBtnOk.Image = global::taskt.Core.Properties.Resources.openbots_icon;
             this.uiBtnOk.IsMouseOver = false;
             this.uiBtnOk.Location = new System.Drawing.Point(10, 521);
             this.uiBtnOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -426,7 +426,7 @@
             this.Controls.Add(this.cboSelectedScript);
             this.Controls.Add(this.txtAppPath);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmScheduleManagement";
             this.Text = "Schedule";

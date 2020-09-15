@@ -108,7 +108,7 @@
             this.Controls.Add(this.uiBtnCancel);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.lstElements);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmElementSelector";
             this.Text = "Insert a Element";

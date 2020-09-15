@@ -780,6 +780,8 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
 
         private void uiAdvancedRecorderToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Hide();
+
             frmThickAppElementRecorder appElementRecorder = new frmThickAppElementRecorder();
             appElementRecorder.CallBackForm = this;
             appElementRecorder.IsRecordingSequence = true;
@@ -789,6 +791,9 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             CreateUndoSnapshot();
 
             appElementRecorder.ShowDialog();
+
+            Show();
+            BringToFront();
         }
 
         private void uiBtnRecordAdvancedUISequence_Click(object sender, EventArgs e)

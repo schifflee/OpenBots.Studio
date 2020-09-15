@@ -108,7 +108,7 @@
             this.Controls.Add(this.uiBtnCancel);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.lstVariables);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmDataTableVariableSelector";
             this.Text = "Insert a Variable";

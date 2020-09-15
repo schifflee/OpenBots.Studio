@@ -51,7 +51,7 @@ namespace taskt.Core.UI.Controls
 
         public UIPictureButton()
         {
-            Image = Resources.logo;
+            Image = Resources.openbots_icon;
             DisplayTextBrush = Color.White;
             Size = new Size(45, 45);
             DisplayText = "Text";

@@ -137,7 +137,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1405, 858);
             this.Controls.Add(this.tlpMain);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmHTMLBuilder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

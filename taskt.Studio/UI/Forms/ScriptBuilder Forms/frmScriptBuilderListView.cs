@@ -966,7 +966,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private void pnlStatus_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawString(_notificationText, pnlStatus.Font, Brushes.White, 30, 4);
-            e.Graphics.DrawImage(Resources.message, 5, 3, 20, 20);
+            e.Graphics.DrawImage(Resources.openbots_icon, 5, 3, 20, 20);
         }
         #endregion
 

@@ -196,7 +196,7 @@
             this.Controls.Add(this.txtVariableName);
             this.Controls.Add(this.lblDefineName);
             this.Controls.Add(this.lblHeader);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MinimumSize = new System.Drawing.Size(627, 491);
             this.Name = "frmAddVariable";

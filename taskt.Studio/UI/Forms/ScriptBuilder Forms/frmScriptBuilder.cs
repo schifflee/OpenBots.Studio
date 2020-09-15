@@ -198,21 +198,21 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
 
             if (_editMode)
             {
-                tlpControls.RowStyles[1].SizeType = SizeType.Absolute;
-                tlpControls.RowStyles[1].Height = 0;
+                tlpControls.RowStyles[0].SizeType = SizeType.Absolute;
+                tlpControls.RowStyles[0].Height = 0;
 
-                tlpControls.RowStyles[2].SizeType = SizeType.Absolute;
-                tlpControls.RowStyles[2].Height = 81;
+                tlpControls.RowStyles[1].SizeType = SizeType.Absolute;
+                tlpControls.RowStyles[1].Height = 81;
             }
             else if (_appSettings.ClientSettings.UseSlimActionBar)
             {
-                tlpControls.RowStyles[2].SizeType = SizeType.Absolute;
-                tlpControls.RowStyles[2].Height = 0;
+                tlpControls.RowStyles[1].SizeType = SizeType.Absolute;
+                tlpControls.RowStyles[1].Height = 0;
             }
             else
             {
-                tlpControls.RowStyles[1].SizeType = SizeType.Absolute;
-                tlpControls.RowStyles[1].Height = 0;
+                tlpControls.RowStyles[0].SizeType = SizeType.Absolute;
+                tlpControls.RowStyles[0].Height = 0;
             }
 
             //get scripts folder
@@ -419,7 +419,6 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
                     ShowInTaskbar = false;
                 }
             }
-            pnlMain.Invalidate();
         }
         #endregion
         
@@ -465,7 +464,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             pnlStatus.SuspendLayout();
             //for (int i = 0; i < 30; i++)
             //{
-            //    tlpControls.RowStyles[3].Height = i;
+            //    tlpControls.RowStyles[1].Height = i;
             //}
             ShowNotificationRow();
             pnlStatus.ResumeLayout();
@@ -477,7 +476,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             pnlStatus.SuspendLayout();
             //for (int i = 30; i > 0; i--)
             //{
-            //    tlpControls.RowStyles[3].Height = i;
+            //    tlpControls.RowStyles[1].Height = i;
             //}
             HideNotificationRow();
             pnlStatus.ResumeLayout();
@@ -486,12 +485,12 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
 
         private void HideNotificationRow()
         {
-            tlpControls.RowStyles[5].Height = 0;
+            tlpControls.RowStyles[4].Height = 0;
         }
 
         private void ShowNotificationRow()
         {
-            tlpControls.RowStyles[5].Height = 30;
+            tlpControls.RowStyles[4].Height = 30;
         }
 
         private void PerformAntiIdle()

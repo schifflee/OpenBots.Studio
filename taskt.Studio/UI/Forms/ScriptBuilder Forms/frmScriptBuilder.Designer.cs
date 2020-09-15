@@ -33,7 +33,6 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScriptBuilder));
-            taskt.Core.Utilities.FormsUtilities.Theme theme1 = new taskt.Core.Utilities.FormsUtilities.Theme();
             this.cmsProjectFolderActions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiCopyFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,10 +84,6 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiBtnSettings = new taskt.Core.UI.Controls.UIPictureButton();
             this.uiBtnAddVariable = new taskt.Core.UI.Controls.UIPictureButton();
             this.pnlStatus = new System.Windows.Forms.Panel();
-            this.pnlHeader = new System.Windows.Forms.Panel();
-            this.pnlMain = new taskt.UI.CustomControls.CustomUIControls.UIPanel();
-            this.pbMainLogo = new System.Windows.Forms.PictureBox();
-            this.lblCoordinatorInfo = new System.Windows.Forms.Label();
             this.splitContainerStudioControls = new taskt.UI.CustomControls.CustomUIControls.UISplitContainer();
             this.uiPaneTabs = new taskt.UI.CustomControls.CustomUIControls.UITabControl();
             this.tpProject = new System.Windows.Forms.TabPage();
@@ -188,9 +183,6 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnClearAll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnAddVariable)).BeginInit();
-            this.pnlHeader.SuspendLayout();
-            this.pnlMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMainLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerStudioControls)).BeginInit();
             this.splitContainerStudioControls.Panel1.SuspendLayout();
             this.splitContainerStudioControls.Panel2.SuspendLayout();
@@ -403,7 +395,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.pnlControlContainer.Controls.Add(this.grpRecordRun);
             this.pnlControlContainer.Controls.Add(this.grpVariable);
             this.pnlControlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlControlContainer.Location = new System.Drawing.Point(0, 71);
+            this.pnlControlContainer.Location = new System.Drawing.Point(0, 30);
             this.pnlControlContainer.Margin = new System.Windows.Forms.Padding(0);
             this.pnlControlContainer.Name = "pnlControlContainer";
             this.pnlControlContainer.Size = new System.Drawing.Size(1126, 78);
@@ -886,62 +878,12 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.pnlStatus.TabIndex = 3;
             this.pnlStatus.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlStatus_Paint);
             // 
-            // pnlHeader
-            // 
-            this.pnlHeader.BackColor = System.Drawing.Color.SteelBlue;
-            this.tlpControls.SetColumnSpan(this.pnlHeader, 3);
-            this.pnlHeader.Controls.Add(this.pnlMain);
-            this.pnlHeader.Controls.Add(this.lblCoordinatorInfo);
-            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1126, 41);
-            this.pnlHeader.TabIndex = 2;
-            // 
-            // pnlMain
-            // 
-            this.pnlMain.Controls.Add(this.pbMainLogo);
-            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 0);
-            this.pnlMain.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1126, 41);
-            this.pnlMain.TabIndex = 2;
-            theme1.BgGradientEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(50)))), ((int)(((byte)(178)))));
-            theme1.BgGradientStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(136)))), ((int)(((byte)(204)))));
-            this.pnlMain.Theme = theme1;
-            // 
-            // pbMainLogo
-            // 
-            this.pbMainLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pbMainLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbMainLogo.Image")));
-            this.pbMainLogo.Location = new System.Drawing.Point(6, 1);
-            this.pbMainLogo.Margin = new System.Windows.Forms.Padding(2);
-            this.pbMainLogo.Name = "pbMainLogo";
-            this.pbMainLogo.Size = new System.Drawing.Size(216, 47);
-            this.pbMainLogo.TabIndex = 1;
-            this.pbMainLogo.TabStop = false;
-            this.pbMainLogo.Click += new System.EventHandler(this.pbMainLogo_Click);
-            // 
-            // lblCoordinatorInfo
-            // 
-            this.lblCoordinatorInfo.AutoSize = true;
-            this.lblCoordinatorInfo.BackColor = System.Drawing.Color.Transparent;
-            this.lblCoordinatorInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCoordinatorInfo.ForeColor = System.Drawing.Color.White;
-            this.lblCoordinatorInfo.Location = new System.Drawing.Point(228, 16);
-            this.lblCoordinatorInfo.Name = "lblCoordinatorInfo";
-            this.lblCoordinatorInfo.Size = new System.Drawing.Size(0, 20);
-            this.lblCoordinatorInfo.TabIndex = 3;
-            this.lblCoordinatorInfo.Visible = false;
-            // 
             // splitContainerStudioControls
             // 
             this.tlpControls.SetColumnSpan(this.splitContainerStudioControls, 3);
             this.splitContainerStudioControls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerStudioControls.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainerStudioControls.Location = new System.Drawing.Point(3, 157);
+            this.splitContainerStudioControls.Location = new System.Drawing.Point(3, 116);
             this.splitContainerStudioControls.Name = "splitContainerStudioControls";
             // 
             // splitContainerStudioControls.Panel1
@@ -953,7 +895,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // 
             this.splitContainerStudioControls.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainerStudioControls.Panel2.Controls.Add(this.uiScriptTabControl);
-            this.splitContainerStudioControls.Size = new System.Drawing.Size(1120, 499);
+            this.splitContainerStudioControls.Size = new System.Drawing.Size(1120, 540);
             this.splitContainerStudioControls.SplitterDistance = 328;
             this.splitContainerStudioControls.TabIndex = 4;
             // 
@@ -966,7 +908,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiPaneTabs.Location = new System.Drawing.Point(0, 0);
             this.uiPaneTabs.Name = "uiPaneTabs";
             this.uiPaneTabs.SelectedIndex = 0;
-            this.uiPaneTabs.Size = new System.Drawing.Size(328, 499);
+            this.uiPaneTabs.Size = new System.Drawing.Size(328, 540);
             this.uiPaneTabs.TabIndex = 26;
             // 
             // tpProject
@@ -978,7 +920,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tpProject.Margin = new System.Windows.Forms.Padding(2);
             this.tpProject.Name = "tpProject";
             this.tpProject.Padding = new System.Windows.Forms.Padding(2);
-            this.tpProject.Size = new System.Drawing.Size(320, 469);
+            this.tpProject.Size = new System.Drawing.Size(320, 510);
             this.tpProject.TabIndex = 5;
             this.tpProject.Text = "Project";
             this.tpProject.UseVisualStyleBackColor = true;
@@ -997,7 +939,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tlpProject.RowCount = 2;
             this.tlpProject.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tlpProject.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpProject.Size = new System.Drawing.Size(316, 465);
+            this.tlpProject.Size = new System.Drawing.Size(316, 506);
             this.tlpProject.TabIndex = 1;
             // 
             // tvProject
@@ -1013,7 +955,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tvProject.Name = "tvProject";
             this.tvProject.SelectedImageIndex = 0;
             this.tvProject.ShowLines = false;
-            this.tvProject.Size = new System.Drawing.Size(312, 436);
+            this.tvProject.Size = new System.Drawing.Size(312, 477);
             this.tvProject.TabIndex = 0;
             this.tvProject.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvProject_BeforeExpand);
             this.tvProject.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvProject_NodeMouseClick);
@@ -1191,7 +1133,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.uiScriptTabControl.Name = "uiScriptTabControl";
             this.uiScriptTabControl.SelectedIndex = 0;
             this.uiScriptTabControl.ShowToolTips = true;
-            this.uiScriptTabControl.Size = new System.Drawing.Size(788, 499);
+            this.uiScriptTabControl.Size = new System.Drawing.Size(788, 540);
             this.uiScriptTabControl.TabIndex = 3;
             this.uiScriptTabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.uiScriptTabControl_DrawItem);
             this.uiScriptTabControl.SelectedIndexChanged += new System.EventHandler(this.uiScriptTabControl_SelectedIndexChanged);
@@ -1392,7 +1334,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.pnlDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.tlpControls.SetColumnSpan(this.pnlDivider, 4);
             this.pnlDivider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDivider.Location = new System.Drawing.Point(0, 149);
+            this.pnlDivider.Location = new System.Drawing.Point(0, 108);
             this.pnlDivider.Margin = new System.Windows.Forms.Padding(0);
             this.pnlDivider.Name = "pnlDivider";
             this.pnlDivider.Size = new System.Drawing.Size(1126, 5);
@@ -1414,7 +1356,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tsSearchBox,
             this.tsSearchButton,
             this.tsSearchResult});
-            this.msTasktMenu.Location = new System.Drawing.Point(0, 41);
+            this.msTasktMenu.Location = new System.Drawing.Point(0, 0);
             this.msTasktMenu.Name = "msTasktMenu";
             this.msTasktMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.msTasktMenu.Size = new System.Drawing.Size(1126, 30);
@@ -1648,6 +1590,7 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             // 
             // tsSearchBox
             // 
+            this.tsSearchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tsSearchBox.Name = "tsSearchBox";
             this.tsSearchBox.Size = new System.Drawing.Size(100, 26);
             this.tsSearchBox.Visible = false;
@@ -1677,23 +1620,22 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             this.tlpControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 255F));
             this.tlpControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 524F));
-            this.tlpControls.Controls.Add(this.msTasktMenu, 0, 1);
-            this.tlpControls.Controls.Add(this.pnlDivider, 0, 3);
-            this.tlpControls.Controls.Add(this.splitContainerStudioControls, 0, 4);
-            this.tlpControls.Controls.Add(this.pnlHeader, 0, 0);
-            this.tlpControls.Controls.Add(this.pnlStatus, 0, 5);
-            this.tlpControls.Controls.Add(this.pnlControlContainer, 0, 2);
+            this.tlpControls.Controls.Add(this.msTasktMenu, 0, 0);
+            this.tlpControls.Controls.Add(this.pnlDivider, 0, 2);
+            this.tlpControls.Controls.Add(this.splitContainerStudioControls, 0, 3);
+            this.tlpControls.Controls.Add(this.pnlStatus, 0, 4);
+            this.tlpControls.Controls.Add(this.pnlControlContainer, 0, 1);
             this.tlpControls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpControls.Location = new System.Drawing.Point(0, 0);
             this.tlpControls.Margin = new System.Windows.Forms.Padding(0);
             this.tlpControls.Name = "tlpControls";
-            this.tlpControls.RowCount = 6;
-            this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+            this.tlpControls.RowCount = 5;
             this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 78F));
             this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tlpControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpControls.Size = new System.Drawing.Size(1126, 690);
             this.tlpControls.TabIndex = 2;
             // 
@@ -1820,10 +1762,6 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnClearAll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnAddVariable)).EndInit();
-            this.pnlHeader.ResumeLayout(false);
-            this.pnlHeader.PerformLayout();
-            this.pnlMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbMainLogo)).EndInit();
             this.splitContainerStudioControls.Panel1.ResumeLayout(false);
             this.splitContainerStudioControls.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerStudioControls)).EndInit();
@@ -1902,9 +1840,6 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private CustomControls.CustomUIControls.UITreeView tvProject;
         private TabPage tpCommands;
         private CustomControls.CustomUIControls.UITreeView tvCommands;
-        private Panel pnlHeader;
-        private CustomControls.CustomUIControls.UIPanel pnlMain;
-        private Label lblCoordinatorInfo;
         private Panel pnlStatus;
         private CustomControls.CustomUIControls.UIGroupBox grpSearch;
         private PictureBox pbSearch;
@@ -1976,7 +1911,6 @@ namespace taskt.UI.Forms.ScriptBuilder_Forms
         private TableLayoutPanel tlpCommands;
         private Panel pnlCommandSearch;
         private TextBox txtCommandSearch;
-        private PictureBox pbMainLogo;
         private taskt.Core.UI.Controls.UIPictureButton uiBtnSaveSequence;
         private ToolStripMenuItem recorderToolStripMenuItem;
         private ToolStripMenuItem uiRecorderToolStripMenuItem;

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 
-namespace taskt.Updater
+namespace OpenBots.Updater
 {
     static class Program
     {

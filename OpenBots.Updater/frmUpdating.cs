@@ -7,7 +7,7 @@ using System.IO.Compression;
 using System.Net;
 using System.Windows.Forms;
 
-namespace taskt.Updater
+namespace OpenBots.Updater
 {
     public partial class frmUpdating : Form
     {
@@ -125,7 +125,7 @@ namespace taskt.Updater
         {
             if (e.Error is null)
             {
-                Process.Start(topLevelFolder + "\\taskt.exe");
+                Process.Start(topLevelFolder + "\\OpenBots.exe");
 
                 Close();
                 //MessageBox.Show("All Done");

@@ -1,4 +1,4 @@
-﻿namespace taskt.Updater
+﻿namespace OpenBots.Updater
 {
     partial class frmUpdating
     {

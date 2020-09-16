@@ -22,15 +22,15 @@
     <WixVariables>ProductVersion=$(ProductVersion)</WixVariables>
   </PropertyGroup>
   <PropertyGroup>
-    <DefineConstants>HarvestPath=..\taskt.Studio\bin\Release</DefineConstants>
+    <DefineConstants>HarvestPath=..\OpenBots.Studio\bin\Release</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="HeatGeneratedFileList.wxs" />
     <Compile Include="OpenBotsStudio.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\taskt.Studio\taskt.Studio.csproj">
-      <Name>taskt.Studio</Name>
+    <ProjectReference Include="..\OpenBots.Studio\OpenBots.Studio.csproj">
+      <Name>OpenBots.Studio</Name>
       <Project>{c1be3204-94d1-4a9a-ae30-c3e302383182}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
@@ -50,6 +50,6 @@
     <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
   </Target>
   <Target Name="BeforeBuild">
-    <HeatDirectory Directory="..\taskt.Studio\bin\Release" PreprocessorVariable="var.HarvestPath" OutputFile="HeatGeneratedFileList.wxs" ComponentGroupName="HeatGenerated" DirectoryRefId="APPLICATIONFOLDER" AutogenerateGuids="true" ToolPath="$(WixToolPath)" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="true" />
+    <HeatDirectory Directory="..\OpenBots.Studio\bin\Release" PreprocessorVariable="var.HarvestPath" OutputFile="HeatGeneratedFileList.wxs" ComponentGroupName="HeatGenerated" DirectoryRefId="APPLICATIONFOLDER" AutogenerateGuids="true" ToolPath="$(WixToolPath)" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="true" />
   </Target>
 </Project>

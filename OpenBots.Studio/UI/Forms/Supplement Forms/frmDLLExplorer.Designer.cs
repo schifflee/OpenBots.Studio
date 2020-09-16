@@ -180,7 +180,7 @@
             this.Controls.Add(this.lstParameters);
             this.Controls.Add(this.lstMethods);
             this.Controls.Add(this.lstClasses);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmDLLExplorer";
             this.Text = "DLL Explorer";

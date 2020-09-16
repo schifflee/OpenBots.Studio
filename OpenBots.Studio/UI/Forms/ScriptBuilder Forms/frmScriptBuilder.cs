@@ -198,21 +198,21 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 
             if (_editMode)
             {
-                tlpControls.RowStyles[1].SizeType = SizeType.Absolute;
-                tlpControls.RowStyles[1].Height = 0;
+                tlpControls.RowStyles[0].SizeType = SizeType.Absolute;
+                tlpControls.RowStyles[0].Height = 0;
 
-                tlpControls.RowStyles[2].SizeType = SizeType.Absolute;
-                tlpControls.RowStyles[2].Height = 81;
+                tlpControls.RowStyles[1].SizeType = SizeType.Absolute;
+                tlpControls.RowStyles[1].Height = 81;
             }
             else if (_appSettings.ClientSettings.UseSlimActionBar)
             {
-                tlpControls.RowStyles[2].SizeType = SizeType.Absolute;
-                tlpControls.RowStyles[2].Height = 0;
+                tlpControls.RowStyles[1].SizeType = SizeType.Absolute;
+                tlpControls.RowStyles[1].Height = 0;
             }
             else
             {
-                tlpControls.RowStyles[1].SizeType = SizeType.Absolute;
-                tlpControls.RowStyles[1].Height = 0;
+                tlpControls.RowStyles[0].SizeType = SizeType.Absolute;
+                tlpControls.RowStyles[0].Height = 0;
             }
 
             //get scripts folder
@@ -419,7 +419,6 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                     ShowInTaskbar = false;
                 }
             }
-            pnlMain.Invalidate();
         }
         #endregion
         
@@ -465,7 +464,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             pnlStatus.SuspendLayout();
             //for (int i = 0; i < 30; i++)
             //{
-            //    tlpControls.RowStyles[3].Height = i;
+            //    tlpControls.RowStyles[1].Height = i;
             //}
             ShowNotificationRow();
             pnlStatus.ResumeLayout();
@@ -477,7 +476,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             pnlStatus.SuspendLayout();
             //for (int i = 30; i > 0; i--)
             //{
-            //    tlpControls.RowStyles[3].Height = i;
+            //    tlpControls.RowStyles[1].Height = i;
             //}
             HideNotificationRow();
             pnlStatus.ResumeLayout();
@@ -486,12 +485,12 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 
         private void HideNotificationRow()
         {
-            tlpControls.RowStyles[5].Height = 0;
+            tlpControls.RowStyles[4].Height = 0;
         }
 
         private void ShowNotificationRow()
         {
-            tlpControls.RowStyles[5].Height = 30;
+            tlpControls.RowStyles[4].Height = 30;
         }
 
         private void PerformAntiIdle()
@@ -664,19 +663,19 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         #region Link Labels
         private void lnkGitProject_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/saucepleez/taskt");
+            Process.Start("https://github.com/OpenBotsAI/OpenBots.Studio");
         }
         private void lnkGitLatestReleases_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/saucepleez/taskt/releases");
+            Process.Start("https://github.com/OpenBotsAI/OpenBots.Studio/releases");
         }
         private void lnkGitIssue_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/saucepleez/taskt/issues/new");
+            Process.Start("https://github.com/OpenBotsAI/OpenBots.Studio/issues/new");
         }
         private void lnkGitWiki_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://wiki.taskt.net/");
+            Process.Start("https://openbots.ai/api/execute-dll/");
         }
         private void NewFileLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

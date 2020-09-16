@@ -118,7 +118,7 @@ namespace OpenBots.Commands
 
             if (currentUser.Type == "EX")
             {
-                MAPIFolder inboxFolder = test.GetDefaultFolder(OlDefaultFolders.olFolderInbox).Parent;
+                MAPIFolder inboxFolder = (MAPIFolder)test.GetDefaultFolder(OlDefaultFolders.olFolderInbox).Parent;
                 MAPIFolder userFolder = inboxFolder.Folders[vFolder];
                 Items filteredItems = null;
 
@@ -159,6 +159,7 @@ namespace OpenBots.Commands
                         }   
                     }
                 }
+
                 outMail.StoreInUserVariable(engine, v_OutputUserVariableName);
             }
         }

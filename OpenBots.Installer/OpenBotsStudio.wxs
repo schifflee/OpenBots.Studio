@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?if $(var.taskt.Studio.Platform)=x64 ?>
+<?if $(var.OpenBots.Studio.Platform)=x64 ?>
   <?define ProductCode = "{DE3B1CBB-BF7B-46BA-BCBB-4B1542C9B3BB}" ?>
 <?else?>
   <?define ProductCode = "{B6C0672A-D365-4D2B-B6A1-42E908D181E0}" ?>
@@ -41,7 +41,7 @@
     
     <Property Id="WixAppFolder" Value="WixPerMachineFolder" />
     <Property Id="ApplicationFolderName" Value="$(var.Name)" />
-    <Property Id="ARPPRODUCTICON" Value="TaskT.exe" />
+    <Property Id="ARPPRODUCTICON" Value="OpenBotsStudio.exe" />
 
     <Feature Id="ProductFeature" Title="$(var.Name)" Level="1">
       <ComponentGroupRef Id="HeatGenerated" />
@@ -52,7 +52,7 @@
     <UIRef Id="WixUI_Advanced" />
     <UIRef Id="WixUI_ErrorProgressText" />
     <WixVariable Id="WixUILicenseRtf" Value="resources\License.rtf" />
-    <WixVariable Id="WixUIBannerBmp" Value="resources\TaskT-Banner.png" />
+    <WixVariable Id="WixUIBannerBmp" Value="resources\OpenBots-Banner.png" />
 	</Product>
   
 	<Fragment>
@@ -74,9 +74,9 @@
         <Shortcut Id="ApplicationStartMenuShortcut"
                   Name="$(var.Name)"
                   Description="$(var.Description)"
-                  Target="[APPLICATIONFOLDER]taskt.Studio.exe"
+                  Target="[APPLICATIONFOLDER]OpenBots.Studio.exe"
                   WorkingDirectory="INSTALLFOLDER"
-                  Icon="TaskT.exe"
+                  Icon="OpenBotsStudio.exe"
                   IconIndex="0" />
         <RemoveFolder Id="ApplicationCleanUpShortCut"
                       On="uninstall"/>
@@ -94,9 +94,9 @@
         <Shortcut Id="AppDesktopShortcut"
                   Name="$(var.Name)"
                   Description="$(var.Description)"
-                  Target="[APPLICATIONFOLDER]taskt.Studio.exe"
+                  Target="[APPLICATIONFOLDER]OpenBots.Studio.exe"
                   WorkingDirectory="INSTALLFOLDER"
-                  Icon="TaskT.exe"
+                  Icon="OpenBotsStudio.exe"
                   IconIndex="0" />
         <RemoveFolder Id="DesktopFolder" 
                       On="uninstall"/>
@@ -112,6 +112,6 @@
 
   <Fragment>
     <!-- Define main app icon -->
-    <Icon Id="TaskT.exe" SourceFile="$(var.taskt.Studio.ProjectDir)\taskt_logo_alt.ico" />
+    <Icon Id="OpenBotsStudio.exe" SourceFile="resources\OpenBots.ico" />
   </Fragment>
 </Wix>

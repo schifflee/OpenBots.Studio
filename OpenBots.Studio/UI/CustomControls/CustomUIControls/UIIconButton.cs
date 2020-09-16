@@ -51,7 +51,7 @@ namespace OpenBots.UI.CustomControls.CustomUIControls
 
         public UIIconButton()
         {
-            Image = Resources.logo;
+            Image = Resources.OpenBots_icon;
             DisplayTextBrush = Color.White;
             Size = new Size(20, 20);
             MouseEnter += UIPictureButton_MouseEnter;

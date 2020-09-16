@@ -54,10 +54,10 @@
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
             this.btnCancel.IsMouseOver = false;
-            this.btnCancel.Location = new System.Drawing.Point(80, 480);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.btnCancel.Location = new System.Drawing.Point(60, 390);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(60, 60);
+            this.btnCancel.Size = new System.Drawing.Size(45, 49);
             this.btnCancel.TabIndex = 32;
             this.btnCancel.TabStop = false;
             this.btnCancel.Text = "Cancel";
@@ -72,10 +72,10 @@
             this.btnOkay.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.btnOkay.Image = ((System.Drawing.Image)(resources.GetObject("btnOkay.Image")));
             this.btnOkay.IsMouseOver = false;
-            this.btnOkay.Location = new System.Drawing.Point(20, 480);
-            this.btnOkay.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.btnOkay.Location = new System.Drawing.Point(15, 390);
+            this.btnOkay.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnOkay.Name = "btnOkay";
-            this.btnOkay.Size = new System.Drawing.Size(60, 60);
+            this.btnOkay.Size = new System.Drawing.Size(45, 49);
             this.btnOkay.TabIndex = 31;
             this.btnOkay.TabStop = false;
             this.btnOkay.Text = "OK";
@@ -85,10 +85,9 @@
             // 
             this.txtBrowserInstanceName.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBrowserInstanceName.ForeColor = System.Drawing.Color.SteelBlue;
-            this.txtBrowserInstanceName.Location = new System.Drawing.Point(20, 90);
-            this.txtBrowserInstanceName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBrowserInstanceName.Location = new System.Drawing.Point(15, 73);
             this.txtBrowserInstanceName.Name = "txtBrowserInstanceName";
-            this.txtBrowserInstanceName.Size = new System.Drawing.Size(510, 32);
+            this.txtBrowserInstanceName.Size = new System.Drawing.Size(413, 27);
             this.txtBrowserInstanceName.TabIndex = 34;
             // 
             // lblBrowserInstanceName
@@ -96,10 +95,9 @@
             this.lblBrowserInstanceName.BackColor = System.Drawing.Color.Transparent;
             this.lblBrowserInstanceName.Font = new System.Drawing.Font("Segoe UI Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBrowserInstanceName.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblBrowserInstanceName.Location = new System.Drawing.Point(15, 60);
-            this.lblBrowserInstanceName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBrowserInstanceName.Location = new System.Drawing.Point(11, 49);
             this.lblBrowserInstanceName.Name = "lblBrowserInstanceName";
-            this.lblBrowserInstanceName.Size = new System.Drawing.Size(483, 29);
+            this.lblBrowserInstanceName.Size = new System.Drawing.Size(362, 24);
             this.lblBrowserInstanceName.TabIndex = 33;
             this.lblBrowserInstanceName.Text = "Browser Instance Name";
             // 
@@ -109,10 +107,10 @@
             this.lblScreenRecorder.BackColor = System.Drawing.Color.Transparent;
             this.lblScreenRecorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScreenRecorder.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblScreenRecorder.Location = new System.Drawing.Point(12, 9);
-            this.lblScreenRecorder.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblScreenRecorder.Location = new System.Drawing.Point(9, 7);
+            this.lblScreenRecorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblScreenRecorder.Name = "lblScreenRecorder";
-            this.lblScreenRecorder.Size = new System.Drawing.Size(527, 46);
+            this.lblScreenRecorder.Size = new System.Drawing.Size(427, 37);
             this.lblScreenRecorder.TabIndex = 35;
             this.lblScreenRecorder.Text = "sequence recorder settings";
             // 
@@ -121,10 +119,9 @@
             this.lblBrowserEngineType.BackColor = System.Drawing.Color.Transparent;
             this.lblBrowserEngineType.Font = new System.Drawing.Font("Segoe UI Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBrowserEngineType.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblBrowserEngineType.Location = new System.Drawing.Point(15, 130);
-            this.lblBrowserEngineType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBrowserEngineType.Location = new System.Drawing.Point(11, 106);
             this.lblBrowserEngineType.Name = "lblBrowserEngineType";
-            this.lblBrowserEngineType.Size = new System.Drawing.Size(483, 29);
+            this.lblBrowserEngineType.Size = new System.Drawing.Size(362, 24);
             this.lblBrowserEngineType.TabIndex = 36;
             this.lblBrowserEngineType.Text = "Browser Engine Type";
             // 
@@ -140,9 +137,10 @@
             "Microsoft Edge",
             "Internet Explorer",
             "None"});
-            this.cbxBrowserEngineType.Location = new System.Drawing.Point(20, 160);
+            this.cbxBrowserEngineType.Location = new System.Drawing.Point(15, 130);
+            this.cbxBrowserEngineType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxBrowserEngineType.Name = "cbxBrowserEngineType";
-            this.cbxBrowserEngineType.Size = new System.Drawing.Size(510, 33);
+            this.cbxBrowserEngineType.Size = new System.Drawing.Size(413, 28);
             this.cbxBrowserEngineType.TabIndex = 37;
             // 
             // lblSearchParameters
@@ -150,10 +148,9 @@
             this.lblSearchParameters.BackColor = System.Drawing.Color.Transparent;
             this.lblSearchParameters.Font = new System.Drawing.Font("Segoe UI Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchParameters.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblSearchParameters.Location = new System.Drawing.Point(15, 200);
-            this.lblSearchParameters.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSearchParameters.Location = new System.Drawing.Point(11, 162);
             this.lblSearchParameters.Name = "lblSearchParameters";
-            this.lblSearchParameters.Size = new System.Drawing.Size(483, 29);
+            this.lblSearchParameters.Size = new System.Drawing.Size(362, 24);
             this.lblSearchParameters.TabIndex = 38;
             this.lblSearchParameters.Text = "Default Search Parameters";
             // 
@@ -169,11 +166,12 @@
             this.enabled,
             this.parameterName});
             this.dgvParameterSettings.DataBindings.Add(new System.Windows.Forms.Binding("DataSource", this, "ParameterSettingsDT", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dgvParameterSettings.Location = new System.Drawing.Point(20, 230);
+            this.dgvParameterSettings.Location = new System.Drawing.Point(15, 187);
+            this.dgvParameterSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvParameterSettings.Name = "dgvParameterSettings";
             this.dgvParameterSettings.RowHeadersWidth = 51;
             this.dgvParameterSettings.RowTemplate.Height = 24;
-            this.dgvParameterSettings.Size = new System.Drawing.Size(510, 241);
+            this.dgvParameterSettings.Size = new System.Drawing.Size(413, 196);
             this.dgvParameterSettings.TabIndex = 39;
             // 
             // enabled
@@ -197,10 +195,10 @@
             // 
             // frmHTMLElementRecorderSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundChangeIndex = 1000;
-            this.ClientSize = new System.Drawing.Size(547, 558);
+            this.ClientSize = new System.Drawing.Size(440, 453);
             this.Controls.Add(this.dgvParameterSettings);
             this.Controls.Add(this.lblSearchParameters);
             this.Controls.Add(this.cbxBrowserEngineType);
@@ -211,7 +209,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOkay);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmHTMLElementRecorderSettings";

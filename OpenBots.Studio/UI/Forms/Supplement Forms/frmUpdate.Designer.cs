@@ -140,7 +140,7 @@
             this.Controls.Add(this.lblRemote);
             this.Controls.Add(this.lblLocal);
             this.Controls.Add(this.lblXPosition);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmUpdate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

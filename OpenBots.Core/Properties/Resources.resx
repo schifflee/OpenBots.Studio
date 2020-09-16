@@ -175,9 +175,6 @@
   <data name="command_string" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\command-string.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RPALogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="command_window_close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\command-window-close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -198,9 +195,6 @@
   </data>
   <data name="command_run_code" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\command-run-code.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="item_header" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\item-header.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="command_spreadsheet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\command-spreadsheet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,8 +241,8 @@
   <data name="command_comment" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\command-comment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="openbots-splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\openbots-splash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="OpenBots_splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenBots-splash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="various_stop_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\various-stop-button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -268,8 +262,8 @@
   <data name="command_input" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\command-input.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="asterisk_command_helper" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\asterisk-command-helper.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="command_helper" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\command-helper.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="executing" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\executing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -282,9 +276,6 @@
   </data>
   <data name="command_sequence" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\command-sequence.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="message" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\various-chat-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="various_record_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\various-record-button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -343,11 +334,11 @@
   <data name="command_cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\command-cancel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="taskt_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\taskt_icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="OpenBots_ico" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenBots-ico.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="taskt_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\taskt-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="OpenBots_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenBots-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="action_bar_run" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\action-bar-run.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -430,7 +421,13 @@
   <data name="browser_home" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\browser-home.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="openbots_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\openbots-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="OpenBots_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenBots-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OpenBots_ExtractPDFText" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenBots-ExtractPDFText.jar;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OpenBots_Updater" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenBots.Updater.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

@@ -155,7 +155,7 @@
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(891, 459);
             this.Controls.Add(this.tlpMain);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

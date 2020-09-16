@@ -208,6 +208,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             this.Controls.Add(this.tlpControls);
             this.Name = "frmHTMLElementRecorder";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmHTMLElementRecorder_FormClosing);
+            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.Load += new System.EventHandler(this.frmHTMLElementRecorder_Load);
             this.tlpControls.ResumeLayout(false);
             this.pnlHeader.ResumeLayout(false);

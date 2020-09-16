@@ -36,7 +36,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.BackgroundImage = global::OpenBots.Core.Properties.Resources.openbots_splash;
+            this.BackgroundImage = global::OpenBots.Core.Properties.Resources.OpenBots_splash;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(667, 615);
             this.DoubleBuffered = true;

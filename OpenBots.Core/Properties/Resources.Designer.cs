@@ -243,16 +243,6 @@ namespace OpenBots.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap asterisk_command_helper {
-            get {
-                object obj = ResourceManager.GetObject("asterisk_command_helper", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap browser_back {
             get {
                 object obj = ResourceManager.GetObject("browser_back", resourceCulture);
@@ -556,6 +546,16 @@ namespace OpenBots.Core.Properties {
         public static System.Drawing.Bitmap command_function {
             get {
                 object obj = ResourceManager.GetObject("command_function", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap command_helper {
+            get {
+                object obj = ResourceManager.GetObject("command_helper", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -943,16 +943,6 @@ namespace OpenBots.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap item_header {
-            get {
-                object obj = ResourceManager.GetObject("item_header", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap links_header {
             get {
                 object obj = ResourceManager.GetObject("links_header", resourceCulture);
@@ -961,11 +951,31 @@ namespace OpenBots.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] OpenBots_ExtractPDFText {
+            get {
+                object obj = ResourceManager.GetObject("OpenBots_ExtractPDFText", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon OpenBots_ico {
+            get {
+                object obj = ResourceManager.GetObject("OpenBots_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap logo {
+        public static System.Drawing.Bitmap OpenBots_icon {
             get {
-                object obj = ResourceManager.GetObject("logo", resourceCulture);
+                object obj = ResourceManager.GetObject("OpenBots_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -973,9 +983,9 @@ namespace OpenBots.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap message {
+        public static System.Drawing.Bitmap OpenBots_logo {
             get {
-                object obj = ResourceManager.GetObject("message", resourceCulture);
+                object obj = ResourceManager.GetObject("OpenBots_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -983,20 +993,20 @@ namespace OpenBots.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap openbots_logo {
+        public static System.Drawing.Bitmap OpenBots_splash {
             get {
-                object obj = ResourceManager.GetObject("openbots_logo", resourceCulture);
+                object obj = ResourceManager.GetObject("OpenBots_splash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static System.Drawing.Bitmap openbots_splash {
+        public static byte[] OpenBots_Updater {
             get {
-                object obj = ResourceManager.GetObject("openbots-splash", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("OpenBots_Updater", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -1066,26 +1076,6 @@ namespace OpenBots.Core.Properties {
         public static System.Drawing.Bitmap robot_source {
             get {
                 object obj = ResourceManager.GetObject("robot source", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        public static System.Drawing.Icon taskt_icon {
-            get {
-                object obj = ResourceManager.GetObject("taskt_icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap taskt_logo {
-            get {
-                object obj = ResourceManager.GetObject("taskt_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

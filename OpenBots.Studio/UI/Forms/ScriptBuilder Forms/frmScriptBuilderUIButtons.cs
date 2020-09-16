@@ -621,7 +621,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             _selectedTabScriptActions.Items.Clear();
         }
 
-        private void aboutTasktToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aboutOpenBotsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAbout frmAboutForm = new frmAbout();
             frmAboutForm.Show();
@@ -780,6 +780,8 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 
         private void uiAdvancedRecorderToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Hide();
+
             frmThickAppElementRecorder appElementRecorder = new frmThickAppElementRecorder();
             appElementRecorder.CallBackForm = this;
             appElementRecorder.IsRecordingSequence = true;
@@ -789,6 +791,9 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             CreateUndoSnapshot();
 
             appElementRecorder.ShowDialog();
+
+            Show();
+            BringToFront();
         }
 
         private void uiBtnRecordAdvancedUISequence_Click(object sender, EventArgs e)

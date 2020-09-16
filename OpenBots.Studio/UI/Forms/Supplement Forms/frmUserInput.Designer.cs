@@ -157,7 +157,7 @@
             this.BackgroundChangeIndex = 153;
             this.ClientSize = new System.Drawing.Size(712, 626);
             this.Controls.Add(this.tlpInputs);
-            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmUserInput";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

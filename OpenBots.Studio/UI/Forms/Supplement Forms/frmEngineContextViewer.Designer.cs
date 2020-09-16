@@ -115,7 +115,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1072, 567);
             this.Controls.Add(this.tlpContextViewer);
-            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmEngineContextViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

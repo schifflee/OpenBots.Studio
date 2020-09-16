@@ -85,8 +85,8 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.uiBtnSettings = new OpenBots.Core.UI.Controls.UIPictureButton();
             this.uiBtnAddVariable = new OpenBots.Core.UI.Controls.UIPictureButton();
             this.pnlStatus = new System.Windows.Forms.Panel();
-            this.splitContainerStudioControls = new taskt.UI.CustomControls.CustomUIControls.UISplitContainer();
-            this.uiPaneTabs = new taskt.UI.CustomControls.CustomUIControls.UITabControl();
+            this.splitContainerStudioControls = new OpenBots.UI.CustomControls.CustomUIControls.UISplitContainer();
+            this.uiPaneTabs = new OpenBots.UI.CustomControls.CustomUIControls.UITabControl();
             this.tpProject = new System.Windows.Forms.TabPage();
             this.tlpProject = new System.Windows.Forms.TableLayoutPanel();
             this.tvProject = new OpenBots.UI.CustomControls.CustomUIControls.UITreeView();
@@ -1912,7 +1912,6 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         private TableLayoutPanel tlpCommands;
         private Panel pnlCommandSearch;
         private TextBox txtCommandSearch;
-        private PictureBox pbMainLogo;
         private OpenBots.Core.UI.Controls.UIPictureButton uiBtnSaveSequence;
         private ToolStripMenuItem recorderToolStripMenuItem;
         private ToolStripMenuItem uiRecorderToolStripMenuItem;

@@ -111,7 +111,7 @@
             this.Controls.Add(this.lblBuildDate);
             this.Controls.Add(this.lblThankYou);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmAbout";
             this.Text = "about";

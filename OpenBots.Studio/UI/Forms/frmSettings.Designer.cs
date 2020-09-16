@@ -1425,7 +1425,7 @@
             this.ClientSize = new System.Drawing.Size(854, 978);
             this.Controls.Add(this.tlpSettings);
             this.DoubleBuffered = true;
-            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmSettings";
             this.Text = "Settings";

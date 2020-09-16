@@ -180,7 +180,7 @@
             this.Controls.Add(this.lstParameters);
             this.Controls.Add(this.lstMethods);
             this.Controls.Add(this.lstClasses);
-            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmDLLExplorer";
             this.Text = "DLL Explorer";

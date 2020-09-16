@@ -174,7 +174,7 @@
             this.Controls.Add(this.tabTestMode);
             this.Controls.Add(this.pnlMouseContainer);
             this.Controls.Add(this.pbMainImage);
-            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmImageCapture";
             this.Text = "Capture Image";

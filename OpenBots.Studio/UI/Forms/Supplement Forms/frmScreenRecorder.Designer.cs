@@ -347,7 +347,7 @@
             this.Controls.Add(this.pnlOptions);
             this.Controls.Add(this.uiBtnRecord);
             this.Controls.Add(this.lblRecording);
-            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmScreenRecorder";
             this.Text = "Screen Recorder";

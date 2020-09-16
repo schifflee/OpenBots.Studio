@@ -183,7 +183,7 @@
             this.Controls.Add(this.lblMainLogo);
             this.Controls.Add(this.dgvSearchParameters);
             this.Controls.Add(this.cboIEWindow);
-            this.Icon = taskt.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmBrowserElementBuilder";
             this.Text = "Web Element Builder";

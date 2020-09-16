@@ -168,49 +168,49 @@
                 <File Id="fil67F24708C083ABD16D5C1C8CC28B5EA1" KeyPath="yes" Source="$(var.HarvestPath)\SuperSocket.ClientEngine.dll" />
             </Component>
             <Component Id="cmpB600F4FDC62A3EEA15238829EACFAE1F" Guid="*">
-                <File Id="fil241EC1B9C86A35C00DDA978B7ED698AA" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Commands.dll" />
+                <File Id="fil241EC1B9C86A35C00DDA978B7ED698AA" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Commands.dll" />
             </Component>
             <Component Id="cmp1846F241A630192FF1F296B780540F49" Guid="*">
-                <File Id="fil73FF49D819DEC29708181349BF6AE2D2" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Commands.dll.config" />
+                <File Id="fil73FF49D819DEC29708181349BF6AE2D2" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Commands.dll.config" />
             </Component>
             <Component Id="cmpC5B7D740AF64ABBB8CD90B8581E4FB30" Guid="*">
-                <File Id="fil063272F0F2B29F8F23A7CC5ED8BC91D1" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Commands.pdb" />
+                <File Id="fil063272F0F2B29F8F23A7CC5ED8BC91D1" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Commands.pdb" />
             </Component>
             <Component Id="cmp6F23379EE4A1E96B37AF3607F3272B39" Guid="*">
-                <File Id="fil2B24A12A16B44F26D4059D345B908D1B" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Core.dll" />
+                <File Id="fil2B24A12A16B44F26D4059D345B908D1B" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Core.dll" />
             </Component>
             <Component Id="cmpAD88BED0EC75DE68AF8B7BF96083C11F" Guid="*">
-                <File Id="fil8D887BEB8D74FFD24FD6855A1CCF8F4A" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Core.dll.config" />
+                <File Id="fil8D887BEB8D74FFD24FD6855A1CCF8F4A" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Core.dll.config" />
             </Component>
             <Component Id="cmp5B80BA9777760FCC154AA2533E363F2A" Guid="*">
-                <File Id="fil935394F0A38127B1289DE56B2C741E3C" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Core.pdb" />
+                <File Id="fil935394F0A38127B1289DE56B2C741E3C" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Core.pdb" />
             </Component>
             <Component Id="cmpAEAB4554430E300A94E09C2549F330CF" Guid="*">
-                <File Id="fil45B3B8819D4B61A3377F07F5CF0B86C6" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Engine.dll" />
+                <File Id="fil45B3B8819D4B61A3377F07F5CF0B86C6" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Engine.dll" />
             </Component>
             <Component Id="cmpBEB3BD7D5DAF072367DE6461286AAD04" Guid="*">
-                <File Id="fil7CC0400E2681CB6494C8EE4E9110461E" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Engine.dll.config" />
+                <File Id="fil7CC0400E2681CB6494C8EE4E9110461E" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Engine.dll.config" />
             </Component>
             <Component Id="cmpE801429B2C9AB9DD3A51CFD96AD3800E" Guid="*">
-                <File Id="filD6A582C887632C0A7473E1279E7D817B" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Engine.pdb" />
+                <File Id="filD6A582C887632C0A7473E1279E7D817B" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Engine.pdb" />
             </Component>
             <Component Id="cmp485567B8B1BEDB6CD52871C4581479FE" Guid="*">
-                <File Id="fil1CD00E58BE8F2903FEB2250A8780442C" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Server.dll" />
+                <File Id="fil1CD00E58BE8F2903FEB2250A8780442C" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Server.dll" />
             </Component>
             <Component Id="cmp2ED5E422646AFC30CF454DF974511A20" Guid="*">
-                <File Id="fil0104A2CAE1260B35F1279FBB1F3BA703" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Server.dll.config" />
+                <File Id="fil0104A2CAE1260B35F1279FBB1F3BA703" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Server.dll.config" />
             </Component>
             <Component Id="cmp7BF17E002BB15D53DA96598876D8A291" Guid="*">
-                <File Id="filFAE4F9FA1E517159173285B412300198" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Server.pdb" />
+                <File Id="filFAE4F9FA1E517159173285B412300198" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Server.pdb" />
             </Component>
             <Component Id="cmp82E788635F5A520B0B1BAF5AC2A37865" Guid="*">
-                <File Id="fil4A57224F11CEFD731009325A99D07823" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Studio.exe" />
+                <File Id="fil4A57224F11CEFD731009325A99D07823" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Studio.exe" />
             </Component>
             <Component Id="cmp94053E320F962A49B2E92FC1A67E3D21" Guid="*">
-                <File Id="fil92BF51456BDAF91A2E90FE7312B24F82" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Studio.exe.config" />
+                <File Id="fil92BF51456BDAF91A2E90FE7312B24F82" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Studio.exe.config" />
             </Component>
             <Component Id="cmpCCEBD3E741AF3CB8DBE81356B373B9A4" Guid="*">
-                <File Id="fil0E201E0ADCBD68CAB566CCE9FF69DE45" KeyPath="yes" Source="$(var.HarvestPath)\taskt.Studio.pdb" />
+                <File Id="fil0E201E0ADCBD68CAB566CCE9FF69DE45" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Studio.pdb" />
             </Component>
             <Component Id="cmpF9AE74F399346A5945BCE5E758EA7BEA" Guid="*">
                 <File Id="fil8B504052261915F781224605A4965F8C" KeyPath="yes" Source="$(var.HarvestPath)\WebDriver.dll" />

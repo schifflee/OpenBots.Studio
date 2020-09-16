@@ -621,7 +621,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             _selectedTabScriptActions.Items.Clear();
         }
 
-        private void aboutTasktToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aboutOpenBotsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAbout frmAboutForm = new frmAbout();
             frmAboutForm.Show();

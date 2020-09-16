@@ -107,6 +107,42 @@
             <Component Id="cmpDEC75638C0BB07F6960173B8498F1A9F" Guid="*">
                 <File Id="fil0B5D77A29C06634A8141620BBF2F2C86" KeyPath="yes" Source="$(var.HarvestPath)\OneNoteOCRDll.dll" />
             </Component>
+            <Component Id="cmp0AB47A54B491D4E8E7FF68A7EC4F2057" Guid="*">
+                <File Id="fil58254DB5109F23497856986B9422F0E1" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Core.dll" />
+            </Component>
+            <Component Id="cmpEFF971387BD68B51D352AB5F5DADC88D" Guid="*">
+                <File Id="fil185B6A4F42EB80732D14B49E4F01FAE0" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Core.dll.config" />
+            </Component>
+            <Component Id="cmp31588CECE99271FAA23E1DB1E5DC76AD" Guid="*">
+                <File Id="fil9B959E4267435750C91EC2040BB44E68" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Core.pdb" />
+            </Component>
+            <Component Id="cmpCEE53B6BE496D9F56C05ABB708AE718C" Guid="*">
+                <File Id="fil6B1DDBD901280FA4CAD83D23864297AD" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Engine.dll" />
+            </Component>
+            <Component Id="cmpAD3E986B31B67DFE028B7D0F24393332" Guid="*">
+                <File Id="fil12F06E1BF377F6371BEB9446DF1AF291" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Engine.dll.config" />
+            </Component>
+            <Component Id="cmp0875044A3D94DC23BD52A55C3B164D7C" Guid="*">
+                <File Id="fil96F0017813D79516B01267779C8761E0" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Engine.pdb" />
+            </Component>
+            <Component Id="cmp64FBCE08B0FC5D14FA31BC3402C4C844" Guid="*">
+                <File Id="fil44EA6A1BC58C49D37F12185DB47BC018" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Server.dll" />
+            </Component>
+            <Component Id="cmpDCEBE232868F367BDF7DA693E1D15716" Guid="*">
+                <File Id="filEDA90A4A9A0FFEFE7C31C8BF8786892E" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Server.dll.config" />
+            </Component>
+            <Component Id="cmpE668CD134B090234473F702309AEE17A" Guid="*">
+                <File Id="fil025C58C8E1373294FAECE6C7A093E408" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Server.pdb" />
+            </Component>
+            <Component Id="cmp4DE8F72BB500C612172726E9F05B0748" Guid="*">
+                <File Id="fil8F91CAAB0C138AA15B5403095EE78FE5" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Studio.exe" />
+            </Component>
+            <Component Id="cmpAB7C18B7A082CA519F9DB01F1D3CBFA0" Guid="*">
+                <File Id="filC5213570CB4DCED277A3D972E0441331" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Studio.exe.config" />
+            </Component>
+            <Component Id="cmp6B58A3A626B78C54E611CE0047F92D64" Guid="*">
+                <File Id="filC7F7F2FBA62523F65DF9C42B488DCCD2" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Studio.pdb" />
+            </Component>
             <Component Id="cmpEE5AB48BFCABC47AE33AE13DDD88CAB9" Guid="*">
                 <File Id="fil242E5C00765E62335C706E4EBD11E1B9" KeyPath="yes" Source="$(var.HarvestPath)\Owin.dll" />
             </Component>
@@ -166,51 +202,6 @@
             </Component>
             <Component Id="cmp73078346AD867C43593B2FD39FB00EE2" Guid="*">
                 <File Id="fil67F24708C083ABD16D5C1C8CC28B5EA1" KeyPath="yes" Source="$(var.HarvestPath)\SuperSocket.ClientEngine.dll" />
-            </Component>
-            <Component Id="cmpB600F4FDC62A3EEA15238829EACFAE1F" Guid="*">
-                <File Id="fil241EC1B9C86A35C00DDA978B7ED698AA" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Commands.dll" />
-            </Component>
-            <Component Id="cmp1846F241A630192FF1F296B780540F49" Guid="*">
-                <File Id="fil73FF49D819DEC29708181349BF6AE2D2" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Commands.dll.config" />
-            </Component>
-            <Component Id="cmpC5B7D740AF64ABBB8CD90B8581E4FB30" Guid="*">
-                <File Id="fil063272F0F2B29F8F23A7CC5ED8BC91D1" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Commands.pdb" />
-            </Component>
-            <Component Id="cmp6F23379EE4A1E96B37AF3607F3272B39" Guid="*">
-                <File Id="fil2B24A12A16B44F26D4059D345B908D1B" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Core.dll" />
-            </Component>
-            <Component Id="cmpAD88BED0EC75DE68AF8B7BF96083C11F" Guid="*">
-                <File Id="fil8D887BEB8D74FFD24FD6855A1CCF8F4A" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Core.dll.config" />
-            </Component>
-            <Component Id="cmp5B80BA9777760FCC154AA2533E363F2A" Guid="*">
-                <File Id="fil935394F0A38127B1289DE56B2C741E3C" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Core.pdb" />
-            </Component>
-            <Component Id="cmpAEAB4554430E300A94E09C2549F330CF" Guid="*">
-                <File Id="fil45B3B8819D4B61A3377F07F5CF0B86C6" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Engine.dll" />
-            </Component>
-            <Component Id="cmpBEB3BD7D5DAF072367DE6461286AAD04" Guid="*">
-                <File Id="fil7CC0400E2681CB6494C8EE4E9110461E" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Engine.dll.config" />
-            </Component>
-            <Component Id="cmpE801429B2C9AB9DD3A51CFD96AD3800E" Guid="*">
-                <File Id="filD6A582C887632C0A7473E1279E7D817B" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Engine.pdb" />
-            </Component>
-            <Component Id="cmp485567B8B1BEDB6CD52871C4581479FE" Guid="*">
-                <File Id="fil1CD00E58BE8F2903FEB2250A8780442C" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Server.dll" />
-            </Component>
-            <Component Id="cmp2ED5E422646AFC30CF454DF974511A20" Guid="*">
-                <File Id="fil0104A2CAE1260B35F1279FBB1F3BA703" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Server.dll.config" />
-            </Component>
-            <Component Id="cmp7BF17E002BB15D53DA96598876D8A291" Guid="*">
-                <File Id="filFAE4F9FA1E517159173285B412300198" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Server.pdb" />
-            </Component>
-            <Component Id="cmp82E788635F5A520B0B1BAF5AC2A37865" Guid="*">
-                <File Id="fil4A57224F11CEFD731009325A99D07823" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Studio.exe" />
-            </Component>
-            <Component Id="cmp94053E320F962A49B2E92FC1A67E3D21" Guid="*">
-                <File Id="fil92BF51456BDAF91A2E90FE7312B24F82" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Studio.exe.config" />
-            </Component>
-            <Component Id="cmpCCEBD3E741AF3CB8DBE81356B373B9A4" Guid="*">
-                <File Id="fil0E201E0ADCBD68CAB566CCE9FF69DE45" KeyPath="yes" Source="$(var.HarvestPath)\OpenBots.Studio.pdb" />
             </Component>
             <Component Id="cmpF9AE74F399346A5945BCE5E758EA7BEA" Guid="*">
                 <File Id="fil8B504052261915F781224605A4965F8C" KeyPath="yes" Source="$(var.HarvestPath)\WebDriver.dll" />
@@ -359,6 +350,18 @@
             <ComponentRef Id="cmp4CDF7DFD2D0E95016925C6786A10C503" />
             <ComponentRef Id="cmpEC5CA923F382FAC50F6D948F86E329B2" />
             <ComponentRef Id="cmpDEC75638C0BB07F6960173B8498F1A9F" />
+            <ComponentRef Id="cmp0AB47A54B491D4E8E7FF68A7EC4F2057" />
+            <ComponentRef Id="cmpEFF971387BD68B51D352AB5F5DADC88D" />
+            <ComponentRef Id="cmp31588CECE99271FAA23E1DB1E5DC76AD" />
+            <ComponentRef Id="cmpCEE53B6BE496D9F56C05ABB708AE718C" />
+            <ComponentRef Id="cmpAD3E986B31B67DFE028B7D0F24393332" />
+            <ComponentRef Id="cmp0875044A3D94DC23BD52A55C3B164D7C" />
+            <ComponentRef Id="cmp64FBCE08B0FC5D14FA31BC3402C4C844" />
+            <ComponentRef Id="cmpDCEBE232868F367BDF7DA693E1D15716" />
+            <ComponentRef Id="cmpE668CD134B090234473F702309AEE17A" />
+            <ComponentRef Id="cmp4DE8F72BB500C612172726E9F05B0748" />
+            <ComponentRef Id="cmpAB7C18B7A082CA519F9DB01F1D3CBFA0" />
+            <ComponentRef Id="cmp6B58A3A626B78C54E611CE0047F92D64" />
             <ComponentRef Id="cmpEE5AB48BFCABC47AE33AE13DDD88CAB9" />
             <ComponentRef Id="cmp973DC7DF7FF7E09C5C63C0A29C5AFD96" />
             <ComponentRef Id="cmpF6B88FAE443CDBAA2A4B1E39148AE30C" />
@@ -379,21 +382,6 @@
             <ComponentRef Id="cmp3513E6ED06DD920D66EDEC5F63C9E215" />
             <ComponentRef Id="cmp82B10DABB22BA9C2D6EF11BA56364A8B" />
             <ComponentRef Id="cmp73078346AD867C43593B2FD39FB00EE2" />
-            <ComponentRef Id="cmpB600F4FDC62A3EEA15238829EACFAE1F" />
-            <ComponentRef Id="cmp1846F241A630192FF1F296B780540F49" />
-            <ComponentRef Id="cmpC5B7D740AF64ABBB8CD90B8581E4FB30" />
-            <ComponentRef Id="cmp6F23379EE4A1E96B37AF3607F3272B39" />
-            <ComponentRef Id="cmpAD88BED0EC75DE68AF8B7BF96083C11F" />
-            <ComponentRef Id="cmp5B80BA9777760FCC154AA2533E363F2A" />
-            <ComponentRef Id="cmpAEAB4554430E300A94E09C2549F330CF" />
-            <ComponentRef Id="cmpBEB3BD7D5DAF072367DE6461286AAD04" />
-            <ComponentRef Id="cmpE801429B2C9AB9DD3A51CFD96AD3800E" />
-            <ComponentRef Id="cmp485567B8B1BEDB6CD52871C4581479FE" />
-            <ComponentRef Id="cmp2ED5E422646AFC30CF454DF974511A20" />
-            <ComponentRef Id="cmp7BF17E002BB15D53DA96598876D8A291" />
-            <ComponentRef Id="cmp82E788635F5A520B0B1BAF5AC2A37865" />
-            <ComponentRef Id="cmp94053E320F962A49B2E92FC1A67E3D21" />
-            <ComponentRef Id="cmpCCEBD3E741AF3CB8DBE81356B373B9A4" />
             <ComponentRef Id="cmpF9AE74F399346A5945BCE5E758EA7BEA" />
             <ComponentRef Id="cmp856F2D552EDA91B961A5D806C4D8CBB8" />
             <ComponentRef Id="cmp2E0BF06DC849793D7CC5EA2926C3D4B8" />

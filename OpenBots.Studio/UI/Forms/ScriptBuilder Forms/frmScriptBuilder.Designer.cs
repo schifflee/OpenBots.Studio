@@ -33,7 +33,6 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScriptBuilder));
-            OpenBots.Core.Utilities.FormsUtilities.Theme theme1 = new OpenBots.Core.Utilities.FormsUtilities.Theme();
             this.cmsProjectFolderActions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiCopyFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -685,7 +684,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.uiBtnRecordAdvancedUISequence.DisplayText = "Adv UI";
             this.uiBtnRecordAdvancedUISequence.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnRecordAdvancedUISequence.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnRecordAdvancedUISequence.Image = global::OpenBots.Core.Properties.Resources.action_bar_element_recorder;
+            this.uiBtnRecordAdvancedUISequence.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnRecordAdvancedUISequence.Image")));
             this.uiBtnRecordAdvancedUISequence.IsMouseOver = false;
             this.uiBtnRecordAdvancedUISequence.Location = new System.Drawing.Point(151, 19);
             this.uiBtnRecordAdvancedUISequence.Name = "uiBtnRecordAdvancedUISequence";
@@ -736,7 +735,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.uiBtnRecordUISequence.DisplayText = "UI";
             this.uiBtnRecordUISequence.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnRecordUISequence.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.uiBtnRecordUISequence.Image = global::OpenBots.Core.Properties.Resources.action_bar_element_recorder;
+            this.uiBtnRecordUISequence.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnRecordUISequence.Image")));
             this.uiBtnRecordUISequence.IsMouseOver = false;
             this.uiBtnRecordUISequence.Location = new System.Drawing.Point(103, 19);
             this.uiBtnRecordUISequence.Name = "uiBtnRecordUISequence";
@@ -993,7 +992,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.uiBtnCollapse.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.uiBtnCollapse.DisplayText = null;
             this.uiBtnCollapse.DisplayTextBrush = System.Drawing.Color.White;
-            this.uiBtnCollapse.Image = global::OpenBots.Core.Properties.Resources.project_collapse;
+            this.uiBtnCollapse.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnCollapse.Image")));
             this.uiBtnCollapse.IsMouseOver = false;
             this.uiBtnCollapse.Location = new System.Drawing.Point(45, 1);
             this.uiBtnCollapse.Margin = new System.Windows.Forms.Padding(2);
@@ -1010,7 +1009,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.uiBtnOpenDirectory.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.uiBtnOpenDirectory.DisplayText = null;
             this.uiBtnOpenDirectory.DisplayTextBrush = System.Drawing.Color.White;
-            this.uiBtnOpenDirectory.Image = global::OpenBots.Core.Properties.Resources.project_open_directory;
+            this.uiBtnOpenDirectory.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnOpenDirectory.Image")));
             this.uiBtnOpenDirectory.IsMouseOver = false;
             this.uiBtnOpenDirectory.Location = new System.Drawing.Point(67, 1);
             this.uiBtnOpenDirectory.Margin = new System.Windows.Forms.Padding(2);
@@ -1027,7 +1026,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.uiBtnExpand.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.uiBtnExpand.DisplayText = null;
             this.uiBtnExpand.DisplayTextBrush = System.Drawing.Color.White;
-            this.uiBtnExpand.Image = global::OpenBots.Core.Properties.Resources.project_expand;
+            this.uiBtnExpand.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnExpand.Image")));
             this.uiBtnExpand.IsMouseOver = false;
             this.uiBtnExpand.Location = new System.Drawing.Point(22, 1);
             this.uiBtnExpand.Margin = new System.Windows.Forms.Padding(2);
@@ -1044,7 +1043,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.uiBtnRefresh.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.uiBtnRefresh.DisplayText = null;
             this.uiBtnRefresh.DisplayTextBrush = System.Drawing.Color.White;
-            this.uiBtnRefresh.Image = global::OpenBots.Core.Properties.Resources.browser_refresh;
+            this.uiBtnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnRefresh.Image")));
             this.uiBtnRefresh.IsMouseOver = false;
             this.uiBtnRefresh.Location = new System.Drawing.Point(0, 1);
             this.uiBtnRefresh.Margin = new System.Windows.Forms.Padding(2);
@@ -1547,7 +1546,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             // elementRecorderToolStripMenuItem
             // 
             this.elementRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.elementRecorderToolStripMenuItem.Image = global::OpenBots.Core.Properties.Resources.action_bar_element;
+            this.elementRecorderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("elementRecorderToolStripMenuItem.Image")));
             this.elementRecorderToolStripMenuItem.Name = "elementRecorderToolStripMenuItem";
             this.elementRecorderToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.elementRecorderToolStripMenuItem.Text = "Element Recorder";
@@ -1565,7 +1564,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             // uiAdvancedRecorderToolStripMenuItem
             // 
             this.uiAdvancedRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.uiAdvancedRecorderToolStripMenuItem.Image = global::OpenBots.Core.Properties.Resources.action_bar_record;
+            this.uiAdvancedRecorderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("uiAdvancedRecorderToolStripMenuItem.Image")));
             this.uiAdvancedRecorderToolStripMenuItem.Name = "uiAdvancedRecorderToolStripMenuItem";
             this.uiAdvancedRecorderToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.uiAdvancedRecorderToolStripMenuItem.Text = "Advanced UI Recorder";

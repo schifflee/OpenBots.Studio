@@ -134,7 +134,6 @@
             this.cbxBrowserEngineType.Items.AddRange(new object[] {
             "Chrome",
             "Firefox",
-            "Microsoft Edge",
             "Internet Explorer",
             "None"});
             this.cbxBrowserEngineType.Location = new System.Drawing.Point(15, 130);

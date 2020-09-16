@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using System;
@@ -37,7 +36,6 @@ namespace OpenBots.Commands
         [PropertyDescription("Browser Engine Type")]
         [PropertyUISelectionOption("Chrome")]
         [PropertyUISelectionOption("Firefox")]
-        [PropertyUISelectionOption("Microsoft Edge")]
         [PropertyUISelectionOption("Internet Explorer")]
         [InputSpecification("Select the browser engine to execute the Selenium automation with.")]
         [SampleUsage("")]
@@ -100,9 +98,6 @@ namespace OpenBots.Commands
             var convertedOptions = v_SeleniumOptions.ConvertUserVariableToString(engine);
             var vURL = v_URL.ConvertUserVariableToString(engine);
 
-            string driverPath = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Resources");
-
-            DriverService driverService;
             IWebDriver webDriver;
 
             switch (v_EngineType)
@@ -114,8 +109,7 @@ namespace OpenBots.Commands
                     if (!string.IsNullOrEmpty(convertedOptions.Trim()))
                         chromeOptions.AddArguments(convertedOptions);
 
-                    driverService = ChromeDriverService.CreateDefaultService(driverPath);
-                    webDriver = new ChromeDriver((ChromeDriverService)driverService, chromeOptions);
+                    webDriver = new ChromeDriver(chromeOptions);
                     break;
 
                 case "Firefox":
@@ -126,23 +120,14 @@ namespace OpenBots.Commands
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
                     firefoxOptions.BrowserExecutableLocation = firefoxExecutablePath;
 
-                    driverService = FirefoxDriverService.CreateDefaultService(driverPath);
-                    webDriver = new FirefoxDriver((FirefoxDriverService)driverService, firefoxOptions);
-                    break;
-
-                case "Microsoft Edge":
-                    EdgeOptions edgeOptions = new EdgeOptions();
-
-                    driverService = EdgeDriverService.CreateDefaultService(driverPath);
-                    webDriver = new EdgeDriver((EdgeDriverService)driverService, edgeOptions);
+                    webDriver = new FirefoxDriver(firefoxOptions);
                     break;
 
                 case "Internet Explorer":
                     InternetExplorerOptions ieOptions = new InternetExplorerOptions();
                     ieOptions.IgnoreZoomLevel = true;
 
-                    driverService = InternetExplorerDriverService.CreateDefaultService(driverPath);
-                    webDriver = new InternetExplorerDriver((InternetExplorerDriverService)driverService, ieOptions);
+                    webDriver = new InternetExplorerDriver(ieOptions);
                     break;
 
                 default:

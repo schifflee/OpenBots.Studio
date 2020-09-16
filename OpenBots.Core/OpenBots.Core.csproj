@@ -335,8 +335,8 @@
     <Content Include="Resources\links-header.png" />
     <Content Include="Resources\microsoft-excel-icon.png" />
     <Content Include="Resources\microsoft-word-icon.png" />
-    <None Include="Resources\openbots-ExtractPDFText.jar" />
-    <Content Include="Resources\openbots-logo.png" />
+    <None Include="Resources\OpenBots-ExtractPDFText.jar" />
+    <Content Include="Resources\OpenBots-logo.png" />
     <None Include="Resources\OpenBots.Updater.exe" />
     <Content Include="Resources\paste.png" />
     <Content Include="Resources\pdf-icon.png" />

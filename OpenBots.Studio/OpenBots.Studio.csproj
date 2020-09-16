@@ -53,7 +53,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>openbots-ico.ico</ApplicationIcon>
+    <ApplicationIcon>OpenBots-ico.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -756,7 +756,7 @@
     <Content Include="Firefox\sandboxbroker.dll" />
     <Content Include="Firefox\softokn3.dll" />
     <Content Include="Firefox\xul.dll" />
-    <Content Include="openbots-ico.ico" />
+    <Content Include="OpenBots-ico.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sample Scripts\" />

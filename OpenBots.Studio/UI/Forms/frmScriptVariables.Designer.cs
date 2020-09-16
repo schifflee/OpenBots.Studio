@@ -196,7 +196,7 @@
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(865, 647);
             this.Controls.Add(this.tlpVariables);
-            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmScriptVariables";
             this.Text = "Variables";

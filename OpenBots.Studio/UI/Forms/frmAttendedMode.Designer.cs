@@ -108,7 +108,7 @@
             this.Controls.Add(this.uiBtnRun);
             this.Controls.Add(this.cboSelectedScript);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmAttendedMode";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

@@ -108,7 +108,7 @@
             this.Controls.Add(this.uiBtnCancel);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.lstVariables);
-            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmVariableSelector";
             this.Text = "Insert a Variable";

@@ -222,7 +222,7 @@
             this.Controls.Add(this.lstSteppingCommands);
             this.Controls.Add(this.pbBotIcon);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmScriptEngine";
             this.Text = "Bot Engine";

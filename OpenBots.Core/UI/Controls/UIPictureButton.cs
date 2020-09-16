@@ -51,7 +51,7 @@ namespace OpenBots.Core.UI.Controls
 
         public UIPictureButton()
         {
-            Image = Resources.openbots_icon;
+            Image = Resources.OpenBots_icon;
             DisplayTextBrush = Color.White;
             Size = new Size(45, 45);
             DisplayText = "Text";

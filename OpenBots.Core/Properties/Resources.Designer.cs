@@ -963,9 +963,9 @@ namespace OpenBots.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        public static System.Drawing.Icon openbots_ico {
+        public static System.Drawing.Icon OpenBots_ico {
             get {
-                object obj = ResourceManager.GetObject("openbots_ico", resourceCulture);
+                object obj = ResourceManager.GetObject("OpenBots_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -973,9 +973,9 @@ namespace OpenBots.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap openbots_icon {
+        public static System.Drawing.Bitmap OpenBots_icon {
             get {
-                object obj = ResourceManager.GetObject("openbots_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("OpenBots_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -983,9 +983,9 @@ namespace OpenBots.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap openbots_logo {
+        public static System.Drawing.Bitmap OpenBots_logo {
             get {
-                object obj = ResourceManager.GetObject("openbots_logo", resourceCulture);
+                object obj = ResourceManager.GetObject("OpenBots_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -993,9 +993,9 @@ namespace OpenBots.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap openbots_splash {
+        public static System.Drawing.Bitmap OpenBots_splash {
             get {
-                object obj = ResourceManager.GetObject("openbots_splash", resourceCulture);
+                object obj = ResourceManager.GetObject("OpenBots_splash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

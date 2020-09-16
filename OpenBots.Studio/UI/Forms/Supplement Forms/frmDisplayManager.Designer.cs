@@ -275,7 +275,7 @@
             this.BackgroundChangeIndex = 3;
             this.ClientSize = new System.Drawing.Size(1017, 654);
             this.Controls.Add(this.tlpDisplayManager);
-            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.Name = "frmDisplayManager";
             this.Text = "Display Manager for VMs";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

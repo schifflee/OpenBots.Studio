@@ -260,7 +260,7 @@
             this.uiBtnOk.DisplayText = "Add";
             this.uiBtnOk.DisplayTextBrush = System.Drawing.Color.White;
             this.uiBtnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.uiBtnOk.Image = global::OpenBots.Core.Properties.Resources.openbots_icon;
+            this.uiBtnOk.Image = global::OpenBots.Core.Properties.Resources.OpenBots_icon;
             this.uiBtnOk.IsMouseOver = false;
             this.uiBtnOk.Location = new System.Drawing.Point(8, 423);
             this.uiBtnOk.Name = "uiBtnOk";

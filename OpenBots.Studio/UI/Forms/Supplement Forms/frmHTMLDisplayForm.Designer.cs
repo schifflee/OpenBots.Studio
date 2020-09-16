@@ -49,7 +49,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1404, 986);
             this.Controls.Add(this.webBrowserHTML);
-            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmHTMLDisplayForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -235,7 +235,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             this.Controls.Add(this.txtElementName);
             this.Controls.Add(this.lblDefineName);
             this.Controls.Add(this.lblHeader);
-            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MinimumSize = new System.Drawing.Size(627, 630);
             this.Name = "frmAddElement";

@@ -173,7 +173,7 @@
             this.ClientSize = new System.Drawing.Size(980, 252);
             this.Controls.Add(this.tlpControls);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmThickAppElementRecorder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

@@ -148,7 +148,7 @@
             this.Controls.Add(this.uiBtnContinue);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = OpenBots.Core.Properties.Resources.openbots_ico;
+            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmError";

@@ -335,7 +335,9 @@
     <Content Include="Resources\links-header.png" />
     <Content Include="Resources\microsoft-excel-icon.png" />
     <Content Include="Resources\microsoft-word-icon.png" />
+    <None Include="Resources\openbots-ExtractPDFText.jar" />
     <Content Include="Resources\openbots-logo.png" />
+    <None Include="Resources\OpenBots.Updater.exe" />
     <Content Include="Resources\paste.png" />
     <Content Include="Resources\pdf-icon.png" />
     <Content Include="Resources\project-collapse.png" />
@@ -347,8 +349,6 @@
     <Content Include="Resources\robot-bouncing.gif" />
     <Content Include="Resources\robot-error.png" />
     <Content Include="Resources\robot-error1.png" />
-    <Content Include="Resources\taskt-ExtractPDFText.jar" />
-    <Content Include="Resources\taskt-updater.exe" />
     <Content Include="Resources\various-question.png" />
     <Content Include="Resources\various-record-button.png" />
     <Content Include="Resources\various-stop-button.png" />

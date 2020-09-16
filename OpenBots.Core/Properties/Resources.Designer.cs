@@ -243,16 +243,6 @@ namespace OpenBots.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap asterisk_command_helper {
-            get {
-                object obj = ResourceManager.GetObject("asterisk_command_helper", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap browser_back {
             get {
                 object obj = ResourceManager.GetObject("browser_back", resourceCulture);
@@ -961,6 +951,16 @@ namespace OpenBots.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] OpenBots_ExtractPDFText {
+            get {
+                object obj = ResourceManager.GetObject("OpenBots_ExtractPDFText", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         public static System.Drawing.Icon openbots_ico {
@@ -997,6 +997,16 @@ namespace OpenBots.Core.Properties {
             get {
                 object obj = ResourceManager.GetObject("openbots_splash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] OpenBots_Updater {
+            get {
+                object obj = ResourceManager.GetObject("OpenBots_Updater", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

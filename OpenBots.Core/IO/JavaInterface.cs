@@ -35,7 +35,7 @@ namespace OpenBots.Core.IO
             var args = string.Join(" ", pdfPath);
 
             //create interface process
-            var javaInterface = Create("openbots-ExtractPDFText.jar", args);
+            var javaInterface = Create("OpenBots-ExtractPDFText.jar", args);
 
             //run command line
             javaInterface.Start();

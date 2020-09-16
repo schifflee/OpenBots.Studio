@@ -76,7 +76,7 @@ namespace OpenBots.Commands
 
             if (currentUser.Type == "EX")
             {
-                MAPIFolder inboxFolder = test.GetDefaultFolder(OlDefaultFolders.olFolderInbox).Parent;
+                MAPIFolder inboxFolder = (MAPIFolder)test.GetDefaultFolder(OlDefaultFolders.olFolderInbox).Parent;
                 MAPIFolder destinationFolder = inboxFolder.Folders[vDestinationFolder];
 
                 if(v_OperationType == "Move MailItem")
@@ -98,13 +98,13 @@ namespace OpenBots.Commands
                     {
                         if (vMailItem.UnRead == true)
                         {
-                            copyMail = vMailItem.Copy();
+                            copyMail = (MailItem)vMailItem.Copy();
                             copyMail.Move(destinationFolder);
                         }
                     }
                     else
                     {
-                        copyMail = vMailItem.Copy();
+                        copyMail = (MailItem)vMailItem.Copy();
                         copyMail.Move(destinationFolder);
                     }                       
                 }               

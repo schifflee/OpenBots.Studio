@@ -380,7 +380,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.notifyTray.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyTray.BalloonTipText = "OpenBots Studio is still running in your system tray. Double-click to restore Ope" +
     "nBots Studio to full size!\r\n";
-            this.notifyTray.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyTray.Icon")));
+            this.notifyTray.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
             this.notifyTray.Text = "OpenBots Studio, Open Source Automation for All";
             this.notifyTray.Visible = true;
             this.notifyTray.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyTray_MouseDoubleClick);
@@ -1472,7 +1472,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.variablesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.variablesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("variablesToolStripMenuItem.Image")));
             this.variablesToolStripMenuItem.Name = "variablesToolStripMenuItem";
-            this.variablesToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.variablesToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.variablesToolStripMenuItem.Text = "Variable Manager";
             this.variablesToolStripMenuItem.Click += new System.EventHandler(this.variablesToolStripMenuItem_Click);
             // 
@@ -1481,7 +1481,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.elementManagerToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.elementManagerToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("elementManagerToolStripMenuItem.Image")));
             this.elementManagerToolStripMenuItem.Name = "elementManagerToolStripMenuItem";
-            this.elementManagerToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.elementManagerToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.elementManagerToolStripMenuItem.Text = "Element Manager";
             this.elementManagerToolStripMenuItem.Click += new System.EventHandler(this.elementManagerToolStripMenuItem_Click);
             // 
@@ -1490,7 +1490,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.settingsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.settingsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("settingsToolStripMenuItem.Image")));
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.settingsToolStripMenuItem.Text = "Settings Manager";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -1499,7 +1499,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.showSearchBarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.showSearchBarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("showSearchBarToolStripMenuItem.Image")));
             this.showSearchBarToolStripMenuItem.Name = "showSearchBarToolStripMenuItem";
-            this.showSearchBarToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.showSearchBarToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.showSearchBarToolStripMenuItem.Text = "Show Search Bar";
             this.showSearchBarToolStripMenuItem.Click += new System.EventHandler(this.showSearchBarToolStripMenuItem_Click);
             // 
@@ -1508,7 +1508,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.aboutOpenBotsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.aboutOpenBotsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutOpenBotsToolStripMenuItem.Image")));
             this.aboutOpenBotsToolStripMenuItem.Name = "aboutOpenBotsToolStripMenuItem";
-            this.aboutOpenBotsToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.aboutOpenBotsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.aboutOpenBotsToolStripMenuItem.Text = "About OpenBots Studio";
             this.aboutOpenBotsToolStripMenuItem.Click += new System.EventHandler(this.aboutOpenBotsToolStripMenuItem_Click);
             // 

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenBots.Engine", "OpenBots
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenBots.Studio", "OpenBots.Studio\OpenBots.Studio.csproj", "{C1BE3204-94D1-4A9A-AE30-C3E302383182}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenBots.Core", "OpenBots.Core\OpenBots.Core.csproj", "{6956836D-D2B0-4B7A-B06D-FA3A22B4C4FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,18 @@ Global
 		{C1BE3204-94D1-4A9A-AE30-C3E302383182}.Release|x64.Build.0 = Release|x64
 		{C1BE3204-94D1-4A9A-AE30-C3E302383182}.Release|x86.ActiveCfg = Release|Any CPU
 		{C1BE3204-94D1-4A9A-AE30-C3E302383182}.Release|x86.Build.0 = Release|Any CPU
+		{6956836D-D2B0-4B7A-B06D-FA3A22B4C4FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6956836D-D2B0-4B7A-B06D-FA3A22B4C4FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6956836D-D2B0-4B7A-B06D-FA3A22B4C4FF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6956836D-D2B0-4B7A-B06D-FA3A22B4C4FF}.Debug|x64.Build.0 = Debug|Any CPU
+		{6956836D-D2B0-4B7A-B06D-FA3A22B4C4FF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6956836D-D2B0-4B7A-B06D-FA3A22B4C4FF}.Debug|x86.Build.0 = Debug|Any CPU
+		{6956836D-D2B0-4B7A-B06D-FA3A22B4C4FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6956836D-D2B0-4B7A-B06D-FA3A22B4C4FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6956836D-D2B0-4B7A-B06D-FA3A22B4C4FF}.Release|x64.ActiveCfg = Release|Any CPU
+		{6956836D-D2B0-4B7A-B06D-FA3A22B4C4FF}.Release|x64.Build.0 = Release|Any CPU
+		{6956836D-D2B0-4B7A-B06D-FA3A22B4C4FF}.Release|x86.ActiveCfg = Release|Any CPU
+		{6956836D-D2B0-4B7A-B06D-FA3A22B4C4FF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

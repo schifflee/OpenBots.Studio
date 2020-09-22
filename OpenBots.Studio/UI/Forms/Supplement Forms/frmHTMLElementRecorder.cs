@@ -15,6 +15,7 @@ using OpenBots.Core.Settings;
 using OpenBots.UI.Forms.ScriptBuilder_Forms;
 using OpenBots.UI.Supplement_Forms;
 using OpenBots.Utilities;
+using System.Diagnostics;
 
 namespace OpenBots.UI.Forms.Supplement_Forms
 {
@@ -47,6 +48,10 @@ namespace OpenBots.UI.Forms.Supplement_Forms
         private SeleniumCreateBrowserCommand _createBrowserCommand;
         private ApplicationSettings _appSettings;
         private Point _lastSavedPoint;
+        private Stopwatch _stopwatch;
+
+        private string _recordingMessage = "Recording. Press F2 to save and close.";
+        private string _errorMessage = "Error cloning element. Please Try Again.";
 
         public frmHTMLElementRecorder(string startURL)
         {
@@ -66,6 +71,9 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             wbElementRecorder.Navigate(StartURL);
             tbURL.Text = StartURL;
             tbURL.Refresh();
+
+            _stopwatch = new Stopwatch();
+            _stopwatch.Start();
         }
 
         private void frmHTMLElementRecorder_Load(object sender, EventArgs e)
@@ -79,7 +87,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                 _isRecording = true;
                 TopMost = true;
                 if (!chkStopOnClick.Checked)
-                    lblDescription.Text = "Recording. Press F2 to save and close.";
+                    lblDescription.Text = _recordingMessage;
 
                 SearchParameters = new DataTable();
                 SearchParameters.Columns.Add("Enabled");
@@ -114,8 +122,18 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                         _parameterSettings = settingsForm.ParameterSettingsDT;
                     }
                     else
-                    {
-                        pbRecord_Click(null, null);
+                    {                       
+                        _isRecording = false;
+                        _isFirstRecordClick = true;
+
+                        lblDescription.Text = "Instructions: navigate to the target URL and click the record button. " + 
+                                              "Once recording has started, click the element that you want to capture.";
+
+                        //remove wait for left mouse down event
+                        wbElementRecorder.DomClick -= wbElementRecorder_DomClick;
+                        wbElementRecorder.DomKeyDown -= WbElementRecorder_DomKeyDown;
+                        GlobalHook.HookStopped -= GlobalHook_HookStopped;
+
                         return;
                     }
 
@@ -135,35 +153,52 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                 _isRecording = false;
                 if (!chkStopOnClick.Checked)
                     lblDescription.Text = "Recording has stopped. Press F2 to save and close.";
-
-                //remove wait for left mouse down event
-                wbElementRecorder.DomClick -= wbElementRecorder_DomClick;
-                wbElementRecorder.DomKeyDown -= WbElementRecorder_DomKeyDown;
             }
         }
 
         private void GlobalHook_HookStopped(object sender, EventArgs e)
         {
-            wbElementRecorder_DomClick(null, null);
             _isHookStopped = true;
             Close();
         }
 
         private void wbElementRecorder_DomClick(object sender, DomMouseEventArgs e)
-        {
+        {            
             //mouse down has occured
             if (e != null)
             {
                 try
                 {
-                    _lastSavedPoint = new Point(e.ClientX, e.ClientY);
-                    LoadSearchParameters(_lastSavedPoint);
+                    if (_isRecording)
+                    {
+                        _lastSavedPoint = new Point(e.ClientX, e.ClientY);
+                        LoadSearchParameters(_lastSavedPoint);
+                        lblDescription.Text = _recordingMessage;
+                    }
+                        
+                    string clickType;
+                    switch (e.Button)
+                    {
+                        case GeckoMouseButton.Left:
+                            clickType = "Invoke Click";
+                            break;
+                        case GeckoMouseButton.Middle:
+                            clickType = "Middle Click";
+                            break;
+                        case GeckoMouseButton.Right:
+                            clickType = "Right Click";
+                            break;
+                        default:
+                            clickType = "Invoke Click";
+                            break;
+                    }
+
                     if (IsRecordingSequence && _isRecording)
-                        BuildElementClickActionCommand();
+                        BuildElementClickActionCommand(clickType);
                 }
                 catch (Exception)
                 {
-                    lblDescription.Text = "Error cloning element. Please Try Again.";
+                    lblDescription.Text = _errorMessage;
                 }
             }
 
@@ -178,13 +213,25 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             {
                 try
                 {
-                    LoadSearchParameters(_lastSavedPoint);
+                    if (_isRecording)
+                    {
+                        LoadSearchParameters(_lastSavedPoint);
+                        lblDescription.Text = _recordingMessage;
+                    }
+                    
                     if (IsRecordingSequence && _isRecording)
                         BuildElementSetTextActionCommand(e.KeyCode);
+                    else if (((Keys)Enum.ToObject(typeof(Keys), e.KeyCode)).ToString() == GlobalHook.StopHookKey)
+                    {
+                        //STOP HOOK
+                        GlobalHook.StopHook();
+                        GlobalHook.HookStopped -= GlobalHook_HookStopped;
+                        return;
+                    }
                 }
                 catch (Exception)
                 {
-                    lblDescription.Text = "Error cloning element. Please Try Again.";
+                    lblDescription.Text = _errorMessage;
                 }
             }
         }
@@ -372,7 +419,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
 
                 if (IsRecordingSequence && _isHookStopped)
                     FinalizeRecording();
-            }          
+            }   
             DialogResult = DialogResult.Cancel;
         }
 
@@ -410,17 +457,31 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             _sequenceCommandList.Add(navigateToURLCommand);
         }
 
-        private void BuildElementClickActionCommand()
+        private void BuildElementClickActionCommand(string clickType)
         {
-            BuildWaitForElementActionCommand();
-
-            var clickElementActionCommand = new SeleniumElementActionCommand
+            //check if previous click was made within 500ms of this to and change to double click if true
+            if ((_sequenceCommandList.Count > 1) && (_sequenceCommandList[_sequenceCommandList.Count - 1] is SeleniumElementActionCommand)
+                && (_sequenceCommandList[_sequenceCommandList.Count - 1] as SeleniumElementActionCommand).v_SeleniumElementAction == "Invoke Click" 
+                && _stopwatch.ElapsedMilliseconds <= 500)
             {
-                v_InstanceName = _browserInstanceName,
-                v_SeleniumSearchParameters = SearchParameters,
-                v_SeleniumElementAction = "Invoke Click"
-            };
-            _sequenceCommandList.Add(clickElementActionCommand);
+                var lastCreatedClickCommand = (SeleniumElementActionCommand)_sequenceCommandList[_sequenceCommandList.Count - 1];
+                lastCreatedClickCommand.v_SeleniumElementAction = "Double Left Click";
+                _stopwatch.Stop();
+            }
+            else
+            {
+                BuildWaitForElementActionCommand();
+
+                var clickElementActionCommand = new SeleniumElementActionCommand
+                {
+                    v_InstanceName = _browserInstanceName,
+                    v_SeleniumSearchParameters = SearchParameters,
+                    v_SeleniumElementAction = clickType
+                };
+                _sequenceCommandList.Add(clickElementActionCommand);
+
+                _stopwatch.Restart();
+            }           
         }
 
         private void BuildWaitForElementActionCommand()
@@ -462,34 +523,21 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                 keyboardState[(int)Keys.ShiftKey] = 0xff;
 
             GlobalHook.ToUnicode(key, 0, keyboardState, buf, 256, 0);
-
-            var selectedKey = buf.ToString();
-
-            if ((selectedKey == "") || (selectedKey == "\r"))
-                selectedKey = key.ToString();
+            string selectedKey = buf.ToString();
 
             //translate key press to sendkeys identifier
-            if (selectedKey == GlobalHook.StopHookKey)
+            if (((Keys)Enum.ToObject(typeof(Keys), key)).ToString() == GlobalHook.StopHookKey)
             {
                 //STOP HOOK
                 GlobalHook.StopHook();
+                GlobalHook.HookStopped -= GlobalHook_HookStopped;
                 return;
             }
-            else if (selectedKey == "Return")
-                selectedKey = "ENTER";
-            else if (selectedKey == "Space")
-                selectedKey = " ";
-            else if (selectedKey == "OemPeriod")
-                selectedKey = ".";
-            else if (selectedKey == "Oemcomma")
-                selectedKey = ",";
-            else if (selectedKey == "OemQuestion")
-                selectedKey = "?";
-            else if (selectedKey.Contains("ShiftKey"))
-                return;
-
-            //add braces
-            if (selectedKey.Length > 1)
+            //check for a selenium compatible advanced key
+            else if (_seleniumAdvancedKeyMap.TryGetValue(key, out string keyName))
+                selectedKey = $"[{keyName}]";
+            //return if key is neither character nor selenium compatible advanced key
+            else if (selectedKey.Length > 1)
                 return;
 
             //generate sendkeys together
@@ -498,34 +546,10 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             {
                 var lastCreatedSendKeysCommand = (SeleniumElementActionCommand)_sequenceCommandList[_sequenceCommandList.Count - 1];
 
-                if (lastCreatedSendKeysCommand.v_WebActionParameterTable.Rows.Count > 0 && 
-                    lastCreatedSendKeysCommand.v_WebActionParameterTable.Rows[0][1].ToString().Contains("{ENTER}"))
-                {
-                    BuildWaitForElementActionCommand();
-
-                    //build keyboard command
-                    var setTextElementActionCommand = new SeleniumElementActionCommand
-                    {
-                        v_InstanceName = _browserInstanceName,
-                        v_SeleniumSearchParameters = SearchParameters,
-                        v_SeleniumElementAction = "Set Text"
-                    };
-
-                    DataTable webActionDT = setTextElementActionCommand.v_WebActionParameterTable;
-                    DataRow textToSetRow = webActionDT.NewRow();
-                    textToSetRow["Parameter Name"] = "Text To Set";
-                    textToSetRow["Parameter Value"] = selectedKey;
-                    webActionDT.Rows.Add(textToSetRow);
-
-                    _sequenceCommandList.Add(setTextElementActionCommand);
-                }
-                else
-                {
-                    //append chars to previously created command
-                    //this makes editing easier for the user because only 1 command is issued rather than multiples
-                    var previouslyInputChars = lastCreatedSendKeysCommand.v_WebActionParameterTable.Rows[0][1].ToString();
-                    lastCreatedSendKeysCommand.v_WebActionParameterTable.Rows[0][1] = previouslyInputChars + selectedKey;
-                }
+                //append chars to previously created command
+                //this makes editing easier for the user because only 1 command is issued rather than multiples
+                var previouslyInputChars = lastCreatedSendKeysCommand.v_WebActionParameterTable.Rows[0][1].ToString();
+                lastCreatedSendKeysCommand.v_WebActionParameterTable.Rows[0][1] = previouslyInputChars + selectedKey;               
             }
             else
             {
@@ -594,5 +618,46 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                     CallBackForm.AddCommandToListView(closeBrowserCommand);
             }            
         }
+
+        readonly Dictionary<uint, string> _seleniumAdvancedKeyMap = new Dictionary<uint, string>()
+        {
+            {27, "Escape"},
+            {13, "Enter"},
+            {37, "Left"},
+            {39, "Right"},
+            {38, "Up"},
+            {40, "Down"},
+            {8, "Backspace"},
+            {9, "Tab"},
+            {16, "Shift"},
+            {17, "Control"},
+            {18, "Alt"},
+            {19, "Pause"},
+            {160, "LeftShift"},
+            {161, "Shift"},
+            {162, "LeftControl"},
+            {163, "Control"},
+            {164, "LeftAlt"},
+            {165, "Alt"},
+            {33, "PageUp"},
+            {34, "PageDown"},
+            {35, "End"},
+            {36, "Home"},
+            {45, "Insert"},
+            {46, "Delete"},          
+            {112, "F1"},
+            {113, "F2"},
+            {114, "F3"},
+            {115, "F4"},
+            {116, "F5"},
+            {117, "F6"},
+            {118, "F7"},
+            {119, "F8"},
+            {120, "F9"},
+            {121, "F10"},
+            {122, "F11"},
+            {123, "F12"},
+            {110, "Delete"},
+        };
     }
 }

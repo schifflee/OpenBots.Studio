@@ -28,6 +28,7 @@ using OpenBots.Core.UI.Controls;
 using OpenBots.UI.Forms.Supplement_Forms;
 using Group = OpenBots.Core.Attributes.ClassAttributes.Group;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
+using OpenQA.Selenium.Interactions;
 
 namespace OpenBots.Commands
 {
@@ -97,7 +98,8 @@ namespace OpenBots.Commands
         [PropertyDescription("Action Parameters")]
         [InputSpecification("Action Parameters will be determined based on the action settings selected.")]
         [SampleUsage("data || {vData} || *Variable Name*: {vNewVariable}")]
-        [Remarks("Action Parameters range from adding offset coordinates to specifying a variable to apply element text to.")]
+        [Remarks("Action Parameters range from adding offset coordinates to specifying a variable to apply element text to.\n"+
+                 "Advanced keystrokes may be set the following way: Hello[tab]World[enter]")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public DataTable v_WebActionParameterTable { get; set; }
 
@@ -226,24 +228,33 @@ namespace OpenBots.Commands
             if (element == null)
                 throw elementSearchException;
 
+            if (v_SeleniumElementAction.Contains("Click"))
+            {
+                int seleniumWindowHeightY = seleniumInstance.Manage().Window.Size.Height;
+                int elementPositionY = element.Location.Y;
+                if (elementPositionY > seleniumWindowHeightY)
+                {
+                    string scroll = string.Format("window.scroll(0, {0})", elementPositionY);
+                    IJavaScriptExecutor js = browserObject as IJavaScriptExecutor;
+                    js.ExecuteScript(scroll);
+                }                
+            }
+            Actions actions = new Actions(seleniumInstance);
+
             switch (v_SeleniumElementAction)
             {
-                case "Invoke Click":
-                    int seleniumWindowHeightY = seleniumInstance.Manage().Window.Size.Height;
-                    int elementPositionY = element.Location.Y;
-                    if (elementPositionY > seleniumWindowHeightY)
-                    {
-                        string scroll = string.Format("window.scroll(0, {0})", elementPositionY);
-                        IJavaScriptExecutor js = browserObject as IJavaScriptExecutor;
-                        js.ExecuteScript(scroll);
-                    }
-                    element.Click();
+                
+                case "Invoke Click":                   
+                    element.Click();                   
                     break;
 
                 case "Left Click":
-                case "Right Click":
+                    actions.Click((IWebElement)element).Perform();
+                    break;
+                case "Right Click":                   
+                    actions.ContextClick((IWebElement)element).Perform();
+                    break;
                 case "Middle Click":
-                case "Double Left Click":
                     int userXAdjust = Convert.ToInt32((from rw in v_WebActionParameterTable.AsEnumerable()
                                                        where rw.Field<string>("Parameter Name") == "X Adjustment"
                                                        select rw.Field<string>("Parameter Value")).FirstOrDefault().ConvertUserVariableToString(engine));
@@ -255,10 +266,13 @@ namespace OpenBots.Commands
                     var elementLocation = element.Location;
                     SendMouseMoveCommand newMouseMove = new SendMouseMoveCommand();
                     var seleniumWindowPosition = seleniumInstance.Manage().Window.Position;
-                    newMouseMove.v_XMousePosition = (seleniumWindowPosition.X + elementLocation.X + 30 + userXAdjust).ToString(); // added 30 for offset
-                    newMouseMove.v_YMousePosition = (seleniumWindowPosition.Y + elementLocation.Y + 130 + userYAdjust).ToString(); //added 130 for offset
+                    newMouseMove.v_XMousePosition = (seleniumWindowPosition.X + elementLocation.X +  userXAdjust).ToString();
+                    newMouseMove.v_YMousePosition = (seleniumWindowPosition.Y + elementLocation.Y +  userYAdjust).ToString();
                     newMouseMove.v_MouseClick = v_SeleniumElementAction;
                     newMouseMove.RunCommand(sender);
+                    break;
+                case "Double Left Click":
+                    actions.DoubleClick((IWebElement)element).Perform();
                     break;
 
                 case "Set Text":
@@ -284,10 +298,11 @@ namespace OpenBots.Commands
                     if (encryptedData == "Encrypted")
                         textToSet = EncryptionServices.DecryptString(textToSet, "OPENBOTS");
 
-                    string[] potentialKeyPresses = textToSet.Split('{', '}');
+                    string[] potentialKeyPresses = textToSet.Split('[', ']');
 
                     Type seleniumKeys = typeof(OpenQA.Selenium.Keys);
                     FieldInfo[] fields = seleniumKeys.GetFields(BindingFlags.Static | BindingFlags.Public);
+                    string finalTextToSet = "";
 
                     //check if chunked string contains a key press command like {ENTER}
                     foreach (string chunkedString in potentialKeyPresses)
@@ -295,17 +310,18 @@ namespace OpenBots.Commands
                         if (chunkedString == "")
                             continue;
 
-                        if (fields.Any(f => f.Name == chunkedString))
+                        if (fields.Any(f => f.Name.ToLower() == chunkedString.ToLower()) && textToSet.Contains("["+ chunkedString +"]"))
                         {
-                            string keyPress = (string)fields.Where(f => f.Name == chunkedString).FirstOrDefault().GetValue(null);
-                            element.SendKeys(keyPress);
+                            string keyPress = (string)fields.Where(f => f.Name.ToLower() == chunkedString.ToLower()).FirstOrDefault().GetValue(null);
+                            finalTextToSet += keyPress;
                         }
                         else
                         {
                             var convertedChunk = chunkedString.ConvertUserVariableToString(engine);
-                            element.SendKeys(convertedChunk);
+                            finalTextToSet += convertedChunk;
                         }
                     }
+                    element.SendKeys(finalTextToSet);
                     break;
 
                 case "Set Secure Text":
@@ -330,10 +346,11 @@ namespace OpenBots.Commands
                     if (_clearElement.ToLower() == "yes")
                         element.Clear();
 
-                    string[] _potentialKeyPresses = secureString.Split('{', '}');
+                    string[] _potentialKeyPresses = secureString.Split('[', ']');
 
                     Type _seleniumKeys = typeof(OpenQA.Selenium.Keys);
                     FieldInfo[] _fields = _seleniumKeys.GetFields(BindingFlags.Static | BindingFlags.Public);
+                    string _finalTextToSet = "";
 
                     //check if chunked string contains a key press command like {ENTER}
                     foreach (string chunkedString in _potentialKeyPresses)
@@ -341,17 +358,18 @@ namespace OpenBots.Commands
                         if (chunkedString == "")
                             continue;
 
-                        if (_fields.Any(f => f.Name == chunkedString))
+                        if (_fields.Any(f => f.Name.ToLower() == chunkedString.ToLower()) && secureString.Contains("[" + chunkedString + "]"))
                         {
-                            string keyPress = (string)_fields.Where(f => f.Name == chunkedString).FirstOrDefault().GetValue(null);
-                            element.SendKeys(keyPress);
+                            string keyPress = (string)_fields.Where(f => f.Name.ToLower() == chunkedString.ToLower()).FirstOrDefault().GetValue(null);
+                            _finalTextToSet += keyPress;
                         }
                         else
                         {
                             var convertedChunk = chunkedString.ConvertUserVariableToString(engine);
-                            element.SendKeys(convertedChunk);
+                            _finalTextToSet += convertedChunk;
                         }
                     }
+                    element.SendKeys(_finalTextToSet);
                     break;
 
                 case "Get Options":
@@ -713,15 +731,15 @@ namespace OpenBots.Commands
             switch (_elementActionDropdown.SelectedItem)
             {
                 case "Invoke Click":
+                case "Left Click":
+                case "Right Click":
+                case "Double Left Click":
                 case "Clear Element":
                     foreach (var ctrl in _actionParametersControls)
                         ctrl.Hide();
-                    break;
-
-                case "Left Click":
-                case "Middle Click":
-                case "Right Click":
-                case "Double Left Click":
+                    break;  
+                    
+                case "Middle Click":               
                     foreach (var ctrl in _actionParametersControls)
                         ctrl.Show();
 

@@ -140,9 +140,19 @@ namespace OpenBots.Commands
                     var xAdjustVariable = xAdjust.ConvertUserVariableToString(engine);
                     var yAdjustVariable = yAdjust.ConvertUserVariableToString(engine);
 
+                    int xAdjustInt;
+                    int yAdjustInt;
+
                     //parse to int
-                    var xAdjustInt = int.Parse(xAdjustVariable);
-                    var yAdjustInt = int.Parse(yAdjustVariable);
+                    if (!string.IsNullOrEmpty(xAdjustVariable))
+                        xAdjustInt = int.Parse(xAdjustVariable);
+                    else
+                        xAdjustInt = 0;
+
+                    if (!string.IsNullOrEmpty(yAdjustVariable))
+                        yAdjustInt = int.Parse(yAdjustVariable);
+                    else
+                        yAdjustInt = 0;
 
                     //get clickable point
                     var newPoint = requiredHandle.GetClickablePoint();
@@ -209,7 +219,8 @@ namespace OpenBots.Commands
                                 if (requiredHandle.TryGetCurrentPattern(TextPattern.Pattern, out tPattern))
                                 {
                                     var textPattern = (TextPattern)tPattern;
-                                    currentText = textPattern.DocumentRange.GetText(-1).TrimEnd('\r').ToString(); // often there is an extra '\r' hanging off the end.
+                                    // often there is an extra '\r' hanging off the end.
+                                    currentText = textPattern.DocumentRange.GetText(-1).TrimEnd('\r').ToString(); 
                                 }
                                 else
                                     currentText = requiredHandle.Current.Name.ToString();

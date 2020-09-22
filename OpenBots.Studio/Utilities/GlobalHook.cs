@@ -7,6 +7,10 @@ using System.Windows.Forms;
 using OpenBots.Core.Command;
 using OpenBots.Commands;
 using OpenBots.Core.User32;
+using System.Data;
+using OpenBots.Core.Common;
+using OpenBots.Core.Enums;
+
 namespace OpenBots.Utilities
 {
     public class GlobalHook
@@ -22,6 +26,7 @@ namespace OpenBots.Utilities
         private static Stopwatch _stopWatch;
         private static Stopwatch _lastMouseMove;
         private static bool _isKeyPressed;
+        private static Keys _prevKey;
 
         private static bool _performMouseClickCapture;
         private static bool _groupMouseMovesIntoSequence;
@@ -108,16 +113,6 @@ namespace OpenBots.Utilities
             None = 0,
             Down = 1,
             Toggled = 2
-        }
-
-        private enum _mouseMessages
-        {
-            WmLButtonDown = 0x0201,
-            WmLButtonUp = 0x0202,
-            WmMouseMove = 0x0200,
-            WmMouseWheel = 0x020A,
-            WmRButtonDown = 0x0204,
-            WmRButtonUp = 0x0205
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -211,19 +206,21 @@ namespace OpenBots.Utilities
         //mouse and keyboard hook event triggers
         private static IntPtr KeyboardHookEvent(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if (nCode >= 0 && wParam == (IntPtr)_wmKeyDown && !_isKeyPressed)
-            {
-                int vkCode = Marshal.ReadInt32(lParam);
-                BuildKeyboardCommand((Keys)vkCode);
+            int vkCode = Marshal.ReadInt32(lParam);
+            Keys key = (Keys)vkCode;
 
-                Keys key = (Keys)vkCode;
+            if (nCode >= 0 && wParam == (IntPtr)_wmKeyDown && !_isKeyPressed)
+            {               
+                BuildKeyboardCommand(key);
+               
                 System.Windows.Point point = new System.Windows.Point(Cursor.Position.X, Cursor.Position.Y);
                 KeyDownEvent?.Invoke(null, new KeyDownEventArgs { Key = key, MouseCoordinates = point});
                 _isKeyPressed = true;
             }
-            else if (nCode >= 0 && wParam == (IntPtr)_wmKeyUp)
+            else if (nCode >= 0 && (wParam == (IntPtr)_wmKeyUp || key != _prevKey))
                 _isKeyPressed = false;
 
+            _prevKey = key;
             return CallNextHookEx(_keyboardHookID, nCode, wParam, lParam);
         }
 
@@ -233,16 +230,20 @@ namespace OpenBots.Utilities
         {
             if (nCode >= 0)
             {
-                var message = (_mouseMessages)wParam;
+                var message = (MouseMessages)wParam;
 
-                if (message == _mouseMessages.WmLButtonDown)
+                if (message == MouseMessages.WmLButtonDown)
                 {
                     if (StopOnClick)
                         UnhookWindowsHookEx(_mouseHookID);
-
-                    System.Windows.Point point = new System.Windows.Point(Cursor.Position.X, Cursor.Position.Y);
-                    MouseEvent?.Invoke(null, new MouseCoordinateEventArgs() { MouseCoordinates = point });
                 }
+
+                if (message == MouseMessages.WmLButtonDown || message == MouseMessages.WmMButtonDown ||
+                    message == MouseMessages.WmRButtonDown)
+                {
+                    System.Windows.Point point = new System.Windows.Point(Cursor.Position.X, Cursor.Position.Y);
+                    MouseEvent?.Invoke(null, new MouseCoordinateEventArgs() { MouseCoordinates = point, MouseMessage = message });
+                }               
             }
 
             return CallNextHookEx(_mouseHookID, nCode, wParam, lParam);
@@ -251,7 +252,7 @@ namespace OpenBots.Utilities
         private static IntPtr MouseHookEvent(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode >= 0)
-                BuildMouseCommand(lParam, (_mouseMessages)wParam);
+                BuildMouseCommand(lParam, (MouseMessages)wParam);
 
             return CallNextHookEx(_mouseHookID, nCode, wParam, lParam);
         }
@@ -259,6 +260,9 @@ namespace OpenBots.Utilities
         //build keyboard command
         private static void BuildKeyboardCommand(Keys key)
         {
+            if (!_performKeyboardCapture)
+                return;
+
             bool toUpperCase = false;
 
             //determine if casing is needed
@@ -278,65 +282,30 @@ namespace OpenBots.Utilities
                 keyboardState[(int)Keys.ShiftKey] = 0xff;
 
             ToUnicode((uint)key, 0, keyboardState, buf, 256, 0);
-
             var selectedKey = buf.ToString();
 
-            if ((selectedKey == "") || (selectedKey == "\r"))
-                selectedKey = key.ToString();
-
             //translate key press to sendkeys identifier
-            if (selectedKey == StopHookKey)
+            if (key.ToString() == StopHookKey)
             {
                 //STOP HOOK
                 StopHook();
                 return;
             }
-            else if (selectedKey == "Return")
-                selectedKey = "ENTER";
-            else if (selectedKey == "Space")
-                selectedKey = " ";
-            else if (selectedKey == "OemPeriod")
-                selectedKey = ".";
-            else if (selectedKey == "Oemcomma")
-                selectedKey = ",";
-            else if (selectedKey == "OemQuestion")
-                selectedKey = "?";
-            else if (selectedKey.Contains("ShiftKey"))
-                return;
-
-            if (!_performKeyboardCapture)
-                return;
-
-            //add braces
-            if (selectedKey.Length > 1)
-                selectedKey = "{" + selectedKey + "}";
+            else
+            {
+                bool result = BuildSendAdvancedKeystrokesCommand(key, GeneratedCommands, "Current Window");
+                if (result) return;
+            }
 
             //generate sendkeys together
             if ((GeneratedCommands.Count > 1) && (GeneratedCommands[GeneratedCommands.Count - 1] is SendKeystrokesCommand))
             {
                 var lastCreatedSendKeysCommand = (SendKeystrokesCommand)GeneratedCommands[GeneratedCommands.Count - 1];
-
-                if (lastCreatedSendKeysCommand.v_TextToSend.Contains("{ENTER}"))
-                {
-                    //append this to a new command because you dont want text to input after user presses enter
-                    //build a pause command to track pause since last command
-                    BuildPauseCommand();
-
-                    //build keyboard command
-                    var keyboardCommand = new SendKeystrokesCommand
-                    {
-                        v_TextToSend = selectedKey,
-                        v_WindowName = "Current Window"
-                    };
-                    GeneratedCommands.Add(keyboardCommand);
-                }
-                else
-                {
-                    //append chars to previously created command
-                    //this makes editing easier for the user because only 1 command is issued rather than multiples
-                    var previouslyInputChars = lastCreatedSendKeysCommand.v_TextToSend;
-                    lastCreatedSendKeysCommand.v_TextToSend = previouslyInputChars + selectedKey;
-                }
+             
+                //append chars to previously created command
+                //this makes editing easier for the user because only 1 command is issued rather than multiples
+                var previouslyInputChars = lastCreatedSendKeysCommand.v_TextToSend;
+                lastCreatedSendKeysCommand.v_TextToSend = previouslyInputChars + selectedKey;                
             }
             else
             {
@@ -353,19 +322,72 @@ namespace OpenBots.Utilities
             }
         }
 
+        public static bool BuildSendAdvancedKeystrokesCommand(Keys key, List<ScriptCommand> commandList, string windowName, bool isOnlyKeyDown = false)
+        {
+            if ((commandList.Count > 1) && (commandList[commandList.Count - 1] is SendAdvancedKeystrokesCommand)
+                && (commandList[commandList.Count - 1] as SendAdvancedKeystrokesCommand).v_KeyActions.Rows.Count > 0 && !isOnlyKeyDown)
+            {
+                DataTable previousKeyActionsDT = (commandList[commandList.Count - 1] as SendAdvancedKeystrokesCommand).v_KeyActions;
+                int keyCount = previousKeyActionsDT.Rows.Count;
+                var lastPressedKeyName = previousKeyActionsDT.Rows[keyCount - 1].ItemArray[0].ToString().Split('[', ']')[1];
+                Keys lastPressedKey = (Keys)Enum.Parse(typeof(Keys), lastPressedKeyName);
+
+                //check that another key is down and that it isn't a shift + letter combination
+                if (IsKeyDown(lastPressedKey) && !(IsKeyDown(Keys.ShiftKey) && key.ToString().Length == 1))
+                {
+                    DataRow newKeyStrokeRow = previousKeyActionsDT.NewRow();
+                    newKeyStrokeRow["Key"] = $"{Common.GetKeyDescription(key)} [{key}]";
+                    newKeyStrokeRow["Action"] = "Key Down";
+                    previousKeyActionsDT.Rows.Add(newKeyStrokeRow);
+                    return true;
+                }
+                else
+                {
+                    bool result = BuildSendAdvancedKeystrokesCommand(key, commandList, windowName, true);
+                    return result;
+                }
+
+            }
+            else if (key.ToString().Length > 1)
+            {
+                var sendAdvancedKeystrokesCommand = new SendAdvancedKeystrokesCommand
+                {
+                    v_WindowName = windowName,
+                    v_KeyUpDefault = "Yes"
+                };
+                DataTable newkeyActionaDT = sendAdvancedKeystrokesCommand.v_KeyActions;
+                DataRow newKeyStrokeRow = newkeyActionaDT.NewRow();
+                newKeyStrokeRow["Key"] = $"{Common.GetKeyDescription(key)} [{key}]";
+                newKeyStrokeRow["Action"] = "Key Down";
+                newkeyActionaDT.Rows.Add(newKeyStrokeRow);
+
+                commandList.Add(sendAdvancedKeystrokesCommand);
+
+                return true;
+            }
+            else
+                return false;
+        }
+
         //build mouse command
-        private static void BuildMouseCommand(IntPtr lParam, _mouseMessages mouseMessage)
+        private static void BuildMouseCommand(IntPtr lParam, MouseMessages mouseMessage)
         {
             string mouseEventClickType;
             switch (mouseMessage)
             {
-                case _mouseMessages.WmLButtonDown:
+                case MouseMessages.WmLButtonDown:
                     mouseEventClickType = "Left Down";
                     break;
-                case _mouseMessages.WmLButtonUp:
+                case MouseMessages.WmLButtonUp:
                     mouseEventClickType = "Left Up";
                     break;
-                case _mouseMessages.WmMouseMove:
+                case MouseMessages.WmMButtonDown:
+                    mouseEventClickType = "Middle Down";
+                    break;
+                case MouseMessages.WmMButtonUp:
+                    mouseEventClickType = "Middle Up";
+                    break;
+                case MouseMessages.WmMouseMove:
                     mouseEventClickType = "None";
 
                     if (_lastMouseMove.ElapsedMilliseconds >= _msResolution)
@@ -373,19 +395,15 @@ namespace OpenBots.Utilities
                     else
                         return;
                     break;
-                case _mouseMessages.WmRButtonDown:
+                case MouseMessages.WmRButtonDown:
                     mouseEventClickType = "Right Down";
                     break;
-                case _mouseMessages.WmRButtonUp:
+                case MouseMessages.WmRButtonUp:
                     mouseEventClickType = "Right Up";
                     break;
                 default:
                     return;
             }
-
-            ////return if non matching event
-            //if (mouseEventClickType == string.Empty)
-            //    return;
 
             //return if we do not want to capture mouse moves
             if ((!_performMouseMoveCapture) && (mouseEventClickType == "None"))
@@ -395,30 +413,60 @@ namespace OpenBots.Utilities
             if ((!_performMouseClickCapture) && (mouseEventClickType != "None"))
                 return;
 
-            //build a pause command to track pause since last command
-            BuildPauseCommand();
-
-            //define new mouse command
-            MsLlHookStruct hookStruct = (MsLlHookStruct)Marshal.PtrToStructure(lParam, typeof(MsLlHookStruct));
-
-            var mouseMove = new SendMouseMoveCommand
+            if ((GeneratedCommands.Count > 1) && (GeneratedCommands[GeneratedCommands.Count - 1] is SendMouseMoveCommand) 
+                && mouseEventClickType != "None" && _stopWatch.ElapsedMilliseconds <= 500)
             {
-                v_XMousePosition = hookStruct.Pt.X.ToString(),
-                v_YMousePosition = hookStruct.Pt.Y.ToString(),
-                v_MouseClick = mouseEventClickType
-            };
+                var lastCreatedMouseCommand = (SendMouseMoveCommand)GeneratedCommands[GeneratedCommands.Count - 1];
 
-            if (mouseEventClickType != "None")
-            {
-                IntPtr winHandle = WindowFromPoint(hookStruct.Pt);
-
-                int length = GetWindowText(winHandle, _buffer, _buffer.Capacity);
-                var windowName = _buffer.ToString();
-
-                mouseMove.v_Comment = "Clicked On Window: " + windowName;
+                switch ((GeneratedCommands[GeneratedCommands.Count - 1] as SendMouseMoveCommand).v_MouseClick)
+                {
+                    case "Left Down":
+                        if (mouseEventClickType == "Left Up")
+                            lastCreatedMouseCommand.v_MouseClick = "Left Click";
+                        break;
+                    case "Middle Down":
+                        if (mouseEventClickType == "Middle Up")
+                            lastCreatedMouseCommand.v_MouseClick = "Middle Click";
+                        break;
+                    case "Right Down":
+                        if (mouseEventClickType == "Right Up")
+                            lastCreatedMouseCommand.v_MouseClick = "Right Click";
+                        break;
+                    case "Left Click":
+                        if (mouseEventClickType == "Left Down")
+                            lastCreatedMouseCommand.v_MouseClick = "Left Double Click";
+                        break;
+                    default:
+                        break;
+                }
             }
+            else
+            {
+                //build a pause command to track pause since last command
+                BuildPauseCommand();
 
-            GeneratedCommands.Add(mouseMove);
+                //define new mouse command
+                MsLlHookStruct hookStruct = (MsLlHookStruct)Marshal.PtrToStructure(lParam, typeof(MsLlHookStruct));
+
+                var mouseMove = new SendMouseMoveCommand
+                {
+                    v_XMousePosition = hookStruct.Pt.X.ToString(),
+                    v_YMousePosition = hookStruct.Pt.Y.ToString(),
+                    v_MouseClick = mouseEventClickType
+                };
+
+                if (mouseEventClickType != "None")
+                {
+                    IntPtr winHandle = WindowFromPoint(hookStruct.Pt);
+
+                    int length = GetWindowText(winHandle, _buffer, _buffer.Capacity);
+                    var windowName = _buffer.ToString();
+
+                    mouseMove.v_Comment = "Clicked On Window: " + windowName;
+                }
+
+                GeneratedCommands.Add(mouseMove);
+            }
         }
 
         //build window command

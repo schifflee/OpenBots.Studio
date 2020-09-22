@@ -295,7 +295,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         {
             DialogResult result;
 
-            if (_isSequence)
+            if (_isSequence && uiScriptTabControl.TabPages[0].Text.Contains(" *") && DialogResult == DialogResult.Cancel)
             {
                 result = MessageBox.Show($"Would you like to save the sequence before closing?",
                                          $"Save Sequence", MessageBoxButtons.YesNoCancel);
@@ -307,6 +307,8 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 
                 return;
             }
+            else if (_isSequence && DialogResult == DialogResult.OK)
+                return;
 
             result = CheckForUnsavedScripts();
             if (result == DialogResult.Cancel)

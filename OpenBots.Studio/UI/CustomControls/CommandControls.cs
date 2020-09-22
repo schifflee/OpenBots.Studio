@@ -871,66 +871,6 @@ namespace OpenBots.UI.CustomControls
                 form.WindowState = FormWindowState.Minimized;
         }
 
-        public List<AutomationCommand> GenerateCommandsandControls()
-        {
-            var commandList = new List<AutomationCommand>();
-
-            var commandClasses = Assembly.GetExecutingAssembly().GetTypes()
-                                 .Where(t => t.Namespace == "OpenBots.Commands")
-                                 .Where(t => t.Name != "ScriptCommand")
-                                 .Where(t => t.IsAbstract == false)
-                                 .Where(t => t.BaseType.Name == "ScriptCommand")
-                                 .ToList();
-
-            var cmdAssemblyPaths = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*Commands.dll");
-            foreach (var path in cmdAssemblyPaths)
-            {
-                commandClasses.AddRange(Assembly.LoadFrom(path).GetTypes()
-                                 .Where(t => t.Namespace == "OpenBots.Commands")
-                                 .Where(t => t.Name != "ScriptCommand")
-                                 .Where(t => t.IsAbstract == false)
-                                 .Where(t => t.BaseType.Name == "ScriptCommand")
-                                 .ToList());
-            }
-            var userPrefs = new ApplicationSettings().GetOrCreateApplicationSettings();
-
-            //Loop through each class
-            foreach (var commandClass in commandClasses)
-            {
-                var groupingAttribute = commandClass.GetCustomAttributes(typeof(Group), true);
-                string groupAttribute = "";
-                if (groupingAttribute.Length > 0)
-                {
-                    var attributeFound = (Group)groupingAttribute[0];
-                    groupAttribute = attributeFound.Name;
-                }
-
-                //Instantiate Class
-                ScriptCommand newCommand = (ScriptCommand)Activator.CreateInstance(commandClass);
-
-                //If command is enabled, pull for display and configuration
-                if (newCommand.CommandEnabled)
-                {
-                    var newAutomationCommand = new AutomationCommand();
-                    newAutomationCommand.CommandClass = commandClass;
-                    newAutomationCommand.Command = newCommand;
-                    newAutomationCommand.DisplayGroup = groupAttribute;
-                    newAutomationCommand.FullName = string.Join(" - ", groupAttribute, newCommand.SelectionName);
-                    newAutomationCommand.ShortName = newCommand.SelectionName;
-
-                    if (userPrefs.ClientSettings.PreloadBuilderCommands)
-                    {
-                        //newAutomationCommand.RenderUIComponents();
-                    }
-
-                    //call RenderUIComponents to render UI controls
-                    commandList.Add(newAutomationCommand);
-                }
-            }
-
-            return commandList;
-        }
-
         public ComboBox AddWindowNames(ComboBox cbo)
         {
             if (cbo == null)

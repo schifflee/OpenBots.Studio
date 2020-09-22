@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using System.Windows;
@@ -9,6 +10,7 @@ using System.Windows.Forms;
 using OpenBots.Commands;
 using OpenBots.Core.Command;
 using OpenBots.Core.Common;
+using OpenBots.Core.Enums;
 using OpenBots.Core.Settings;
 using OpenBots.Core.User32;
 using OpenBots.UI.Forms.ScriptBuilder_Forms;
@@ -34,6 +36,10 @@ namespace OpenBots.UI.Forms.Supplement_Forms
         private bool _isRecording;
         private bool _isHookStopped;
         private ApplicationSettings _appSettings;
+        private Stopwatch _stopwatch;
+
+        private string _recordingMessage = "Recording. Press F2 to save and close.";
+        private string _errorMessage = "Error cloning element. Please Try Again.";
 
         public frmThickAppElementRecorder()
         {
@@ -42,6 +48,9 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             _isFirstRecordClick = true;
 
             InitializeComponent();
+
+            _stopwatch = new Stopwatch();
+            _stopwatch.Start();
         }
         
         private void frmThickAppElementRecorder_Load(object sender, EventArgs e)
@@ -84,7 +93,18 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                     }
                     else
                     {
-                        pbRecord_Click(null, null);
+                        _isRecording = false;
+                        _isFirstRecordClick = true;
+
+                        lblDescription.Text = "Instructions: Select the target window name from the drop-down " +
+                                              "list and click the record button. Once recording has started, click "+
+                                              "the element in the target application that you want to capture.";
+
+                        //remove wait for left mouse down event
+                        GlobalHook.MouseEvent -= GlobalHook_MouseEvent;
+                        GlobalHook.KeyDownEvent -= GlobalHook_KeyDownEvent;
+                        GlobalHook.HookStopped -= GlobalHook_HookStopped;
+
                         return;
                     }
 
@@ -113,7 +133,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
 
                 if (!chkStopOnClick.Checked)
                 {
-                    lblDescription.Text = $"Recording. Press F2 to stop recording!";
+                    lblDescription.Text = _recordingMessage;
                     MoveFormToBottomRight(this);
                     TopMost = true;
                 }
@@ -125,10 +145,6 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                 _isRecording = false;
                 if (!chkStopOnClick.Checked)
                     lblDescription.Text = "Recording has stopped. Press F2 to save and close.";
-
-                //remove wait for left mouse down event
-                GlobalHook.MouseEvent -= GlobalHook_MouseEvent;
-                GlobalHook.KeyDownEvent -= GlobalHook_KeyDownEvent;
             }          
         }
 
@@ -147,13 +163,35 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                 //invoke UIA
                 try
                 {
-                    LoadSearchParameters(e.MouseCoordinates);
+                    if (_isRecording)
+                    {
+                        LoadSearchParameters(e.MouseCoordinates);
+                        lblDescription.Text = _recordingMessage;
+                    }
+
+                    string clickType;
+                    switch (e.MouseMessage)
+                    {
+                        case MouseMessages.WmLButtonDown:
+                            clickType = "Left Click";
+                            break;
+                        case MouseMessages.WmMButtonDown:
+                            clickType = "Middle Click";
+                            break;
+                        case MouseMessages.WmRButtonDown:
+                            clickType = "Right Click";
+                            break;
+                        default:
+                            clickType = "Left Click";
+                            break;
+                    }
+
                     if (IsRecordingSequence && _isRecording)
-                        BuildElementClickActionCommand();
+                        BuildElementClickActionCommand(clickType);
                 }
                 catch (Exception)
                 {
-                    lblDescription.Text = "Error cloning element. Please Try Again.";
+                    lblDescription.Text = _errorMessage;
                 }
             }
             
@@ -169,14 +207,25 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                 //invoke UIA
                 try
                 {
-                    LoadSearchParameters(e.MouseCoordinates);
+                    if (_isRecording)
+                    {
+                        LoadSearchParameters(e.MouseCoordinates);
+                        lblDescription.Text = _recordingMessage;
+                    }
 
                     if (IsRecordingSequence && _isRecording)
                         BuildElementSetTextActionCommand(e.Key);
+                    else if (e.Key.ToString() == GlobalHook.StopHookKey)
+                    {
+                        //STOP HOOK
+                        GlobalHook.StopHook();
+                        GlobalHook.HookStopped -= GlobalHook_HookStopped;
+                        return;
+                    }
                 }
                 catch (Exception)
                 {
-                    lblDescription.Text = "Error cloning element. Please Try Again.";
+                    lblDescription.Text = _errorMessage;
                 }
             }
         }
@@ -256,24 +305,39 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             DialogResult = DialogResult.Cancel;
         }
 
-        private void BuildElementClickActionCommand()
+        private void BuildElementClickActionCommand(string clickType)
         {
-            BuildWaitForElementActionCommand();
-
-            var clickElementActionCommand = new UIAutomationCommand
+            //check if previous click was made within 500ms of this to and change to double click if true
+            if ((_sequenceCommandList.Count > 1) && (_sequenceCommandList[_sequenceCommandList.Count - 1] is UIAutomationCommand)
+                && (_sequenceCommandList[_sequenceCommandList.Count - 1] as UIAutomationCommand).v_AutomationType == "Click Element"
+                && (_sequenceCommandList[_sequenceCommandList.Count - 1] as UIAutomationCommand).v_UIAActionParameters.Rows[0].ItemArray[1].ToString() == "Left Click"
+                && _stopwatch.ElapsedMilliseconds <= 500)
             {
-                v_WindowName = _windowName,
-                v_UIASearchParameters = SearchParameters,
-                v_AutomationType = "Click Element"
-            };
+                var lastCreatedClickCommand = (UIAutomationCommand)_sequenceCommandList[_sequenceCommandList.Count - 1];
+                lastCreatedClickCommand.v_UIAActionParameters.Rows[0].SetField(1, "Double Left Click");
+                _stopwatch.Stop();
+            }
+            else
+            {
+                BuildWaitForElementActionCommand();
 
-            DataTable webActionDT = clickElementActionCommand.v_UIAActionParameters;
-            DataRow clickTypeRow = webActionDT.NewRow();
-            clickTypeRow["Parameter Name"] = "Click Type";
-            clickTypeRow["Parameter Value"] = "Left Click";
-            webActionDT.Rows.Add(clickTypeRow);
+                var clickElementActionCommand = new UIAutomationCommand
+                {
+                    v_WindowName = _windowName,
+                    v_UIASearchParameters = SearchParameters,
+                    v_AutomationType = "Click Element"
+                };
 
-            _sequenceCommandList.Add(clickElementActionCommand);
+                DataTable webActionDT = clickElementActionCommand.v_UIAActionParameters;
+                DataRow clickTypeRow = webActionDT.NewRow();
+                clickTypeRow["Parameter Name"] = "Click Type";
+                clickTypeRow["Parameter Value"] = clickType;
+                webActionDT.Rows.Add(clickTypeRow);
+
+                _sequenceCommandList.Add(clickElementActionCommand);
+
+                _stopwatch.Restart();
+            }
         }
 
         private void BuildWaitForElementActionCommand()
@@ -315,70 +379,34 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                 keyboardState[(int)Keys.ShiftKey] = 0xff;
 
             GlobalHook.ToUnicode((uint)key, 0, keyboardState, buf, 256, 0);
-
             var selectedKey = buf.ToString();
 
-            if ((selectedKey == "") || (selectedKey == "\r"))
-                selectedKey = key.ToString();
-
             //translate key press to sendkeys identifier
-            if (selectedKey == GlobalHook.StopHookKey)
+            if (key.ToString() == GlobalHook.StopHookKey)
             {
                 //STOP HOOK
                 GlobalHook.StopHook();
+                GlobalHook.HookStopped -= GlobalHook_HookStopped;
+                GlobalHook.MouseEvent -= GlobalHook_MouseEvent;
+                GlobalHook.KeyDownEvent -= GlobalHook_KeyDownEvent;
                 return;
             }
-            else if (selectedKey == "Return")
-                selectedKey = "ENTER";
-            else if (selectedKey == "Space")
-                selectedKey = " ";
-            else if (selectedKey == "OemPeriod")
-                selectedKey = ".";
-            else if (selectedKey == "Oemcomma")
-                selectedKey = ",";
-            else if (selectedKey == "OemQuestion")
-                selectedKey = "?";
-            else if (selectedKey.Contains("ShiftKey"))
-                return;
-
-            //add braces
-            if (selectedKey.Length > 1)
-                selectedKey = "{" + selectedKey + "}";
+            else
+            {
+                bool result = GlobalHook.BuildSendAdvancedKeystrokesCommand(key, _sequenceCommandList, _windowName);
+                if (result) return;
+            }
 
             //generate sendkeys together
             if ((_sequenceCommandList.Count > 1) && (_sequenceCommandList[_sequenceCommandList.Count - 1] is UIAutomationCommand)
                 && (_sequenceCommandList[_sequenceCommandList.Count - 1] as UIAutomationCommand).v_AutomationType == "Set Text")
             {
                 var lastCreatedSendKeysCommand = (UIAutomationCommand)_sequenceCommandList[_sequenceCommandList.Count - 1];
-
-                if (lastCreatedSendKeysCommand.v_UIAActionParameters.Rows.Count > 0 &&
-                    lastCreatedSendKeysCommand.v_UIAActionParameters.Rows[0][1].ToString().Contains("{ENTER}"))
-                {
-                    BuildWaitForElementActionCommand();
-
-                    //build keyboard command
-                    var setTextElementActionCommand = new UIAutomationCommand
-                    {
-                        v_WindowName = _windowName,
-                        v_UIASearchParameters = SearchParameters,
-                        v_AutomationType = "Set Text"
-                    };
-
-                    DataTable webActionDT = setTextElementActionCommand.v_UIAActionParameters;
-                    DataRow textToSetRow = webActionDT.NewRow();
-                    textToSetRow["Parameter Name"] = "Text To Set";
-                    textToSetRow["Parameter Value"] = selectedKey;
-                    webActionDT.Rows.Add(textToSetRow);
-
-                    _sequenceCommandList.Add(setTextElementActionCommand);
-                }
-                else
-                {
-                    //append chars to previously created command
-                    //this makes editing easier for the user because only 1 command is issued rather than multiples
-                    var previouslyInputChars = lastCreatedSendKeysCommand.v_UIAActionParameters.Rows[0][1].ToString();
-                    lastCreatedSendKeysCommand.v_UIAActionParameters.Rows[0][1] = previouslyInputChars + selectedKey;
-                }
+   
+                //append chars to previously created command
+                //this makes editing easier for the user because only 1 command is issued rather than multiples
+                var previouslyInputChars = lastCreatedSendKeysCommand.v_UIAActionParameters.Rows[0][1].ToString();
+                lastCreatedSendKeysCommand.v_UIAActionParameters.Rows[0][1] = previouslyInputChars + selectedKey;              
             }
             else
             {

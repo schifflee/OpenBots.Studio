@@ -65,11 +65,10 @@ namespace OpenBots.Utilities
                                  .Where(t => t.BaseType.Name == "ScriptCommand")
                                  .ToList();
 
-            var cmdAssemblyPaths = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*Commands.dll");
+            var cmdAssemblyPaths = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "OpenBots.Commands.*.dll");
             foreach (var path in cmdAssemblyPaths)
             {
                 commandClasses.AddRange(Assembly.LoadFrom(path).GetTypes()
-                                 .Where(t => t.Namespace == "OpenBots.Commands")
                                  .Where(t => t.Name != "ScriptCommand")
                                  .Where(t => t.IsAbstract == false)
                                  .Where(t => t.BaseType.Name == "ScriptCommand")

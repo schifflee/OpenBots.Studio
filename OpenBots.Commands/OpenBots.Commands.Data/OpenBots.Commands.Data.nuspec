@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+	<description>The project contains common data commands required for automation.</description>
+	<authors>Accelirate Inc.</authors>
+	<title>$title$</title>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>$copyright$</copyright>
+  </metadata>
+	<files>
+		<file src="bin\Debug\*.dll" target="lib" />
+		<file src="bin\Debug\*.pdb" target="lib" />
+	</files>
+</package>

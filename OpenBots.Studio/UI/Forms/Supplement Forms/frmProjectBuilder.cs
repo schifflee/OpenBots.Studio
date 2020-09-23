@@ -15,7 +15,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
         public string NewProjectName { get; private set; }
         public string NewProjectPath { get; private set; }
         public string ExistingProjectPath { get; private set; }
-        public string ExistingMainPath { get; private set; }
+        public string ExistingConfigPath { get; private set; }
 
         public frmProjectBuilder()
         {
@@ -57,14 +57,14 @@ namespace OpenBots.UI.Forms.Supplement_Forms
 
         private void btnOpenProject_Click(object sender, EventArgs e)
         {
-            ExistingMainPath = txtExistingProjectLocation.Text.Trim();
-            if (ExistingMainPath == string.Empty || !File.Exists(ExistingMainPath))
+            ExistingConfigPath = txtExistingProjectLocation.Text.Trim();
+            if (ExistingConfigPath == string.Empty || !File.Exists(ExistingConfigPath))
             {
                 lblError.Text = "Error: Please enter a valid project path";
             }
             else
             {
-                ExistingProjectPath = Directory.GetParent(ExistingMainPath).ToString();
+                ExistingProjectPath = Directory.GetParent(ExistingConfigPath).ToString();
                 OpenProject = true;
                 DialogResult = DialogResult.OK;
             }

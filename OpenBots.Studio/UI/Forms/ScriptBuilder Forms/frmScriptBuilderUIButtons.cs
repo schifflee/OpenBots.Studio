@@ -372,7 +372,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             try
             {
                 var exportedScript = Script.SerializeScript(_selectedTabScriptActions.Items, _scriptVariables, _scriptElements, ScriptFilePath, ScriptProject.ProjectName);
-                ScriptProject.SaveProject(ScriptFilePath, exportedScript, _mainFileName);
+                ScriptProject.SaveProject(ScriptFilePath, exportedScript);
                 uiScriptTabControl.SelectedTab.Text = uiScriptTabControl.SelectedTab.Text.Replace(" *", "");
                 //show success dialog
                 Notify("File has been saved successfully!");

@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using OpenBots.Core.Script;
 
 namespace OpenBots.Utilities
@@ -25,26 +23,25 @@ namespace OpenBots.Utilities
             Main = "Main.json";
         }
 
-        public void SaveProject(string scriptPath, Script script, string mainName)
+        public void SaveProject(string scriptPath, Script script)
         {
             //Looks through sequential parent directories to find one that matches the script's ProjectName and contains a Main
             string projectPath;
             string dirName;
-            string mainScriptPath;
+            string configPath;
             do
             {
                 projectPath = Path.GetDirectoryName(scriptPath);
                 DirectoryInfo dirInfo = new DirectoryInfo(projectPath);
                 dirName = dirInfo.Name;
-                mainScriptPath = Path.Combine(projectPath, mainName);
+                configPath = Path.Combine(projectPath, "project.config");
                 scriptPath = projectPath;
-            } while (dirName != script.ProjectName || !File.Exists(mainScriptPath));
+            } while (dirName != script.ProjectName || !File.Exists(configPath));
 
             //If requirements are met, a project.config is created/updated
-            if (dirName == script.ProjectName && File.Exists(mainScriptPath))
+            if (dirName == script.ProjectName && File.Exists(configPath))
             {               
-                string projectJSONFilePath = Path.Combine(projectPath, "project.config");
-                File.WriteAllText(projectJSONFilePath, JsonConvert.SerializeObject(this));
+                File.WriteAllText(configPath, JsonConvert.SerializeObject(this));
             }
             else
             {
@@ -52,21 +49,19 @@ namespace OpenBots.Utilities
             }
         }
 
-        public static Project OpenProject(string mainFilePath)
+        public static Project OpenProject(string configFilePath)
         {
             //Gets project path and project.config from main script
-            string projectPath = Path.GetDirectoryName(mainFilePath);
-            string projectJSONPath = Path.Combine(projectPath, "project.config");
 
             //Loads project from project.config
             Project openProject = new Project();
-            if (File.Exists(projectJSONPath))
+            if (File.Exists(configFilePath))
             {
-                string projectJSONString = File.ReadAllText(projectJSONPath);
+                string projectJSONString = File.ReadAllText(configFilePath);
                 openProject = JsonConvert.DeserializeObject<Project>(projectJSONString);
 
                 //updates project.config
-                File.WriteAllText(projectJSONPath, JsonConvert.SerializeObject(openProject));
+                File.WriteAllText(configFilePath, JsonConvert.SerializeObject(openProject));
                 return openProject;
             }
             else

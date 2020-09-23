@@ -68,7 +68,7 @@ namespace OpenBots.Core.Script
         {
             var script = new Script();
 
-            script.FileName = System.IO.Path.GetFileName(scriptFilePath);
+            script.FileName = Path.GetFileName(scriptFilePath);
 
             script.ProjectName = projectName;
 

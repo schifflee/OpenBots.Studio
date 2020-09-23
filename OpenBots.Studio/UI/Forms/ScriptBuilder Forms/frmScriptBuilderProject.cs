@@ -11,6 +11,7 @@ using OpenBots.UI.CustomControls.CustomUIControls;
 using OpenBots.UI.Forms.Supplement_Forms;
 using OpenBots.Utilities;
 using VBFileSystem = Microsoft.VisualBasic.FileIO.FileSystem;
+using Newtonsoft.Json;
 
 namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 {
@@ -51,6 +52,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                 uiScriptTabControl.TabPages.Clear();
                 _scriptProjectPath = projectBuilder.NewProjectPath;
 
+                string configPath = Path.Combine(_scriptProjectPath, "project.config");
                 string mainScriptPath = Path.Combine(_scriptProjectPath, "Main.json");
                 string mainScriptName = Path.GetFileNameWithoutExtension(mainScriptPath);
                 UIListView mainScriptActions = NewLstScriptActions(mainScriptName);
@@ -65,17 +67,21 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                 ClearSelectedListViewItems();
 
                 try
-                {
+                {                    
                     //Serialize main script
                     var mainScript = Script.SerializeScript(mainScriptActions.Items, mainScriptVariables, mainScriptElements,
                                                             mainScriptPath, projectBuilder.NewProjectName);                  
                     //Create new project
                     Project proj = new Project(projectBuilder.NewProjectName);
                     _mainFileName = proj.Main;
+
+                    //create config file
+                    File.WriteAllText(configPath, JsonConvert.SerializeObject(proj));
+
                     //Save new project
-                    proj.SaveProject(mainScriptPath, mainScript, _mainFileName);
+                    proj.SaveProject(mainScriptPath, mainScript);
                     //Open new project
-                    ScriptProject = Project.OpenProject(mainScriptPath);
+                    ScriptProject = Project.OpenProject(configPath);
                     //Open main script
                     OpenFile(mainScriptPath);
                     ScriptFilePath = mainScriptPath;
@@ -98,16 +104,17 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                 try
                 {
                     //Open project
-                    ScriptProject = Project.OpenProject(projectBuilder.ExistingMainPath);
+                    ScriptProject = Project.OpenProject(projectBuilder.ExistingConfigPath);
                     _mainFileName = ScriptProject.Main;
 
-                    if (Path.GetFileName(projectBuilder.ExistingMainPath) != _mainFileName)
-                        throw new Exception("Attempted to open project from a script that isn't Main");
+                    string mainFilePath = Directory.GetFiles(Path.GetDirectoryName(projectBuilder.ExistingConfigPath), _mainFileName, SearchOption.AllDirectories).FirstOrDefault();
+                    if (mainFilePath == null || !File.Exists(mainFilePath))
+                        throw new Exception("Attempted to open project from a script that isn't project.config");
 
-                    _scriptProjectPath = Path.GetDirectoryName(projectBuilder.ExistingMainPath);
+                    _scriptProjectPath = Path.GetDirectoryName(projectBuilder.ExistingConfigPath);
                     uiScriptTabControl.TabPages.Clear();
                     //Open Main
-                    OpenFile(projectBuilder.ExistingMainPath);
+                    OpenFile(mainFilePath);
                     //show success dialog
                     Notify("Project has been opened successfully!");
                 }

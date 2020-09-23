@@ -38,6 +38,8 @@ namespace OpenBots.UI.Forms
         public List<ScriptVariable> ScriptVariables { get; set; }
         //list of elements, assigned from frmScriptBuilder
         public List<ScriptElement> ScriptElements { get; set; }
+        //project path, assigned from frmScriptBuilder
+        public string ProjectPath { get; set; }
         //reference to currently selected command
         public ScriptCommand SelectedCommand { get; set; }
         //reference to original command

@@ -10,6 +10,7 @@ namespace OpenBots.Core.Infrastructure
     public interface IfrmScriptBuilder
     {
         string ScriptFilePath { get; set; }
+        string ScriptProjectPath { get; }
         int DebugLine { get; set; }
         IfrmScriptEngine CurrentEngine { get; set; }
         bool IsScriptRunning { get; set; }

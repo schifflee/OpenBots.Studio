@@ -127,8 +127,8 @@ namespace OpenBots.Commands
                 }
             }
 
-            string projectName = ((frmScriptBuilder)CurrentScriptBuilder).ScriptProject.ProjectName;
-            NewEngine = new frmScriptEngine(childTaskPath, projectName, (frmScriptBuilder)CurrentScriptBuilder, ((frmScriptBuilder)CurrentScriptBuilder).EngineLogger,
+            string projectPath = parentEngine.ProjectPath;
+            NewEngine = new frmScriptEngine(childTaskPath, projectPath, (frmScriptBuilder)CurrentScriptBuilder, ((frmScriptBuilder)CurrentScriptBuilder).EngineLogger,
                 variableList, null, currentScriptEngine.AppInstances, false, parentEngine.IsDebugMode);
     
             NewEngine.IsChildEngine = true;
@@ -249,7 +249,7 @@ namespace OpenBots.Commands
             _passParameters.Font = new Font("Segoe UI Light", 12);
             _passParameters.ForeColor = Color.White;
             _passParameters.DataBindings.Add("Checked", this, "v_AssignVariables", false, DataSourceUpdateMode.OnPropertyChanged);
-            _passParameters.CheckedChanged += (sender, e) => PassParametersCheckbox_CheckedChanged(sender, e, editor.ScriptVariables, editor.ScriptElements);
+            _passParameters.CheckedChanged += (sender, e) => PassParametersCheckbox_CheckedChanged(sender, e, editor);
             commandControls.CreateDefaultToolTipFor("v_AssignVariables", this, _passParameters);
             RenderedControls.Add(_passParameters);
 
@@ -270,12 +270,16 @@ namespace OpenBots.Commands
             _passParameters.Checked = false;
         }
 
-        private void PassParametersCheckbox_CheckedChanged(object sender, EventArgs e, List<ScriptVariable> variables, List<ScriptElement> elements)
+        private void PassParametersCheckbox_CheckedChanged(object sender, EventArgs e, IfrmCommandEditor editor)
         {
             AutomationEngineInstance currentScriptEngine = new AutomationEngineInstance(null);
-            currentScriptEngine.VariableList.AddRange(variables);
-            currentScriptEngine.ElementList.AddRange(elements);
+            currentScriptEngine.VariableList.AddRange(editor.ScriptVariables);
+            currentScriptEngine.ElementList.AddRange(editor.ScriptElements);
             var startFile = v_taskPath.ConvertUserVariableToString(currentScriptEngine);
+
+            if (startFile.Contains("{ProjectPath}"))
+                startFile = startFile.Replace("{ProjectPath}", editor.ProjectPath);
+
             var Sender = (CheckBox)sender;
 
             _assignmentsGridViewHelper.Visible = Sender.Checked;

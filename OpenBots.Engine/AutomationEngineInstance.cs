@@ -99,7 +99,7 @@ namespace OpenBots.Engine
             ErrorHandlingAction = string.Empty;
         }
 
-        public void ExecuteScriptAsync(IfrmScriptEngine scriptEngine, string filePath, List<ScriptVariable> variables = null, 
+        public void ExecuteScriptAsync(IfrmScriptEngine scriptEngine, string filePath, string projectPath, List<ScriptVariable> variables = null, 
                                        List<ScriptElement> elements = null, Dictionary<string, object> appInstances = null)
         {
             EngineLogger.Information("Client requesting to execute script using frmEngine");
@@ -118,33 +118,33 @@ namespace OpenBots.Engine
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                ExecuteScript(filePath, true);
+                ExecuteScript(filePath, true , projectPath);
             }).Start();
         }
 
-        public void ExecuteScriptAsync(string filePath)
+        public void ExecuteScriptAsync(string filePath, string projectPath)
         {
             EngineLogger.Information("Client requesting to execute script independently");
 
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                ExecuteScript(filePath, true);
+                ExecuteScript(filePath, true, projectPath);
             }).Start();
         }
 
-        public void ExecuteScriptJson(string jsonData)
+        public void ExecuteScriptJson(string jsonData, string projectPath)
         {
             EngineLogger.Information("Client requesting to execute script independently");
 
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                ExecuteScript(jsonData, false);
+                ExecuteScript(jsonData, false, projectPath);
             }).Start();
         }
 
-        private void ExecuteScript(string data, bool dataIsFile)
+        private void ExecuteScript(string data, bool dataIsFile, string projectPath)
         {
             Client.EngineBusy = true;
 
@@ -201,6 +201,20 @@ namespace OpenBots.Engine
                 }
 
                 VariableList = automationScript.Variables;
+
+                //update ProjectPath variable
+                var projectPathVariable = VariableList.Where(v => v.VariableName == "ProjectPath").SingleOrDefault();
+                if (projectPathVariable != null)
+                    projectPathVariable.VariableValue = projectPath;
+                else
+                {
+                    projectPathVariable = new ScriptVariable
+                    {
+                        VariableName = "ProjectPath",
+                        VariableValue = projectPath
+                    };
+                    VariableList.Add(projectPathVariable);
+                }
 
                 //track elements
                 ReportProgress("Creating Element List");

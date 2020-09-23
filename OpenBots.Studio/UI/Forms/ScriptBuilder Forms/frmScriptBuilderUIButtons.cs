@@ -55,7 +55,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             var projectPathVariable = new ScriptVariable
             {
                 VariableName = "ProjectPath",
-                VariableValue = _scriptProjectPath
+                VariableValue = null
             };
             _scriptVariables.Add(projectPathVariable);
             GenerateRecentFiles();
@@ -67,7 +67,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         {
             //show ofd
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = _scriptProjectPath;
+            openFileDialog.InitialDirectory = ScriptProjectPath;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "Json (*.json)|*.json";
 
@@ -83,7 +83,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         {
             //show ofd
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = _scriptProjectPath;
+            openFileDialog.InitialDirectory = ScriptProjectPath;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "Json (*.json)|*.json";
 
@@ -151,21 +151,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                     //assign variables
                     _scriptVariables.AddRange(deserializedScript.Variables);
                     _scriptElements.AddRange(deserializedScript.Elements);
-                    uiScriptTabControl.SelectedTab.Tag = new ScriptObject(_scriptVariables, _scriptElements );
-
-                    //update ProjectPath variable
-                    var projectPathVariable = _scriptVariables.Where(v => v.VariableName == "ProjectPath").SingleOrDefault();
-                    if (projectPathVariable != null)
-                        projectPathVariable.VariableValue = _scriptProjectPath;
-                    else
-                    {
-                        projectPathVariable = new ScriptVariable
-                        {
-                            VariableName = "ProjectPath",
-                            VariableValue = _scriptProjectPath
-                        };
-                        _scriptVariables.Add(projectPathVariable);
-                    }
+                    uiScriptTabControl.SelectedTab.Tag = new ScriptObject(_scriptVariables, _scriptElements );                  
 
                     //populate commands
                     PopulateExecutionCommands(deserializedScript.Commands);
@@ -340,14 +326,14 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             if (string.IsNullOrEmpty(ScriptFilePath) || (saveAs))
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.InitialDirectory = _scriptProjectPath;
+                saveFileDialog.InitialDirectory = ScriptProjectPath;
                 saveFileDialog.RestoreDirectory = true;
                 saveFileDialog.Filter = "Json (*.json)|*.json";
 
                 if (saveFileDialog.ShowDialog() != DialogResult.OK)
                     return;
 
-                if (!saveFileDialog.FileName.ToString().Contains(_scriptProjectPath))
+                if (!saveFileDialog.FileName.ToString().Contains(ScriptProjectPath))
                 {
                     Notify("An Error Occured: Attempted to save script outside of project directory");
                     return;
@@ -698,7 +684,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             }
 
             //initialize Engine
-            CurrentEngine = new frmScriptEngine(ScriptFilePath, ScriptProject.ProjectName, this, EngineLogger, null, null, null, false, _isDebugMode);
+            CurrentEngine = new frmScriptEngine(ScriptFilePath, ScriptProjectPath, this, EngineLogger, null, null, null, false, _isDebugMode);
 
             //executionManager = new ScriptExectionManager();
             //executionManager.CurrentlyExecuting = true;

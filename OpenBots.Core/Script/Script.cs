@@ -19,6 +19,7 @@ using System.IO;
 using System.Windows.Forms;
 using OpenBots.Core.Command;
 using Formatting = Newtonsoft.Json.Formatting;
+using System.Linq;
 
 namespace OpenBots.Core.Script
 {
@@ -167,6 +168,18 @@ namespace OpenBots.Core.Script
 
                 JsonSerializer serializer = JsonSerializer.Create(serializerSettings);
                 Script deserializedData = (Script)serializer.Deserialize(file, typeof(Script));
+
+                //update ProjectPath variable
+                var projectPathVariable = deserializedData.Variables.Where(v => v.VariableName == "ProjectPath").SingleOrDefault();
+                if (projectPathVariable == null)
+                {
+                    projectPathVariable = new ScriptVariable
+                    {
+                        VariableName = "ProjectPath",
+                        VariableValue = null
+                    };
+                    deserializedData.Variables.Add(projectPathVariable);
+                }
 
                 return deserializedData;
             }

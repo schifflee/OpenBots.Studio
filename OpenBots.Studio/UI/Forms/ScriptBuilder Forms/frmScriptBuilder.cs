@@ -74,7 +74,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             }
         }
         public Project ScriptProject { get; set; }
-        private string _scriptProjectPath;
+        public string ScriptProjectPath { get; private set; }
         private string _mainFileName;
         private Point _lastClickPosition;
         private int _debugLine;
@@ -280,7 +280,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             if (_appSettings.ClientSettings.StartupMode == "Attended Task Mode")
             {
                 WindowState = FormWindowState.Minimized;
-                var frmAttended = new frmAttendedMode(ScriptProject.ProjectName);
+                var frmAttended = new frmAttendedMode(ScriptProjectPath);
                 frmAttended.Show();
             }
 
@@ -518,6 +518,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             newCommandForm.CreationModeInstance = CreationMode.Add;
             newCommandForm.ScriptVariables = _scriptVariables;
             newCommandForm.ScriptElements = _scriptElements;
+            newCommandForm.ProjectPath = ScriptProjectPath;
             if (specificCommand != "")
                 newCommandForm.DefaultStartupCommand = specificCommand;
 

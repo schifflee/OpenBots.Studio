@@ -50,10 +50,10 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                     return;
               
                 uiScriptTabControl.TabPages.Clear();
-                _scriptProjectPath = projectBuilder.NewProjectPath;
+                ScriptProjectPath = projectBuilder.NewProjectPath;
 
-                string configPath = Path.Combine(_scriptProjectPath, "project.config");
-                string mainScriptPath = Path.Combine(_scriptProjectPath, "Main.json");
+                string configPath = Path.Combine(ScriptProjectPath, "project.config");
+                string mainScriptPath = Path.Combine(ScriptProjectPath, "Main.json");
                 string mainScriptName = Path.GetFileNameWithoutExtension(mainScriptPath);
                 UIListView mainScriptActions = NewLstScriptActions(mainScriptName);
                 List<ScriptVariable> mainScriptVariables = new List<ScriptVariable>();
@@ -111,7 +111,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                     if (mainFilePath == null || !File.Exists(mainFilePath))
                         throw new Exception("Attempted to open project from a script that isn't project.config");
 
-                    _scriptProjectPath = Path.GetDirectoryName(projectBuilder.ExistingConfigPath);
+                    ScriptProjectPath = Path.GetDirectoryName(projectBuilder.ExistingConfigPath);
                     uiScriptTabControl.TabPages.Clear();
                     //Open Main
                     OpenFile(mainFilePath);
@@ -128,7 +128,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                 }
             }
 
-            DirectoryInfo projectDirectoryInfo = new DirectoryInfo(_scriptProjectPath);
+            DirectoryInfo projectDirectoryInfo = new DirectoryInfo(ScriptProjectPath);
             TreeNode projectNode = new TreeNode(projectDirectoryInfo.Name);
             projectNode.Text = projectDirectoryInfo.Name;
             projectNode.Tag = projectDirectoryInfo.FullName;
@@ -382,7 +382,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                     if (Directory.Exists(Path.Combine(selectedNodePath, copiedNodeDirectoryInfo.Name)))
                         throw new Exception("A directory with this name already exists in this location");
 
-                    else if (copiedNodePath == _scriptProjectPath)
+                    else if (copiedNodePath == ScriptProjectPath)
                         throw new Exception("The project directory cannot be copied or moved");
 
                     else
@@ -422,7 +422,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             try
             {
                 string selectedNodePath = tvProject.SelectedNode.Tag.ToString();
-                if (selectedNodePath != _scriptProjectPath)
+                if (selectedNodePath != ScriptProjectPath)
                 {
                     DirectoryInfo selectedNodeDirectoryInfo = new DirectoryInfo(selectedNodePath);
 
@@ -617,7 +617,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 
         private void uiBtnOpenDirectory_Click(object sender, EventArgs e)
         {
-            Process.Start(_scriptProjectPath);
+            Process.Start(ScriptProjectPath);
         }
         #endregion
     }

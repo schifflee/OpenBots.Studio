@@ -9,6 +9,7 @@ namespace OpenBots.Core.Infrastructure
     {
         List<ScriptVariable> ScriptVariables { get; set; }
         List<ScriptElement> ScriptElements { get; set; }
+        string ProjectPath { get; set; }
         ScriptCommand SelectedCommand { get; set; }
         ScriptCommand OriginalCommand { get; set; }
         CreationMode CreationModeInstance { get; set; }

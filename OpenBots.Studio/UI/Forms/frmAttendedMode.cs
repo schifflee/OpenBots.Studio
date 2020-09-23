@@ -19,14 +19,14 @@ namespace OpenBots.UI.Forms
         private bool _dragging = false;
         private Point _dragCursorPoint;
         private Point _dragFormPoint;
-        private string _projectName;
+        private string _projectPath;
 
         #endregion
 
         #region Form Events
-        public frmAttendedMode(string projectName)
+        public frmAttendedMode(string projectPath)
         {
-            _projectName = projectName;
+            _projectPath = projectPath;
             InitializeComponent();
         }
 
@@ -83,18 +83,18 @@ namespace OpenBots.UI.Forms
                         _appSettings.EngineSettings.MinLogLevel);
                     break;
                 case SinkType.HTTP:
-                    engineLogger = new Logging().CreateHTTPLogger(_projectName, _appSettings.EngineSettings.LoggingValue1, _appSettings.EngineSettings.MinLogLevel);
+                    engineLogger = new Logging().CreateHTTPLogger(Path.GetDirectoryName(_projectPath), _appSettings.EngineSettings.LoggingValue1, _appSettings.EngineSettings.MinLogLevel);
                     break;
                 case SinkType.SignalR:
                     string[] groupNames = _appSettings.EngineSettings.LoggingValue3.Split(',').Select(x => x.Trim()).ToArray();
                     string[] userIDs = _appSettings.EngineSettings.LoggingValue4.Split(',').Select(x => x.Trim()).ToArray();
 
-                    engineLogger = new Logging().CreateSignalRLogger(_projectName, _appSettings.EngineSettings.LoggingValue1, _appSettings.EngineSettings.LoggingValue2, 
+                    engineLogger = new Logging().CreateSignalRLogger(Path.GetDirectoryName(_projectPath), _appSettings.EngineSettings.LoggingValue1, _appSettings.EngineSettings.LoggingValue2, 
                         groupNames, userIDs, _appSettings.EngineSettings.MinLogLevel);
                     break;
             }
             
-            frmScriptEngine newEngine = new frmScriptEngine(scriptFilePath, _projectName, null, engineLogger);
+            frmScriptEngine newEngine = new frmScriptEngine(scriptFilePath, _projectPath, null, engineLogger);
             newEngine.Show();
         }
 

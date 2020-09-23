@@ -42,10 +42,10 @@ namespace OpenBots.Core.Infrastructure
         event EventHandler<ScriptFinishedEventArgs> ScriptFinishedEvent;
         event EventHandler<LineNumberChangedEventArgs> LineNumberChangedEvent;
 
-        void ExecuteScriptAsync(IfrmScriptEngine scriptEngine, string filePath, List<ScriptVariable> variables = null,
+        void ExecuteScriptAsync(IfrmScriptEngine scriptEngine, string filePath, string projectPath, List<ScriptVariable> variables = null,
                                        List<ScriptElement> elements = null, Dictionary<string, object> appInstances = null);
-        void ExecuteScriptAsync(string filePath);
-        void ExecuteScriptJson(string jsonData);
+        void ExecuteScriptAsync(string filePath, string projectPath);
+        void ExecuteScriptJson(string jsonData, string projectPath);
         void ExecuteCommand(ScriptAction command);
         string GetEngineContext();
     }

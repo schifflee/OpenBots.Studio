@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -15,10 +15,8 @@ namespace OpenBots.Commands
     [Serializable]
     [Group("Engine Commands")]
     [Description("This command uploads data to a local OpenBots Server BotStore.")]
-
     public class UploadBotStoreDataCommand : ScriptCommand
     {
-
         [PropertyDescription("Key")]
         [InputSpecification("Select or provide the name of the key to create.")]
         [SampleUsage("Hello || {vKey}")]

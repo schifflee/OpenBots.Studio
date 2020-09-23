@@ -11,7 +11,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using Exception = System.Exception;
 
 namespace OpenBots.Commands.List
@@ -21,7 +21,6 @@ namespace OpenBots.Commands.List
     [Description("This command adds an item to an existing List variable.")]
     public class AddListItemCommand : ScriptCommand
     {
-
         [PropertyDescription("List")]
         [InputSpecification("Provide a List variable.")]
         [SampleUsage("{vList}")]

@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using Group = OpenBots.Core.Attributes.ClassAttributes.Group;
 
@@ -19,7 +19,6 @@ namespace OpenBots.Commands.Excel
     [Serializable]
     [Group("Excel Commands")]
     [Description("This command writes a DataRow to an Excel Worksheet starting from a specific cell address.")]
-
     public class ExcelWriteRowCommand : ScriptCommand
     {
 

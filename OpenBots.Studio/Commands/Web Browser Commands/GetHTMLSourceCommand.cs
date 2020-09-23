@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -19,7 +19,6 @@ namespace OpenBots.Commands
 
     public class GetHTMLSourceCommand : ScriptCommand
     {
-
         [PropertyDescription("URL")]
         [InputSpecification("Enter a valid URL that you want to collect data from.")]
         [SampleUsage("http://mycompany.com/news || {vCompany}")]

@@ -7,7 +7,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Variable
 {
@@ -16,7 +16,6 @@ namespace OpenBots.Commands.Variable
     [Description("This command modifies a variable.")]
     public class SetVariableCommand : ScriptCommand
     {
-
         [PropertyDescription("Input Value")]
         [InputSpecification("Enter the input value for the variable.")]
         [SampleUsage("Hello || {vNum} || {vNum}+1")]

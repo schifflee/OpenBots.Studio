@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -17,7 +17,6 @@ namespace OpenBots.Commands
     [Description("This command displays an engine context message to the user.")]
     public class ShowEngineContextCommand : ScriptCommand
     {
-
         [PropertyDescription("Close After X (Seconds)")]
         [InputSpecification("Specify how many seconds to display the message on screen. After the specified time," +
                             "\nthe message box will be automatically closed and script will resume execution.")]

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using DataTable = System.Data.DataTable;
 
@@ -20,10 +20,8 @@ namespace OpenBots.Commands.Excel
     [Serializable]
     [Group("Excel Commands")]
     [Description("This command takes a specific Excel range, splits it into separate ranges by column, and stores them in new Workbooks.")]
-
     public class ExcelSplitRangeByColumnCommand : ScriptCommand
     {
-
         [PropertyDescription("Excel Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyExcelInstance")]

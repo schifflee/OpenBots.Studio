@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Security;
 using System.Threading;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
@@ -30,7 +30,6 @@ namespace OpenBots.Commands
     [Description("This command attempts to find and perform an action on an existing image on screen.")]
     public class SurfaceAutomationCommand : ScriptCommand
     {
-
         [PropertyDescription("Capture Search Image")]
         [InputSpecification("Use the tool to capture an image that will be located on screen during execution.")]
         [SampleUsage("")]

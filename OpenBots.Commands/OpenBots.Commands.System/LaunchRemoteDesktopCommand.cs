@@ -7,7 +7,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.System
 {
@@ -16,7 +16,6 @@ namespace OpenBots.Commands.System
     [Description("This command launches a remote desktop session.")]
     public class LaunchRemoteDesktopCommand : ScriptCommand
     {
-
         [PropertyDescription("Machine Name")]
         [InputSpecification("Define the name of the machine to log on to.")]
         [SampleUsage("myMachine || {vMachineName}")]

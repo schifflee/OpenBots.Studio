@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -11,14 +11,12 @@ using OpenBots.Engine;
 
 namespace OpenBots.Commands
 {
-
     [Serializable]
     [Group("Web Browser Commands")]
     [Description("This command parses and extracts data from an HTML source object or a successful **GetHTMLSourceCommand**.")]
 
     public class QueryHTMLSourceCommand : ScriptCommand
     {
-
         [PropertyDescription("HTML")]
         [InputSpecification("Enter the HTML to be queried.")]
         [SampleUsage("<!DOCTYPE html><html><head><title>Example</title></head></html> || {vMyHTML}")]

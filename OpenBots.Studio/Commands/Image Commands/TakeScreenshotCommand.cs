@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -19,7 +19,6 @@ namespace OpenBots.Commands
     [Description("This command takes a screenshot and saves it to a specified location.")]
     public class TakeScreenshotCommand : ScriptCommand
     {
-
         [PropertyDescription("Window Name")]
         [InputSpecification("Select the name of the window to take a screenshot of.")]
         [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]

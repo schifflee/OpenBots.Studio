@@ -12,17 +12,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Authentication;
 using System.Threading;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Email
 {
     [Serializable]
     [Group("Email Commands")]
     [Description("This command replies to a selected email using SMTP protocol.")]
-
     public class ReplyToSMTPEmailCommand : ScriptCommand
     {
-
         [PropertyDescription("MimeMessage")]
         [InputSpecification("Enter the MimeMessage to reply to.")]
         [SampleUsage("{vMimeMessage}")]

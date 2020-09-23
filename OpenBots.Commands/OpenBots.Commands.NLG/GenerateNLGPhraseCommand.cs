@@ -7,7 +7,7 @@ using OpenBots.Engine;
 using SimpleNLG;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.NLG
 {
@@ -16,7 +16,6 @@ namespace OpenBots.Commands.NLG
     [Description("This command produces a Natural Language Generation phrase.")]
     public class GenerateNLGPhraseCommand : ScriptCommand
     {
-
         [PropertyDescription("NLG Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create NLG Instance** command.")]
         [SampleUsage("MyNLGInstance")]

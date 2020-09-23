@@ -8,7 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Security;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.SecureData
 {
@@ -17,7 +17,6 @@ namespace OpenBots.Commands.SecureData
     [Description("This command adds text as a SecureString into a variable.")]
     public class NewSecureStringCommand : ScriptCommand
     {
-
         [PropertyDescription("Input Text")]
         [InputSpecification("Enter the text for the variable.")]
         [SampleUsage("Some Text || {vText}")]

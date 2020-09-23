@@ -10,7 +10,6 @@ namespace OpenBots.Commands
     [Serializable]
     [Group("Task Commands")]
     [Description("This command stops the currently running task.")]
-
     public class StopCurrentTaskCommand : ScriptCommand
     {
         public StopCurrentTaskCommand()

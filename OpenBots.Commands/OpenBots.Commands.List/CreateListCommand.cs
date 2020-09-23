@@ -11,7 +11,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using Exception = System.Exception;
 
 namespace OpenBots.Commands.List
@@ -21,7 +21,6 @@ namespace OpenBots.Commands.List
     [Description("This command creates a new List variable.")]
     public class CreateListCommand : ScriptCommand
     {
-
         [PropertyDescription("List Type")]
         [PropertyUISelectionOption("String")]
         [PropertyUISelectionOption("DataTable")]

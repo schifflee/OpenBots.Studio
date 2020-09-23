@@ -15,7 +15,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Authentication;
 using System.Threading;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Email
 {

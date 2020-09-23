@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -25,7 +25,6 @@ namespace OpenBots.Commands
         "an error is thrown.")]
     public class BeginRetryCommand : ScriptCommand
     {
-
         [PropertyDescription("Number of Retries")]
         [InputSpecification("Enter or provide the number of retries.")]
         [SampleUsage("3 || {vRetryCount}")]

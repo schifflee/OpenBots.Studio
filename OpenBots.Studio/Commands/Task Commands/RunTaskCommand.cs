@@ -4,7 +4,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
@@ -22,10 +22,8 @@ namespace OpenBots.Commands
     [Serializable]
     [Group("Task Commands")]
     [Description("This command executes a Task.")]
-
     public class RunTaskCommand : ScriptCommand
     {
-
         [PropertyDescription("Task File Path")]
         [InputSpecification("Enter or select a valid path to the Task file.")]
         [SampleUsage(@"C:\temp\mytask.json || {vScriptPath} || {ProjectPath}\mytask.json")]

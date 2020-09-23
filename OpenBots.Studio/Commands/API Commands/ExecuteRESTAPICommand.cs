@@ -15,14 +15,12 @@ using OpenBots.Engine;
 
 namespace OpenBots.Commands
 {
-
     [Serializable]
     [Group("API Commands")]
     [Description("This command calls a REST API with a specific HTTP method.")]
 
     public class ExecuteRESTAPICommand : ScriptCommand
     {
-
         [PropertyDescription("Base URL")]
         [InputSpecification("Provide the base URL of the API.")]
         [SampleUsage("https://example.com || {vMyUrl}")]

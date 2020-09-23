@@ -12,17 +12,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Authentication;
 using System.Threading;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Email
 {
     [Serializable]
     [Group("Email Commands")]
     [Description("This command sends an email with optional attachment(s) using SMTP protocol.")]
-
     public class SendSMTPEmailCommand : ScriptCommand
     {
-
         [PropertyDescription("Host")]
         [InputSpecification("Define the host/service name that the script should use.")]
         [SampleUsage("smtp.gmail.com || {vHost}")]

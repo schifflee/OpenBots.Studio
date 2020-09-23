@@ -6,7 +6,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -23,7 +23,6 @@ namespace OpenBots.Commands
     [Description("This command iterates over a collection to let user perform actions on the collection items.")]
     public class LoopCollectionCommand : ScriptCommand
     {
-
         [PropertyDescription("Input Collection")]
         [InputSpecification("Provide a collection variable.")]
         [SampleUsage("{vMyCollection}")]

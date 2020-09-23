@@ -14,16 +14,13 @@ using System.Linq;
 using System.Security.Authentication;
 using System.Threading;
 using System.Windows.Forms;
-
 namespace OpenBots.Commands.Email
 {
     [Serializable]
     [Group("Email Commands")]
     [Description("This command moves or copies a selected email using IMAP protocol.")]
-
     public class MoveCopyIMAPEmailCommand : ScriptCommand
     {
-
         [PropertyDescription("MimeMessage")]
         [InputSpecification("Enter the MimeMessage to move or copy.")]
         [SampleUsage("{vMimeMessage}")]

@@ -14,7 +14,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
 using System.Text;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Database
 {

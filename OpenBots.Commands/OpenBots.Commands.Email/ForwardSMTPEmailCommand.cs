@@ -12,7 +12,6 @@ using System.Collections.Generic;
 using System.Security.Authentication;
 using System.Threading;
 using System.Windows.Forms;
-
 namespace OpenBots.Commands.Email
 {
     [Serializable]

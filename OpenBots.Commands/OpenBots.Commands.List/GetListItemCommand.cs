@@ -13,7 +13,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.List
 {
@@ -22,7 +22,6 @@ namespace OpenBots.Commands.List
     [Description("This command returns an item (having a specific index) from a List.")]
     public class GetListItemCommand : ScriptCommand
     {
-
         [PropertyDescription("List")]
         [InputSpecification("Provide a List variable.")]
         [SampleUsage("{vList}")]

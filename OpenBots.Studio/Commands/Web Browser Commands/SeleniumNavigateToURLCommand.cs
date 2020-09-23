@@ -3,7 +3,7 @@ using SHDocVw;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -17,10 +17,8 @@ namespace OpenBots.Commands
     [Serializable]
     [Group("Web Browser Commands")]
     [Description("This command allows you to navigate a Selenium web browser session to a given URL or resource.")]
-
     public class SeleniumNavigateToURLCommand : ScriptCommand
     {
-
         [PropertyDescription("Browser Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Browser** command.")]
         [SampleUsage("MyBrowserInstance")]

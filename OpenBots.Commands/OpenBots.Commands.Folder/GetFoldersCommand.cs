@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Folder
 {
@@ -18,7 +18,6 @@ namespace OpenBots.Commands.Folder
     [Description("This command returns a list of folder directories from a specified location.")]
     public class GetFoldersCommand : ScriptCommand
     {
-
         [PropertyDescription("Root Folder Path")]
         [InputSpecification("Enter or Select the path to the root folder to get its subdirectories.")]
         [SampleUsage(@"C:\temp\myfolder || {ProjectPath}\myfolder || {vTextFolderPath}")]

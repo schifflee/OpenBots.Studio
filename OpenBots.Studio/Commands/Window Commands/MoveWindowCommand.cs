@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -17,7 +17,6 @@ namespace OpenBots.Commands
     [Description("This command moves an open window to a specified location on screen.")]
     public class MoveWindowCommand : ScriptCommand
     {
-
         [PropertyDescription("Window Name")]
         [InputSpecification("Select the name of the window to move.")]
         [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]

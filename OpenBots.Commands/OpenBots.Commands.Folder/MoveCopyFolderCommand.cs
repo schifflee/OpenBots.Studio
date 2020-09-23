@@ -8,7 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Folder
 {
@@ -17,7 +17,6 @@ namespace OpenBots.Commands.Folder
     [Description("This command moves/copies a folder to a specified location.")]
     public class MoveCopyFolderCommand : ScriptCommand
     {
-
         [PropertyDescription("Folder Operation Type")]
         [PropertyUISelectionOption("Move Folder")]
         [PropertyUISelectionOption("Copy Folder")]

@@ -9,7 +9,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using DataTable = System.Data.DataTable;
 
@@ -18,7 +18,6 @@ namespace OpenBots.Commands.Excel
     [Serializable]
     [Group("Excel Commands")]
     [Description("This command gets the range from an Excel Worksheet and stores it in a DataTable.")]
-
     public class ExcelGetRangeCommand : ScriptCommand
     {
 

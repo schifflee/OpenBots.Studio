@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using Group = OpenBots.Core.Attributes.ClassAttributes.Group;
 
 namespace OpenBots.Commands.RegEx
@@ -20,7 +20,6 @@ namespace OpenBots.Commands.RegEx
     [Description("This command gets all matches in a given text based on a Regex pattern.")]
     public class GetRegexMatchesCommand : ScriptCommand
     {
-
         [PropertyDescription("Text")]
         [InputSpecification("Select or provide text to apply Regex on.")]
         [SampleUsage("Hello || {vText}")]

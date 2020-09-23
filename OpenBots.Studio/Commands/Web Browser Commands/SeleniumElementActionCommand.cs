@@ -13,7 +13,7 @@ using System.Reflection;
 using System.Security;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -35,10 +35,8 @@ namespace OpenBots.Commands
     [Serializable]
     [Group("Web Browser Commands")]
     [Description("This command performs an element action in a Selenium web browser session.")]
-
     public class SeleniumElementActionCommand : ScriptCommand
     {
-
         [PropertyDescription("Browser Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Browser** command.")]
         [SampleUsage("MyBrowserInstance")]

@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using IO = System.IO;
 
 namespace OpenBots.Commands.File
@@ -20,7 +20,6 @@ namespace OpenBots.Commands.File
     [Description("This command extracts file(s) from a file having specific format.")]
     public class ExtractFilesCommand : ScriptCommand
     {
-
         [PropertyDescription("Source File Format")]
         [PropertyUISelectionOption("zip")]
         [PropertyUISelectionOption("7z")]

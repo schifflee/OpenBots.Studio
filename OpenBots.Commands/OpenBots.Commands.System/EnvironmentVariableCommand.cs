@@ -9,7 +9,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.System
 {
@@ -18,7 +18,6 @@ namespace OpenBots.Commands.System
     [Description("This command exclusively selects an environment variable.")]
     public class EnvironmentVariableCommand : ScriptCommand
     {
-
         [PropertyDescription("Environment Variable")]
         [InputSpecification("Select an evironment variable from one of the options.")]
         [SampleUsage("")]

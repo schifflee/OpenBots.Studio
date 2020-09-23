@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.File
 {
@@ -18,7 +18,6 @@ namespace OpenBots.Commands.File
     [Description("This command returns a list of file paths from a specified location.")]
     public class GetFilesCommand : ScriptCommand
     {
-
         [PropertyDescription("Source Folder Path")]
         [InputSpecification("Enter or Select the path to the folder.")]
         [SampleUsage(@"C:\temp\myfolder || {ProjectPath}\myfolder || {vSourceFolderPath}")]

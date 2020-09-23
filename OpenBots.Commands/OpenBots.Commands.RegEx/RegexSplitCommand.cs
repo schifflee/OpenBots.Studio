@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using Group = OpenBots.Core.Attributes.ClassAttributes.Group;
 
 namespace OpenBots.Commands.RegEx
@@ -19,7 +19,6 @@ namespace OpenBots.Commands.RegEx
     [Description("This command splits a given text based on a Regex pattern.")]
     public class RegexSplitCommand : ScriptCommand
     {
-
         [PropertyDescription("Text")]
         [InputSpecification("Select or provide text to apply Regex on.")]
         [SampleUsage("Hello || {vText}")]

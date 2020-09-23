@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
@@ -18,7 +18,6 @@ namespace OpenBots.Commands
     [Description("This command measures time elapsed during the execution of the process.")]
     public class StopwatchCommand : ScriptCommand
     {
-
         [PropertyDescription("Stopwatch Instance Name")]
         [InputSpecification("Enter a unique name that will represent the application instance.")]
         [SampleUsage("MyStopwatchInstance")]

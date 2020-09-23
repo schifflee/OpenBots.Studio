@@ -9,7 +9,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Word.Application;
 
 namespace OpenBots.Commands.Word
@@ -17,10 +17,8 @@ namespace OpenBots.Commands.Word
     [Serializable]
     [Group("Word Commands")]
     [Description("This command saves a Word Document to a specific file.")]
-
     public class WordSaveDocumentAsCommand : ScriptCommand
     {
-
         [PropertyDescription("Word Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyWordInstance")]

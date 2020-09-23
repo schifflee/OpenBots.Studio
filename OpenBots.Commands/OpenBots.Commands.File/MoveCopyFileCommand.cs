@@ -7,7 +7,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using IO = System.IO;
 
 namespace OpenBots.Commands.File
@@ -17,7 +17,6 @@ namespace OpenBots.Commands.File
     [Description("This command moves/copies a file to a specified destination.")]
     public class MoveCopyFileCommand : ScriptCommand
     {
-
         [PropertyDescription("File Operation Type")]
         [PropertyUISelectionOption("Move File")]
         [PropertyUISelectionOption("Copy File")]

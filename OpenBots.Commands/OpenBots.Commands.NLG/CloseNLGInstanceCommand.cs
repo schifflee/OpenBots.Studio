@@ -6,7 +6,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.NLG
 {
@@ -15,7 +15,6 @@ namespace OpenBots.Commands.NLG
     [Description("This command closes a Natural Language Generation Instance.")]
     public class CloseNLGInstanceCommand : ScriptCommand
     {
-
         [PropertyDescription("NLG Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create NLG Instance** command.")]
         [SampleUsage("MyNLGInstance")]

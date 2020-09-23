@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Windows.Forms;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using DataTable = System.Data.DataTable;
 
@@ -19,10 +19,8 @@ namespace OpenBots.Commands.Excel
     [Serializable]
     [Group("Excel Commands")]
     [Description("This command reads an Excel Config Worksheet and stores it in a Dictionary.")]
-
     public class LoadDictionaryCommand : ScriptCommand
     {
-
         [PropertyDescription("Workbook File Path")]
         [InputSpecification("Enter or Select the path to the Workbook file.")]
         [SampleUsage(@"C:\temp\myfile.xlsx || {vFilePath} || {ProjectPath}\myfile.xlsx")]

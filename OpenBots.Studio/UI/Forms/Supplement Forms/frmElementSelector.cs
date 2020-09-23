@@ -19,6 +19,8 @@ namespace OpenBots.UI.Forms.Supplement_Forms
 
         private void frmElementSelector_Load(object sender, EventArgs e)
         {
+            _elementList = new List<string>();
+            _elementList.AddRange(lstElements.Items.Cast<string>().ToList());
         }
 
         private void uiBtnOk_Click(object sender, EventArgs e)

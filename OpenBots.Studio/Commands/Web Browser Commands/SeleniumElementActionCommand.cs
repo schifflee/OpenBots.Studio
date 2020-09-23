@@ -37,8 +37,7 @@ namespace OpenBots.Commands
     [Description("This command performs an element action in a Selenium web browser session.")]
 
     public class SeleniumElementActionCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Browser Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Browser** command.")]
         [SampleUsage("MyBrowserInstance")]

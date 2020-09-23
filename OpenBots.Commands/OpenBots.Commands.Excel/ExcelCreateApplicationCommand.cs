@@ -20,43 +20,34 @@ namespace OpenBots.Commands.Excel
     [Description("This command creates an Excel Instance.")]
 
     public class ExcelCreateApplicationCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Excel Instance Name")]
         [InputSpecification("Enter a unique name that will represent the application instance.")]
         [SampleUsage("MyExcelInstance")]
         [Remarks("This unique name allows you to refer to the instance by name in future commands, " +
                  "ensuring that the commands you specify run against the correct application.")]
-        public string v_InstanceName { get; set; }
-
-        [XmlAttribute]
+        public string v_InstanceName { get; set; }
         [PropertyDescription("New/Open Workbook")]
         [PropertyUISelectionOption("New Workbook")]
         [PropertyUISelectionOption("Open Workbook")]
         [InputSpecification("Indicate whether to create a new Workbook or to open an existing Workbook.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_NewOpenWorkbook { get; set; }
-
-        [XmlAttribute]
+        public string v_NewOpenWorkbook { get; set; }
         [PropertyDescription("Workbook File Path")]
         [InputSpecification("Enter or Select the path to the Workbook file.")]
         [SampleUsage(@"C:\temp\myfile.xlsx || {vFilePath} || {ProjectPath}\myfile.xlsx")]
         [Remarks("This input should only be used for opening existing Workbooks.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_FilePath { get; set; }
-
-        [XmlAttribute]
+        public string v_FilePath { get; set; }
         [PropertyDescription("Visible")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("Indicate whether the Excel automation should be visible or not.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_Visible { get; set; }
-
-        [XmlAttribute]
+        public string v_Visible { get; set; }
         [PropertyDescription("Close All Existing Excel Instances")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

@@ -17,33 +17,26 @@ namespace OpenBots.Commands.Remote
     [Group("Remote Commands")]
     [Description("This command executes a task remotely on another OpenBots instance.")]
     public class RemoteAPICommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("API Endpoint/Port")]
         [InputSpecification("Define the API endpoint or port enabled for local listening.")]
         [SampleUsage("example.com/hello || 192.168.2.200:19312 || {vMyUrl}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_BaseURL { get; set; }
-
-        [XmlAttribute]
+        public string v_BaseURL { get; set; }
         [PropertyDescription("Parameter Type")]
         [PropertyUISelectionOption("Get Engine Status")]
         [PropertyUISelectionOption("Restart OpenBots")]
         [InputSpecification("Select the appropriate parameter type.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_ParameterType { get; set; }
-
-        [XmlAttribute]
+        public string v_ParameterType { get; set; }
         [PropertyDescription("Request Timeout (Seconds)")]
         [InputSpecification("Enter the length of time to wait before the request times out.")]
         [SampleUsage("30 || {vTime}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_RequestTimeout { get; set; }
-
-        [XmlAttribute]
+        public string v_RequestTimeout { get; set; }
         [PropertyDescription("Output Response Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

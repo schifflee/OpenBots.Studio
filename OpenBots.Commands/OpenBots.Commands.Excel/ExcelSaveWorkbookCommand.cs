@@ -17,8 +17,7 @@ namespace OpenBots.Commands.Excel
     [Description("This command saves an Excel Workbook.")]
 
     public class ExcelSaveWorkbookCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Excel Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyExcelInstance")]

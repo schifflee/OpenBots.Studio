@@ -17,8 +17,7 @@ namespace OpenBots.Commands
     [Group("Switch Commands")]
     [Description("This command defines a switch/case block which will execute the associated case block if the specified value is a match.")]
     public class BeginSwitchCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Switch")]
         [InputSpecification("This value will determine the Case block to execute.")]
         [SampleUsage("{vSwitch}")]

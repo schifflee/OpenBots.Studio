@@ -22,16 +22,13 @@ namespace OpenBots.Commands
     [Group("Input Commands")]
     [Description("This command provides the user with a form to input and store a collection of data.")]
     public class InputCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Header Name")]
         [InputSpecification("Define the header to be displayed on the input form.")]
         [SampleUsage("Please Provide Input || {vHeader}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputHeader { get; set; }
-
-        [XmlAttribute]
+        public string v_InputHeader { get; set; }
         [PropertyDescription("Input Directions")]
         [InputSpecification("Define the directions to give to the user.")]
         [SampleUsage("Directions: Please fill in the following fields || {vDirections}")]

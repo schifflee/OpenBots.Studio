@@ -22,15 +22,12 @@ namespace OpenBots.Commands.Database
     [Group("Database Commands")]
     [Description("This command performs a OleDb database query.")]
     public class ExecuteDatabaseQueryCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Database Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Define Database Connection** command.")]
         [SampleUsage("MyBrowserInstance")]
         [Remarks("Failure to enter the correct instance name or failure to first call the **Define Database Connection** command will cause an error.")]
-        public string v_InstanceName { get; set; }
-
-        [XmlAttribute]
+        public string v_InstanceName { get; set; }
         [PropertyDescription("Define Query Execution Type")]
         [PropertyUISelectionOption("Return Dataset")]
         [PropertyUISelectionOption("Execute NonQuery")]
@@ -38,9 +35,7 @@ namespace OpenBots.Commands.Database
         [InputSpecification("Select the appropriate query execution type.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_QueryType { get; set; }
-
-        [XmlAttribute]
+        public string v_QueryType { get; set; }
         [PropertyDescription("Query")]
         [InputSpecification("Define the OleDb query to execute.")]
         [SampleUsage("SELECT OrderID, CustomerID FROM Orders || {vQuery}")]
@@ -54,9 +49,7 @@ namespace OpenBots.Commands.Database
         [SampleUsage("[STRING | @name | {vNameValue}]")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public DataTable v_QueryParameters { get; set; }
-
-        [XmlAttribute]
+        public DataTable v_QueryParameters { get; set; }
         [PropertyDescription("Output Dataset Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

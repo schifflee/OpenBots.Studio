@@ -17,17 +17,14 @@ namespace OpenBots.Commands.Folder
     [Group("Folder Operation Commands")]
     [Description("This command renames an existing folder.")]
     public class RenameFolderCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Folder Path")]
         [InputSpecification("Enter or Select the path to the folder.")]
         [SampleUsage(@"C:\temp\myFolder || {ProjectPath}\myfolder || {vFolderPath}")]
         [Remarks("{ProjectPath} is the directory path of the current project.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)] 
-        public string v_SourceFolderPath { get; set; }
-
-        [XmlAttribute]
+        public string v_SourceFolderPath { get; set; }
         [PropertyDescription("New Folder Name")]
         [InputSpecification("Specify the new folder name.")]
         [SampleUsage("New Folder Name || {vNewFolderName}")]

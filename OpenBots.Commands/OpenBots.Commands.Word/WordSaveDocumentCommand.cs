@@ -17,8 +17,7 @@ namespace OpenBots.Commands.Word
     [Description("This command saves a Word Document.")]
 
     public class WordSaveDocumentCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Word Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyWordInstance")]

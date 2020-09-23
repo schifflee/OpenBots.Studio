@@ -17,8 +17,7 @@ namespace OpenBots.Commands
     [Description("This command refreshes a Selenium web browser session.")]
 
     public class SeleniumRefreshCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Browser Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Browser** command.")]
         [SampleUsage("MyBrowserInstance")]

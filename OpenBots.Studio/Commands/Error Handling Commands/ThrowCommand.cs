@@ -17,8 +17,7 @@ namespace OpenBots.Commands
     [Group("Error Handling Commands")]
     [Description("This command throws an exception during script execution.")]
     public class ThrowCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Exception Type")]
         [PropertyUISelectionOption("AccessViolationException")]
         [PropertyUISelectionOption("ArgumentException")]
@@ -39,9 +38,7 @@ namespace OpenBots.Commands
         [InputSpecification("Select the appropriate exception type to throw.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_ExceptionType { get; set; }
-
-        [XmlAttribute]
+        public string v_ExceptionType { get; set; }
         [PropertyDescription("Exception Message")]
         [InputSpecification("Enter a custom exception message.")]
         [SampleUsage("A Custom Message || {vExceptionMessage}")]

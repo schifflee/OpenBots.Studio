@@ -20,69 +20,54 @@ namespace OpenBots.Commands.Outlook
     [Description("This command gets selected emails and their attachments from Outlook.")]
 
     public class GetOutlookEmailsCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Source Mail Folder Name")]
         [InputSpecification("Enter the name of the Outlook mail folder the emails are located in.")]
         [SampleUsage("Inbox || {vFolderName}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SourceFolder { get; set; }
-
-        [XmlAttribute]
+        public string v_SourceFolder { get; set; }
         [PropertyDescription("Filter")]
         [InputSpecification("Enter a valid Outlook filter string.")]
         [SampleUsage("[Subject] = 'Hello' || [Subject] = 'Hello' and [SenderName] = 'Jane Doe' || {vFilter} || None")]
         [Remarks("*Warning* Using 'None' as the Filter will return every email in the selected Mail Folder.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Filter { get; set; }
-
-        [XmlAttribute]
+        public string v_Filter { get; set; }
         [PropertyDescription("Unread Only")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("Specify whether to retrieve unread email messages only.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_GetUnreadOnly { get; set; }
-
-        [XmlAttribute]
+        public string v_GetUnreadOnly { get; set; }
         [PropertyDescription("Mark As Read")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("Specify whether to mark retrieved emails as read.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_MarkAsRead { get; set; }
-
-        [XmlAttribute]
+        public string v_MarkAsRead { get; set; }
         [PropertyDescription("Save MailItems and Attachments")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("Specify whether to save the email attachments to a local directory.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_SaveMessagesAndAttachments { get; set; }
-
-        [XmlAttribute]
+        public string v_SaveMessagesAndAttachments { get; set; }
         [PropertyDescription("Output MailItem Directory")]   
         [InputSpecification("Enter or Select the path of the directory to store the messages in.")]
         [SampleUsage(@"C:\temp\myfolder || {vFolderPath} || {ProjectPath}\myFolder")]
         [Remarks("This input is optional and will only be used if *Save MailItems and Attachments* is set to **Yes**.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
-        public string v_MessageDirectory { get; set; }
-
-        [XmlAttribute]
+        public string v_MessageDirectory { get; set; }
         [PropertyDescription("Output Attachment Directory")]      
         [InputSpecification("Enter or Select the path to the directory to store the attachments in.")]
         [SampleUsage(@"C:\temp\myfolder\attachments || {vFolderPath} || {ProjectPath}\myFolder\attachments")]
         [Remarks("This input is optional and will only be used if *Save MailItems and Attachments* is set to **Yes**.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
-        public string v_AttachmentDirectory { get; set; }
-
-        [XmlAttribute]
+        public string v_AttachmentDirectory { get; set; }
         [PropertyDescription("Output MailItem List Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

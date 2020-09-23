@@ -16,16 +16,13 @@ namespace OpenBots.Commands.Data
     [Group("Data Commands")]
     [Description("This command returns the length of a string.")]
     public class GetTextLengthCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Text Data")]
         [InputSpecification("Provide a variable or text value.")]
         [SampleUsage("Hello World || {vStringVariable}")]
         [Remarks("Providing data of a type other than a 'String' will result in an error.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputValue { get; set; }
-
-        [XmlAttribute]
+        public string v_InputValue { get; set; }
         [PropertyDescription("Output Length Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

@@ -16,15 +16,12 @@ namespace OpenBots.Commands.Variable
     [Group("Variable Commands")]
     [Description("This command adds a new variable or updates an existing variable.")]
     public class NewVariableCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("New Variable Name")]
         [InputSpecification("Indicate a unique reference name for later use.")]
         [SampleUsage("{vSomeVariable}")]
         [Remarks("")]
-        public string v_VariableName { get; set; }
-
-        [XmlAttribute]
+        public string v_VariableName { get; set; }
         [PropertyDescription("Input Value")]
         [InputSpecification("Enter the value for the variable.")]
         [SampleUsage("Hello || {vNum} || {vNum}+1")]

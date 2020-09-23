@@ -16,15 +16,12 @@ namespace OpenBots.Commands.NLG
     [Group("NLG Commands")]
     [Description("This command produces a Natural Language Generation phrase.")]
     public class GenerateNLGPhraseCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("NLG Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create NLG Instance** command.")]
         [SampleUsage("MyNLGInstance")]
         [Remarks("Failure to enter the correct instance name or failure to first call the **Create NLG Instance** command will cause an error.")]
-        public string v_InstanceName { get; set; }
-
-        [XmlAttribute]
+        public string v_InstanceName { get; set; }
         [PropertyDescription("Output Phrase Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

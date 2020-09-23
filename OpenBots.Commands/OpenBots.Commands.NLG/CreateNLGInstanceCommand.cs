@@ -16,8 +16,7 @@ namespace OpenBots.Commands.NLG
     [Group("NLG Commands")]
     [Description("This command creates a Natural Language Generation Instance.")]
     public class CreateNLGInstanceCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("NLG Instance Name")]
         [InputSpecification("Enter a unique name that will represent the application instance.")]
         [SampleUsage("MyNLGInstance")]

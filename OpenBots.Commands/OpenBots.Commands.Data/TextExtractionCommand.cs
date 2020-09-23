@@ -22,15 +22,12 @@ namespace OpenBots.Commands.Data
     [Description("This command performs advanced text extraction.")]
     public class TextExtractionCommand : ScriptCommand
     {
-        [XmlAttribute]
         [PropertyDescription("Text Data")]
         [InputSpecification("Provide a variable or text value.")]
         [SampleUsage("Sample text to perform text extraction on || {vTextData}")]
         [Remarks("Providing data of a type other than a 'String' will result in an error.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputText { get; set; }
-
-        [XmlAttribute]
+        public string v_InputText { get; set; }
         [PropertyDescription("Text Extraction Type")]
         [PropertyUISelectionOption("Extract All After Text")]
         [PropertyUISelectionOption("Extract All Before Text")]
@@ -46,9 +43,7 @@ namespace OpenBots.Commands.Data
         [SampleUsage("A substring from input text || {vSubstring}")]
         [Remarks("Set parameter values for each parameter name based on the extraction type.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public DataTable v_TextExtractionTable { get; set; }
-
-        [XmlAttribute]
+        public DataTable v_TextExtractionTable { get; set; }
         [PropertyDescription("Output Text Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

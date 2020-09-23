@@ -27,16 +27,13 @@ namespace OpenBots.Commands
     [Group("Input Commands")]
     [Description("This Command automates an element in a targeted window.")]
     public class UIAutomationCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Window Name")]
         [InputSpecification("Select the name of the window to automate.")]
         [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_WindowName { get; set; }
-
-        [XmlAttribute]
+        public string v_WindowName { get; set; }
         [PropertyDescription("Element Action")]
         [PropertyUISelectionOption("Click Element")]
         [PropertyUISelectionOption("Set Text")]

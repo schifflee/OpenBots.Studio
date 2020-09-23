@@ -18,23 +18,18 @@ namespace OpenBots.Commands
     [Description("This command resizes an open window to a specified size.")]
     public class ResizeWindowCommand : ScriptCommand
     {
-        [XmlAttribute]
         [PropertyDescription("Window Name")]
         [InputSpecification("Select the name of the window to resize.")]
         [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_WindowName { get; set; }
-
-        [XmlAttribute]
+        public string v_WindowName { get; set; }
         [PropertyDescription("Width (Pixels)")]
         [InputSpecification("Input the new width size of the window.")]
         [SampleUsage("800 || {vWidth}")]
         [Remarks("Maximum value should be the maximum value allowed by your resolution. For 1920x1080, the valid width range would be 0-1920.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_XWindowSize { get; set; }
-
-        [XmlAttribute]
+        public string v_XWindowSize { get; set; }
         [PropertyDescription("Height (Pixels)")]
         [InputSpecification("Input the new height size of the window.")]
         [SampleUsage("500 || {vHeight}")]

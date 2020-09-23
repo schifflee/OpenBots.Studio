@@ -19,8 +19,7 @@ namespace OpenBots.Commands.Data
     [Group("Data Commands")]
     [Description("This command runs a number of queries on a JSON object and saves the results in the specified list variables.")]
     public class ParseJSONModelCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("JSON Object")]
         [InputSpecification("Provide a variable or JSON object value.")]
         [SampleUsage("{\"rect\":{\"length\":10, \"width\":5}} || {vJsonObject}")]

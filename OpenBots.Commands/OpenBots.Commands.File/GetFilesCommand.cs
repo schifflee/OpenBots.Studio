@@ -18,17 +18,14 @@ namespace OpenBots.Commands.File
     [Group("File Operation Commands")]
     [Description("This command returns a list of file paths from a specified location.")]
     public class GetFilesCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Source Folder Path")]
         [InputSpecification("Enter or Select the path to the folder.")]
         [SampleUsage(@"C:\temp\myfolder || {ProjectPath}\myfolder || {vSourceFolderPath}")]
         [Remarks("{ProjectPath} is the directory path of the current project.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
-        public string v_SourceFolderPath { get; set; }
-
-        [XmlAttribute]
+        public string v_SourceFolderPath { get; set; }
         [PropertyDescription("Output File Path(s) List Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

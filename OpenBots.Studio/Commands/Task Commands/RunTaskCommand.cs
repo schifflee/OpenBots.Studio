@@ -24,17 +24,14 @@ namespace OpenBots.Commands
     [Description("This command executes a Task.")]
 
     public class RunTaskCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Task File Path")]
         [InputSpecification("Enter or select a valid path to the Task file.")]
         [SampleUsage(@"C:\temp\mytask.json || {vScriptPath} || {ProjectPath}\mytask.json")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_taskPath { get; set; }
-
-        [XmlAttribute]
+        public string v_taskPath { get; set; }
         [PropertyDescription("Assign Variables")]
         [InputSpecification("Select to assign variables to the Task.")]
         [SampleUsage("")]

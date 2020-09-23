@@ -19,40 +19,31 @@ namespace OpenBots.Commands.Outlook
     [Description("This command sends an email with optional attachment(s) in Outlook.")]
 
     public class SendOutlookEmailCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Recipient(s)")]
         [InputSpecification("Enter the email address(es) of the recipient(s).")]
         [SampleUsage("test@test.com || test@test.com;test2@test.com || {vEmail} || {vEmail1};{vEmail2} || {vEmails}")]
         [Remarks("Multiple recipient email addresses should be delimited by a semicolon (;).")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Recipients { get; set; }
-
-        [XmlAttribute]
+        public string v_Recipients { get; set; }
         [PropertyDescription("Email Subject")]
         [InputSpecification("Enter the subject of the email.")]
         [SampleUsage("Hello || {vSubject}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Subject { get; set; }
-
-        [XmlAttribute]
+        public string v_Subject { get; set; }
         [PropertyDescription("Email Body")]
         [InputSpecification("Enter text to be used as the email body.")]
         [SampleUsage("Dear John, ... || {vBody}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Body { get; set; }
-
-        [XmlAttribute]
+        public string v_Body { get; set; }
         [PropertyDescription("Email Body Type")]
         [PropertyUISelectionOption("Plain")]
         [PropertyUISelectionOption("HTML")]
         [InputSpecification("Select the email body format.")]
         [Remarks("")]
-        public string v_BodyType { get; set; }
-
-        [XmlAttribute]
+        public string v_BodyType { get; set; }
         [PropertyDescription("Attachment File Path(s)")]
         [InputSpecification("Enter the file path(s) of the file(s) to attach.")]
         [SampleUsage(@"C:\temp\myFile.xlsx || {vFile} || C:\temp\myFile1.xlsx;C:\temp\myFile2.xlsx || {vFile1};{vFile2} || {vFiles}")]

@@ -18,8 +18,7 @@ namespace OpenBots.Commands.Process
     [Description("This command runs a script or program and waits for it to exit before proceeding.")]
 
     public class RunScriptCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Script Path")]
         [InputSpecification("Enter a fully qualified path to the script, including the script extension.")]
         [SampleUsage(@"C:\temp\myscript.ps1 || {vScriptPath} || {ProjectPath}\myscript.ps1")]
@@ -27,9 +26,7 @@ namespace OpenBots.Commands.Process
                  "If you do not want to stop while the script executes, consider using *Start Process* instead.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_ScriptPath { get; set; }
-
-        [XmlAttribute]
+        public string v_ScriptPath { get; set; }
         [PropertyDescription("Script Type")]
         [PropertyUISelectionOption("Default")]
         [PropertyUISelectionOption("Powershell")]
@@ -37,9 +34,7 @@ namespace OpenBots.Commands.Process
         [InputSpecification("Select the type of script you want to execute.")]
         [SampleUsage("")]
         [Remarks("Default executes with the system default for that file type.")]
-        public string v_ScriptType { get; set; }
-
-        [XmlAttribute]
+        public string v_ScriptType { get; set; }
         [PropertyDescription("Arguments")]
         [InputSpecification("Enter any arguments as a single string.")]
         [SampleUsage("-message Hello -t 2 || {vArguments}")]

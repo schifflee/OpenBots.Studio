@@ -21,56 +21,43 @@ namespace OpenBots.Commands.Email
     [Description("This command forwards a selected email using SMTP protocol.")]
 
     public class ForwardSMTPEmailCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("MimeMessage")]
         [InputSpecification("Enter the MimeMessage to forward.")]
         [SampleUsage("{vMimeMessage}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPMimeMessage { get; set; }
-
-        [XmlAttribute]
+        public string v_SMTPMimeMessage { get; set; }
         [PropertyDescription("Host")]
         [InputSpecification("Define the host/service name that the script should use.")]
         [SampleUsage("smtp.gmail.com || {vHost}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPHost { get; set; }
-
-        [XmlAttribute]
+        public string v_SMTPHost { get; set; }
         [PropertyDescription("Port")]
         [InputSpecification("Define the port number that should be used when contacting the SMTP service.")]
         [SampleUsage("465 || {vPort}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPPort { get; set; }
-
-        [XmlAttribute]
+        public string v_SMTPPort { get; set; }
         [PropertyDescription("Username")]
         [InputSpecification("Define the username to use when contacting the SMTP service.")]
         [SampleUsage("myRobot || {vUsername}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPUserName { get; set; }
-
-        [XmlAttribute]
+        public string v_SMTPUserName { get; set; }
         [PropertyDescription("Password")]
         [InputSpecification("Define the password to use when contacting the SMTP service.")]
         [SampleUsage("password || {vPassword}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPPassword { get; set; }
-
-        [XmlAttribute]
+        public string v_SMTPPassword { get; set; }
         [PropertyDescription("Recipient(s)")]
         [InputSpecification("Enter the email address(es) of the recipient(s).")]
         [SampleUsage("test@test.com || test@test.com;test2@test.com || {vEmail} || {vEmail1};{vEmail2} || {vEmails}")]
         [Remarks("Multiple recipient email addresses should be delimited by a semicolon (;).")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPRecipients { get; set; }
-
-        [XmlAttribute]
+        public string v_SMTPRecipients { get; set; }
         [PropertyDescription("Email Body")]
         [InputSpecification("Enter text to be used as the email body.")]
         [SampleUsage("Everything ran ok at {DateTime.Now}  || {vBody}")]

@@ -19,8 +19,7 @@ namespace OpenBots.Commands
     [Group("Image Commands")]
     [Description("This command captures an image on screen and stores it as a Bitmap variable.")]
     public class CaptureImageCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Capture Search Image")]
         [InputSpecification("Use the tool to capture an image that will be located on screen during execution.")]
         [SampleUsage("")]
@@ -28,9 +27,7 @@ namespace OpenBots.Commands
                  "For images that are primarily white space, tagging color to the top-left corner of the image and setting \n" +
                  "the relative click position will produce faster results.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowImageCaptureHelper)]
-        public string v_ImageCapture { get; set; }
-
-        [XmlAttribute]
+        public string v_ImageCapture { get; set; }
         [PropertyDescription("Output Image Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("vUserVariable")]

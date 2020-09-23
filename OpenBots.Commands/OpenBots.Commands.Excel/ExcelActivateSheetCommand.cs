@@ -19,15 +19,12 @@ namespace OpenBots.Commands.Excel
     [Description("This command activates a specific Worksheet in an Excel Workbook.")]
 
     public class ExcelActivateSheetCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Excel Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyExcelInstance")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
-        public string v_InstanceName { get; set; }
-
-        [XmlAttribute]
+        public string v_InstanceName { get; set; }
         [PropertyDescription("Worksheet")]
         [InputSpecification("Specify the Worksheet within the Workbook to activate.")]
         [SampleUsage("Sheet1 || {vSheet}")]

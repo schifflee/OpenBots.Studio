@@ -19,7 +19,6 @@ namespace OpenBots.Commands.Data
     [Description("This command performs a specific operation on a date and saves the result in a variable.")]
     public class DateCalculationCommand : ScriptCommand
     {
-        [XmlAttribute]
         [PropertyDescription("Date")]
         [InputSpecification("Specify either text or a variable that contains the date.")]
         [SampleUsage("1/1/2000 || {DateTime.Now}")]
@@ -27,7 +26,6 @@ namespace OpenBots.Commands.Data
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_InputDate { get; set; }
 
-        [XmlAttribute]
         [PropertyDescription("Calculation Method")]
         [PropertyUISelectionOption("Add Second(s)")]
         [PropertyUISelectionOption("Add Minute(s)")]
@@ -52,7 +50,6 @@ namespace OpenBots.Commands.Data
         [Remarks("The selected operation will be applied to the input date value and result will be stored in the output variable.")]
         public string v_CalculationMethod { get; set; }
 
-        [XmlAttribute]
         [PropertyDescription("Increment Value")]
         [InputSpecification("Specify how many units to increment by.")]
         [SampleUsage("15 || {vIncrement}")]
@@ -60,7 +57,6 @@ namespace OpenBots.Commands.Data
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_Increment { get; set; }
 
-        [XmlAttribute]
         [PropertyDescription("Date Format (Optional)")]
         [InputSpecification("Specify the output date format.")]
         [SampleUsage("MM/dd/yy hh:mm:ss || MM/dd/yyyy || {vDateFormat}")]
@@ -68,7 +64,6 @@ namespace OpenBots.Commands.Data
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_ToStringFormat { get; set; }
 
-        [XmlAttribute]
         [PropertyDescription("Output Date Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

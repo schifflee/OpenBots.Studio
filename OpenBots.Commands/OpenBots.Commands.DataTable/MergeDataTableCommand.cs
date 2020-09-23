@@ -19,24 +19,19 @@ namespace OpenBots.Commands.DataTable
     [Description("This command merges a source DataTable into a destination DataTable.")]
 
     public class MergeDataTableCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Source DataTable")]
         [InputSpecification("Enter an existing DataTable to merge into another one.")]
         [SampleUsage("{vSrcDataTable}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SourceDataTable { get; set; }
-
-        [XmlAttribute]
+        public string v_SourceDataTable { get; set; }
         [PropertyDescription("Destination DataTable")]
         [InputSpecification("Enter an existing DataTable to apply the merge operation to.")]
         [SampleUsage("{vDestDataTable}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DestinationDataTable { get; set; }
-
-        [XmlAttribute]
+        public string v_DestinationDataTable { get; set; }
         [PropertyDescription("Missing Schema Action")]
         [PropertyUISelectionOption("Add")]
         [PropertyUISelectionOption("AddWithKey")]

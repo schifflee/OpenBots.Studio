@@ -18,17 +18,14 @@ namespace OpenBots.Commands.Process
     [Description("This command stops a program or process.")]
 
     public class StopProcessCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Program Name or Path")]
         [InputSpecification("Provide a valid program name or enter a full path to the script/executable including the extension.")]
         [SampleUsage(@"notepad || excel || {vApp} || C:\temp\myapp.exe || {ProjectPath}\myapp.exe")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_ProgramName { get; set; }
-
-        [XmlAttribute]
+        public string v_ProgramName { get; set; }
         [PropertyDescription("Stop Option")]
         [PropertyUISelectionOption("Close")]
         [PropertyUISelectionOption("Kill")]

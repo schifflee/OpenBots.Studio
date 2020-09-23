@@ -15,8 +15,7 @@ namespace OpenBots.Commands.System
     [Group("System Commands")]
     [Description("This command performs a system action.")]
     public class SystemActionCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("System Action")]
         [PropertyUISelectionOption("Shutdown")]
         [PropertyUISelectionOption("Restart")]

@@ -17,16 +17,13 @@ namespace OpenBots.Commands.Data
     [Group("Data Commands")]
     [Description("This command parses a JSON array into a list.")]
     public class ParseJSONArrayCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("JSON Array")]
         [InputSpecification("Provide a variable or JSON array value.")]
         [SampleUsage("[{\"rect\":{\"length\":10, \"width\":5}}] || {vArrayVariable}")]
         [Remarks("Providing data of a type other than a 'JSON Array' will result in an error.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_JsonArrayName { get; set; }
-
-        [XmlAttribute]
+        public string v_JsonArrayName { get; set; }
         [PropertyDescription("Output List Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

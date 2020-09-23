@@ -18,31 +18,24 @@ namespace OpenBots.Commands.Data
     [Description("This command performs a math calculation and saves the result in a variable.")]
     public class MathCalculationCommand : ScriptCommand
     {
-        [XmlAttribute]
         [PropertyDescription("Math Expression")]
         [InputSpecification("Specify either text or a variable that contains a valid math expression.")]
         [SampleUsage("(2 + 5) * 3 || ({vNumber1} + {vNumber2}) * {vNumber3}")]
         [Remarks("You can use known numbers or variables.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_MathExpression { get; set; }
-
-        [XmlAttribute]
+        public string v_MathExpression { get; set; }
         [PropertyDescription("Thousand Separator (Optional)")]
         [InputSpecification("Specify the seperator used to identify decimal places.")]
         [SampleUsage(", || . || {vThousandSeparator}")]
         [Remarks("Typically a comma or a decimal point (period), like in 100,000, ',' is a thousand separator.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_ThousandSeparator { get; set; }
-
-        [XmlAttribute]
+        public string v_ThousandSeparator { get; set; }
         [PropertyDescription("Decimal Separator (Optional)")]
         [InputSpecification("Specify the seperator used to identify decimal places.")]
         [SampleUsage(". || , || {vDecimalSeparator}")]
         [Remarks("Typically a comma or a decimal point (period), like in 60.99, '.' is a decimal separator.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DecimalSeparator { get; set; }
-
-        [XmlAttribute]
+        public string v_DecimalSeparator { get; set; }
         [PropertyDescription("Output Result Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

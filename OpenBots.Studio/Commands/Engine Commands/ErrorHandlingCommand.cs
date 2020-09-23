@@ -14,8 +14,7 @@ namespace OpenBots.Commands
     [Group("Engine Commands")]
     [Description("This command specifies what to do if an error is encountered during execution.")]
     public class ErrorHandlingCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Error Action")]
         [PropertyUISelectionOption("Stop Processing")]
         [PropertyUISelectionOption("Continue Processing")]

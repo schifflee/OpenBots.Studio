@@ -18,16 +18,13 @@ namespace OpenBots.Commands.Outlook
     [Description("This command forwards a selected email in Outlook.")]
 
     public class ForwardOutlookEmailCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("MailItem")]
         [InputSpecification("Enter the MailItem to forward.")]
         [SampleUsage("{vMailItem}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_MailItem { get; set; }
-
-        [XmlAttribute]
+        public string v_MailItem { get; set; }
         [PropertyDescription("Recipient(s)")]
         [InputSpecification("Enter the email address(es) of the recipient(s).")]
         [SampleUsage("test@test.com || {vEmail} || test@test.com;test2@test.com || {vEmail1};{vEmail2} || {vEmails}")]

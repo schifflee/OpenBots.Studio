@@ -18,24 +18,19 @@ namespace OpenBots.Commands
     [Description("This command parses and extracts data from an HTML source object or a successful **GetHTMLSourceCommand**.")]
 
     public class QueryHTMLSourceCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("HTML")]
         [InputSpecification("Enter the HTML to be queried.")]
         [SampleUsage("<!DOCTYPE html><html><head><title>Example</title></head></html> || {vMyHTML}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_HTMLVariable { get; set; }
-
-        [XmlAttribute]
+        public string v_HTMLVariable { get; set; }
         [PropertyDescription("XPath Query")]
         [InputSpecification("Enter the XPath Query and the item will be extracted.")]
         [SampleUsage("@//*[@id=\"aso_search_form_anchor\"]/div/input || {vMyXPath}")]
         [Remarks("You can use Chrome Dev Tools to click an element and copy the XPath.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_XPathQuery { get; set; }
-
-        [XmlAttribute]
+        public string v_XPathQuery { get; set; }
         [PropertyDescription("Output Query Result Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

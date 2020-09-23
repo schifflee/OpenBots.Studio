@@ -17,44 +17,35 @@ namespace OpenBots.Commands.File
     [Group("File Operation Commands")]
     [Description("This command moves/copies a file to a specified destination.")]
     public class MoveCopyFileCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("File Operation Type")]
         [PropertyUISelectionOption("Move File")]
         [PropertyUISelectionOption("Copy File")]
         [InputSpecification("Specify whether you intend to move the file or copy the file.")]
         [SampleUsage("")]
         [Remarks("Moving will remove the file from the original path while Copying will not.")]
-        public string v_OperationType { get; set; }
-
-        [XmlAttribute]
+        public string v_OperationType { get; set; }
         [PropertyDescription("Source File Path")]
         [InputSpecification("Enter or Select the path to the file.")]
         [SampleUsage(@"C:\temp\myfile.txt || {ProjectPath}\myfile.txt || {vTextFilePath}")]
         [Remarks("{ProjectPath} is the directory path of the current project.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_SourceFilePath { get; set; }
-
-        [XmlAttribute]
+        public string v_SourceFilePath { get; set; }
         [PropertyDescription("Destination File Path")]
         [InputSpecification("Enter or Select the new (destination) path to the file.")]
         [SampleUsage(@"C:\temp\new path || {ProjectPath}\new path || {vTextFolderPath}")]
         [Remarks("{ProjectPath} is the directory path of the current project.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
-        public string v_DestinationDirectory { get; set; }
-
-        [XmlAttribute]
+        public string v_DestinationDirectory { get; set; }
         [PropertyDescription("Create Folder")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("Specify whether the directory should be created if it does not already exist.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_CreateDirectory { get; set; }
-
-        [XmlAttribute]
+        public string v_CreateDirectory { get; set; }
         [PropertyDescription("Overwrite File")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

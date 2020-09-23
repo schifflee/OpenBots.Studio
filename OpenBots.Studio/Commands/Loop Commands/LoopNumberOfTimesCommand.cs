@@ -17,16 +17,13 @@ namespace OpenBots.Commands
     [Group("Loop Commands")]
     [Description("This command repeats the subsequent actions a specified number of times.")]
     public class LoopNumberOfTimesCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Loop Count")]
         [InputSpecification("Enter the amount of times you would like to execute the encased commands.")]
         [SampleUsage("5 || {vLoopCount}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_LoopParameter { get; set; }
-
-        [XmlAttribute]
+        public string v_LoopParameter { get; set; }
         [PropertyDescription("Start Index")]
         [InputSpecification("Enter the starting index of the loop.")]
         [SampleUsage("5 || {vStartIndex}")]

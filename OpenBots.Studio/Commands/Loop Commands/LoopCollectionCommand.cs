@@ -23,17 +23,14 @@ namespace OpenBots.Commands
     [Group("Loop Commands")]
     [Description("This command iterates over a collection to let user perform actions on the collection items.")]
     public class LoopCollectionCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Input Collection")]
         [InputSpecification("Provide a collection variable.")]
         [SampleUsage("{vMyCollection}")]
         [Remarks("If the collection is a DataTable then the output item will be a DataRow and its column value can be accessed using the " +
             "dot operator like {vDataRow.ColumnName}.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_LoopParameter { get; set; }
-
-        [XmlAttribute]
+        public string v_LoopParameter { get; set; }
         [PropertyDescription("Output Collection Item Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

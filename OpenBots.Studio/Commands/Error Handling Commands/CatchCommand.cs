@@ -14,8 +14,7 @@ namespace OpenBots.Commands
     [Description("This command defines a catch block whose commands will execute if an exception is thrown from the " +
                  "associated try.")]
     public class CatchCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Exception Type")]
         [PropertyUISelectionOption("AccessViolationException")]
         [PropertyUISelectionOption("ArgumentException")]

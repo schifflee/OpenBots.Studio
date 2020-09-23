@@ -17,8 +17,7 @@ namespace OpenBots.Commands
     [Group("Window Commands")]
     [Description("This command closes an open window.")]
     public class CloseWindowCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Window Name")]
         [InputSpecification("Select the name of the window to close.")]
         [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]

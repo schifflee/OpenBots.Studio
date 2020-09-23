@@ -19,23 +19,18 @@ namespace OpenBots.Commands.Word
     [Description("This command replaces specific text in a Word Document.")]
 
     public class WordReplaceTextCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Word Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyWordInstance")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
-        public string v_InstanceName { get; set; }
-
-        [XmlAttribute]
+        public string v_InstanceName { get; set; }
         [PropertyDescription("Find")]
         [InputSpecification("Enter the text to find.")]
         [SampleUsage("old text || {vFindText}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_FindText { get; set; }
-
-        [XmlAttribute]
+        public string v_FindText { get; set; }
         [PropertyDescription("Replace")]
         [InputSpecification("Enter the text to replace with.")]
         [SampleUsage("new text || {vReplaceText}")]

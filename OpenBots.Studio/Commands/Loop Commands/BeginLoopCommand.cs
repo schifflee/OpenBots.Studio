@@ -28,8 +28,7 @@ namespace OpenBots.Commands
     [Description("This command evaluates a specified logical statement and executes the contained commands repeatedly (in loop) " +
         "until that logical statement becomes false.")]
     public class BeginLoopCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Loop Condition")]
         [PropertyUISelectionOption("Value Compare")]
         [PropertyUISelectionOption("Date Compare")]

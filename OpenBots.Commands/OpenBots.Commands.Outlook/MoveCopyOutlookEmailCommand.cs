@@ -19,33 +19,26 @@ namespace OpenBots.Commands.Outlook
     [Description("This command moves or copies a selected email in Outlook.")]
 
     public class MoveCopyOutlookEmailCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("MailItem")]
         [InputSpecification("Enter the MailItem to move or copy.")]
         [SampleUsage("{vMailItem}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_MailItem { get; set; }
-
-        [XmlAttribute]
+        public string v_MailItem { get; set; }
         [PropertyDescription("Destination Mail Folder Name")]
         [InputSpecification("Enter the name of the Outlook mail folder the emails are being moved/copied to.")]
         [SampleUsage("New Folder || {vFolderName}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DestinationFolder { get; set; }
-
-        [XmlAttribute]
+        public string v_DestinationFolder { get; set; }
         [PropertyDescription("Mail Operation")]
         [PropertyUISelectionOption("Move MailItem")]
         [PropertyUISelectionOption("Copy MailItem")]
         [InputSpecification("Specify whether to move or copy the selected emails.")]
         [SampleUsage("")]
         [Remarks("Moving will remove the emails from the original folder while copying will not.")]
-        public string v_OperationType { get; set; }
-
-        [XmlAttribute]
+        public string v_OperationType { get; set; }
         [PropertyDescription("Unread Only")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

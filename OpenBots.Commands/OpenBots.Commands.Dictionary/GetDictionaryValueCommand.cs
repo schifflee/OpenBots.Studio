@@ -16,24 +16,19 @@ namespace OpenBots.Commands.Dictionary
     [Group("Dictionary Commands")]
     [Description("This command returns a dictionary value based on a specified key.")]
     public class GetDictionaryValueCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Dictionary")]
         [InputSpecification("Specify the dictionary variable to get a value from.")]
         [SampleUsage("{vDictionary}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputDictionary { get; set; }
-
-        [XmlAttribute]
+        public string v_InputDictionary { get; set; }
         [PropertyDescription("Key")]
         [InputSpecification("Specify the key to get the value for.")]
         [SampleUsage("SomeKey || {vKey}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Key { get; set; }
-
-        [XmlAttribute]
+        public string v_Key { get; set; }
         [PropertyDescription("Output Value Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

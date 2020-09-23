@@ -19,24 +19,19 @@ namespace OpenBots.Commands.Excel
     [Description("This command saves an Excel Workbook to a specific file.")]
 
     public class ExcelSaveWorkbookAsCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Excel Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyExcelInstance")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
-        public string v_InstanceName { get; set; }
-
-        [XmlAttribute]
+        public string v_InstanceName { get; set; }
         [PropertyDescription("Workbook Location")]
         [InputSpecification("Enter or Select the path of the folder to save the Workbook to.")]
         [SampleUsage(@"C:\temp || {vFolderPath} || {ProjectPath}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
-        public string v_FolderPath { get; set; }
-
-        [XmlAttribute]
+        public string v_FolderPath { get; set; }
         [PropertyDescription("Workbook File Name")]
         [InputSpecification("Enter or Select the name of the Workbook file.")]
         [SampleUsage("myFile.xlsx || {vFilename}")]

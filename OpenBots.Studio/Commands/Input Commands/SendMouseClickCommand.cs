@@ -14,8 +14,7 @@ namespace OpenBots.Commands
     [Group("Input Commands")]
     [Description("This command simulates a mouse click of a given type.")]
     public class SendMouseClickCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Click Type")]
         [PropertyUISelectionOption("Left Click")]
         [PropertyUISelectionOption("Middle Click")]

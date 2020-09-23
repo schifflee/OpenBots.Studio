@@ -18,16 +18,13 @@ namespace OpenBots.Commands.Outlook
     [Description("This command deletes a selected email in Outlook.")]
 
     public class DeleteOutlookEmailCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("MailItem")]
         [InputSpecification("Enter the MailItem to delete.")]
         [SampleUsage("{vMailItem}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_MailItem { get; set; }
-
-        [XmlAttribute]
+        public string v_MailItem { get; set; }
         [PropertyDescription("Delete Read Emails Only")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

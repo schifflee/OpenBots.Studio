@@ -18,33 +18,26 @@ namespace OpenBots.Commands.DataTable
     [Description("This command updates a Value in a DataRow at a specified column name/index.")]
 
     public class UpdateDataRowValueCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("DataRow")]
         [InputSpecification("Enter an existing DataRow to add values to.")]
         [SampleUsage("{vDataRow}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DataRow { get; set; }
-
-        [XmlAttribute]
+        public string v_DataRow { get; set; }
         [PropertyDescription("Search Option")]
         [PropertyUISelectionOption("Column Name")]
         [PropertyUISelectionOption("Column Index")]
         [InputSpecification("Select whether the DataRow value should be found by column index or column name.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_Option { get; set; }
-
-        [XmlAttribute]
+        public string v_Option { get; set; }
         [PropertyDescription("Search Value")]
         [InputSpecification("Enter a valid DataRow index or column name.")]
         [SampleUsage("0 || {vIndex} || Column1 || {vColumnName}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DataValueIndex { get; set; }
-
-        [XmlAttribute]
+        public string v_DataValueIndex { get; set; }
         [PropertyDescription("Cell Value")]
         [InputSpecification("Enter the value to write to the DataRow cell.")]
         [SampleUsage("value || {vValue}")]

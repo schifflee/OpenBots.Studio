@@ -16,8 +16,7 @@ namespace OpenBots.Commands
     [Group("Misc Commands")]
     [Description("This command gets text from the user's clipboard.")]
     public class GetClipboardTextCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Output Clipboard Text Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

@@ -20,15 +20,12 @@ namespace OpenBots.Commands.Word
     [Description("This command appends an image to a Word Document.")]
 
     public class WordAppendImageCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Word Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyWordInstance")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
-        public string v_InstanceName { get; set; }
-
-        [XmlAttribute]
+        public string v_InstanceName { get; set; }
         [PropertyDescription("Image File Path")]    
         [InputSpecification("Enter the file path of the image to append to the Document.")]
         [SampleUsage(@"C:\temp\myImage.png || {vImageFilePath} || {ProjectPath}\myImage.png")]

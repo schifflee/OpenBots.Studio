@@ -18,41 +18,32 @@ namespace OpenBots.Commands.Outlook
     [Description("This command replies to a selected email in Outlook.")]
 
     public class ReplyToOutlookEmailCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("MailItem")]
         [InputSpecification("Enter the MailItem to reply to.")]
         [SampleUsage("{vMailItem}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_MailItem { get; set; }
-
-        [XmlAttribute]
+        public string v_MailItem { get; set; }
         [PropertyDescription("Mail Operation")]
         [PropertyUISelectionOption("Reply")]
         [PropertyUISelectionOption("Reply All")]
         [InputSpecification("Specify whether you intend to reply or reply all.")]
         [SampleUsage("")]
         [Remarks("Replying will reply to only the original sender. Reply all will reply to everyone in the recipient list.")]
-        public string v_OperationType { get; set; }
-
-        [XmlAttribute]
+        public string v_OperationType { get; set; }
         [PropertyDescription("Email Body")]
         [InputSpecification("Enter text to be used as the email body.")]
         [SampleUsage("Dear John, ... || {vBody}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Body { get; set; }
-
-        [XmlAttribute]
+        public string v_Body { get; set; }
         [PropertyDescription("Email Body Type")]
         [PropertyUISelectionOption("Plain")]
         [PropertyUISelectionOption("HTML")]
         [InputSpecification("Select the email body format.")]
         [Remarks("")]
-        public string v_BodyType { get; set; }
-
-        [XmlAttribute]
+        public string v_BodyType { get; set; }
         [PropertyDescription("Attachment File Path(s)")]
         [InputSpecification("Enter the file path(s) of the file(s) to attach.")]
         [SampleUsage(@"C:\temp\myFile.xlsx || {vFile} || C:\temp\myFile1.xlsx;C:\temp\myFile2.xlsx || {vFile1};{vFile2} || {vFiles}")]

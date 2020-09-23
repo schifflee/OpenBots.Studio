@@ -19,8 +19,7 @@ namespace OpenBots.Commands
     [Group("Input Commands")]
     [Description("This command sends advanced keystrokes to a targeted window.")]
     public class SendAdvancedKeystrokesCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Window Name")]
         [InputSpecification("Select the name of the window to send advanced keystrokes to.")]
         [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]

@@ -18,15 +18,12 @@ namespace OpenBots.Commands.Data
     [Description("This command performs a specified operation on a string to modify it.")]
     public class ModifyStringCommand : ScriptCommand
     {
-        [XmlAttribute]
         [PropertyDescription("Text Data")]
         [InputSpecification("Provide a variable or text value.")]
         [SampleUsage("A sample text || {vStringVariable}")]
         [Remarks("Providing data of a type other than a 'String' will result in an error.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputText { get; set; }
-
-        [XmlAttribute]
+        public string v_InputText { get; set; }
         [PropertyDescription("String Function")]
         [PropertyUISelectionOption("To Upper Case")]
         [PropertyUISelectionOption("To Lower Case")]
@@ -35,9 +32,7 @@ namespace OpenBots.Commands.Data
         [InputSpecification("Select a string function to apply to the input text or variable.")]
         [SampleUsage("")]
         [Remarks("Each function, when applied to text data, converts it to a specific format.")]
-        public string v_TextOperation { get; set; }
-
-        [XmlAttribute]
+        public string v_TextOperation { get; set; }
         [PropertyDescription("Output Text Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

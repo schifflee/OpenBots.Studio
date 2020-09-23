@@ -17,26 +17,21 @@ namespace OpenBots.Commands
     [Group("Input Commands")]
     [Description("This command simulates a mouse movement to a specified position.")]
     public class SendMouseMoveCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("X Position")]
         [InputSpecification("Input the new horizontal coordinate of the mouse. Starts from 0 on the left and increases going right.")]
         [SampleUsage("0 || {vXPosition}")]
         [Remarks("This number is the pixel location on screen. Maximum value should be the maximum value allowed by your resolution. For 1920x1080, the valid range would be 0-1920.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowMouseCaptureHelper)]
-        public string v_XMousePosition { get; set; }
-
-        [XmlAttribute]
+        public string v_XMousePosition { get; set; }
         [PropertyDescription("Y Position")]
         [InputSpecification("Input the new vertical coordinate of the mouse. Starts from 0 at the top and increases going down.")]
         [SampleUsage("0 || {vYPosition}")]
         [Remarks("This number is the pixel location on screen. Maximum value should be the maximum value allowed by your resolution. For 1920x1080, the valid range would be 0-1080.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowMouseCaptureHelper)]
-        public string v_YMousePosition { get; set; }
-
-        [XmlAttribute]
+        public string v_YMousePosition { get; set; }
         [PropertyDescription("Click Type (Optional)")]
         [PropertyUISelectionOption("None")]
         [PropertyUISelectionOption("Left Click")]

@@ -17,8 +17,7 @@ namespace OpenBots.Commands
     [Group("Engine Commands")]
     [Description("This command pauses the script for a set amount of time specified in milliseconds.")]
     public class PauseScriptCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Pause Time (Milliseconds)")]      
         [InputSpecification("Select or provide a specific amount of time in milliseconds.")]
         [SampleUsage("1000 || {vTime}")]

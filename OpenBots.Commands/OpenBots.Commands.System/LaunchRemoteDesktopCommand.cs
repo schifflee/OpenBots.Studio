@@ -16,40 +16,31 @@ namespace OpenBots.Commands.System
     [Group("System Commands")]
     [Description("This command launches a remote desktop session.")]
     public class LaunchRemoteDesktopCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Machine Name")]
         [InputSpecification("Define the name of the machine to log on to.")]
         [SampleUsage("myMachine || {vMachineName}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_MachineName { get; set; }
-
-        [XmlAttribute]
+        public string v_MachineName { get; set; }
         [PropertyDescription("Username")]
         [InputSpecification("Define the username to use when connecting to the machine.")]
         [SampleUsage("myRobot || {vUsername}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_UserName { get; set; }
-
-        [XmlAttribute]
+        public string v_UserName { get; set; }
         [PropertyDescription("Password")]
         [InputSpecification("Define the password to use when connecting to the machine.")]
         [SampleUsage("password || {vPassword}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Password { get; set; }
-
-        [XmlAttribute]
+        public string v_Password { get; set; }
         [PropertyDescription("RDP Window Width")]
         [InputSpecification("Define the width for the Remote Desktop Window.")]
         [SampleUsage("1000 || {vWidth}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_RDPWidth { get; set; }
-
-        [XmlAttribute]
+        public string v_RDPWidth { get; set; }
         [PropertyDescription("RDP Window Height")]
         [InputSpecification("Define the height for the Remote Desktop Window.")]
         [SampleUsage("800 || {vHeight}")]

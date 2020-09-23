@@ -33,25 +33,20 @@ namespace OpenBots.Commands
     [Group("Engine Commands")]
     [Description("This command retrives data from a local OpenBots Server BotStore.")]
     public class GetBotStoreDataCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Key")]
         [InputSpecification("Select or provide the name of the key to retrieve.")]
         [SampleUsage("Hello || {vKey}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Key { get; set; }
-
-        [XmlAttribute]
+        public string v_Key { get; set; }
         [PropertyDescription("Retrieval Option")]
         [PropertyUISelectionOption("Retrieve Value")]
         [PropertyUISelectionOption("Retrieve Entire Record")]
         [InputSpecification("Indicate whether to retrieve the whole record or just the value.")]
         [SampleUsage("")]
         [Remarks("Depending on the option selected, the whole record with metadata may be retrieved.")]     
-        public string v_DataOption { get; set; }
-
-        [XmlAttribute]
+        public string v_DataOption { get; set; }
         [PropertyDescription("Output Data Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

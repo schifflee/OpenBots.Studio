@@ -14,8 +14,7 @@ namespace OpenBots.Commands
     [Description("This command defines a case block whose commands will execute if the value specified in the "+
                  "case is equal to that of the preceding Switch Command.")]
     public class CaseCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Case")]
         [InputSpecification("This block will be executed if the specified case value matches the value in the Switch Command.")]
         [SampleUsage("1 || hello")]

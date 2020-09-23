@@ -27,8 +27,7 @@ namespace OpenBots.Commands
     [Group("If Commands")]
     [Description("This command evaluates a logical statement to determine if the statement is 'true' or 'false' and subsequently performs action(s) based on either condition.")]
     public class BeginIfCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Condition Type")]
         [PropertyUISelectionOption("Value Compare")]
         [PropertyUISelectionOption("Date Compare")]

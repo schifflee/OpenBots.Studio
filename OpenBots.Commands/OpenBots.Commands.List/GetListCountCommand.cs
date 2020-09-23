@@ -22,16 +22,13 @@ namespace OpenBots.Commands.List
     [Group("List Commands")]
     [Description("This command returns the count of items contained in a List.")]
     public class GetListCountCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("List")]
         [InputSpecification("Provide a List variable.")]
         [SampleUsage("{vList}")]
         [Remarks("Providing any type of variable other than a List will result in an error.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_ListName { get; set; }
-
-        [XmlAttribute]
+        public string v_ListName { get; set; }
         [PropertyDescription("Output Count Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

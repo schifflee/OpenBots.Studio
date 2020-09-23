@@ -24,9 +24,7 @@ namespace OpenBots.Commands.Dictionary
         [SampleUsage("[FirstName | John] || [{vKey} | {vValue}]")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public DataTable v_ColumnNameDataTable { get; set; }
-
-        [XmlAttribute]
+        public DataTable v_ColumnNameDataTable { get; set; }
         [PropertyDescription("Output Dictionary Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

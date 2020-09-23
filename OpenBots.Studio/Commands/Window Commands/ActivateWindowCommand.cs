@@ -17,8 +17,7 @@ namespace OpenBots.Commands
     [Group("Window Commands")]
     [Description("This command activates an open window and brings it to the front.")]
     public class ActivateWindowCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Window Name")]
         [InputSpecification("Select the name of the window to activate and bring forward.")]
         [SampleUsage("Untitled - Notepad || {vWindow}")]

@@ -17,17 +17,14 @@ namespace OpenBots.Commands.TextFile
     [Group("Text File Commands")]
     [Description("This command reads text data from a text file and stores it in a variable.")]
     public class ReadTextFileCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Text File Path")]
         [InputSpecification("Enter or select the path to the text file.")]
         [SampleUsage(@"C:\temp\myfile.txt || {ProjectPath}\myText.txt || {vTextFilePath}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_FilePath { get; set; }
-
-        [XmlAttribute]
+        public string v_FilePath { get; set; }
         [PropertyDescription("Output Text Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

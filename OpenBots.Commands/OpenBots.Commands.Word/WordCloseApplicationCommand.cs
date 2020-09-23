@@ -17,15 +17,12 @@ namespace OpenBots.Commands.Word
     [Description("This command closes an open Word Document and Instance.")]
 
     public class WordCloseApplicationCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Word Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyWordInstance")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
-        public string v_InstanceName { get; set; }
-
-        [XmlAttribute]
+        public string v_InstanceName { get; set; }
         [PropertyDescription("Save Document")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

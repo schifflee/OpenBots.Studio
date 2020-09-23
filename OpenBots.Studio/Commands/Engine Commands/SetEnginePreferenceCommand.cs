@@ -14,8 +14,7 @@ namespace OpenBots.Commands
     [Group("Engine Commands")]
     [Description("This command sets preferences for engine behavior at runtime.")]
     public class SetEnginePreferenceCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Calculation Preference")]
         [PropertyUISelectionOption("Enable Automatic Calculations")]
         [PropertyUISelectionOption("Disable Automatic Calculations")]

@@ -19,24 +19,19 @@ namespace OpenBots.Commands.DataTable
     [Description("This command gets a DataRow from a DataTable.")]
 
     public class GetDataRowCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("DataTable")]
         [InputSpecification("Enter an existing DataTable to get rows from.")]
         [SampleUsage("{vDataTable}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DataTable { get; set; }
-
-        [XmlAttribute]
+        public string v_DataTable { get; set; }
         [PropertyDescription("DataRow Index")]
         [InputSpecification("Enter a valid DataRow index value.")]
         [SampleUsage("0 || {vIndex}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DataRowIndex { get; set; }
-
-        [XmlAttribute]
+        public string v_DataRowIndex { get; set; }
         [PropertyDescription("Output DataRow Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

@@ -17,8 +17,7 @@ namespace OpenBots.Commands
     [Group("Engine Commands")]
     [Description("This command displays an engine context message to the user.")]
     public class ShowEngineContextCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Close After X (Seconds)")]
         [InputSpecification("Specify how many seconds to display the message on screen. After the specified time," +
                             "\nthe message box will be automatically closed and script will resume execution.")]

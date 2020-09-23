@@ -18,16 +18,13 @@ namespace OpenBots.Commands
     [Group("Input Commands")]
     [Description("This command provides the user with an HTML form to input and store a collection of data.")]
     public class HTMLInputCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("HTML")]
         [InputSpecification("Define the form to be displayed using the HTML Builder.")]
         [SampleUsage("")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowHTMLBuilder)]
-        public string v_InputHTML { get; set; }
-
-        [XmlAttribute]
+        public string v_InputHTML { get; set; }
         [PropertyDescription("Error On Close")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

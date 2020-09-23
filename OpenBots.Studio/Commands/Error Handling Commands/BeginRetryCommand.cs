@@ -25,16 +25,13 @@ namespace OpenBots.Commands
     [Description("This command defines a retry block which will retry the contained commands as long as the condition is not met or " +
         "an error is thrown.")]
     public class BeginRetryCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Number of Retries")]
         [InputSpecification("Enter or provide the number of retries.")]
         [SampleUsage("3 || {vRetryCount}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_RetryCount { get; set; }
-
-        [XmlAttribute]
+        public string v_RetryCount { get; set; }
         [PropertyDescription("Retry Interval")]
         [InputSpecification("Enter or provide the amount of time (in seconds) between each retry.")]
         [SampleUsage("5 || {vRetryInterval}")]

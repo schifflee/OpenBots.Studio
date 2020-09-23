@@ -17,15 +17,12 @@ namespace OpenBots.Commands.System
     [Group("System Commands")]
     [Description("This command exclusively selects an OS variable.")]
     public class OSVariableCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("OS Variable")]
         [InputSpecification("Select an OS variable from one of the options.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_OSVariableName { get; set; }
-
-        [XmlAttribute]
+        public string v_OSVariableName { get; set; }
         [PropertyDescription("Output OS Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

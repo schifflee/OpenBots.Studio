@@ -19,25 +19,20 @@ namespace OpenBots.Commands
     [Group("Image Commands")]
     [Description("This command takes a screenshot and saves it to a specified location.")]
     public class TakeScreenshotCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Window Name")]
         [InputSpecification("Select the name of the window to take a screenshot of.")]
         [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_WindowName { get; set; }
-
-        [XmlAttribute]
+        public string v_WindowName { get; set; }
         [PropertyDescription("Image Location")]
         [InputSpecification("Enter or Select the path of the folder to save the image to.")]
         [SampleUsage(@"C:\temp || {vFolderPath} || {ProjectPath}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
-        public string v_FolderPath { get; set; }
-
-        [XmlAttribute]
+        public string v_FolderPath { get; set; }
         [PropertyDescription("Image File Name")]
         [InputSpecification("Enter or Select the name of the image file.")]
         [SampleUsage("myFile.png || {vFilename}")]

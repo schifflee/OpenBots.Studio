@@ -18,16 +18,13 @@ namespace OpenBots.Commands
     [Description("This command uploads data to a local OpenBots Server BotStore.")]
 
     public class UploadBotStoreDataCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Key")]
         [InputSpecification("Select or provide the name of the key to create.")]
         [SampleUsage("Hello || {vKey}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Key { get; set; }
-
-        [XmlAttribute]
+        public string v_Key { get; set; }
         [PropertyDescription("Value")]
         [InputSpecification("Select or provide a value for the key.")]
         [SampleUsage("World || {vValue}")]

@@ -25,25 +25,19 @@ namespace OpenBots.Commands
         [InputSpecification("Select the appropriate action to take.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_EncryptionType { get; set; }
-
-        [XmlAttribute]
+        public string v_EncryptionType { get; set; }
         [PropertyDescription("Text")]
         [InputSpecification("Select or provide the text to encrypt/decrypt.")]
         [SampleUsage("Hello || {vText}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputValue { get; set; }
-
-        [XmlAttribute]
+        public string v_InputValue { get; set; }
         [PropertyDescription("Pass Phrase")]
         [InputSpecification("Select or provide a pass phrase for encryption/decryption.")]
         [SampleUsage("OPENBOTS || {vPassPhrase}")]
         [Remarks("If decrypting, provide the pass phrase used to encypt the original text.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_PassPhrase { get; set; }
-
-        [XmlAttribute]
+        public string v_PassPhrase { get; set; }
         [PropertyDescription("Output Result Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

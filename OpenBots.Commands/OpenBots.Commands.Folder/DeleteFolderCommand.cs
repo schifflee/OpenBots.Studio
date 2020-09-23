@@ -18,8 +18,7 @@ namespace OpenBots.Commands.Folder
     [Group("Folder Operation Commands")]
     [Description("This command deletes a folder from a specified location.")]
     public class DeleteFolderCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Folder Path")]
         [InputSpecification("Enter or Select the path to the folder.")]
         [SampleUsage(@"C:\temp\myfolder || {ProjectPath}\myfolder  || {vTextFolderPath}")]

@@ -26,9 +26,7 @@ namespace OpenBots.Commands.DataTable
         [SampleUsage("MyColumn || {vColumn}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public Data.DataTable v_ColumnNameDataTable { get; set; }
-
-        [XmlAttribute]
+        public Data.DataTable v_ColumnNameDataTable { get; set; }
         [PropertyDescription("Output DataTable Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

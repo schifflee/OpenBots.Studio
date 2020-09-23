@@ -18,16 +18,13 @@ namespace OpenBots.Commands
     [Group("Window Commands")]
     [Description("This command waits for a window to exist.")]
     public class WaitForWindowToExistCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Window Name")]
         [InputSpecification("Select the name of the window to wait for.")]
         [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_WindowName { get; set; }
-
-        [XmlAttribute]
+        public string v_WindowName { get; set; }
         [PropertyDescription("Timeout (Seconds)")]
         [InputSpecification("Specify how many seconds to wait before throwing an exception.")]
         [SampleUsage("30 || {vSeconds}")]

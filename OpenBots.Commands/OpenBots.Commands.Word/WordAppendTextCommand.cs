@@ -20,23 +20,18 @@ namespace OpenBots.Commands.Word
     [Description("This command appends text to a Word Document.")]
 
     public class WordAppendTextCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Word Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyWordInstance")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
-        public string v_InstanceName { get; set; }
-
-        [XmlAttribute]
+        public string v_InstanceName { get; set; }
         [PropertyDescription("Text")]
         [InputSpecification("Enter the text to append to the Document.")]
         [SampleUsage("Hello World || {vText}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_TextToSet { get; set; }
-
-        [XmlAttribute]
+        public string v_TextToSet { get; set; }
         [PropertyDescription("Font Name")]
         [PropertyUISelectionOption("Arial")]
         [PropertyUISelectionOption("Calibri")]
@@ -46,9 +41,7 @@ namespace OpenBots.Commands.Word
         [InputSpecification("Select or provide a valid font name.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_FontName { get; set; }
-
-        [XmlAttribute]
+        public string v_FontName { get; set; }
         [PropertyDescription("Font Size")]
         [PropertyUISelectionOption("10")]
         [PropertyUISelectionOption("11")]
@@ -60,27 +53,21 @@ namespace OpenBots.Commands.Word
         [InputSpecification("Select or provide a valid font size.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_FontSize { get; set; }
-
-        [XmlAttribute]
+        public string v_FontSize { get; set; }
         [PropertyDescription("Bold")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("Specify whether the text font should be bold.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_FontBold { get; set; }
-
-        [XmlAttribute]
+        public string v_FontBold { get; set; }
         [PropertyDescription("Italic")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("Specify whether the text font should be italic.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_FontItalic { get; set; }
-
-        [XmlAttribute]
+        public string v_FontItalic { get; set; }
         [PropertyDescription("Underline")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

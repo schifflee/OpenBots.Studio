@@ -17,8 +17,7 @@ namespace OpenBots.Commands
     [Description("This command closes a Selenium web browser session.")]
 
     public class SeleniumCloseBrowserCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Browser Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Browser** command.")]
         [SampleUsage("MyBrowserInstance")]

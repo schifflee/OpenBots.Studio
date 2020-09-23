@@ -24,25 +24,20 @@ namespace OpenBots.Commands
     [Description("This command invokes a method of a specific class from a DLL.")]
 
     public class ExecuteDLLCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("DLL File Path")]
         [InputSpecification("Enter or Select the path to the DLL File.")]
         [SampleUsage("C:\\temp\\myfile.dll || {vDLLFilePath}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowDLLExplorer)]
-        public string v_FilePath { get; set; }
-
-        [XmlAttribute]
+        public string v_FilePath { get; set; }
         [PropertyDescription("Class Name")]
         [InputSpecification("Provide the parent class name of the method to be invoked in the DLL.")]
         [SampleUsage("myNamespace.myClassName || {vClassName}")]
         [Remarks("Namespace should be included")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_ClassName { get; set; }
-
-        [XmlAttribute]
+        public string v_ClassName { get; set; }
         [PropertyDescription("Method Name")]
         [InputSpecification("Provide the method name to be invoked in the DLL.")]
         [SampleUsage("GetSomething || {vMethodName}")]
@@ -56,9 +51,7 @@ namespace OpenBots.Commands
         [SampleUsage("")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.GenerateDLLParameters)]
-        public DataTable v_MethodParameters { get; set; }
-
-        [XmlAttribute]
+        public DataTable v_MethodParameters { get; set; }
         [PropertyDescription("Output Result Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

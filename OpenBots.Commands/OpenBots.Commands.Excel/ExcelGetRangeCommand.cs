@@ -21,32 +21,25 @@ namespace OpenBots.Commands.Excel
     [Description("This command gets the range from an Excel Worksheet and stores it in a DataTable.")]
 
     public class ExcelGetRangeCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("Excel Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyExcelInstance")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
-        public string v_InstanceName { get; set; }
-
-        [XmlAttribute]
+        public string v_InstanceName { get; set; }
         [PropertyDescription("Range")]
         [InputSpecification("Enter the location of the range to extract.")]
         [SampleUsage("A1:B10 || A1: || {vRange} || {vStart}:{vEnd} || {vStart}:")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Range { get; set; }   
-
-        [XmlAttribute]
+        public string v_Range { get; set; }   
         [PropertyDescription("Add Headers")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("When selected, the column headers from the specified spreadsheet range are also extracted.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_AddHeaders { get; set; }
-
-        [XmlAttribute]
+        public string v_AddHeaders { get; set; }
         [PropertyDescription("Output Range Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

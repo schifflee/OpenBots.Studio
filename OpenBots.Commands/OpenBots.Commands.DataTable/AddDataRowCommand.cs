@@ -24,8 +24,7 @@ namespace OpenBots.Commands.DataTable
     [Description("This command adds a DataRow to a DataTable.")]
 
     public class AddDataRowCommand : ScriptCommand
-    {
-        [XmlAttribute]
+    {
         [PropertyDescription("DataTable")]
         [InputSpecification("Enter an existing DataTable to add a DataRow to.")]
         [SampleUsage("{vDataTable}")]

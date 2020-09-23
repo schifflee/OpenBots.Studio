@@ -630,7 +630,7 @@ namespace OpenBots.Commands
         {
             //get command reference
             //create recorder
-            frmThickAppElementRecorder newElementRecorder = new frmThickAppElementRecorder();
+            frmAdvancedUIElementRecorder newElementRecorder = new frmAdvancedUIElementRecorder();
             newElementRecorder.cboWindowTitle.Text = RenderedControls[2].Text;
             newElementRecorder.SearchParameters = v_UIASearchParameters;
 

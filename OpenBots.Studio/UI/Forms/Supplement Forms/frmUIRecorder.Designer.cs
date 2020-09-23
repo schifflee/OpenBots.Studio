@@ -220,9 +220,9 @@
             this.lblScreenRecorder.Location = new System.Drawing.Point(7, 9);
             this.lblScreenRecorder.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblScreenRecorder.Name = "lblScreenRecorder";
-            this.lblScreenRecorder.Size = new System.Drawing.Size(315, 46);
+            this.lblScreenRecorder.Size = new System.Drawing.Size(308, 58);
             this.lblScreenRecorder.TabIndex = 12;
-            this.lblScreenRecorder.Text = "screen recorder";
+            this.lblScreenRecorder.Text = "UI Recorder";
             // 
             // chkTrackWindowSize
             // 
@@ -327,7 +327,7 @@
             this.uiBtnRecord.DisplayText = "Start";
             this.uiBtnRecord.DisplayTextBrush = System.Drawing.Color.AliceBlue;
             this.uiBtnRecord.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.uiBtnRecord.Image = global::OpenBots.Core.Properties.Resources.various_record_button;
+            this.uiBtnRecord.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnRecord.Image")));
             this.uiBtnRecord.IsMouseOver = false;
             this.uiBtnRecord.Location = new System.Drawing.Point(19, 511);
             this.uiBtnRecord.Margin = new System.Windows.Forms.Padding(5);
@@ -347,11 +347,11 @@
             this.Controls.Add(this.pnlOptions);
             this.Controls.Add(this.uiBtnRecord);
             this.Controls.Add(this.lblRecording);
-            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmScreenRecorder";
-            this.Text = "Screen Recorder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "ui recorder";
             this.Load += new System.EventHandler(this.frmSequenceRecorder_Load);
             this.pnlOptions.ResumeLayout(false);
             this.pnlOptions.PerformLayout();

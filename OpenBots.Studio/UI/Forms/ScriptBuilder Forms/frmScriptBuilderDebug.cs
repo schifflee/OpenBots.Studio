@@ -121,6 +121,10 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                                 variableValues.Rows.Add(variable.VariableName, type,
                                     ConvertListToString(variable.VariableValue));
                                 break;
+                            case string a when a.Contains("System.Collections.Generic.Dictionary`2[[System.String") && a.Contains("],[System.String"):
+                                variableValues.Rows.Add(variable.VariableName, type,
+                                   ConvertDictionaryToString(variable.VariableValue));
+                                break;
                             case "":
                                 variableValues.Rows.Add(variable.VariableName, "null", "null");
                                 break;
@@ -267,7 +271,6 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         public string ConvertListToString(object list)
         {
             StringBuilder stringBuilder = new StringBuilder();
-
             Type type = list.GetType().GetGenericArguments()[0];
 
             if (type == typeof(string))
@@ -281,7 +284,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                 if (stringList.Count > 0)
                     stringBuilder.AppendFormat("{0}]", stringList[stringList.Count - 1]);
                 else
-                    stringBuilder.Length = stringBuilder.Length - 3;
+                    stringBuilder.Length = stringBuilder.Length - 2;
             }
             else if (type == typeof(DataTable))
             {
@@ -334,6 +337,31 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                     stringBuilder.AppendFormat("{0}]", ConvertIWebElementToString(elementList[elementList.Count - 1]));
                 else
                     stringBuilder.Length = stringBuilder.Length - 3;
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        public string ConvertDictionaryToString(object dictionary)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            Type type = dictionary.GetType().GetGenericArguments()[1];
+             
+            if (type == typeof(string))
+            {
+                Dictionary<string, string> stringDictionary = (Dictionary<string, string>)dictionary;
+                stringBuilder.Append($"Count({stringDictionary.Count}) [");
+
+                foreach (KeyValuePair<string, string> pair in stringDictionary)
+                    stringBuilder.AppendFormat("[{0}, {1}], ", pair.Key, pair.Value);
+
+                if (stringDictionary.Count > 0)
+                {
+                    stringBuilder.Length = stringBuilder.Length - 2;
+                    stringBuilder.Append("]");
+                }                   
+                else
+                    stringBuilder.Length = stringBuilder.Length - 2;
             }
 
             return stringBuilder.ToString();

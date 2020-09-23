@@ -238,6 +238,7 @@
     <Content Include="Resources\7z.dll" />
     <Content Include="Resources\7z.exe" />
     <Content Include="Resources\action-bar-add-command.png" />
+    <None Include="Resources\action-bar-breakpoint.png" />
     <Content Include="Resources\action-bar-clear.png" />
     <Content Include="Resources\action-bar-debug.png" />
     <Content Include="Resources\action-bar-element-recorder.png" />
@@ -318,6 +319,7 @@
     <Content Include="Resources\command-web.png" />
     <Content Include="Resources\command-window-close.png" />
     <Content Include="Resources\command-window.png" />
+    <None Include="Resources\commandsearch-clear.png" />
     <Content Include="Resources\command_folders.bmp" />
     <Content Include="Resources\copy.png" />
     <Content Include="Resources\create.png" />

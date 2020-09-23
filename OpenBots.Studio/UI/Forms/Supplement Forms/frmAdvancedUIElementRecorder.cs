@@ -20,7 +20,7 @@ using Enums = OpenBots.Core.Enums;
 
 namespace OpenBots.UI.Forms.Supplement_Forms
 {
-    public partial class frmThickAppElementRecorder : UIForm
+    public partial class frmAdvancedUIElementRecorder : UIForm
     {
         public DataTable SearchParameters;
         public string LastItemClicked;
@@ -41,7 +41,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
         private string _recordingMessage = "Recording. Press F2 to save and close.";
         private string _errorMessage = "Error cloning element. Please Try Again.";
 
-        public frmThickAppElementRecorder()
+        public frmAdvancedUIElementRecorder()
         {
             _appSettings = new ApplicationSettings();
             _appSettings = _appSettings.GetOrCreateApplicationSettings();

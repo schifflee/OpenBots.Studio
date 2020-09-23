@@ -19,8 +19,8 @@ namespace OpenBots.Commands.TextFile
     public class ReadTextFileCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("File Path")]
-        [InputSpecification("Enter or Select the path to the text file.")]
+        [PropertyDescription("Text File Path")]
+        [InputSpecification("Enter or select the path to the text file.")]
         [SampleUsage(@"C:\temp\myfile.txt || {ProjectPath}\myText.txt || {vTextFilePath}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]

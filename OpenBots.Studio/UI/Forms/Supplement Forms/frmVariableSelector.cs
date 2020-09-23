@@ -13,6 +13,8 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using OpenBots.Core.UI.Forms;
 
@@ -20,13 +22,17 @@ namespace OpenBots.UI.Forms.Supplement_Forms
 {
     public partial class frmVariableSelector : ThemedForm
     {
+        private List<string> _variableList;
+
         public frmVariableSelector()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void frmVariableSelector_Load(object sender, EventArgs e)
         {
+            _variableList = new List<string>();
+            _variableList.AddRange(lstVariables.Items.Cast<string>().ToList());
         }
 
         private void uiBtnOk_Click(object sender, EventArgs e)
@@ -47,6 +53,24 @@ namespace OpenBots.UI.Forms.Supplement_Forms
         private void lstVariables_DoubleClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
+        }
+
+        private void txtSearchVariable_TextChanged(object sender, EventArgs e)
+        {
+            string search = txtSearchVariable.Text;
+
+            if (string.IsNullOrEmpty(search))
+            {
+                lstVariables.Items.Clear();
+                lstVariables.Items.AddRange(_variableList.ToArray());
+            }
+
+            var items = (from a in _variableList
+                         where a.ToLower().StartsWith(search.ToLower())
+                         select a).ToArray();
+
+            lstVariables.Items.Clear();
+            lstVariables.Items.AddRange(items);
         }
     }
 }

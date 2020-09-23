@@ -1021,7 +1021,7 @@ namespace OpenBots.Commands
             UIAutomationCommand cmd = new UIAutomationCommand();
 
             //create recorder
-            frmThickAppElementRecorder newElementRecorder = new frmThickAppElementRecorder();
+            frmAdvancedUIElementRecorder newElementRecorder = new frmAdvancedUIElementRecorder();
             newElementRecorder.SearchParameters = cmd.v_UIASearchParameters;
 
             //show form

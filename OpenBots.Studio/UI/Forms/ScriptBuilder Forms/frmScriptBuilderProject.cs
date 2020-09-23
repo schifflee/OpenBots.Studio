@@ -421,6 +421,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 
                     string newName = "";
                     var newNameForm = new frmInputBox("Enter the new name of the folder", "Rename Folder");
+                    newNameForm.txtInput.Text = tvProject.SelectedNode.Name;
                     newNameForm.ShowDialog();
 
                     if (newNameForm.DialogResult == DialogResult.OK)
@@ -550,6 +551,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 
                     string newNameWithoutExtension = "";
                     var newNameForm = new frmInputBox("Enter the new name of the file without extension", "Rename File");
+                    newNameForm.txtInput.Text = Path.GetFileNameWithoutExtension(selectedNodeDirectoryInfo.Name);
                     newNameForm.ShowDialog();
 
                     if (newNameForm.DialogResult == DialogResult.OK)

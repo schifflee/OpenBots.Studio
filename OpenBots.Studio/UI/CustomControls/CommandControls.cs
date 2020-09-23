@@ -674,7 +674,7 @@ namespace OpenBots.UI.CustomControls
             UIAutomationCommand cmd = (UIAutomationCommand)((frmCommandEditor)editor).SelectedCommand;
 
             //create recorder
-            frmThickAppElementRecorder newElementRecorder = new frmThickAppElementRecorder();
+            frmAdvancedUIElementRecorder newElementRecorder = new frmAdvancedUIElementRecorder();
             newElementRecorder.SearchParameters = cmd.v_UIASearchParameters;
 
             //show form

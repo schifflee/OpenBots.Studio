@@ -19,7 +19,7 @@ using System.Diagnostics;
 
 namespace OpenBots.UI.Forms.Supplement_Forms
 {
-    public partial class frmHTMLElementRecorder : UIForm
+    public partial class frmWebElementRecorder : UIForm
     {
         public List<ScriptElement> ScriptElements { get; set; }
         public DataTable SearchParameters { get; set; }
@@ -35,7 +35,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
         private DataTable _parameterSettings;
 
         private bool _isFirstRecordClick;
-        private string _homeURL = "https://www.google.com/"; //TODO replace with openbots url;
+        private string _homeURL = "https://openbots.ai/";
         private string _xPath;
         private string _name;
         private string _id;
@@ -53,7 +53,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
         private string _recordingMessage = "Recording. Press F2 to save and close.";
         private string _errorMessage = "Error cloning element. Please Try Again.";
 
-        public frmHTMLElementRecorder(string startURL)
+        public frmWebElementRecorder(string startURL)
         {
             _appSettings = new ApplicationSettings();
             _appSettings = _appSettings.GetOrCreateApplicationSettings();

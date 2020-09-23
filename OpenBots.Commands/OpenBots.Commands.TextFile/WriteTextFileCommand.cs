@@ -15,15 +15,17 @@ namespace OpenBots.Commands.TextFile
 {
     [Serializable]
     [Group("Text File Commands")]
-    [Description("This command writes specified data to a text file.")]
-    public class WriteTextFileCommand : ScriptCommand
+    [Description("This command writes specified data to an existing or newly created text file.")]
+    public class WriteCreateTextFileCommand : ScriptCommand
     {
         [XmlAttribute]
-        [PropertyDescription("File Path")]
-        [InputSpecification("Enter or Select the File Path.")]
+        [PropertyDescription("Text File Path")]
+        [InputSpecification("Enter or select the text file path.")]
         [SampleUsage(@"C:\temp\myfile.txt || {ProjectPath}\myText.txt || {vTextFilePath}")]
-        [Remarks("")]
+        [Remarks("If the selected text file does not exist, a file with the provided name and location will be created.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
         public string v_FilePath { get; set; }
 
         [XmlAttribute]
@@ -31,8 +33,7 @@ namespace OpenBots.Commands.TextFile
         [InputSpecification("Indicate the Text to write.")]
         [SampleUsage("Hello World! || {vText}")]
         [Remarks("[crLF] inserts a newline.")]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
+        [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]       
         public string v_TextToWrite { get; set; }
 
         [XmlAttribute]
@@ -43,14 +44,15 @@ namespace OpenBots.Commands.TextFile
                             "in the file")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_Overwrite { get; set; } = "Append";
+        public string v_Overwrite { get; set; }
 
-        public WriteTextFileCommand()
+        public WriteCreateTextFileCommand()
         {
-            CommandName = "WriteTextFileCommand";
-            SelectionName = "Write Text File";
+            CommandName = "WriteCreateTextFileCommand";
+            SelectionName = "Write/Create Text File";
             CommandEnabled = true;
             CustomRendering = true;
+            v_Overwrite = "Append";
         }
 
         public override void RunCommand(object sender)

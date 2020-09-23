@@ -218,6 +218,15 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                             SaveToFile(false);
                         }                        
                         break;
+                    case Keys.E:
+                        SetSelectedCodeToCommented(false);
+                        break;
+                    case Keys.D:
+                        SetSelectedCodeToCommented(true);
+                        break;
+                    case Keys.B:
+                        AddRemoveBreakpoint();
+                        break;
                 }
             }
         }
@@ -787,12 +796,9 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 
             //recolor
             _selectedTabScriptActions.Invalidate();
-
-            //clear selection
-            _selectedTabScriptActions.SelectedIndices.Clear();
         }
 
-        private void SetPauseBeforeExecution()
+        private void AddRemoveBreakpoint()
         {
             //warn if nothing was selected
             if (_selectedTabScriptActions.SelectedItems.Count == 0)
@@ -808,11 +814,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             }
 
             //recolor
-            //FormatCommandListView();
             _selectedTabScriptActions.Invalidate();
-
-            //clear selection
-            _selectedTabScriptActions.SelectedIndices.Clear();
         }
 
         private void disableSelectedCodeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -825,9 +827,9 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             SetSelectedCodeToCommented(false);
         }
 
-        private void pauseBeforeExecutionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void addRemoveBreakpointToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetPauseBeforeExecution();
+            AddRemoveBreakpoint();
         }
 
         private void cutSelectedActionssToolStripMenuItem_Click(object sender, EventArgs e)

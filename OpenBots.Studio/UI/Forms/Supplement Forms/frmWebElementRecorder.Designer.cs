@@ -2,7 +2,7 @@
 
 namespace OpenBots.UI.Forms.Supplement_Forms
 {
-    partial class frmHTMLElementRecorder
+    partial class frmWebElementRecorder
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHTMLElementRecorder));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWebElementRecorder));
             this.tlpControls = new System.Windows.Forms.TableLayoutPanel();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pbHome = new System.Windows.Forms.PictureBox();
@@ -192,14 +192,14 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             this.lblHeader.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblHeader.Name = "lblHeader";
             // 
-            // frmHTMLElementRecorder
+            // frmWebElementRecorder
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
             this.BackgroundChangeIndex = 265;
             this.Controls.Add(this.tlpControls);
-            this.Name = "frmHTMLElementRecorder";
+            this.Name = "frmWebElementRecorder";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmHTMLElementRecorder_FormClosing);
             this.Load += new System.EventHandler(this.frmHTMLElementRecorder_Load);
             this.tlpControls.ResumeLayout(false);

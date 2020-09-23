@@ -66,7 +66,7 @@ namespace OpenBots.Commands.List
             dynamic vNewList = null;
             string[] splitListItems = null;
 
-            if (!string.IsNullOrEmpty(v_ListItems.Trim()))
+            if (!string.IsNullOrEmpty(v_ListItems))
             {
                 splitListItems = v_ListItems.Split(',');
             }

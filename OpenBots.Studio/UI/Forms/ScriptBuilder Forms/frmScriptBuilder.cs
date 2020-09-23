@@ -660,6 +660,11 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                 txtCommandSearch.ForeColor = Color.LightGray;
             }
         }
+
+        private void uiBtnClearCommandSearch_Click(object sender, EventArgs e)
+        {
+            txtCommandSearch.Clear();
+        }
         #endregion
 
         #region Link Labels

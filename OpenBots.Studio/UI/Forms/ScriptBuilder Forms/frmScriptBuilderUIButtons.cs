@@ -728,12 +728,22 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         {
             runToolStripMenuItem_Click(sender, e);
         }
+
+        private void breakpointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddRemoveBreakpoint();
+        }
+
+        private void uiBtnBreakpoint_Click(object sender, EventArgs e)
+        {
+            AddRemoveBreakpoint();
+        }
         #endregion
 
         #region Recorder Buttons
         private void elementRecorderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmHTMLElementRecorder elementRecorder = new frmHTMLElementRecorder(HTMLElementRecorderURL);
+            frmWebElementRecorder elementRecorder = new frmWebElementRecorder(HTMLElementRecorderURL);
             elementRecorder.CallBackForm = this;
             elementRecorder.IsRecordingSequence = true;
             elementRecorder.ScriptElements = _scriptElements;
@@ -782,7 +792,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         {
             Hide();
 
-            frmThickAppElementRecorder appElementRecorder = new frmThickAppElementRecorder();
+            frmAdvancedUIElementRecorder appElementRecorder = new frmAdvancedUIElementRecorder();
             appElementRecorder.CallBackForm = this;
             appElementRecorder.IsRecordingSequence = true;
             appElementRecorder.chkStopOnClick.Visible = false;

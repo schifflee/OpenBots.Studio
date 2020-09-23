@@ -692,7 +692,7 @@ namespace OpenBots.Commands
         public void ShowRecorder(object sender, EventArgs e, IfrmCommandEditor editor)
         {
             //create recorder
-            frmHTMLElementRecorder newElementRecorder = new frmHTMLElementRecorder(editor.HTMLElementRecorderURL);
+            frmWebElementRecorder newElementRecorder = new frmWebElementRecorder(editor.HTMLElementRecorderURL);
             newElementRecorder.ScriptElements = editor.ScriptElements;
 
             //show form

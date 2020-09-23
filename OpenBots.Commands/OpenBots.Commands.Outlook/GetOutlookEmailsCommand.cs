@@ -89,6 +89,10 @@ namespace OpenBots.Commands.Outlook
         [Remarks("Variables not pre-defined in the Variable Manager will be automatically generated at runtime.")]
         public string v_OutputUserVariableName { get; set; }
 
+        [XmlIgnore]
+        [NonSerialized]
+        public List<Control> SavingControls;
+
         public GetOutlookEmailsCommand()
         {
             CommandName = "GetOutlookEmailsCommand";
@@ -173,8 +177,17 @@ namespace OpenBots.Commands.Outlook
             RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_GetUnreadOnly", this, editor));
             RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_MarkAsRead", this, editor));
             RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_SaveMessagesAndAttachments", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_MessageDirectory", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_AttachmentDirectory", this, editor));
+            ((ComboBox)RenderedControls[11]).SelectedIndexChanged += SaveMailItemsComboBox_SelectedValueChanged;
+
+            SavingControls = new List<Control>();
+            SavingControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_MessageDirectory", this, editor));
+            SavingControls.AddRange(commandControls.CreateDefaultOutputGroupFor("v_AttachmentDirectory", this, editor));
+
+            foreach (var ctrl in SavingControls)
+                ctrl.Visible = false;
+
+            RenderedControls.AddRange(SavingControls);
+
             RenderedControls.AddRange(commandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
 
             return RenderedControls;
@@ -194,7 +207,11 @@ namespace OpenBots.Commands.Outlook
             if (v_SaveMessagesAndAttachments == "Yes")
             {
                 if (Directory.Exists(msgDirectory))
-                    mail.SaveAs(Path.Combine(msgDirectory, mail.Subject + ".msg"));
+                {
+                    string mailFileName = string.Join("_", mail.Subject.Split(Path.GetInvalidFileNameChars()));
+                    mail.SaveAs(Path.Combine(msgDirectory, mailFileName + ".msg"));
+                }
+                    
                 if (Directory.Exists(attDirectory))
                 {
                     foreach (Attachment attachment in mail.Attachments)
@@ -202,6 +219,20 @@ namespace OpenBots.Commands.Outlook
                         attachment.SaveAsFile(Path.Combine(attDirectory, attachment.FileName));
                     }
                 }
+            }
+        }
+
+        private void SaveMailItemsComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (((ComboBox)RenderedControls[11]).Text == "Yes")
+            {
+                foreach (var ctrl in SavingControls)
+                    ctrl.Visible = true;
+            }
+            else
+            {
+                foreach (var ctrl in SavingControls)
+                    ctrl.Visible = false;
             }
         }
     }

@@ -241,17 +241,17 @@
     </Compile>
     <Compile Include="UI\CustomControls\CommandControls.cs" />
     <Compile Include="UI\DTOs\SteppingCommandsItem.cs" />
-    <Compile Include="UI\Forms\Supplement Forms\frmThickAppElementRecorderSettings.cs">
+    <Compile Include="UI\Forms\Supplement Forms\frmAdvancedUIElementRecorderSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Forms\Supplement Forms\frmThickAppElementRecorderSettings.Designer.cs">
-      <DependentUpon>frmThickAppElementRecorderSettings.cs</DependentUpon>
+    <Compile Include="UI\Forms\Supplement Forms\frmAdvancedUIElementRecorderSettings.Designer.cs">
+      <DependentUpon>frmAdvancedUIElementRecorderSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Forms\Supplement Forms\frmHTMLElementRecorderSettings.cs">
+    <Compile Include="UI\Forms\Supplement Forms\frmWebElementRecorderSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Forms\Supplement Forms\frmHTMLElementRecorderSettings.Designer.cs">
-      <DependentUpon>frmHTMLElementRecorderSettings.cs</DependentUpon>
+    <Compile Include="UI\Forms\Supplement Forms\frmWebElementRecorderSettings.Designer.cs">
+      <DependentUpon>frmWebElementRecorderSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\GlobalHook.cs" />
     <Compile Include="Utilities\ManifestUpdate.cs" />
@@ -359,11 +359,11 @@
     <Compile Include="UI\Forms\frmAttendedMode.Designer.cs">
       <DependentUpon>frmAttendedMode.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Forms\Supplement Forms\frmScreenRecorder.cs">
+    <Compile Include="UI\Forms\Supplement Forms\frmUIRecorder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Forms\Supplement Forms\frmScreenRecorder.Designer.cs">
-      <DependentUpon>frmScreenRecorder.cs</DependentUpon>
+    <Compile Include="UI\Forms\Supplement Forms\frmUIRecorder.Designer.cs">
+      <DependentUpon>frmUIRecorder.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Forms\frmScriptElements.cs">
       <SubType>Form</SubType>
@@ -467,17 +467,17 @@
     <Compile Include="UI\Forms\Supplement Forms\frmSplash.Designer.cs">
       <DependentUpon>frmSplash.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Forms\Supplement Forms\frmHTMLElementRecorder.cs">
+    <Compile Include="UI\Forms\Supplement Forms\frmWebElementRecorder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Forms\Supplement Forms\frmHTMLElementRecorder.Designer.cs">
-      <DependentUpon>frmHTMLElementRecorder.cs</DependentUpon>
+    <Compile Include="UI\Forms\Supplement Forms\frmWebElementRecorder.Designer.cs">
+      <DependentUpon>frmWebElementRecorder.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Forms\Supplement Forms\frmThickAppElementRecorder.cs">
+    <Compile Include="UI\Forms\Supplement Forms\frmAdvancedUIElementRecorder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Forms\Supplement Forms\frmThickAppElementRecorder.Designer.cs">
-      <DependentUpon>frmThickAppElementRecorder.cs</DependentUpon>
+    <Compile Include="UI\Forms\Supplement Forms\frmAdvancedUIElementRecorder.Designer.cs">
+      <DependentUpon>frmAdvancedUIElementRecorder.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Forms\Supplement Forms\frmUserInput.cs">
       <SubType>Form</SubType>
@@ -585,14 +585,14 @@
       <DependentUpon>frmScriptElements.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmThickAppElementRecorderSettings.resx">
-      <DependentUpon>frmThickAppElementRecorderSettings.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmAdvancedUIElementRecorderSettings.resx">
+      <DependentUpon>frmAdvancedUIElementRecorderSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmHTMLElementRecorderSettings.resx">
-      <DependentUpon>frmHTMLElementRecorderSettings.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmWebElementRecorderSettings.resx">
+      <DependentUpon>frmWebElementRecorderSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmScreenRecorder.resx">
-      <DependentUpon>frmScreenRecorder.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmUIRecorder.resx">
+      <DependentUpon>frmUIRecorder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\frmSettings.resx">
       <DependentUpon>frmSettings.cs</DependentUpon>
@@ -665,12 +665,12 @@
     <EmbeddedResource Include="UI\Forms\Supplement Forms\frmSplash.resx">
       <DependentUpon>frmSplash.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmHTMLElementRecorder.resx">
-      <DependentUpon>frmHTMLElementRecorder.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmWebElementRecorder.resx">
+      <DependentUpon>frmWebElementRecorder.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmThickAppElementRecorder.resx">
-      <DependentUpon>frmThickAppElementRecorder.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmAdvancedUIElementRecorder.resx">
+      <DependentUpon>frmAdvancedUIElementRecorder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\Supplement Forms\frmUserInput.resx">
       <DependentUpon>frmUserInput.cs</DependentUpon>

@@ -70,7 +70,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                 {                    
                     //Serialize main script
                     var mainScript = Script.SerializeScript(mainScriptActions.Items, mainScriptVariables, mainScriptElements,
-                                                            mainScriptPath, projectBuilder.NewProjectName);                  
+                                                            mainScriptPath);                  
                     //Create new project
                     Project proj = new Project(projectBuilder.NewProjectName);
                     _mainFileName = proj.Main;
@@ -79,7 +79,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                     File.WriteAllText(configPath, JsonConvert.SerializeObject(proj));
 
                     //Save new project
-                    proj.SaveProject(mainScriptPath, mainScript);
+                    proj.SaveProject(mainScriptPath);
                     //Open new project
                     ScriptProject = Project.OpenProject(configPath);
                     //Open main script
@@ -471,7 +471,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 
                 if (!File.Exists(newFilePath))
                 {
-                    Script.SerializeScript(newScriptActions.Items, newScripVariables, newScriptElements, newFilePath, ScriptProject.ProjectName);
+                    Script.SerializeScript(newScriptActions.Items, newScripVariables, newScriptElements, newFilePath);
                     NewNode(tvProject.SelectedNode, newFilePath, "file");
                     OpenFile(newFilePath);
                 }
@@ -486,7 +486,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                         newerFilePath = Path.Combine(newDirectoryPath, $"{newFileNameWithoutExtension} ({count}).json");
                         count += 1;
                     }
-                    Script.SerializeScript(newScriptActions.Items, newScripVariables, newScriptElements, newerFilePath, ScriptProject.ProjectName);
+                    Script.SerializeScript(newScriptActions.Items, newScripVariables, newScriptElements, newerFilePath);
                     NewNode(tvProject.SelectedNode, newerFilePath, "file");
                     OpenFile(newerFilePath);
                 }

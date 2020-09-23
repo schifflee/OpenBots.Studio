@@ -24,7 +24,6 @@ namespace OpenBots.Core.Script
 {
     public class Script
     {
-        public string ProjectName { get; set; }
         /// <summary>
         /// Contains user-defined variables
         /// </summary>
@@ -62,15 +61,12 @@ namespace OpenBots.Core.Script
             ListView.ListViewItemCollection scriptCommands,
             List<ScriptVariable> scriptVariables,
             List<ScriptElement> scriptElements,
-            string scriptFilePath = "",
-            string projectName = ""
+            string scriptFilePath = ""
             )
         {
             var script = new Script();
 
             script.FileName = Path.GetFileName(scriptFilePath);
-
-            script.ProjectName = projectName;
 
             //save variables to file
             script.Variables = scriptVariables;

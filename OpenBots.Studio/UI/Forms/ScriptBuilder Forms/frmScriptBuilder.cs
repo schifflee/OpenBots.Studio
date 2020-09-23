@@ -141,14 +141,9 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 
         private void UpdateWindowTitle()
         {
-            if (!string.IsNullOrEmpty(ScriptFilePath))
+            if (ScriptProject.ProjectName != null)
             {
-                FileInfo scriptFileInfo = new FileInfo(ScriptFilePath);
-                Text = "OpenBots Studio - (Project: " + ScriptProject.ProjectName + " - Script: " + scriptFileInfo.Name + ")";
-            }
-            else if (ScriptProject.ProjectName != null)
-            {
-                Text = "OpenBots Studio - (Project: " + ScriptProject.ProjectName + ")";
+                Text = "OpenBots Studio - " + ScriptProject.ProjectName;
             }
             else
             {

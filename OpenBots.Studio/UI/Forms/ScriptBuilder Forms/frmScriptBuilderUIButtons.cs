@@ -132,15 +132,6 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                     //get deserialized script
                     Script deserializedScript = Script.DeserializeFile(filePath);
 
-                    //check if script is a part of the currently opened project
-                    string openScriptProjectName = deserializedScript.ProjectName;
-
-                    if (openScriptProjectName != ScriptProject.ProjectName)
-                    {
-                        uiScriptTabControl.TabPages.RemoveAt(uiScriptTabControl.TabCount - 1);
-                        throw new Exception("Attempted to load a script not part of the currently open project");
-                    }
-
                     //reinitialize
                     _selectedTabScriptActions.Items.Clear();
                     _scriptVariables = new List<ScriptVariable>();
@@ -371,8 +362,8 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             //serialize script
             try
             {
-                var exportedScript = Script.SerializeScript(_selectedTabScriptActions.Items, _scriptVariables, _scriptElements, ScriptFilePath, ScriptProject.ProjectName);
-                ScriptProject.SaveProject(ScriptFilePath, exportedScript);
+                var exportedScript = Script.SerializeScript(_selectedTabScriptActions.Items, _scriptVariables, _scriptElements, ScriptFilePath);
+                ScriptProject.SaveProject(ScriptFilePath);
                 uiScriptTabControl.SelectedTab.Text = uiScriptTabControl.SelectedTab.Text.Replace(" *", "");
                 //show success dialog
                 Notify("File has been saved successfully!");

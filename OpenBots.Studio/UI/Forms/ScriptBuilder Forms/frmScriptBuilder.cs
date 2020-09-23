@@ -32,7 +32,6 @@ using OpenBots.Core.Script;
 using OpenBots.Core.Settings;
 using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
-using OpenBots.Server;
 using OpenBots.UI.CustomControls;
 using OpenBots.UI.CustomControls.CustomUIControls;
 using OpenBots.UI.Forms.Supplement_Forms;
@@ -171,25 +170,10 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 
             //get app settings
             _appSettings = new ApplicationSettings();
-            _appSettings = _appSettings.GetOrCreateApplicationSettings();
-
-            if (_appSettings.ServerSettings.ServerConnectionEnabled && _appSettings.ServerSettings.HTTPGuid == Guid.Empty)
-            {
-                HttpServerClient.GetGuid();
-            }
-            else if (_appSettings.ServerSettings.ServerConnectionEnabled && _appSettings.ServerSettings.HTTPGuid != Guid.Empty)
-            {
-                HttpServerClient.InitializeScriptEngine(new frmScriptEngine());
-                HttpServerClient.CheckIn();
-            }
-
-            HttpServerClient.InitializeScriptEngine(new frmScriptEngine());
-            HttpServerClient.AssociatedBuilder = this;
+            _appSettings = _appSettings.GetOrCreateApplicationSettings();      
 
             string clientLoggerFilePath = Path.Combine(Folders.GetFolder(FolderType.LogFolder), "OpenBots Automation Client Logs.txt");
             Logger automationClientLogger = new Logging().CreateFileLogger(clientLoggerFilePath, Serilog.RollingInterval.Day);
-            LocalTCPClient.InitializeAutomationEngine(new AutomationEngineInstance(automationClientLogger));
-            LocalTCPClient.Initialize(this, new AutomationEngineInstance(automationClientLogger));
             //Core.Sockets.SocketClient.Initialize();
             //Core.Sockets.SocketClient.associatedBuilder = this;
 

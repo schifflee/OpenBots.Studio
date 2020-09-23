@@ -2,11 +2,6 @@
 
 namespace OpenBots.Core.Enums
 {
-    public enum EngineStatus
-    {
-        Loaded, Running, Paused, Finished
-    }
-
     public enum WindowState
     {
         [Description("Minimizes a window, even if the thread that owns the window is not responding. This flag should only be used when minimizing windows from a different thread.")]

@@ -5,7 +5,6 @@ using OpenBots.Core.Enums;
 using OpenBots.Core.Infrastructure;
 using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
-using OpenBots.Server;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;

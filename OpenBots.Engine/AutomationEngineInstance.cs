@@ -13,7 +13,6 @@ using System.Threading;
 using System.Windows.Forms;
 using OpenBots.Core.App;
 using OpenBots.Core.Command;
-using OpenBots.Core.Common;
 using OpenBots.Core.Enums;
 using OpenBots.Core.Infrastructure;
 using OpenBots.Core.IO;
@@ -23,6 +22,7 @@ using OpenBots.Core.Script;
 using OpenBots.Core.Settings;
 using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Server;
+using OpenBots.Engine.Enums;
 
 namespace OpenBots.Engine
 {
@@ -146,8 +146,6 @@ namespace OpenBots.Engine
 
         private void ExecuteScript(string data, bool dataIsFile)
         {
-            Client.EngineBusy = true;
-
             try
             {
                 _currentStatus = EngineStatus.Running;
@@ -628,8 +626,6 @@ namespace OpenBots.Engine
                 if (!ScriptEngineUI.IsChildEngine)
                     summaryLogger.Dispose();
             }
-
-            Client.EngineBusy = false;
 
             if (_serverSettings.ServerConnectionEnabled)
             {

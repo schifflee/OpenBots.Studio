@@ -83,15 +83,12 @@
   <ItemGroup>
     <Compile Include="AutomationEngineInstance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Enums\Enums.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenBots.Core\OpenBots.Core.csproj">
       <Project>{6956836d-d2b0-4b7a-b06d-fa3a22b4c4ff}</Project>
       <Name>OpenBots.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OpenBots.Server\OpenBots.Server.csproj">
-      <Project>{d0ff030d-bc12-4e57-a9ad-130feed9be4a}</Project>
-      <Name>OpenBots.Server</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

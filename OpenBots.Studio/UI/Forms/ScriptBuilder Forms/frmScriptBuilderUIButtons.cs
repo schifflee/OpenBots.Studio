@@ -10,7 +10,6 @@ using OpenBots.Core.IO;
 using OpenBots.Core.Script;
 using OpenBots.Core.Settings;
 using OpenBots.Core.Utilities.CommonUtilities;
-using OpenBots.Server;
 using OpenBots.UI.CustomControls.CustomUIControls;
 using OpenBots.UI.Forms.Supplement_Forms;
 using OpenBots.UI.Supplement_Forms;
@@ -586,10 +585,6 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             //reload app settings
             _appSettings = new ApplicationSettings();
             _appSettings = _appSettings.GetOrCreateApplicationSettings();
-
-            //reinit
-            HttpServerClient.InitializeScriptEngine(new frmScriptEngine());
-            HttpServerClient.Initialize();
         }
 
         private void showSearchBarToolStripMenuItem_Click(object sender, EventArgs e)

@@ -115,11 +115,8 @@
     <Compile Include="Attributes\PropertyAttributes\Remarks.cs" />
     <Compile Include="Attributes\PropertyAttributes\SampleUsage.cs" />
     <Compile Include="Command\ScriptCommand.cs" />
-    <Compile Include="Common\Client.cs" />
     <Compile Include="Common\Common.cs" />
-    <Compile Include="Common\CompilerServices.cs" />
     <Compile Include="Documentation\CommandMetaData.cs" />
-    <Compile Include="Documentation\DocumentationGeneration.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Infrastructure\ICommandControls.cs" />
     <Compile Include="Infrastructure\IfrmCommandEditor.cs" />

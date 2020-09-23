@@ -1,6 +1,6 @@
 ﻿using System.CodeDom.Compiler;
 
-namespace OpenBots.Core.Common
+namespace OpenBots.Commands.Process.Library
 {
     public class CompilerServices
     {

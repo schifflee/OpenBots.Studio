@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Library\CompilerServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RunCustomCodeCommand.cs" />
     <Compile Include="RunScriptCommand.cs" />
@@ -69,6 +70,10 @@
       <Project>{ed8f6540-c341-4b5f-8966-26a08e39af87}</Project>
       <Name>OpenBots.Engine</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

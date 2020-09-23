@@ -57,7 +57,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             }
 
             var items = (from a in _elementList
-                         where a.ToLower().StartsWith(search.ToLower())
+                         where a.ToLower().Contains(search.ToLower())
                          select a).ToArray();
 
             lstElements.Items.Clear();

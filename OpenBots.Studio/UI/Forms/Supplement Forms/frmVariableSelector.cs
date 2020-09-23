@@ -71,7 +71,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             }
 
             var items = (from a in _variableList
-                         where a.ToLower().StartsWith(search.ToLower())
+                         where a.ToLower().Contains(search.ToLower())
                          select a).ToArray();
 
             lstVariables.Items.Clear();

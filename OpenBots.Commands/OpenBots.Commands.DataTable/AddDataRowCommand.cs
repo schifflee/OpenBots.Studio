@@ -32,9 +32,7 @@ namespace OpenBots.Commands.DataTable
         [SampleUsage("{vDataTable}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DataTable { get; set; }
-
-        [XmlElement]
+        public string v_DataTable { get; set; }
         [PropertyDescription("Data")]
         [InputSpecification("Enter Column Names and Data for each column in the DataRow.")]
         [SampleUsage("[ First Name | John ] || [ {vColumn} | {vData} ]")]

@@ -17,14 +17,14 @@ namespace OpenBots.Commands.Dictionary
     [Group("Dictionary Commands")]
     [Description("This command creates a new Dictionary.")]
     public class CreateDictionaryCommand : ScriptCommand
-    {
-        [XmlElement]
+    {
         [PropertyDescription("Keys and Values")]
         [InputSpecification("Enter the Keys and Values required for the new dictionary.")]
         [SampleUsage("[FirstName | John] || [{vKey} | {vValue}]")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public DataTable v_ColumnNameDataTable { get; set; }
+        public DataTable v_ColumnNameDataTable { get; set; }
+
         [PropertyDescription("Output Dictionary Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

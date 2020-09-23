@@ -37,9 +37,7 @@ namespace OpenBots.Commands.Data
         [InputSpecification("Select the type of extraction.")]
         [SampleUsage("")]
         [Remarks("For trailing text, use 'After Text'. For leading text, use 'Before Text'. For text between two substrings, use 'Between Text'.")]
-        public string v_TextExtractionType { get; set; }
-
-        [XmlElement]
+        public string v_TextExtractionType { get; set; }
         [PropertyDescription("Extraction Parameters")]
         [InputSpecification("Define the required extraction parameters, which is dependent on the type of extraction.")]
         [SampleUsage("A substring from input text || {vSubstring}")]

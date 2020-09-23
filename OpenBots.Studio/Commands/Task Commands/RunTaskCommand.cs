@@ -39,9 +39,7 @@ namespace OpenBots.Commands
         [InputSpecification("Select to assign variables to the Task.")]
         [SampleUsage("")]
         [Remarks("If selected, variables will be automatically generated from the Task's *Variable Manager*.")]
-        public bool v_AssignVariables { get; set; }
-
-        [XmlElement]
+        public bool v_AssignVariables { get; set; }
         [PropertyDescription("Task Variables")]
         [InputSpecification("Enter a VariableValue for each input variable.")]
         [SampleUsage("Hello World || {vVariableValue}")]

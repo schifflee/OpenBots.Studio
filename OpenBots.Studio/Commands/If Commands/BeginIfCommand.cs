@@ -47,9 +47,7 @@ namespace OpenBots.Commands
         [PropertyUISelectionOption("Error Did Not Occur")]
         [InputSpecification("Select the necessary condition type.")]
         [Remarks("")]
-        public string v_IfActionType { get; set; }
-
-        [XmlElement]
+        public string v_IfActionType { get; set; }
         [PropertyDescription("Additional Parameters")]
         [InputSpecification("Supply or Select the required comparison parameters.")]
         [SampleUsage("Param Value || {vParamValue}")]

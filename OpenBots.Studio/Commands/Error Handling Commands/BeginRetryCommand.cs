@@ -41,7 +41,6 @@ namespace OpenBots.Commands
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public string v_RetryInterval { get; set; }
 
-        [XmlElement]
         [PropertyDescription("Condition")]
         [InputSpecification("Add a condition.")]
         [SampleUsage("")]

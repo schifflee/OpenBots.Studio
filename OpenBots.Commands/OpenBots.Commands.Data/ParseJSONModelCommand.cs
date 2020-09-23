@@ -27,9 +27,7 @@ namespace OpenBots.Commands.Data
         [SampleUsage("{\"rect\":{\"length\":10, \"width\":5}} || {vJsonObject}")]
         [Remarks("Providing data of a type other than a 'JSON Object' will result in an error.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_JsonObject { get; set; }
-
-        [XmlElement]
+        public string v_JsonObject { get; set; }
         [PropertyDescription("Parameters")]
         [InputSpecification("Specify JSON Selector(s) (JPath) and Output Variable(s).")]
         [SampleUsage("[$.rect.length | vOutputList] || [{Selector} | {vOutputList}]")]

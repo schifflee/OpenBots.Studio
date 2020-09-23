@@ -23,8 +23,7 @@ namespace OpenBots.Commands
     [Description("This command evaluates a group of specified logical statements and executes the contained commands repeatedly (in loop) " +
         "until the result of the logical statements becomes false.")]
     public class BeginMultiLoopCommand : ScriptCommand
-    {
-        [XmlElement]
+    {
         [PropertyDescription("Multiple Loop Conditions")]
         [InputSpecification("Add new Loop condition(s).")]
         [SampleUsage("")]

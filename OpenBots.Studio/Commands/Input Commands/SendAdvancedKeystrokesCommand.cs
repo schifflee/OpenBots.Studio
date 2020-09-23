@@ -33,9 +33,7 @@ namespace OpenBots.Commands
         [InputSpecification("Define the parameters for the keystroke actions.")]
         [SampleUsage("[Enter [Return] | Key Press (Down + Up)]")]
         [Remarks("")]
-        public DataTable v_KeyActions { get; set; }
-
-        [XmlElement]
+        public DataTable v_KeyActions { get; set; }
         [PropertyDescription("Return All Keys to 'UP' Position")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]      

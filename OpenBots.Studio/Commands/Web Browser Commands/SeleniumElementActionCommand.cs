@@ -38,7 +38,8 @@ namespace OpenBots.Commands
     [Description("This command performs an element action in a Selenium web browser session.")]
 
     public class SeleniumElementActionCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Browser Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Browser** command.")]
         [SampleUsage("MyBrowserInstance")]
@@ -59,18 +60,14 @@ namespace OpenBots.Commands
                     )]
         [Remarks("If multiple parameters are enabled, an attempt will be made to find the element(s) that match(es) all the selected parameters.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowElementHelper)] 
-        public DataTable v_SeleniumSearchParameters { get; set; }
-
-        [XmlElement]
+        public DataTable v_SeleniumSearchParameters { get; set; }
         [PropertyDescription("Element Search Option")]
         [PropertyUISelectionOption("Find Element")]
         [PropertyUISelectionOption("Find Elements")]
         [InputSpecification("Indicate whether to search for a single or multiple elements.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_SeleniumSearchOption { get; set; }
-
-        [XmlElement]
+        public string v_SeleniumSearchOption { get; set; }
         [PropertyDescription("Element Action")]
         [PropertyUISelectionOption("Invoke Click")]
         [PropertyUISelectionOption("Left Click")]
@@ -92,9 +89,7 @@ namespace OpenBots.Commands
         [InputSpecification("Select the appropriate corresponding action to take once the element has been located.")]
         [SampleUsage("")]
         [Remarks("Selecting this field changes the parameters required in the following step.")]
-        public string v_SeleniumElementAction { get; set; }
-
-        [XmlElement]
+        public string v_SeleniumElementAction { get; set; }
         [PropertyDescription("Action Parameters")]
         [InputSpecification("Action Parameters will be determined based on the action settings selected.")]
         [SampleUsage("data || {vData} || *Variable Name*: {vNewVariable}")]

@@ -45,9 +45,7 @@ namespace OpenBots.Commands.Database
         [SampleUsage("SELECT OrderID, CustomerID FROM Orders || {vQuery}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Query { get; set; }
-
-        [XmlElement]
+        public string v_Query { get; set; }
         [PropertyDescription("Query Parameters")]
         [InputSpecification("Define the query parameters.")]
         [SampleUsage("[STRING | @name | {vNameValue}]")]

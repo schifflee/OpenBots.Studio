@@ -49,9 +49,7 @@ namespace OpenBots.Commands
         [InputSpecification("Select the necessary condition type.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_LoopActionType { get; set; }
-
-        [XmlElement]
+        public string v_LoopActionType { get; set; }
         [PropertyDescription("Additional Parameters")]
         [InputSpecification("Supply or Select the required comparison parameters.")]
         [SampleUsage("Param Value || {vParamValue}")]

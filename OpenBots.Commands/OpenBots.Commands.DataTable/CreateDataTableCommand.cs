@@ -19,14 +19,14 @@ namespace OpenBots.Commands.DataTable
     [Description("This command creates a DataTable with the Column Names provided.")]
 
     public class CreateDataTableCommand : ScriptCommand
-    {
-        [XmlElement]
+    {
         [PropertyDescription("Column Names")]
         [InputSpecification("Enter the Column Names required for each column of data.")]
         [SampleUsage("MyColumn || {vColumn}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public Data.DataTable v_ColumnNameDataTable { get; set; }
+        public Data.DataTable v_ColumnNameDataTable { get; set; }
+
         [PropertyDescription("Output DataTable Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

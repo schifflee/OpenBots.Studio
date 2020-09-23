@@ -37,9 +37,7 @@ namespace OpenBots.Commands
         [SampleUsage("Directions: Please fill in the following fields || {vDirections}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputDirections { get; set; }
-
-        [XmlElement]
+        public string v_InputDirections { get; set; }
         [PropertyDescription("Input Parameters")]
         [InputSpecification("Define the required input parameters.")]
         [SampleUsage("[TextBox | Name | 500,30 | John | {vName}]")]

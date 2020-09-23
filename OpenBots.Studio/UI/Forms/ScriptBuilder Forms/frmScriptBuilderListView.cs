@@ -30,7 +30,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             new ColumnHeader{ Width = 20 },
             new ColumnHeader{ Text = "Script Commands", Width = -2 } });
             newLstScriptActions.Dock = DockStyle.Fill;
-            newLstScriptActions.Font = new Font("Segoe UI", 11, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+            newLstScriptActions.Font = new Font("Segoe UI", 11, FontStyle.Bold, GraphicsUnit.Point, 0);
             newLstScriptActions.FullRowSelect = true;
             newLstScriptActions.HeaderStyle = ColumnHeaderStyle.None;
             newLstScriptActions.HideSelection = false;

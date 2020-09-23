@@ -31,14 +31,14 @@ namespace OpenBots.Commands
         [PropertyUIHelper(UIAdditionalHelperType.ShowIfBuilder)]
         public DataTable v_IfConditionsTable { get; set; }
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private DataGridView _ifConditionHelper;
 
-        [XmlIgnore]
+        [JsonIgnore]
         private List<ScriptVariable> _scriptVariables { get; set; }
 
-        [XmlIgnore]
+        [JsonIgnore]
         private List<ScriptElement> _scriptElements { get; set; }
 
         public BeginMultiIfCommand()

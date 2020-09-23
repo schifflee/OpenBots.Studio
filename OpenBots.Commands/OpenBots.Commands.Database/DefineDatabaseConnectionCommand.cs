@@ -1,4 +1,5 @@
-﻿using OpenBots.Core.Attributes.ClassAttributes;
+﻿using Newtonsoft.Json;
+using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
 using OpenBots.Core.Enums;
@@ -21,25 +22,29 @@ namespace OpenBots.Commands.Database
     [Group("Database Commands")]
     [Description("This command connects to an OleDb database.")]
     public class DefineDatabaseConnectionCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Database Instance Name")]
         [InputSpecification("Enter a unique name that will represent the application instance.")]
         [SampleUsage("MyDatabaseInstance")]
         [Remarks("This unique name allows you to refer to the instance by name in future commands, " +
                  "ensuring that the commands you specify run against the correct application.")]
-        public string v_InstanceName { get; set; }
+        public string v_InstanceName { get; set; }
+
         [PropertyDescription("Connection String")]
         [InputSpecification("Define the string to use when connecting to the OleDb database.")]
         [SampleUsage("Provider=sqloledb;Data Source=myServerAddress;Initial Catalog=myDataBase;Integrated Security=SSPI; || {vConnectionString}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_ConnectionString { get; set; }
+        public string v_ConnectionString { get; set; }
+
         [PropertyDescription("Connection String Password")]
         [InputSpecification("Define the password to use when connecting to the OleDb database.")]
         [SampleUsage("password || {vPassword}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_ConnectionStringPassword { get; set; }
+        public string v_ConnectionStringPassword { get; set; }
+
         [PropertyDescription("Test Connection Before Proceeding")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
@@ -48,11 +53,11 @@ namespace OpenBots.Commands.Database
         [Remarks("")]
         public string v_TestConnection { get; set; }
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private TextBox _connectionString;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private TextBox _connectionStringPassword;
 

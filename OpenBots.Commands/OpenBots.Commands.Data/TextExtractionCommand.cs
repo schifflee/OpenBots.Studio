@@ -1,4 +1,5 @@
-﻿using OpenBots.Core.Attributes.ClassAttributes;
+﻿using Newtonsoft.Json;
+using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
 using OpenBots.Core.Enums;
@@ -27,7 +28,8 @@ namespace OpenBots.Commands.Data
         [SampleUsage("Sample text to perform text extraction on || {vTextData}")]
         [Remarks("Providing data of a type other than a 'String' will result in an error.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputText { get; set; }
+        public string v_InputText { get; set; }
+
         [PropertyDescription("Text Extraction Type")]
         [PropertyUISelectionOption("Extract All After Text")]
         [PropertyUISelectionOption("Extract All Before Text")]
@@ -43,14 +45,15 @@ namespace OpenBots.Commands.Data
         [SampleUsage("A substring from input text || {vSubstring}")]
         [Remarks("Set parameter values for each parameter name based on the extraction type.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public DataTable v_TextExtractionTable { get; set; }
+        public DataTable v_TextExtractionTable { get; set; }
+
         [PropertyDescription("Output Text Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]
         [Remarks("Variables not pre-defined in the Variable Manager will be automatically generated at runtime.")]
         public string v_OutputUserVariableName { get; set; }
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private DataGridView _parametersGridViewHelper;
 

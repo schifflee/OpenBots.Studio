@@ -20,6 +20,7 @@ using OpenBots.Core.Properties;
 using OpenBots.Core.UI.Controls;
 using OpenBots.UI.Forms.Supplement_Forms;
 using OpenBots.Utilities;
+using Newtonsoft.Json;
 
 namespace OpenBots.Commands
 {
@@ -27,7 +28,8 @@ namespace OpenBots.Commands
     [Group("If Commands")]
     [Description("This command evaluates a logical statement to determine if the statement is 'true' or 'false' and subsequently performs action(s) based on either condition.")]
     public class BeginIfCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Condition Type")]
         [PropertyUISelectionOption("Value Compare")]
         [PropertyUISelectionOption("Date Compare")]
@@ -55,19 +57,19 @@ namespace OpenBots.Commands
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public DataTable v_IfActionParameterTable { get; set; }
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private DataGridView _ifGridViewHelper;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private ComboBox _actionDropdown;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private List<Control> _parameterControls;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private CommandItemControl _recorderControl;
 

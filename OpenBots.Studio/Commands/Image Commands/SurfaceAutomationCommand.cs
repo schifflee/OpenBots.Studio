@@ -9,6 +9,7 @@ using System.Security;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -29,7 +30,8 @@ namespace OpenBots.Commands
     [Group("Image Commands")]
     [Description("This command attempts to find and perform an action on an existing image on screen.")]
     public class SurfaceAutomationCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Capture Search Image")]
         [InputSpecification("Use the tool to capture an image that will be located on screen during execution.")]
         [SampleUsage("")]
@@ -57,7 +59,8 @@ namespace OpenBots.Commands
         [SampleUsage("data || {vData}")]
         [Remarks("Additional Parameters range from adding offset coordinates to specifying a variable to apply element text to.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public DataTable v_ImageActionParameterTable { get; set; }
+        public DataTable v_ImageActionParameterTable { get; set; }
+
         [PropertyDescription("Accuracy (0-1)")]
         [InputSpecification("Enter a value between 0 and 1 to set the match Accuracy. Set to 1 for a perfect match.")]
         [SampleUsage("0.8 || 1 || {vAccuracy}")]
@@ -67,15 +70,15 @@ namespace OpenBots.Commands
 
         public bool TestMode = false;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private DataGridView _imageGridViewHelper;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private ComboBox _imageActionDropdown;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private List<Control> _imageParameterControls;
 

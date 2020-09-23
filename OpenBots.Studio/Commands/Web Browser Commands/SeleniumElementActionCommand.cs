@@ -29,6 +29,7 @@ using OpenBots.UI.Forms.Supplement_Forms;
 using Group = OpenBots.Core.Attributes.ClassAttributes.Group;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 using OpenQA.Selenium.Interactions;
+using Newtonsoft.Json;
 
 namespace OpenBots.Commands
 {
@@ -102,19 +103,19 @@ namespace OpenBots.Commands
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public DataTable v_WebActionParameterTable { get; set; }
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private DataGridView _actionParametersGridViewHelper;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private ComboBox _elementActionDropdown;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private List<Control> _actionParametersControls;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private DataGridView _searchParametersGridViewHelper;
 

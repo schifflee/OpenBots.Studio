@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -19,7 +20,8 @@ namespace OpenBots.Commands
     [Group("Input Commands")]
     [Description("This command sends advanced keystrokes to a targeted window.")]
     public class SendAdvancedKeystrokesCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Window Name")]
         [InputSpecification("Select the name of the window to send advanced keystrokes to.")]
         [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]
@@ -42,7 +44,7 @@ namespace OpenBots.Commands
         [Remarks("")]
         public string v_KeyUpDefault { get; set; }
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private DataGridView _keystrokeGridHelper;
 

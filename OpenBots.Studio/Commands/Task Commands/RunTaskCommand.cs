@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -24,14 +25,16 @@ namespace OpenBots.Commands
     [Description("This command executes a Task.")]
 
     public class RunTaskCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Task File Path")]
         [InputSpecification("Enter or select a valid path to the Task file.")]
         [SampleUsage(@"C:\temp\mytask.json || {vScriptPath} || {ProjectPath}\mytask.json")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_taskPath { get; set; }
+        public string v_taskPath { get; set; }
+
         [PropertyDescription("Assign Variables")]
         [InputSpecification("Select to assign variables to the Task.")]
         [SampleUsage("")]
@@ -47,15 +50,15 @@ namespace OpenBots.Commands
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public DataTable v_VariableAssignments { get; set; }
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private CheckBox _passParameters;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private DataGridView _assignmentsGridViewHelper;
 
-        [XmlIgnore]
+        [JsonIgnore]
         public frmScriptEngine NewEngine { get; set; }
 
         public RunTaskCommand()

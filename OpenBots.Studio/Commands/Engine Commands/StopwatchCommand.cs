@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -17,13 +18,15 @@ namespace OpenBots.Commands
     [Group("Engine Commands")]
     [Description("This command measures time elapsed during the execution of the process.")]
     public class StopwatchCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Stopwatch Instance Name")]
         [InputSpecification("Enter a unique name that will represent the application instance.")]
         [SampleUsage("MyStopwatchInstance")]
         [Remarks("This unique name allows you to refer to the instance by name in future commands, " +
                  "ensuring that the commands you specify run against the correct application.")]
-        public string v_InstanceName { get; set; }
+        public string v_InstanceName { get; set; }
+
         [PropertyDescription("Stopwatch Action")]
         [PropertyUISelectionOption("Start Stopwatch")]
         [PropertyUISelectionOption("Stop Stopwatch")]
@@ -33,20 +36,22 @@ namespace OpenBots.Commands
         [InputSpecification("Select the appropriate stopwatch action.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_StopwatchAction { get; set; }
+        public string v_StopwatchAction { get; set; }
+
         [PropertyDescription("String Format")]
         [InputSpecification("Specify a DateTime string format if required.")]
         [SampleUsage("MM/dd/yy || hh:mm || {vFormat}")]
         [Remarks("This input is optional.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_ToStringFormat { get; set; }
+        public string v_ToStringFormat { get; set; }
+
         [PropertyDescription("Output Elapsed Time Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]
         [Remarks("Variables not pre-defined in the Variable Manager will be automatically generated at runtime.")]
         public string v_OutputUserVariableName { get; set; }
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         public List<Control> MeasureControls;
 

@@ -22,26 +22,30 @@ namespace OpenBots.Commands
     [Description("This command calls a REST API with a specific HTTP method.")]
 
     public class ExecuteRESTAPICommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Base URL")]
         [InputSpecification("Provide the base URL of the API.")]
         [SampleUsage("https://example.com || {vMyUrl}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_BaseURL { get; set; }
+        public string v_BaseURL { get; set; }
+
         [PropertyDescription("Endpoint")]
         [InputSpecification("Define any API endpoint which contains the full URL.")]
         [SampleUsage("/v2/getUser/1 || {vMyUrl}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_APIEndPoint { get; set; }
+        public string v_APIEndPoint { get; set; }
+
         [PropertyDescription("Method Type")]
         [PropertyUISelectionOption("GET")]
         [PropertyUISelectionOption("POST")]
         [InputSpecification("Select the necessary method type.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_APIMethodType { get; set; }
+        public string v_APIMethodType { get; set; }
+
         [PropertyDescription("Request Format")]
         [PropertyUISelectionOption("Json")]
         [PropertyUISelectionOption("Xml")]
@@ -62,18 +66,19 @@ namespace OpenBots.Commands
         [InputSpecification("Specify a list of advanced parameters.")]
         [SampleUsage("")]
         [Remarks("")]
-        public DataTable v_AdvancedParameters { get; set; }
+        public DataTable v_AdvancedParameters { get; set; }
+
         [PropertyDescription("Output Response Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]
         [Remarks("Variables not pre-defined in the Variable Manager will be automatically generated at runtime.")]
         public string v_OutputUserVariableName { get; set; }
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private DataGridView _RESTParametersGridViewHelper;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private DataGridView _advancedRESTParametersGridViewHelper;
 

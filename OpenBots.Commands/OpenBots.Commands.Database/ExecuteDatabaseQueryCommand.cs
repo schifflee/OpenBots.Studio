@@ -1,4 +1,5 @@
-﻿using OpenBots.Core.Attributes.ClassAttributes;
+﻿using Newtonsoft.Json;
+using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
 using OpenBots.Core.Enums;
@@ -22,12 +23,14 @@ namespace OpenBots.Commands.Database
     [Group("Database Commands")]
     [Description("This command performs a OleDb database query.")]
     public class ExecuteDatabaseQueryCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Database Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Define Database Connection** command.")]
         [SampleUsage("MyBrowserInstance")]
         [Remarks("Failure to enter the correct instance name or failure to first call the **Define Database Connection** command will cause an error.")]
-        public string v_InstanceName { get; set; }
+        public string v_InstanceName { get; set; }
+
         [PropertyDescription("Define Query Execution Type")]
         [PropertyUISelectionOption("Return Dataset")]
         [PropertyUISelectionOption("Execute NonQuery")]
@@ -35,7 +38,8 @@ namespace OpenBots.Commands.Database
         [InputSpecification("Select the appropriate query execution type.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_QueryType { get; set; }
+        public string v_QueryType { get; set; }
+
         [PropertyDescription("Query")]
         [InputSpecification("Define the OleDb query to execute.")]
         [SampleUsage("SELECT OrderID, CustomerID FROM Orders || {vQuery}")]
@@ -49,18 +53,19 @@ namespace OpenBots.Commands.Database
         [SampleUsage("[STRING | @name | {vNameValue}]")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public DataTable v_QueryParameters { get; set; }
+        public DataTable v_QueryParameters { get; set; }
+
         [PropertyDescription("Output Dataset Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]
         [Remarks("Variables not pre-defined in the Variable Manager will be automatically generated at runtime.")]
         public string v_OutputUserVariableName { get; set; }
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private DataGridView _queryParametersGridView;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private List<Control> _queryParametersControls;
 

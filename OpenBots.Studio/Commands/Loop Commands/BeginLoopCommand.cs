@@ -20,6 +20,7 @@ using OpenBots.Core.Properties;
 using OpenBots.Core.UI.Controls;
 using OpenBots.UI.Forms.Supplement_Forms;
 using OpenBots.Utilities;
+using Newtonsoft.Json;
 
 namespace OpenBots.Commands
 {
@@ -28,7 +29,8 @@ namespace OpenBots.Commands
     [Description("This command evaluates a specified logical statement and executes the contained commands repeatedly (in loop) " +
         "until that logical statement becomes false.")]
     public class BeginLoopCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Loop Condition")]
         [PropertyUISelectionOption("Value Compare")]
         [PropertyUISelectionOption("Date Compare")]
@@ -57,19 +59,19 @@ namespace OpenBots.Commands
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         public DataTable v_LoopActionParameterTable { get; set; }
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private DataGridView _loopGridViewHelper;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private ComboBox _actionDropdown;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private List<Control> _parameterControls;
 
-        [XmlIgnore]
+        [JsonIgnore]
         [NonSerialized]
         private CommandItemControl _recorderControl;
 

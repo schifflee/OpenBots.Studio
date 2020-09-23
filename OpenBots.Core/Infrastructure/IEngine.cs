@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Data;
 using OpenBots.Core.Command;
 using OpenBots.Core.Model.EngineModel;
-using OpenBots.Core.Model.ServerModel;
 using OpenBots.Core.Script;
 using OpenBots.Core.Settings;
 
@@ -31,7 +30,6 @@ namespace OpenBots.Core.Infrastructure
         EngineSettings EngineSettings { get; set; }
         List<DataTable> DataTables { get; set; }
         string FileName { get; set; }
-        Task TaskModel { get; set; }
         bool ServerExecution { get; set; }
         List<IRestResponse> ServiceResponses { get; set; }
         bool AutoCalculateVariables { get; set; }

@@ -17,11 +17,9 @@ using OpenBots.Core.Enums;
 using OpenBots.Core.Infrastructure;
 using OpenBots.Core.IO;
 using OpenBots.Core.Model.EngineModel;
-using OpenBots.Core.Model.ServerModel;
 using OpenBots.Core.Script;
 using OpenBots.Core.Settings;
 using OpenBots.Core.Utilities.CommonUtilities;
-using OpenBots.Server;
 using OpenBots.Engine.Enums;
 
 namespace OpenBots.Engine
@@ -54,7 +52,6 @@ namespace OpenBots.Engine
         private string _privateCommandLog { get; set; }
         public List<DataTable> DataTables { get; set; }
         public string FileName { get; set; }
-        public Task TaskModel { get; set; }
         public bool ServerExecution { get; set; }
         public List<IRestResponse> ServiceResponses { get; set; }
         public bool AutoCalculateVariables { get; set; }
@@ -172,15 +169,6 @@ namespace OpenBots.Engine
                     automationScript = Script.DeserializeJsonString(data);
                 }
                 
-                if (_serverSettings.ServerConnectionEnabled && TaskModel == null)
-                {
-                    TaskModel = HttpServerClient.AddTask(data);
-                }
-                else if (_serverSettings.ServerConnectionEnabled && TaskModel != null)
-                {
-                    TaskModel = HttpServerClient.UpdateTask(TaskModel.TaskID, "Running", "Running Server Assignment");
-                }
-
                 //track variables and app instances
                 ReportProgress("Creating Variable List");
 
@@ -536,9 +524,6 @@ namespace OpenBots.Engine
              
             args.ProgressUpdate = progress;
 
-            //send log to server
-            SocketClient.SendExecutionLog(progress);
-
             //invoke event
             ReportProgressEvent?.Invoke(this, args);
         }
@@ -572,11 +557,6 @@ namespace OpenBots.Engine
             {
                 EngineLogger.Information("Error: None");
 
-                if (TaskModel != null && _serverSettings.ServerConnectionEnabled)
-                {
-                    HttpServerClient.UpdateTask(TaskModel.TaskID, "Completed", "Script Completed Successfully");
-                }
-
                 if (string.IsNullOrEmpty(resultValue))
                 {
                     TaskResult = "Successfully Completed Script";
@@ -592,11 +572,6 @@ namespace OpenBots.Engine
                 error = ErrorsOccured.OrderByDescending(x => x.LineNumber).FirstOrDefault().StackTrace;
                 EngineLogger.Error("Error: " + error);
 
-                if (TaskModel != null)
-                {
-                    HttpServerClient.UpdateTask(TaskModel.TaskID, "Error", error);
-                }
-
                 TaskResult = error;
             }
 
@@ -604,15 +579,14 @@ namespace OpenBots.Engine
                 EngineLogger.Dispose();
 
             _currentStatus = EngineStatus.Finished;
-            ScriptFinishedEventArgs args = new ScriptFinishedEventArgs();
-            args.LoggedOn = DateTime.Now;
-            args.Result = result;
-            args.Error = error;
-            args.ExecutionTime = _stopWatch.Elapsed;
-            args.FileName = FileName;
-
-            SocketClient.SendExecutionLog("Result Code: " + result.ToString());
-            SocketClient.SendExecutionLog("Total Execution Time: " + _stopWatch.Elapsed);
+            ScriptFinishedEventArgs args = new ScriptFinishedEventArgs
+            {
+                LoggedOn = DateTime.Now,
+                Result = result,
+                Error = error,
+                ExecutionTime = _stopWatch.Elapsed,
+                FileName = FileName
+            };
 
             //convert to json
             var serializedArguments = JsonConvert.SerializeObject(args);
@@ -627,30 +601,29 @@ namespace OpenBots.Engine
                     summaryLogger.Dispose();
             }
 
-            if (_serverSettings.ServerConnectionEnabled)
-            {
-                HttpServerClient.CheckIn();
-            }
-
             ScriptFinishedEvent?.Invoke(this, args);
         }
 
         public virtual void LineNumberChanged(int lineNumber)
         {
-            LineNumberChangedEventArgs args = new LineNumberChangedEventArgs();
-            args.CurrentLineNumber = lineNumber;
+            LineNumberChangedEventArgs args = new LineNumberChangedEventArgs
+            {
+                CurrentLineNumber = lineNumber
+            };
             LineNumberChangedEvent?.Invoke(this, args);
         }
 
         public string GetEngineContext()
         {
             //set json settings
-            JsonSerializerSettings settings = new JsonSerializerSettings();
-            settings.Error = (serializer, err) =>
+            JsonSerializerSettings settings = new JsonSerializerSettings
             {
-                err.ErrorContext.Handled = true;
+                Error = (serializer, err) =>
+                {
+                    err.ErrorContext.Handled = true;
+                },
+                Formatting = Formatting.Indented
             };
-            settings.Formatting = Formatting.Indented;
 
             return  JsonConvert.SerializeObject(this, settings);
         }

@@ -16,6 +16,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using OpenBots.Core.UI.Forms;
 
 namespace OpenBots.UI.Forms.Supplement_Forms
 {

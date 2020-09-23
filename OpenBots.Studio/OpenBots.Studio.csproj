@@ -238,7 +238,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="UI\CustomControls\CommandControls.cs" />
-    <Compile Include="UI\DTOs\SteppingCommandsItem.cs" />
     <Compile Include="UI\Forms\Supplement Forms\frmThickAppElementRecorderSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -348,11 +347,6 @@
     <Compile Include="UI\CustomControls\CustomUIControls\UITreeView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\DTOs\Class.cs" />
-    <Compile Include="UI\DTOs\Method.cs" />
-    <Compile Include="UI\DTOs\Parameter.cs" />
-    <Compile Include="UI\DTOs\MachineConfiguration.cs" />
-    <Compile Include="UI\DTOs\ScriptActionTag.cs" />
     <Compile Include="UI\Forms\frmAttendedMode.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -425,12 +419,6 @@
     <Compile Include="UI\Forms\Supplement Forms\frmCodeBuilder.Designer.cs">
       <DependentUpon>frmCodeBuilder.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Forms\Supplement Forms\frmDisplayManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Forms\Supplement Forms\frmDisplayManager.Designer.cs">
-      <DependentUpon>frmDisplayManager.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Forms\Supplement Forms\frmDLLExplorer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -502,9 +490,6 @@
     </Compile>
     <Compile Include="UI\Forms\Supplement Forms\frmUpdate.Designer.cs">
       <DependentUpon>frmUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Forms\UIForm.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Forms\Supplement Forms\frmDialog.cs">
       <SubType>Form</SubType>
@@ -637,9 +622,6 @@
     <EmbeddedResource Include="UI\Forms\Supplement Forms\frmDialog.resx">
       <DependentUpon>frmDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Forms\Supplement Forms\frmDisplayManager.resx">
-      <DependentUpon>frmDisplayManager.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\Supplement Forms\frmDLLExplorer.resx">
       <DependentUpon>frmDLLExplorer.cs</DependentUpon>
     </EmbeddedResource>
@@ -683,9 +665,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\Supplement Forms\frmUpdate.resx">
       <DependentUpon>frmUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Forms\UIForm.resx">
-      <DependentUpon>UIForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="Firefox\omni.ja" />
@@ -775,6 +754,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OpenBots.Commands\OpenBots.Commands.Process\OpenBots.Commands.Process.csproj">
+      <Project>{49A14AC5-873F-4A79-BF8B-2A58158E5104}</Project>
+      <Name>OpenBots.Commands.Process</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenBots.Core\OpenBots.Core.csproj">
       <Project>{6956836d-d2b0-4b7a-b06d-fa3a22b4c4ff}</Project>
       <Name>OpenBots.Core</Name>

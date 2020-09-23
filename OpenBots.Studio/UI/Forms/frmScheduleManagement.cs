@@ -21,6 +21,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using OpenBots.Core.Enums;
 using OpenBots.Core.IO;
+using OpenBots.Core.UI.Forms;
 
 namespace OpenBots.UI.Forms
 {

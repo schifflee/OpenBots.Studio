@@ -17,6 +17,7 @@ using OpenBots.UI.Forms.ScriptBuilder_Forms;
 using OpenBots.UI.Supplement_Forms;
 using OpenBots.Utilities;
 using Enums = OpenBots.Core.Enums;
+using OpenBots.Core.UI.Forms;
 
 namespace OpenBots.UI.Forms.Supplement_Forms
 {

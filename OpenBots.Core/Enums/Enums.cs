@@ -61,36 +61,11 @@ namespace OpenBots.Core.Enums
         ShowEncryptionHelper
     }
 
-    public enum BotStoreRequestType
-    {
-        BotStoreValue,
-        BotStoreModel
-    }
-
-    public enum PublishType
-    {
-        ClientReference,
-        ServerReference,
-    }
-
-    public enum WorkerStatus
-    {
-        Pending = 0,
-        Authorized = 1,
-        Revoked = 2
-    }
-
     public enum ScriptFinishedResult
     {
         Successful, 
         Error, 
         Cancelled
-    }
-
-    public enum LoginResultCode
-    {
-        Success,
-        Failed
     }
 
     public enum CreationMode

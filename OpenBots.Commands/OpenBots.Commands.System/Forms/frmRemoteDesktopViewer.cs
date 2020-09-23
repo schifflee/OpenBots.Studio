@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using OpenBots.Core.Enums;
-using OpenBots.Core.UI.Forms.EventsArgs;
+using OpenBots.Commands.System.Library.Enums;
+using OpenBots.Commands.System.Library.EventArgs;
 
-namespace OpenBots.Core.UI.Forms
+namespace OpenBots.Commands.System.Forms
 {
     public partial class frmRemoteDesktopViewer : Form
     {

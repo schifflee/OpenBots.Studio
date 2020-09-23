@@ -24,14 +24,12 @@ using OpenBots.Core.Enums;
 using OpenBots.Core.Infrastructure;
 using OpenBots.Core.IO;
 using OpenBots.Core.Model.EngineModel;
-using OpenBots.Core.Model.ServerModel;
 using OpenBots.Core.Script;
 using OpenBots.Core.Settings;
 using OpenBots.Core.UI.Forms;
 using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
-using OpenBots.Server;
-using OpenBots.UI.DTOs;
+using OpenBots.Core.UI.DTOs;
 using OpenBots.UI.Forms.ScriptBuilder_Forms;
 using OpenBots.UI.Forms.Supplement_Forms;
 using OpenBots.Utilities;
@@ -47,7 +45,6 @@ namespace OpenBots.UI.Forms
         public string FilePath { get; set; }
         public string ProjectName { get; set; }
         public string JsonData { get; set; }
-        public Task RemoteTask { get; set; }
         public bool ServerExecution { get; set; }
         public IfrmScriptBuilder CallBackForm { get; set; }
         private bool _advancedDebug;
@@ -233,11 +230,8 @@ namespace OpenBots.UI.Forms
             EngineInstance.ReportProgressEvent += Engine_ReportProgress;
             EngineInstance.ScriptFinishedEvent += Engine_ScriptFinishedEvent;
             EngineInstance.LineNumberChangedEvent += EngineInstance_LineNumberChangedEvent;
-            EngineInstance.TaskModel = RemoteTask;
             EngineInstance.ScriptEngineUI = this;
             EngineInstance.ServerExecution = ServerExecution;
-            
-            LocalTCPClient.AutomationInstance = EngineInstance;
 
             if (JsonData == null)
             {
@@ -503,16 +497,6 @@ namespace OpenBots.UI.Forms
             }
         }
 
-        public void LaunchRDPSession(string machineName, string userName, string password, int width, int height)
-        {
-            if (InvokeRequired)
-            {
-                Invoke((Action)(() => LaunchRDPSession(machineName, userName, password, width, height)));
-            }
-            var remoteDesktopForm = new frmRemoteDesktopViewer(machineName, userName, password, width, height, false, false);
-            remoteDesktopForm.Show();
-        }
-
         public delegate List<string> ShowInputDelegate(InputCommand inputs);
         public List<string> ShowInput(InputCommand inputs)
         {
@@ -524,8 +508,10 @@ namespace OpenBots.UI.Forms
             }
             else
             {
-                var inputForm = new frmUserInput();
-                inputForm.InputCommand = inputs;
+                var inputForm = new frmUserInput
+                {
+                    InputCommand = inputs
+                };
                 var dialogResult = inputForm.ShowDialog();
 
                 if (dialogResult == DialogResult.OK)
@@ -559,8 +545,10 @@ namespace OpenBots.UI.Forms
             }
             else
             {
-                var inputForm = new frmHTMLDisplayForm();
-                inputForm.TemplateHTML = htmlTemplate;
+                var inputForm = new frmHTMLDisplayForm
+                {
+                    TemplateHTML = htmlTemplate
+                };
                 var dialogResult = inputForm.ShowDialog();
 
                 if (inputForm.Result == DialogResult.OK)

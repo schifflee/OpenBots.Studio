@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenBots.UI.DTOs
+namespace OpenBots.Core.UI.DTOs
 {
     public class MachineConfiguration
     {

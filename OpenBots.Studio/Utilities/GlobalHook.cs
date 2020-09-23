@@ -458,8 +458,7 @@ namespace OpenBots.Utilities
                 if (mouseEventClickType != "None")
                 {
                     IntPtr winHandle = WindowFromPoint(hookStruct.Pt);
-
-                    int length = GetWindowText(winHandle, _buffer, _buffer.Capacity);
+                    _ = GetWindowText(winHandle, _buffer, _buffer.Capacity);
                     var windowName = _buffer.ToString();
 
                     mouseMove.v_Comment = "Clicked On Window: " + windowName;

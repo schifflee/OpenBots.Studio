@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using OpenBots.Core.Enums;
-using OpenBots.Core.Model.ServerModel;
 using OpenBots.Core.Script;
 
 namespace OpenBots.Core.Infrastructure
@@ -12,7 +11,6 @@ namespace OpenBots.Core.Infrastructure
     {
         string FilePath { get; set; }
         string JsonData { get; set; }
-        Task RemoteTask { get; set; }
         bool ServerExecution { get; set; }
         IfrmScriptBuilder CallBackForm { get; set; }
         //AutomationEngineInstance EngineInstance { get; set; }
@@ -30,7 +28,7 @@ namespace OpenBots.Core.Infrastructure
 
         void ShowMessage(string message, string title, DialogType dialogType, int closeAfter);
         void ShowEngineContext(string context, int closeAfter);
-        void LaunchRDPSession(string machineName, string userName, string password, int width, int height);
+
         //List<string> ShowInput(IInputCommand inputs);
         List<ScriptVariable> ShowHTMLInput(string htmlTemplate);
         void AddStatus(string text, Color? statusColor = null);

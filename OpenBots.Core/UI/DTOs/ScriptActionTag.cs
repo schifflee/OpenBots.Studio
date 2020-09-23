@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace OpenBots.UI.DTOs
+namespace OpenBots.Core.UI.DTOs
 {
     public class ScriptActionTag
     {

@@ -270,13 +270,17 @@ namespace OpenBots.UI.Forms
 
                 foreach (var metric in metricsSummary)
                 {
-                    var rootNode = new TreeNode();
-                    rootNode.Text = metric.FileName + " [" + metric.AverageExecutionTime + " avg.]";
+                    var rootNode = new TreeNode
+                    {
+                        Text = metric.FileName + " [" + metric.AverageExecutionTime + " avg.]"
+                    };
 
                     foreach (var metricItem in metric.ExecutionData)
                     {
-                        var subNode = new TreeNode();
-                        subNode.Text = string.Join(" - ", metricItem.LoggedOn.ToString("MM/dd/yy hh:mm"), metricItem.ExecutionTime);
+                        var subNode = new TreeNode
+                        {
+                            Text = string.Join(" - ", metricItem.LoggedOn.ToString("MM/dd/yy hh:mm"), metricItem.ExecutionTime)
+                        };
                         rootNode.Nodes.Add(subNode);
                     }
                     tvExecutionTimes.Nodes.Add(rootNode);
@@ -315,12 +319,12 @@ namespace OpenBots.UI.Forms
             }
         }
 
-        private void btnLaunchDisplayManager_Click(object sender, EventArgs e)
-        {
-            frmDisplayManager displayManager = new frmDisplayManager();
-            displayManager.Show();
-            Close();
-        }  
+        //private void btnLaunchDisplayManager_Click(object sender, EventArgs e)
+        //{
+        //    frmDisplayManager displayManager = new frmDisplayManager();
+        //    displayManager.Show();
+        //    Close();
+        //}  
 
         private void btnWhiteList_Click(object sender, EventArgs e)
         {

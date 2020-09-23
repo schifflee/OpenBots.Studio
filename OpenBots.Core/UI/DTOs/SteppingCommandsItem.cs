@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace OpenBots.UI.DTOs
+namespace OpenBots.Core.UI.DTOs
 {
     public class SteppingCommandsItem
     {

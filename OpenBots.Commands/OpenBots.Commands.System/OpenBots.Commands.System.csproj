@@ -31,6 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AxInterop.MSTSCLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\AxInterop.MSTSCLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.MSTSCLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -45,6 +52,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnvironmentVariableCommand.cs" />
+    <Compile Include="Forms\frmDisplayManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDisplayManager.Designer.cs">
+      <DependentUpon>frmDisplayManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmRemoteDesktopViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmRemoteDesktopViewer.Designer.cs">
+      <DependentUpon>frmRemoteDesktopViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Enums\Enums.cs" />
+    <Compile Include="Library\EventArgs\LoginResultEventArgs.cs" />
     <Compile Include="LaunchRemoteDesktopCommand.cs" />
     <Compile Include="OSVariableCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,9 +82,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Forms\" />
-    <Folder Include="Library\" />
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\frmDisplayManager.resx">
+      <DependentUpon>frmDisplayManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRemoteDesktopViewer.resx">
+      <DependentUpon>frmRemoteDesktopViewer.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -343,12 +343,14 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                     if (flwRecentFiles.Controls.Count == 7)
                         return;
 
-                    LinkLabel newFileLink = new LinkLabel();
-                    newFileLink.Text = fil;
-                    newFileLink.AutoSize = true;
-                    newFileLink.LinkColor = Color.AliceBlue;
-                    newFileLink.Font = lnkGitIssue.Font;
-                    newFileLink.Margin = new Padding(0, 0, 0, 0);
+                    LinkLabel newFileLink = new LinkLabel
+                    {
+                        Text = fil,
+                        AutoSize = true,
+                        LinkColor = Color.AliceBlue,
+                        Font = lnkGitIssue.Font,
+                        Margin = new Padding(0, 0, 0, 0)
+                    };
                     newFileLink.LinkClicked += NewFileLink_LinkClicked;
                     flwRecentFiles.Controls.Add(newFileLink);
                 }
@@ -482,9 +484,11 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         private void PerformAntiIdle()
         {
             _lastAntiIdleEvent = DateTime.Now;
-            var mouseMove = new SendMouseMoveCommand();
-            mouseMove.v_XMousePosition = (Cursor.Position.X + 1).ToString();
-            mouseMove.v_YMousePosition = (Cursor.Position.Y + 1).ToString();
+            var mouseMove = new SendMouseMoveCommand
+            {
+                v_XMousePosition = (Cursor.Position.X + 1).ToString(),
+                v_YMousePosition = (Cursor.Position.Y + 1).ToString()
+            };
             Notify("Anti-Idle Triggered");
         }
 
@@ -503,10 +507,12 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         private void AddNewCommand(string specificCommand = "")
         {
             //bring up new command configuration form
-            frmCommandEditor newCommandForm = new frmCommandEditor(_automationCommands, GetConfiguredCommands());
-            newCommandForm.CreationModeInstance = CreationMode.Add;
-            newCommandForm.ScriptVariables = _scriptVariables;
-            newCommandForm.ScriptElements = _scriptElements;
+            frmCommandEditor newCommandForm = new frmCommandEditor(_automationCommands, GetConfiguredCommands())
+            {
+                CreationModeInstance = CreationMode.Add,
+                ScriptVariables = _scriptVariables,
+                ScriptElements = _scriptElements
+            };
             if (specificCommand != "")
                 newCommandForm.DefaultStartupCommand = specificCommand;
 

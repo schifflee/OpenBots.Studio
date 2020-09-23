@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Folder
 {
@@ -17,35 +16,40 @@ namespace OpenBots.Commands.Folder
     [Group("Folder Operation Commands")]
     [Description("This command moves/copies a folder to a specified location.")]
     public class MoveCopyFolderCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Folder Operation Type")]
         [PropertyUISelectionOption("Move Folder")]
         [PropertyUISelectionOption("Copy Folder")]
         [InputSpecification("Specify whether you intend to move or copy the folder.")]
         [SampleUsage("")]
         [Remarks("Moving will remove the folder from the original path while Copying will not.")]
-        public string v_OperationType { get; set; }
+        public string v_OperationType { get; set; }
+
         [PropertyDescription("Source Folder Path")]
         [InputSpecification("Enter or Select the path to the original folder.")]
         [SampleUsage(@"C:\temp\myfolder || {ProjectPath}\myfolder || {vOriginalFolderPath}")]
         [Remarks("{ProjectPath} is the directory path of the current project.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)] 
-        public string v_SourceFolderPath { get; set; }
+        public string v_SourceFolderPath { get; set; }
+
         [PropertyDescription("Destination Folder Path")]
         [InputSpecification("Enter or Select the destination folder path.")]
         [SampleUsage(@"C:\temp\DestinationFolder || {ProjectPath}\DestinationFolder || {vDestinationFolderPath}")]
         [Remarks("{ProjectPath} is the directory path of the current project.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)] 
-        public string v_DestinationDirectory { get; set; }
+        public string v_DestinationDirectory { get; set; }
+
         [PropertyDescription("Create Destination Folder")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("Specify whether the destination directory should be created if it does not already exist.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_CreateDirectory { get; set; }
+        public string v_CreateDirectory { get; set; }
+
         [PropertyDescription("Delete Existing Folder")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

@@ -11,8 +11,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Exception = System.Exception;
 
 namespace OpenBots.Commands.List
@@ -21,7 +20,8 @@ namespace OpenBots.Commands.List
     [Group("List Commands")]
     [Description("This command creates a new List variable.")]
     public class CreateListCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("List Type")]
         [PropertyUISelectionOption("String")]
         [PropertyUISelectionOption("DataTable")]
@@ -31,14 +31,16 @@ namespace OpenBots.Commands.List
         [InputSpecification("Specify the data type of the List to be created.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_ListType { get; set; }
+        public string v_ListType { get; set; }
+
         [PropertyDescription("List Item(s)")]
         [InputSpecification("Enter the item(s) to write to the List.")]
         [SampleUsage("Hello || {vItem} || Hello,World || {vItem1},{vItem2}")]
         [Remarks("List item can only be a String, DataTable, MailItem or IWebElement.\n" + 
                  "Multiple items should be delimited by a comma(,). This input is optional.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_ListItems { get; set; }
+        public string v_ListItems { get; set; }
+
         [PropertyDescription("Output List Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

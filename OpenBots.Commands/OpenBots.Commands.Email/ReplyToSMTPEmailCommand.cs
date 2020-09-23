@@ -12,8 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Authentication;
 using System.Threading;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Email
 {
@@ -22,50 +21,58 @@ namespace OpenBots.Commands.Email
     [Description("This command replies to a selected email using SMTP protocol.")]
 
     public class ReplyToSMTPEmailCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("MimeMessage")]
         [InputSpecification("Enter the MimeMessage to reply to.")]
         [SampleUsage("{vMimeMessage}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPMimeMessage { get; set; }
+        public string v_SMTPMimeMessage { get; set; }
+
         [PropertyDescription("Host")]
         [InputSpecification("Define the host/service name that the script should use.")]
         [SampleUsage("smtp.gmail.com || {vHost}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPHost { get; set; }
+        public string v_SMTPHost { get; set; }
+
         [PropertyDescription("Port")]
         [InputSpecification("Define the port number that should be used when contacting the SMTP service.")]
         [SampleUsage("465 || {vPort}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPPort { get; set; }
+        public string v_SMTPPort { get; set; }
+
         [PropertyDescription("Username")]
         [InputSpecification("Define the username to use when contacting the SMTP service.")]
         [SampleUsage("myRobot || {vUsername}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPUserName { get; set; }
+        public string v_SMTPUserName { get; set; }
+
         [PropertyDescription("Password")]
         [InputSpecification("Define the password to use when contacting the SMTP service.")]
         [SampleUsage("password || {vPassword}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPPassword { get; set; }
+        public string v_SMTPPassword { get; set; }
+
         [PropertyDescription("Mail Operation")]
         [PropertyUISelectionOption("Reply")]
         [PropertyUISelectionOption("Reply All")]
         [InputSpecification("Specify whether you intend to reply or reply all.")]
         [SampleUsage("")]
         [Remarks("Replying will reply to only the original sender. Reply all will reply to everyone in the recipient list.")]
-        public string v_SMTPOperationType { get; set; }
+        public string v_SMTPOperationType { get; set; }
+
         [PropertyDescription("Email Body")]
         [InputSpecification("Enter text to be used as the email body.")]
         [SampleUsage("Everything ran ok at {DateTime.Now}  || {vBody}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPBody { get; set; }
+        public string v_SMTPBody { get; set; }
+
         [PropertyDescription("Attachment File Path(s)")]
         [InputSpecification("Enter the file path(s) of the file(s) to attach.")]
         [SampleUsage(@"C:\temp\myFile.xlsx || {vFile} || C:\temp\myFile1.xlsx;C:\temp\myFile2.xlsx || {vFile1};{vFile2} || {vFiles}")]

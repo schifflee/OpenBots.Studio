@@ -4,8 +4,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
@@ -39,7 +38,8 @@ namespace OpenBots.Commands
         [InputSpecification("Select to assign variables to the Task.")]
         [SampleUsage("")]
         [Remarks("If selected, variables will be automatically generated from the Task's *Variable Manager*.")]
-        public bool v_AssignVariables { get; set; }
+        public bool v_AssignVariables { get; set; }
+
         [PropertyDescription("Task Variables")]
         [InputSpecification("Enter a VariableValue for each input variable.")]
         [SampleUsage("Hello World || {vVariableValue}")]

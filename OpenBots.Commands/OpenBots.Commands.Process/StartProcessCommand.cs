@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Diagnostics = System.Diagnostics;
 
 namespace OpenBots.Commands.Process
@@ -19,20 +18,23 @@ namespace OpenBots.Commands.Process
     [Description("This command starts a program or process.")]
 
     public class StartProcessCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Program Name or Path")]
         [InputSpecification("Provide a valid program name or enter a full path to the script/executable including the extension.")]
         [SampleUsage(@"notepad || excel || {vApp} || C:\temp\myapp.exe || {ProjectPath}\myapp.exe")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_ProgramName { get; set; }
+        public string v_ProgramName { get; set; }
+
         [PropertyDescription("Arguments")]
         [InputSpecification("Enter any arguments or flags if applicable.")]
         [SampleUsage("-a || -version || {vArg}")]
         [Remarks("You will need to consult documentation to determine if your executable supports arguments or flags on startup.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_ProgramArgs { get; set; }
+        public string v_ProgramArgs { get; set; }
+
         [PropertyDescription("Wait For Exit")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

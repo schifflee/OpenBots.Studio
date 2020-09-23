@@ -8,8 +8,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Word.Application;
 using Group = OpenBots.Core.Attributes.ClassAttributes.Group;
 
@@ -20,12 +19,14 @@ namespace OpenBots.Commands.Word
     [Description("This command appends an image to a Word Document.")]
 
     public class WordAppendImageCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Word Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyWordInstance")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
-        public string v_InstanceName { get; set; }
+        public string v_InstanceName { get; set; }
+
         [PropertyDescription("Image File Path")]    
         [InputSpecification("Enter the file path of the image to append to the Document.")]
         [SampleUsage(@"C:\temp\myImage.png || {vImageFilePath} || {ProjectPath}\myImage.png")]

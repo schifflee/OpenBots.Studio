@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Data = System.Data;
 
 namespace OpenBots.Commands.DataTable
@@ -19,7 +18,8 @@ namespace OpenBots.Commands.DataTable
     [Description("This command creates a DataTable with the Column Names provided.")]
 
     public class CreateDataTableCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Column Names")]
         [InputSpecification("Enter the Column Names required for each column of data.")]
         [SampleUsage("MyColumn || {vColumn}")]

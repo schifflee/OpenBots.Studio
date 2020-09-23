@@ -7,8 +7,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace OpenBots.Commands.Excel
@@ -18,12 +17,14 @@ namespace OpenBots.Commands.Excel
     [Description("This command runs a macro in an Excel Workbook.")]
 
     public class ExcelRunMacroCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Excel Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyExcelInstance")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
-        public string v_InstanceName { get; set; }
+        public string v_InstanceName { get; set; }
+
         [PropertyDescription("Macro Name")]
         [InputSpecification("Enter the name of the macro as it exists in the Worksheet.")]
         [SampleUsage("Macro1 || {vMacro}")]

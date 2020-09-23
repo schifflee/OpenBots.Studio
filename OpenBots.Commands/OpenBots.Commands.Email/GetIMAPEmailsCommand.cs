@@ -15,8 +15,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Authentication;
 using System.Threading;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Email
 {
@@ -25,78 +24,90 @@ namespace OpenBots.Commands.Email
     [Description("This command gets selected emails and their attachments using IMAP protocol.")]
 
     public class GetIMAPEmailsCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Host")]
         [InputSpecification("Define the host/service name that the script should use.")]
         [SampleUsage("imap.gmail.com || {vHost}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_IMAPHost { get; set; }
+        public string v_IMAPHost { get; set; }
+
         [PropertyDescription("Port")]
         [InputSpecification("Define the port number that should be used when contacting the IMAP service.")]
         [SampleUsage("993 || {vPort}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_IMAPPort { get; set; }
+        public string v_IMAPPort { get; set; }
+
         [PropertyDescription("Username")]
         [InputSpecification("Define the username to use when contacting the IMAP service.")]
         [SampleUsage("myRobot || {vUsername}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_IMAPUserName { get; set; }
+        public string v_IMAPUserName { get; set; }
+
         [PropertyDescription("Password")]
         [InputSpecification("Define the password to use when contacting the IMAP service.")]
         [SampleUsage("password || {vPassword}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_IMAPPassword { get; set; }
+        public string v_IMAPPassword { get; set; }
+
         [PropertyDescription("Source Mail Folder Name")]
         [InputSpecification("Enter the name of the mail folder the emails are located in.")]
         [SampleUsage("Inbox || {vFolderName}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_IMAPSourceFolder { get; set; }
+        public string v_IMAPSourceFolder { get; set; }
+
         [PropertyDescription("Filter")]
         [InputSpecification("Enter a valid filter string.")]
         [SampleUsage("Hello World || myRobot@company.com || {vFilter} || None")]
         [Remarks("*Warning* Using 'None' as the Filter will return every email in the selected Mail Folder.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_IMAPFilter { get; set; }
+        public string v_IMAPFilter { get; set; }
+
         [PropertyDescription("Unread Only")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("Specify whether to retrieve unread email messages only.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_IMAPGetUnreadOnly { get; set; }
+        public string v_IMAPGetUnreadOnly { get; set; }
+
         [PropertyDescription("Mark As Read")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("Specify whether to mark retrieved emails as read.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_IMAPMarkAsRead { get; set; }
+        public string v_IMAPMarkAsRead { get; set; }
+
         [PropertyDescription("Save MimeMessages and Attachments")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("Specify whether to save the email attachments to a local directory.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_IMAPSaveMessagesAndAttachments { get; set; }
+        public string v_IMAPSaveMessagesAndAttachments { get; set; }
+
         [PropertyDescription("Output MimeMessage Directory")]
         [InputSpecification("Enter or Select the path of the directory to store the messages in.")]
         [SampleUsage(@"C:\temp\myfolder || {vFolderPath} || {ProjectPath}\myFolder")]
         [Remarks("This input is optional and will only be used if *Save MimeMessages and Attachments* is set to **Yes**.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
-        public string v_IMAPMessageDirectory { get; set; }
+        public string v_IMAPMessageDirectory { get; set; }
+
         [PropertyDescription("Output Attachment Directory")]
         [InputSpecification("Enter or Select the path to the directory to store the attachments in.")]
         [SampleUsage(@"C:\temp\myfolder\attachments || {vFolderPath} || {ProjectPath}\myFolder\attachments")]
         [Remarks("This input is optional and will only be used if *Save MimeMessages and Attachments* is set to **Yes**.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
-        public string v_IMAPAttachmentDirectory { get; set; }
+        public string v_IMAPAttachmentDirectory { get; set; }
+
         [PropertyDescription("Output MimeMessage List Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("vUserVariable")]

@@ -9,8 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Word.Application;
 
 namespace OpenBots.Commands.Word
@@ -21,34 +20,39 @@ namespace OpenBots.Commands.Word
     [Description("This command creates a Word Instance.")]
 
     public class WordCreateApplicationCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Word Instance Name")]
         [InputSpecification("Enter a unique name that will represent the application instance.")]
         [SampleUsage("MyWordInstance")]
         [Remarks("This unique name allows you to refer to the instance by name in future commands, " +
                  "ensuring that the commands you specify run against the correct application.")]
-        public string v_InstanceName { get; set; }
+        public string v_InstanceName { get; set; }
+
         [PropertyDescription("New/Open Document")]
         [PropertyUISelectionOption("New Document")]
         [PropertyUISelectionOption("Open Document")]
         [InputSpecification("Indicate whether to create a new Document or to open an existing Document.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_NewOpenDocument { get; set; }
+        public string v_NewOpenDocument { get; set; }
+
         [PropertyDescription("Document File Path")]
         [InputSpecification("Enter or Select the path to the Document file.")]
         [SampleUsage(@"C:\temp\myfile.docx || {vFilePath} || {ProjectPath}\myfile.docx")]
         [Remarks("This input should only be used for opening existing Documents.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_FilePath { get; set; }
+        public string v_FilePath { get; set; }
+
         [PropertyDescription("Visible")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("Indicate whether the Word automation should be visible or not.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_Visible { get; set; }
+        public string v_Visible { get; set; }
+
         [PropertyDescription("Close All Existing Word Instances")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Folder
 {
@@ -18,7 +17,8 @@ namespace OpenBots.Commands.Folder
     [Group("Folder Operation Commands")]
     [Description("This command deletes a folder from a specified location.")]
     public class DeleteFolderCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Folder Path")]
         [InputSpecification("Enter or Select the path to the folder.")]
         [SampleUsage(@"C:\temp\myfolder || {ProjectPath}\myfolder  || {vTextFolderPath}")]

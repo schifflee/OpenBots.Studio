@@ -13,8 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Authentication;
 using System.Threading;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Email
 {
@@ -23,37 +22,43 @@ namespace OpenBots.Commands.Email
     [Description("This command deletes a selected email using IMAP protocol.")]
 
     public class DeleteIMAPEmailCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("MimeMessage")]
         [InputSpecification("Enter the MimeMessage to delete.")]
         [SampleUsage("{vMimeMessage}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_IMAPMimeMessage { get; set; }
+        public string v_IMAPMimeMessage { get; set; }
+
         [PropertyDescription("Host")]
         [InputSpecification("Define the host/service name that the script should use.")]
         [SampleUsage("imap.gmail.com || {vHost}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_IMAPHost { get; set; }
+        public string v_IMAPHost { get; set; }
+
         [PropertyDescription("Port")]
         [InputSpecification("Define the port number that should be used when contacting the IMAP service.")]
         [SampleUsage("993 || {vPort}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_IMAPPort { get; set; }
+        public string v_IMAPPort { get; set; }
+
         [PropertyDescription("Username")]
         [InputSpecification("Define the username to use when contacting the IMAP service.")]
         [SampleUsage("myRobot || {vUsername}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_IMAPUserName { get; set; }
+        public string v_IMAPUserName { get; set; }
+
         [PropertyDescription("Password")]
         [InputSpecification("Define the password to use when contacting the IMAP service.")]
         [SampleUsage("password || {vPassword}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_IMAPPassword { get; set; }
+        public string v_IMAPPassword { get; set; }
+
         [PropertyDescription("Delete Read Emails Only")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

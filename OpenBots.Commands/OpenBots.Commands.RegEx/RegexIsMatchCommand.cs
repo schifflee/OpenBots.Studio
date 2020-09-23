@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Group = OpenBots.Core.Attributes.ClassAttributes.Group;
 
 namespace OpenBots.Commands.RegEx
@@ -18,19 +17,22 @@ namespace OpenBots.Commands.RegEx
     [Group("Regex Commands")]
     [Description("This command checks if a match is found in a given text based on a Regex pattern.")]
     public class RegexIsMatchCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Text")]
         [InputSpecification("Select or provide text to apply Regex on.")]
         [SampleUsage("Hello || {vText}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputText { get; set; }
+        public string v_InputText { get; set; }
+
         [PropertyDescription("Regex Pattern")]
         [InputSpecification("Enter a Regex Pattern to apply to the input Text.")]
         [SampleUsage(@"^([\w\-]+) || {vPattern}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Regex { get; set; }
+        public string v_Regex { get; set; }
+
         [PropertyDescription("Output Result Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

@@ -7,8 +7,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.System
 {
@@ -16,31 +15,36 @@ namespace OpenBots.Commands.System
     [Group("System Commands")]
     [Description("This command launches a remote desktop session.")]
     public class LaunchRemoteDesktopCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Machine Name")]
         [InputSpecification("Define the name of the machine to log on to.")]
         [SampleUsage("myMachine || {vMachineName}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_MachineName { get; set; }
+        public string v_MachineName { get; set; }
+
         [PropertyDescription("Username")]
         [InputSpecification("Define the username to use when connecting to the machine.")]
         [SampleUsage("myRobot || {vUsername}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_UserName { get; set; }
+        public string v_UserName { get; set; }
+
         [PropertyDescription("Password")]
         [InputSpecification("Define the password to use when connecting to the machine.")]
         [SampleUsage("password || {vPassword}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Password { get; set; }
+        public string v_Password { get; set; }
+
         [PropertyDescription("RDP Window Width")]
         [InputSpecification("Define the width for the Remote Desktop Window.")]
         [SampleUsage("1000 || {vWidth}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_RDPWidth { get; set; }
+        public string v_RDPWidth { get; set; }
+
         [PropertyDescription("RDP Window Height")]
         [InputSpecification("Define the height for the Remote Desktop Window.")]
         [SampleUsage("800 || {vHeight}")]

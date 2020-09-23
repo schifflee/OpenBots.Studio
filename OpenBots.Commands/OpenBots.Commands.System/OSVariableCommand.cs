@@ -9,8 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Management;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.System
 {

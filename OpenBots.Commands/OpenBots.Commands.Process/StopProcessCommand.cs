@@ -7,8 +7,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Diagnostics = System.Diagnostics;
 
 namespace OpenBots.Commands.Process
@@ -18,14 +17,16 @@ namespace OpenBots.Commands.Process
     [Description("This command stops a program or process.")]
 
     public class StopProcessCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Program Name or Path")]
         [InputSpecification("Provide a valid program name or enter a full path to the script/executable including the extension.")]
         [SampleUsage(@"notepad || excel || {vApp} || C:\temp\myapp.exe || {ProjectPath}\myapp.exe")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_ProgramName { get; set; }
+        public string v_ProgramName { get; set; }
+
         [PropertyDescription("Stop Option")]
         [PropertyUISelectionOption("Close")]
         [PropertyUISelectionOption("Kill")]

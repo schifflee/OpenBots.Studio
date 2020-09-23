@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Data
 {
@@ -17,19 +16,22 @@ namespace OpenBots.Commands.Data
     [Group("Data Commands")]
     [Description("This command splits a string by a delimiter and saves the result in a list.")]
     public class SplitTextCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Text Data")]
         [InputSpecification("Provide a variable or text value.")]
         [SampleUsage("Sample text, to be splitted by comma delimiter || {vTextData}")]
         [Remarks("Providing data of a type other than a 'String' will result in an error.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputText { get; set; }
+        public string v_InputText { get; set; }
+
         [PropertyDescription("Text Delimiter")]
         [InputSpecification("Specify the character that will be used to split the text.")]
         [SampleUsage("[crLF] || [chars] || , || {vDelimiter}")]
         [Remarks("[crLF] can be used for line breaks and [chars] can be used to split each character.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SplitCharacter { get; set; }
+        public string v_SplitCharacter { get; set; }
+
         [PropertyDescription("Output List Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

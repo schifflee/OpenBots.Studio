@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -17,7 +16,8 @@ namespace OpenBots.Commands
     [Group("Misc Commands")]
     [Description("This command sets text to the user's clipboard.")]
     public class SetClipboardTextCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Text")]
         [InputSpecification("Select or provide the text to set on the clipboard.")]
         [SampleUsage("Hello || {vTextToSet}")]

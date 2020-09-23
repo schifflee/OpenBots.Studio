@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -18,13 +17,15 @@ namespace OpenBots.Commands
     [Group("Input Commands")]
     [Description("This command provides the user with an HTML form to input and store a collection of data.")]
     public class HTMLInputCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("HTML")]
         [InputSpecification("Define the form to be displayed using the HTML Builder.")]
         [SampleUsage("")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowHTMLBuilder)]
-        public string v_InputHTML { get; set; }
+        public string v_InputHTML { get; set; }
+
         [PropertyDescription("Error On Close")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

@@ -10,8 +10,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Outlook.Application;
 
 namespace OpenBots.Commands.Outlook

@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using OpenBots.Server;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Remote
 {
@@ -18,13 +17,15 @@ namespace OpenBots.Commands.Remote
     [Group("Remote Commands")]
     [Description("This command executes a task remotely on another OpenBots instance.")]
     public class RemoteTaskCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("API Endpoint/Port")]
         [InputSpecification("Define the API endpoint or port enabled for local listening.")]
         [SampleUsage("example.com/hello || 192.168.2.200:19312 || {vMyUrl}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_BaseURL { get; set; }
+        public string v_BaseURL { get; set; }
+
         [PropertyDescription("Parameter Type")]
         [PropertyUISelectionOption("Run Raw Script Data")]
         [PropertyUISelectionOption("Run Local File")]
@@ -33,27 +34,31 @@ namespace OpenBots.Commands.Remote
         [InputSpecification("Select the appropriate parameter type.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_ParameterType { get; set; }
+        public string v_ParameterType { get; set; }
+
         [PropertyDescription("Execution Preference")]
         [PropertyUISelectionOption("Continue Execution")]
         [PropertyUISelectionOption("Await For Result")]
         [InputSpecification("Select the appropriate execution preference.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_ExecuteAwait { get; set; }
+        public string v_ExecuteAwait { get; set; }
+
         [PropertyDescription("Script Parameter Data")]
         [InputSpecification("Specify the data, typically either raw data, a local file, or a remote file.")]
         [SampleUsage(@"hello || {vData} || C:\temp\myfile.json || {ProjectPath}\myfile.json || {vFilePath}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_Parameter { get; set; }
+        public string v_Parameter { get; set; }
+
         [PropertyDescription("Request Timeout (Seconds)")]
         [InputSpecification("Enter the length of time to wait before the request times out.")]
         [SampleUsage("30 || {vTime}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_RequestTimeout { get; set; }
+        public string v_RequestTimeout { get; set; }
+
         [PropertyDescription("Output Response Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

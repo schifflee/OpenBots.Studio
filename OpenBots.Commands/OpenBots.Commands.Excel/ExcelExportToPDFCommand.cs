@@ -10,8 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace OpenBots.Commands.Excel
@@ -21,33 +20,38 @@ namespace OpenBots.Commands.Excel
     [Description("This command exports a Excel Worksheet to a PDF file.")]
 
     public class ExcelExportToPDFCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Excel Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyExcelInstance || {vExcelInstance}")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InstanceName { get; set; }
+        public string v_InstanceName { get; set; }
+
         [PropertyDescription("PDF Location")]
         [InputSpecification("Enter or Select the path of the folder to export the PDF to.")]
         [SampleUsage(@"C:\temp || {vFolderPath} || {ProjectPath}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
-        public string v_FolderPath { get; set; }
+        public string v_FolderPath { get; set; }
+
         [PropertyDescription("PDF File Name")]
         [InputSpecification("Enter or Select the name of the PDF file.")]
         [SampleUsage("myFile.pdf || {vFilename}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_FileName { get; set; }
+        public string v_FileName { get; set; }
+
         [PropertyDescription("AutoFit Cells")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]
         [InputSpecification("Indicate whether to autofit cell sizes to fit their contents.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_AutoFitCells { get; set; }
+        public string v_AutoFitCells { get; set; }
+
         [PropertyDescription("Display Gridlines")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

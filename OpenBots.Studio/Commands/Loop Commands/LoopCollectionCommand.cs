@@ -6,8 +6,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -23,14 +22,16 @@ namespace OpenBots.Commands
     [Group("Loop Commands")]
     [Description("This command iterates over a collection to let user perform actions on the collection items.")]
     public class LoopCollectionCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Input Collection")]
         [InputSpecification("Provide a collection variable.")]
         [SampleUsage("{vMyCollection}")]
         [Remarks("If the collection is a DataTable then the output item will be a DataRow and its column value can be accessed using the " +
             "dot operator like {vDataRow.ColumnName}.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_LoopParameter { get; set; }
+        public string v_LoopParameter { get; set; }
+
         [PropertyDescription("Output Collection Item Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

@@ -7,8 +7,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Variable
 {
@@ -16,12 +15,14 @@ namespace OpenBots.Commands.Variable
     [Group("Variable Commands")]
     [Description("This command adds a new variable or updates an existing variable.")]
     public class NewVariableCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("New Variable Name")]
         [InputSpecification("Indicate a unique reference name for later use.")]
         [SampleUsage("{vSomeVariable}")]
         [Remarks("")]
-        public string v_VariableName { get; set; }
+        public string v_VariableName { get; set; }
+
         [PropertyDescription("Input Value")]
         [InputSpecification("Enter the value for the variable.")]
         [SampleUsage("Hello || {vNum} || {vNum}+1")]

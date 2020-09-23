@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Folder
 {
@@ -17,14 +16,16 @@ namespace OpenBots.Commands.Folder
     [Group("Folder Operation Commands")]
     [Description("This command renames an existing folder.")]
     public class RenameFolderCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Folder Path")]
         [InputSpecification("Enter or Select the path to the folder.")]
         [SampleUsage(@"C:\temp\myFolder || {ProjectPath}\myfolder || {vFolderPath}")]
         [Remarks("{ProjectPath} is the directory path of the current project.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)] 
-        public string v_SourceFolderPath { get; set; }
+        public string v_SourceFolderPath { get; set; }
+
         [PropertyDescription("New Folder Name")]
         [InputSpecification("Specify the new folder name.")]
         [SampleUsage("New Folder Name || {vNewFolderName}")]

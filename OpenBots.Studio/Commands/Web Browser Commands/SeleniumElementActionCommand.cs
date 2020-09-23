@@ -13,8 +13,7 @@ using System.Reflection;
 using System.Security;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -60,14 +59,16 @@ namespace OpenBots.Commands
                     )]
         [Remarks("If multiple parameters are enabled, an attempt will be made to find the element(s) that match(es) all the selected parameters.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowElementHelper)] 
-        public DataTable v_SeleniumSearchParameters { get; set; }
+        public DataTable v_SeleniumSearchParameters { get; set; }
+
         [PropertyDescription("Element Search Option")]
         [PropertyUISelectionOption("Find Element")]
         [PropertyUISelectionOption("Find Elements")]
         [InputSpecification("Indicate whether to search for a single or multiple elements.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_SeleniumSearchOption { get; set; }
+        public string v_SeleniumSearchOption { get; set; }
+
         [PropertyDescription("Element Action")]
         [PropertyUISelectionOption("Invoke Click")]
         [PropertyUISelectionOption("Left Click")]
@@ -89,7 +90,8 @@ namespace OpenBots.Commands
         [InputSpecification("Select the appropriate corresponding action to take once the element has been located.")]
         [SampleUsage("")]
         [Remarks("Selecting this field changes the parameters required in the following step.")]
-        public string v_SeleniumElementAction { get; set; }
+        public string v_SeleniumElementAction { get; set; }
+
         [PropertyDescription("Action Parameters")]
         [InputSpecification("Action Parameters will be determined based on the action settings selected.")]
         [SampleUsage("data || {vData} || *Variable Name*: {vNewVariable}")]

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -16,7 +15,8 @@ namespace OpenBots.Commands
     [Group("Error Handling Commands")]
     [Description("This command retrieves the most recent error in the engine and stores it in the defined variable.")]
     public class GetExceptionMessageCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Output Exception Message Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

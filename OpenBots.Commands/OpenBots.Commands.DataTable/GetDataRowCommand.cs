@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Data = System.Data;
 
 namespace OpenBots.Commands.DataTable
@@ -19,19 +18,22 @@ namespace OpenBots.Commands.DataTable
     [Description("This command gets a DataRow from a DataTable.")]
 
     public class GetDataRowCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("DataTable")]
         [InputSpecification("Enter an existing DataTable to get rows from.")]
         [SampleUsage("{vDataTable}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DataTable { get; set; }
+        public string v_DataTable { get; set; }
+
         [PropertyDescription("DataRow Index")]
         [InputSpecification("Enter a valid DataRow index value.")]
         [SampleUsage("0 || {vIndex}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DataRowIndex { get; set; }
+        public string v_DataRowIndex { get; set; }
+
         [PropertyDescription("Output DataRow Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.DataTable
 {
@@ -18,26 +17,30 @@ namespace OpenBots.Commands.DataTable
     [Description("This command updates a Value in a DataRow at a specified column name/index.")]
 
     public class UpdateDataRowValueCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("DataRow")]
         [InputSpecification("Enter an existing DataRow to add values to.")]
         [SampleUsage("{vDataRow}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DataRow { get; set; }
+        public string v_DataRow { get; set; }
+
         [PropertyDescription("Search Option")]
         [PropertyUISelectionOption("Column Name")]
         [PropertyUISelectionOption("Column Index")]
         [InputSpecification("Select whether the DataRow value should be found by column index or column name.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_Option { get; set; }
+        public string v_Option { get; set; }
+
         [PropertyDescription("Search Value")]
         [InputSpecification("Enter a valid DataRow index or column name.")]
         [SampleUsage("0 || {vIndex} || Column1 || {vColumnName}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DataValueIndex { get; set; }
+        public string v_DataValueIndex { get; set; }
+
         [PropertyDescription("Cell Value")]
         [InputSpecification("Enter the value to write to the DataRow cell.")]
         [SampleUsage("value || {vValue}")]

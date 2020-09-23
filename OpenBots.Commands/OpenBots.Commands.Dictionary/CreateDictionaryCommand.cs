@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Dictionary
 {
@@ -17,7 +16,8 @@ namespace OpenBots.Commands.Dictionary
     [Group("Dictionary Commands")]
     [Description("This command creates a new Dictionary.")]
     public class CreateDictionaryCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Keys and Values")]
         [InputSpecification("Enter the Keys and Values required for the new dictionary.")]
         [SampleUsage("[FirstName | John] || [{vKey} | {vValue}]")]

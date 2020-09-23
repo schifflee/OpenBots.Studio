@@ -2,8 +2,7 @@
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -19,12 +18,14 @@ namespace OpenBots.Commands
     [Description("This command retrieves information from a Selenium web browser session.")]
 
     public class SeleniumGetBrowserInfoCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Browser Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Browser** command.")]
         [SampleUsage("MyBrowserInstance")]
         [Remarks("Failure to enter the correct instance name or failure to first call the **Create Browser** command will cause an error.")]
-        public string v_InstanceName { get; set; }
+        public string v_InstanceName { get; set; }
+
         [PropertyDescription("Info Property")]
         [PropertyUISelectionOption("Window Title")]
         [PropertyUISelectionOption("Window URL")]
@@ -35,7 +36,8 @@ namespace OpenBots.Commands
         [SampleUsage("")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InfoType { get; set; }
+        public string v_InfoType { get; set; }
+
         [PropertyDescription("Output Info Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

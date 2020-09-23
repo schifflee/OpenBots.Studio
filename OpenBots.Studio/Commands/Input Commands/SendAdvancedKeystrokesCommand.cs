@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
@@ -33,7 +32,8 @@ namespace OpenBots.Commands
         [InputSpecification("Define the parameters for the keystroke actions.")]
         [SampleUsage("[Enter [Return] | Key Press (Down + Up)]")]
         [Remarks("")]
-        public DataTable v_KeyActions { get; set; }
+        public DataTable v_KeyActions { get; set; }
+
         [PropertyDescription("Return All Keys to 'UP' Position")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]      

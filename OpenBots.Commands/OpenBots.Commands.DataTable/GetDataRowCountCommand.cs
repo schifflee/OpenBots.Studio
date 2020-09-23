@@ -7,8 +7,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Data = System.Data;
 
 namespace OpenBots.Commands.DataTable
@@ -18,13 +17,15 @@ namespace OpenBots.Commands.DataTable
     [Description("This command gets the DataRow Count of a DataTable.")]
 
     public class GetDataRowCountCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("DataTable")]
         [InputSpecification("Enter an existing DataTable.")]
         [SampleUsage("{vDataTable}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DataTable { get; set; }
+        public string v_DataTable { get; set; }
+
         [PropertyDescription("Output Count Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -17,7 +16,8 @@ namespace OpenBots.Commands
     [Group("Window Commands")]
     [Description("This command closes an open window.")]
     public class CloseWindowCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Window Name")]
         [InputSpecification("Select the name of the window to close.")]
         [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]

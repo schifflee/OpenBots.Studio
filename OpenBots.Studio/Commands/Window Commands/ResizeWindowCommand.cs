@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
@@ -24,13 +23,15 @@ namespace OpenBots.Commands
         [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_WindowName { get; set; }
+        public string v_WindowName { get; set; }
+
         [PropertyDescription("Width (Pixels)")]
         [InputSpecification("Input the new width size of the window.")]
         [SampleUsage("800 || {vWidth}")]
         [Remarks("Maximum value should be the maximum value allowed by your resolution. For 1920x1080, the valid width range would be 0-1920.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_XWindowSize { get; set; }
+        public string v_XWindowSize { get; set; }
+
         [PropertyDescription("Height (Pixels)")]
         [InputSpecification("Input the new height size of the window.")]
         [SampleUsage("500 || {vHeight}")]

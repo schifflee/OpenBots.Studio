@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Data
 {
@@ -23,7 +22,8 @@ namespace OpenBots.Commands.Data
         [SampleUsage("A sample text || {vStringVariable}")]
         [Remarks("Providing data of a type other than a 'String' will result in an error.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputText { get; set; }
+        public string v_InputText { get; set; }
+
         [PropertyDescription("String Function")]
         [PropertyUISelectionOption("To Upper Case")]
         [PropertyUISelectionOption("To Lower Case")]
@@ -32,7 +32,8 @@ namespace OpenBots.Commands.Data
         [InputSpecification("Select a string function to apply to the input text or variable.")]
         [SampleUsage("")]
         [Remarks("Each function, when applied to text data, converts it to a specific format.")]
-        public string v_TextOperation { get; set; }
+        public string v_TextOperation { get; set; }
+
         [PropertyDescription("Output Text Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

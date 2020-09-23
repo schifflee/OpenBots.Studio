@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.TextFile
 {
@@ -17,7 +16,8 @@ namespace OpenBots.Commands.TextFile
     [Group("Text File Commands")]
     [Description("This command writes specified data to an existing or newly created text file.")]
     public class WriteCreateTextFileCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Text File Path")]
         [InputSpecification("Enter or select the text file path.")]
         [SampleUsage(@"C:\temp\myfile.txt || {ProjectPath}\myText.txt || {vTextFilePath}")]
@@ -25,13 +25,15 @@ namespace OpenBots.Commands.TextFile
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_FilePath { get; set; }
+        public string v_FilePath { get; set; }
+
         [PropertyDescription("Text")]
         [InputSpecification("Indicate the Text to write.")]
         [SampleUsage("Hello World! || {vText}")]
         [Remarks("[crLF] inserts a newline.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]       
-        public string v_TextToWrite { get; set; }
+        public string v_TextToWrite { get; set; }
+
         [PropertyDescription("Overwrite Option")]
         [PropertyUISelectionOption("Append")]
         [PropertyUISelectionOption("Overwrite")]

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -14,7 +13,8 @@ namespace OpenBots.Commands
     [Group("Input Commands")]
     [Description("This command simulates a mouse click of a given type.")]
     public class SendMouseClickCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Click Type")]
         [PropertyUISelectionOption("Left Click")]
         [PropertyUISelectionOption("Middle Click")]

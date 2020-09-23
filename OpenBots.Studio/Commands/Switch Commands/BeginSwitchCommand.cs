@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -17,7 +16,8 @@ namespace OpenBots.Commands
     [Group("Switch Commands")]
     [Description("This command defines a switch/case block which will execute the associated case block if the specified value is a match.")]
     public class BeginSwitchCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Switch")]
         [InputSpecification("This value will determine the Case block to execute.")]
         [SampleUsage("{vSwitch}")]

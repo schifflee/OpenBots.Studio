@@ -3,8 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -23,7 +22,8 @@ namespace OpenBots.Commands
     [Description("This command evaluates a group of specified logical statements and executes the contained commands repeatedly (in loop) " +
         "until the result of the logical statements becomes false.")]
     public class BeginMultiLoopCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Multiple Loop Conditions")]
         [InputSpecification("Add new Loop condition(s).")]
         [SampleUsage("")]

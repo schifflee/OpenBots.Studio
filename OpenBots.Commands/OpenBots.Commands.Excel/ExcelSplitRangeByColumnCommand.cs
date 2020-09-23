@@ -11,8 +11,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using DataTable = System.Data.DataTable;
 
@@ -23,38 +22,44 @@ namespace OpenBots.Commands.Excel
     [Description("This command takes a specific Excel range, splits it into separate ranges by column, and stores them in new Workbooks.")]
 
     public class ExcelSplitRangeByColumnCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Excel Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyExcelInstance")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
-        public string v_InstanceName { get; set; }
+        public string v_InstanceName { get; set; }
+
         [PropertyDescription("Range")]
         [InputSpecification("Enter the location of the range to split.")]
         [SampleUsage("A1:B10 || A1: || {vRange} || {vStart}:{vEnd} || {vStart}:")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Range { get; set; }
+        public string v_Range { get; set; }
+
         [PropertyDescription("Column to Split")]
         [InputSpecification("Enter the name of the column you wish to split the selected range by.")]
         [SampleUsage("ColA || {vColumnName}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_ColumnName { get; set; }
+        public string v_ColumnName { get; set; }
+
         [PropertyDescription("Split Range Output Directory")]
         [InputSpecification("Enter or Select the new directory for the split range files.")]
         [SampleUsage(@"C:\temp\Split Files\ || {vFolderPath} || {ProjectPath}\Split Files")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
-        public string v_OutputDirectory { get; set; }
+        public string v_OutputDirectory { get; set; }
+
         [PropertyDescription("Output File Type")]
         [PropertyUISelectionOption("xlsx")]
         [PropertyUISelectionOption("csv")]
         [InputSpecification("Specify the file format type for the split range files.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_FileType { get; set; }
+        public string v_FileType { get; set; }
+
         [PropertyDescription("Output DataTable List Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

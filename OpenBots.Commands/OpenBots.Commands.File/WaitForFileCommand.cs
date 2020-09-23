@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using IO = System.IO;
 
 namespace OpenBots.Commands.File
@@ -18,14 +17,16 @@ namespace OpenBots.Commands.File
     [Group("File Operation Commands")]
     [Description("This command waits for a file to exist at a specified destination.")]
     public class WaitForFileCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("File Path")]
         [InputSpecification("Enter or Select the path to the file.")]
         [SampleUsage(@"C:\temp\myfile.txt || {ProjectPath}\myfile.txt || {vTextFilePath}")]
         [Remarks("{ProjectPath} is the directory path of the current project.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_FileName { get; set; }
+        public string v_FileName { get; set; }
+
         [PropertyDescription("Timeout")]
         [InputSpecification("Specify how many seconds to wait for the file to exist.")]
         [SampleUsage("10 || {vSeconds}")]

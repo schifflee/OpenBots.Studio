@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -18,13 +17,15 @@ namespace OpenBots.Commands
     [Group("Window Commands")]
     [Description("This command waits for a window to exist.")]
     public class WaitForWindowToExistCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Window Name")]
         [InputSpecification("Select the name of the window to wait for.")]
         [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_WindowName { get; set; }
+        public string v_WindowName { get; set; }
+
         [PropertyDescription("Timeout (Seconds)")]
         [InputSpecification("Specify how many seconds to wait before throwing an exception.")]
         [SampleUsage("30 || {vSeconds}")]

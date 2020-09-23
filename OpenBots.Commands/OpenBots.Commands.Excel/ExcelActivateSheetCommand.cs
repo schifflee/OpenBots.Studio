@@ -8,8 +8,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace OpenBots.Commands.Excel
@@ -19,12 +18,14 @@ namespace OpenBots.Commands.Excel
     [Description("This command activates a specific Worksheet in an Excel Workbook.")]
 
     public class ExcelActivateSheetCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Excel Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyExcelInstance")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
-        public string v_InstanceName { get; set; }
+        public string v_InstanceName { get; set; }
+
         [PropertyDescription("Worksheet")]
         [InputSpecification("Specify the Worksheet within the Workbook to activate.")]
         [SampleUsage("Sheet1 || {vSheet}")]

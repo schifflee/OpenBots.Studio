@@ -7,8 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Security;
 using System.Threading;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
@@ -39,7 +38,8 @@ namespace OpenBots.Commands
                  "For images that are primarily white space, tagging color to the top-left corner of the image and setting \n" +
                  "the relative click position will produce faster results.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowImageCaptureHelper)]
-        public string v_ImageCapture { get; set; }
+        public string v_ImageCapture { get; set; }
+
         [PropertyDescription("Element Action")]
         [PropertyUISelectionOption("Click Image")]
         [PropertyUISelectionOption("Set Text")]
@@ -49,7 +49,8 @@ namespace OpenBots.Commands
         [InputSpecification("Select the appropriate corresponding action to take once the image has been located.")]
         [SampleUsage("")]
         [Remarks("Selecting this field changes the parameters required in the following step.")]
-        public string v_ImageAction { get; set; }
+        public string v_ImageAction { get; set; }
+
         [PropertyDescription("Additional Parameters")]
         [InputSpecification("Additional Parameters will be required based on the action settings selected.")]
         [SampleUsage("data || {vData}")]

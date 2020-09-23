@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -37,7 +36,8 @@ namespace OpenBots.Commands
         [SampleUsage("Directions: Please fill in the following fields || {vDirections}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputDirections { get; set; }
+        public string v_InputDirections { get; set; }
+
         [PropertyDescription("Input Parameters")]
         [InputSpecification("Define the required input parameters.")]
         [SampleUsage("[TextBox | Name | 500,30 | John | {vName}]")]

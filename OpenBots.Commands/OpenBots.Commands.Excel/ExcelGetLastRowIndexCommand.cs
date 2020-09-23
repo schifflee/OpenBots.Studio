@@ -8,8 +8,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace OpenBots.Commands.Excel
@@ -19,18 +18,21 @@ namespace OpenBots.Commands.Excel
     [Description("This commands retrieves the index of the last row of a range in an Excel Worksheet.")]
 
     public class ExcelGetLastRowIndexCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Excel Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyExcelInstance")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
-        public string v_InstanceName { get; set; }
+        public string v_InstanceName { get; set; }
+
         [PropertyDescription("Column")]
         [InputSpecification("Enter the letter of the column to check.")]
         [SampleUsage("A || {vColumnLetter}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_ColumnLetter { get; set; }
+        public string v_ColumnLetter { get; set; }
+
         [PropertyDescription("Output Last Row Index Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

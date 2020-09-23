@@ -10,8 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using IO = System.IO;
 
 namespace OpenBots.Commands.File
@@ -20,7 +19,8 @@ namespace OpenBots.Commands.File
     [Group("File Operation Commands")]
     [Description("This command extracts file(s) from a file having specific format.")]
     public class ExtractFilesCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Source File Format")]
         [PropertyUISelectionOption("zip")]
         [PropertyUISelectionOption("7z")]
@@ -32,28 +32,32 @@ namespace OpenBots.Commands.File
         [InputSpecification("Select source file format.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_FileType { get; set; }
+        public string v_FileType { get; set; }
+
         [PropertyDescription("File Source Type")]
         [PropertyUISelectionOption("File Path")]
         [PropertyUISelectionOption("File URL")]
         [InputSpecification("Select file source type.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_FileSourceType { get; set; }
+        public string v_FileSourceType { get; set; }
+
         [PropertyDescription("Source File Path / URL")]
         [InputSpecification("Enter or Select the Path / URL to the applicable file.")]
         [SampleUsage(@"C:\temp\myfile.zip || {ProjectPath}\myfile.zip || https://temp.com/myfile.zip || {vFileSourcePath}")]
         [Remarks("{ProjectPath} is the directory path of the current project.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_FilePathOrigin { get; set; }
+        public string v_FilePathOrigin { get; set; }
+
         [PropertyDescription("Extracted File(s) Directory Path")]
         [InputSpecification("Enter or Select the Folder Path / URL to move extracted file(s) to.")]
         [SampleUsage(@"C:\temp || {ProjectPath}\temp || {vFilesPath}")]
         [Remarks("{ProjectPath} is the directory path of the current project.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
-        public string v_PathDestination { get; set; }
+        public string v_PathDestination { get; set; }
+
         [PropertyDescription("Output Extracted File Path(s) List Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

@@ -7,8 +7,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Dictionary
 {
@@ -16,19 +15,22 @@ namespace OpenBots.Commands.Dictionary
     [Group("Dictionary Commands")]
     [Description("This command returns a dictionary value based on a specified key.")]
     public class GetDictionaryValueCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Dictionary")]
         [InputSpecification("Specify the dictionary variable to get a value from.")]
         [SampleUsage("{vDictionary}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputDictionary { get; set; }
+        public string v_InputDictionary { get; set; }
+
         [PropertyDescription("Key")]
         [InputSpecification("Specify the key to get the value for.")]
         [SampleUsage("SomeKey || {vKey}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Key { get; set; }
+        public string v_Key { get; set; }
+
         [PropertyDescription("Output Value Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

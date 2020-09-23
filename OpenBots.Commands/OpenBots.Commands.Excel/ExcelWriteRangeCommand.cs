@@ -9,8 +9,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using DataTable = System.Data.DataTable;
 using Group = OpenBots.Core.Attributes.ClassAttributes.Group;
@@ -22,24 +21,28 @@ namespace OpenBots.Commands.Excel
     [Description("This command writes a DataTable to an Excel Worksheet starting from a specific cell address.")]
 
     public class ExcelWriteRangeCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Excel Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Application** command.")]
         [SampleUsage("MyExcelInstance")]
         [Remarks("Failure to enter the correct instance or failure to first call the **Create Application** command will cause an error.")]
-        public string v_InstanceName { get; set; }
+        public string v_InstanceName { get; set; }
+
         [PropertyDescription("DataTable")]
         [InputSpecification("Enter the DataTable to write to the Worksheet.")]
         [SampleUsage("{vDataTable}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DataTableToSet { get; set; }
+        public string v_DataTableToSet { get; set; }
+
         [PropertyDescription("Cell Location")]
         [InputSpecification("Enter the location of the cell to set the DataTable at.")]
         [SampleUsage("A1 || {vCellLocation}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_CellLocation { get; set; }
+        public string v_CellLocation { get; set; }
+
         [PropertyDescription("Add Headers")]
         [PropertyUISelectionOption("Yes")]
         [PropertyUISelectionOption("No")]

@@ -14,8 +14,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Data = System.Data;
 
 namespace OpenBots.Commands.DataTable
@@ -32,7 +31,8 @@ namespace OpenBots.Commands.DataTable
         [SampleUsage("{vDataTable}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DataTable { get; set; }
+        public string v_DataTable { get; set; }
+
         [PropertyDescription("Data")]
         [InputSpecification("Enter Column Names and Data for each column in the DataRow.")]
         [SampleUsage("[ First Name | John ] || [ {vColumn} | {vData} ]")]

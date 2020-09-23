@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Data
 {
@@ -23,14 +22,16 @@ namespace OpenBots.Commands.Data
         [SampleUsage("1/1/2000 || 2500 || {DateTime.Now} || {vNumber}")]
         [Remarks("You can use known text or variables.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_InputData { get; set; }
+        public string v_InputData { get; set; }
+
         [PropertyDescription("Input Data Type")]
         [PropertyUISelectionOption("Date")]
         [PropertyUISelectionOption("Number")]
         [InputSpecification("Select the type of input data.")]
         [SampleUsage("")]
         [Remarks("Select 'Date' if the input data is a Date or 'Number' if it is a Number. Input data of other types will result in an error.")]
-        public string v_FormatType { get; set; }
+        public string v_FormatType { get; set; }
+
         [PropertyDescription("Output Data Format")]
         [InputSpecification("Specify the output data format.")]
         [SampleUsage("MM/dd/yy, hh:mm:ss || C2 || D2 || {vDataFormat}")]

@@ -13,8 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using Diagnostics = System.Diagnostics;
 using Group = OpenBots.Core.Attributes.ClassAttributes.Group;
 
@@ -25,7 +24,8 @@ namespace OpenBots.Commands.Process
     [Description("This command runs custom C# code. The code in this command is compiled and run at runtime when this command is invoked.")]
 
     public class RunCustomCodeCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("C# Code")]
         [InputSpecification("Enter the code to be executed or use the builder to create your custom C# code. "+
                             "The builder contains a Hello World template that you can use to build from.")]
@@ -33,13 +33,15 @@ namespace OpenBots.Commands.Process
         [Remarks("This command only supports the standard framework classes.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowCodeBuilder)]
-        public string v_Code { get; set; }
+        public string v_Code { get; set; }
+
         [PropertyDescription("Arguments")]
         [InputSpecification("Enter arguments that the custom code will receive during execution, split them using commas.")]
         [SampleUsage("hello || {vArg} || hello,world || {vArg1},{vArg2}")]
         [Remarks("This input is optional.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Args { get; set; }
+        public string v_Args { get; set; }
+
         [PropertyDescription("Output Data Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

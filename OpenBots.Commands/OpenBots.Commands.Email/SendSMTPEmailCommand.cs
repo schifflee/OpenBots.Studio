@@ -12,8 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Authentication;
 using System.Threading;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Email
 {
@@ -22,49 +21,57 @@ namespace OpenBots.Commands.Email
     [Description("This command sends an email with optional attachment(s) using SMTP protocol.")]
 
     public class SendSMTPEmailCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Host")]
         [InputSpecification("Define the host/service name that the script should use.")]
         [SampleUsage("smtp.gmail.com || {vHost}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPHost { get; set; }
+        public string v_SMTPHost { get; set; }
+
         [PropertyDescription("Port")]
         [InputSpecification("Define the port number that should be used when contacting the SMTP service.")]
         [SampleUsage("465 || {vPort}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPPort { get; set; }
+        public string v_SMTPPort { get; set; }
+
         [PropertyDescription("Username")]
         [InputSpecification("Define the username to use when contacting the SMTP service.")]
         [SampleUsage("myRobot || {vUsername}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPUserName { get; set; }
+        public string v_SMTPUserName { get; set; }
+
         [PropertyDescription("Password")]
         [InputSpecification("Define the password to use when contacting the SMTP service.")]
         [SampleUsage("password || {vPassword}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPPassword { get; set; }
+        public string v_SMTPPassword { get; set; }
+
         [PropertyDescription("Recipient(s)")]
         [InputSpecification("Enter the email address(es) of the recipient(s).")]
         [SampleUsage("test@test.com || test@test.com;test2@test.com || {vEmail} || {vEmail1};{vEmail2} || {vEmails}")]
         [Remarks("Multiple recipient email addresses should be delimited by a semicolon (;).")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPRecipients { get; set; }
+        public string v_SMTPRecipients { get; set; }
+
         [PropertyDescription("Email Subject")]
         [InputSpecification("Enter the subject of the email.")]
         [SampleUsage("Hello || {vSubject}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPSubject { get; set; }
+        public string v_SMTPSubject { get; set; }
+
         [PropertyDescription("Email Body")]
         [InputSpecification("Enter text to be used as the email body.")]
         [SampleUsage("Dear John, ... || {vBody}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_SMTPBody { get; set; }
+        public string v_SMTPBody { get; set; }
+
         [PropertyDescription("Attachment File Path(s)")]
         [InputSpecification("Enter the file path(s) of the file(s) to attach.")]
         [SampleUsage(@"C:\temp\myFile.xlsx || {vFile} || C:\temp\myFile1.xlsx;C:\temp\myFile2.xlsx || {vFile1};{vFile2} || {vFiles}")]

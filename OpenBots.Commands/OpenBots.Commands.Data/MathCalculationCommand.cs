@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Data
 {
@@ -23,19 +22,22 @@ namespace OpenBots.Commands.Data
         [SampleUsage("(2 + 5) * 3 || ({vNumber1} + {vNumber2}) * {vNumber3}")]
         [Remarks("You can use known numbers or variables.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_MathExpression { get; set; }
+        public string v_MathExpression { get; set; }
+
         [PropertyDescription("Thousand Separator (Optional)")]
         [InputSpecification("Specify the seperator used to identify decimal places.")]
         [SampleUsage(", || . || {vThousandSeparator}")]
         [Remarks("Typically a comma or a decimal point (period), like in 100,000, ',' is a thousand separator.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_ThousandSeparator { get; set; }
+        public string v_ThousandSeparator { get; set; }
+
         [PropertyDescription("Decimal Separator (Optional)")]
         [InputSpecification("Specify the seperator used to identify decimal places.")]
         [SampleUsage(". || , || {vDecimalSeparator}")]
         [Remarks("Typically a comma or a decimal point (period), like in 60.99, '.' is a decimal separator.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DecimalSeparator { get; set; }
+        public string v_DecimalSeparator { get; set; }
+
         [PropertyDescription("Output Result Variable")]
         [InputSpecification("Create a new variable or select a variable from the list.")]
         [SampleUsage("{vUserVariable}")]

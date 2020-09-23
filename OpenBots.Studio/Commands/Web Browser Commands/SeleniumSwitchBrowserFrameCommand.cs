@@ -1,8 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -18,12 +17,14 @@ namespace OpenBots.Commands
     [Description("This command switches between browser frames provided a valid search parameter.")]
    
     public class SeleniumSwitchBrowserFrameCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Browser Instance Name")]
         [InputSpecification("Enter the unique instance that was specified in the **Create Browser** command.")]
         [SampleUsage("MyBrowserInstance")]
         [Remarks("Failure to enter the correct instance name or failure to first call the **Create Browser** command will cause an error.")]
-        public string v_InstanceName { get; set; }
+        public string v_InstanceName { get; set; }
+
         [PropertyDescription("Frame Search Type")]
         [PropertyUISelectionOption("Index")]
         [PropertyUISelectionOption("Name or ID")]
@@ -33,7 +34,8 @@ namespace OpenBots.Commands
         [InputSpecification("Select an option which best fits the search type you would like to use.")]
         [SampleUsage("")]
         [Remarks("")]
-        public string v_SelectionType { get; set; }
+        public string v_SelectionType { get; set; }
+
         [PropertyDescription("Frame Search Parameter")]
         [InputSpecification("Provide the parameter to match (ex. Index, Name or ID).")]
         [SampleUsage("1 || name || {vSearchData}")]

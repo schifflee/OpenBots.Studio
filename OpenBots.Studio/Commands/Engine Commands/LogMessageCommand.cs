@@ -2,8 +2,7 @@
 using Serilog.Events;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -18,7 +17,8 @@ namespace OpenBots.Commands
     [Group("Engine Commands")]
     [Description("This command logs text data to either an engine file or a custom file.")]
     public class LogMessageCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Write Log To")]
         [InputSpecification("Specify the corresponding logging option to save logs to Engine Logs or to a custom File.")]
         [SampleUsage(@"Engine Logs || C:\MyEngineLogs.txt || {vFileVariable}")]
@@ -27,13 +27,15 @@ namespace OpenBots.Commands
             "Logs are all saved in the OpenBots Studio Root Folder in the 'Logs' folder.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFileSelectionHelper)]
-        public string v_LogFile { get; set; }
+        public string v_LogFile { get; set; }
+
         [PropertyDescription("Log Text")]
         [InputSpecification("Specify the log text.")]
         [SampleUsage("Third Step is Complete || {vLogText}")]
         [Remarks("Provide only text data.")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_LogText { get; set; }
+        public string v_LogText { get; set; }
+
         [PropertyDescription("Log Type")]
         [PropertyUISelectionOption("Verbose")]
         [PropertyUISelectionOption("Debug")]

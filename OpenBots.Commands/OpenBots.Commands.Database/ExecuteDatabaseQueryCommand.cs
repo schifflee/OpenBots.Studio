@@ -14,8 +14,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
 using System.Text;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Database
 {
@@ -45,7 +44,8 @@ namespace OpenBots.Commands.Database
         [SampleUsage("SELECT OrderID, CustomerID FROM Orders || {vQuery}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_Query { get; set; }
+        public string v_Query { get; set; }
+
         [PropertyDescription("Query Parameters")]
         [InputSpecification("Define the query parameters.")]
         [SampleUsage("[STRING | @name | {vNameValue}]")]

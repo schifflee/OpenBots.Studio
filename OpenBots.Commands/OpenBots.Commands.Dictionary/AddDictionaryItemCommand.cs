@@ -8,8 +8,7 @@ using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Dictionary
 {
@@ -24,7 +23,8 @@ namespace OpenBots.Commands.Dictionary
         [SampleUsage("{vMyDictionary}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_DictionaryName { get; set; }
+        public string v_DictionaryName { get; set; }
+
         [PropertyDescription("Keys and Values")]
         [InputSpecification("Enter Keys and Values required for the dictionary.")]
         [SampleUsage("[FirstName | John] || [{vKey} | {vValue}]")]

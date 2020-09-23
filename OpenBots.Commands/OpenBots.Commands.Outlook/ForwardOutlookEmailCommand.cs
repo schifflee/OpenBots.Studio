@@ -8,8 +8,7 @@ using OpenBots.Core.Utilities.CommonUtilities;
 using OpenBots.Engine;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace OpenBots.Commands.Outlook
 {
@@ -18,13 +17,15 @@ namespace OpenBots.Commands.Outlook
     [Description("This command forwards a selected email in Outlook.")]
 
     public class ForwardOutlookEmailCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("MailItem")]
         [InputSpecification("Enter the MailItem to forward.")]
         [SampleUsage("{vMailItem}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_MailItem { get; set; }
+        public string v_MailItem { get; set; }
+
         [PropertyDescription("Recipient(s)")]
         [InputSpecification("Enter the email address(es) of the recipient(s).")]
         [SampleUsage("test@test.com || {vEmail} || test@test.com;test2@test.com || {vEmail1};{vEmail2} || {vEmails}")]

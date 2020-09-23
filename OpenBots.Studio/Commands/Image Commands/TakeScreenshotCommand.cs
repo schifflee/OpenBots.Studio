@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
@@ -19,20 +18,23 @@ namespace OpenBots.Commands
     [Group("Image Commands")]
     [Description("This command takes a screenshot and saves it to a specified location.")]
     public class TakeScreenshotCommand : ScriptCommand
-    {
+    {
+
         [PropertyDescription("Window Name")]
         [InputSpecification("Select the name of the window to take a screenshot of.")]
         [SampleUsage("Untitled - Notepad || Current Window || {vWindow}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
-        public string v_WindowName { get; set; }
+        public string v_WindowName { get; set; }
+
         [PropertyDescription("Image Location")]
         [InputSpecification("Enter or Select the path of the folder to save the image to.")]
         [SampleUsage(@"C:\temp || {vFolderPath} || {ProjectPath}")]
         [Remarks("")]
         [PropertyUIHelper(UIAdditionalHelperType.ShowVariableHelper)]
         [PropertyUIHelper(UIAdditionalHelperType.ShowFolderSelectionHelper)]
-        public string v_FolderPath { get; set; }
+        public string v_FolderPath { get; set; }
+
         [PropertyDescription("Image File Name")]
         [InputSpecification("Enter or Select the name of the image file.")]
         [SampleUsage("myFile.png || {vFilename}")]

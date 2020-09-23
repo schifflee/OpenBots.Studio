@@ -14,6 +14,7 @@
 //limitations under the License.
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using OpenBots.Core.UI.Forms;
@@ -23,6 +24,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
     public partial class frmVariableSelector : ThemedForm
     {
         private List<string> _variableList;
+        private string _txtCommandWatermark = "Type Here to Search";
 
         public frmVariableSelector()
         {
@@ -55,9 +57,12 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             DialogResult = DialogResult.OK;
         }
 
-        private void txtSearchVariable_TextChanged(object sender, EventArgs e)
+        private void txtVariableSearch_TextChanged(object sender, EventArgs e)
         {
-            string search = txtSearchVariable.Text;
+            string search = txtVariableSearch.Text;
+
+            if (search == _txtCommandWatermark)
+                return;
 
             if (string.IsNullOrEmpty(search))
             {
@@ -71,6 +76,24 @@ namespace OpenBots.UI.Forms.Supplement_Forms
 
             lstVariables.Items.Clear();
             lstVariables.Items.AddRange(items);
+        }
+
+        private void txtVariableSearch_Enter(object sender, EventArgs e)
+        {
+            if (txtVariableSearch.Text == _txtCommandWatermark)
+            {
+                txtVariableSearch.Text = "";
+                txtVariableSearch.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtVariableSearch_Leave(object sender, EventArgs e)
+        {
+            if (txtVariableSearch.Text == "")
+            {
+                txtVariableSearch.Text = _txtCommandWatermark;
+                txtVariableSearch.ForeColor = Color.LightGray;
+            }
         }
     }
 }

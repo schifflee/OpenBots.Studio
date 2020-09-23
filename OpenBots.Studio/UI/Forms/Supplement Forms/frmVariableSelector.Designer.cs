@@ -33,7 +33,7 @@
             this.lblHeader = new System.Windows.Forms.Label();
             this.uiBtnOk = new OpenBots.Core.UI.Controls.UIPictureButton();
             this.uiBtnCancel = new OpenBots.Core.UI.Controls.UIPictureButton();
-            this.txtSearchVariable = new System.Windows.Forms.TextBox();
+            this.txtVariableSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnCancel)).BeginInit();
             this.SuspendLayout();
@@ -72,7 +72,7 @@
             this.uiBtnOk.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnOk.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnOk.Image")));
             this.uiBtnOk.IsMouseOver = false;
-            this.uiBtnOk.Location = new System.Drawing.Point(15, 297);
+            this.uiBtnOk.Location = new System.Drawing.Point(15, 268);
             this.uiBtnOk.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.uiBtnOk.Name = "uiBtnOk";
             this.uiBtnOk.Size = new System.Drawing.Size(60, 60);
@@ -90,7 +90,7 @@
             this.uiBtnCancel.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnCancel.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnCancel.Image")));
             this.uiBtnCancel.IsMouseOver = false;
-            this.uiBtnCancel.Location = new System.Drawing.Point(75, 297);
+            this.uiBtnCancel.Location = new System.Drawing.Point(75, 268);
             this.uiBtnCancel.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.uiBtnCancel.Name = "uiBtnCancel";
             this.uiBtnCancel.Size = new System.Drawing.Size(60, 60);
@@ -99,24 +99,27 @@
             this.uiBtnCancel.Text = "Cancel";
             this.uiBtnCancel.Click += new System.EventHandler(this.uiBtnCancel_Click);
             // 
-            // txtSearchVariable
+            // txtVariableSearch
             // 
-            this.txtSearchVariable.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchVariable.ForeColor = System.Drawing.Color.SteelBlue;
-            this.txtSearchVariable.Location = new System.Drawing.Point(16, 50);
-            this.txtSearchVariable.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSearchVariable.Name = "txtSearchVariable";
-            this.txtSearchVariable.Size = new System.Drawing.Size(436, 32);
-            this.txtSearchVariable.TabIndex = 20;
-            this.txtSearchVariable.TextChanged += new System.EventHandler(this.txtSearchVariable_TextChanged);
+            this.txtVariableSearch.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVariableSearch.ForeColor = System.Drawing.Color.LightGray;
+            this.txtVariableSearch.Location = new System.Drawing.Point(16, 50);
+            this.txtVariableSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtVariableSearch.Name = "txtVariableSearch";
+            this.txtVariableSearch.Size = new System.Drawing.Size(436, 32);
+            this.txtVariableSearch.TabIndex = 20;
+            this.txtVariableSearch.Text = "Type Here to Search";
+            this.txtVariableSearch.TextChanged += new System.EventHandler(this.txtVariableSearch_TextChanged);
+            this.txtVariableSearch.Enter += new System.EventHandler(this.txtVariableSearch_Enter);
+            this.txtVariableSearch.Leave += new System.EventHandler(this.txtVariableSearch_Leave);
             // 
             // frmVariableSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(471, 380);
-            this.Controls.Add(this.txtSearchVariable);
+            this.ClientSize = new System.Drawing.Size(471, 344);
+            this.Controls.Add(this.txtVariableSearch);
             this.Controls.Add(this.uiBtnOk);
             this.Controls.Add(this.uiBtnCancel);
             this.Controls.Add(this.lblHeader);
@@ -138,6 +141,6 @@
         private OpenBots.Core.UI.Controls.UIPictureButton uiBtnCancel;
         public System.Windows.Forms.ListBox lstVariables;
         public System.Windows.Forms.Label lblHeader;
-        public System.Windows.Forms.TextBox txtSearchVariable;
+        public System.Windows.Forms.TextBox txtVariableSearch;
     }
 }

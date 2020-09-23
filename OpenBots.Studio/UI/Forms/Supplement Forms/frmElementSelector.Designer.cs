@@ -33,6 +33,7 @@
             this.lblHeader = new System.Windows.Forms.Label();
             this.uiBtnOk = new OpenBots.Core.UI.Controls.UIPictureButton();
             this.uiBtnCancel = new OpenBots.Core.UI.Controls.UIPictureButton();
+            this.txtElementSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnCancel)).BeginInit();
             this.SuspendLayout();
@@ -42,7 +43,7 @@
             this.lstElements.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstElements.FormattingEnabled = true;
             this.lstElements.ItemHeight = 28;
-            this.lstElements.Location = new System.Drawing.Point(16, 50);
+            this.lstElements.Location = new System.Drawing.Point(16, 81);
             this.lstElements.Margin = new System.Windows.Forms.Padding(4);
             this.lstElements.Name = "lstElements";
             this.lstElements.Size = new System.Drawing.Size(436, 172);
@@ -71,7 +72,7 @@
             this.uiBtnOk.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnOk.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnOk.Image")));
             this.uiBtnOk.IsMouseOver = false;
-            this.uiBtnOk.Location = new System.Drawing.Point(15, 250);
+            this.uiBtnOk.Location = new System.Drawing.Point(15, 268);
             this.uiBtnOk.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.uiBtnOk.Name = "uiBtnOk";
             this.uiBtnOk.Size = new System.Drawing.Size(60, 60);
@@ -89,7 +90,7 @@
             this.uiBtnCancel.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.uiBtnCancel.Image = ((System.Drawing.Image)(resources.GetObject("uiBtnCancel.Image")));
             this.uiBtnCancel.IsMouseOver = false;
-            this.uiBtnCancel.Location = new System.Drawing.Point(75, 250);
+            this.uiBtnCancel.Location = new System.Drawing.Point(75, 268);
             this.uiBtnCancel.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.uiBtnCancel.Name = "uiBtnCancel";
             this.uiBtnCancel.Size = new System.Drawing.Size(60, 60);
@@ -98,21 +99,35 @@
             this.uiBtnCancel.Text = "Cancel";
             this.uiBtnCancel.Click += new System.EventHandler(this.uiBtnCancel_Click);
             // 
+            // txtElementSearch
+            // 
+            this.txtElementSearch.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtElementSearch.ForeColor = System.Drawing.Color.LightGray;
+            this.txtElementSearch.Location = new System.Drawing.Point(16, 50);
+            this.txtElementSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtElementSearch.Name = "txtElementSearch";
+            this.txtElementSearch.Size = new System.Drawing.Size(436, 32);
+            this.txtElementSearch.TabIndex = 21;
+            this.txtElementSearch.Text = "Type Here to Search";
+            this.txtElementSearch.TextChanged += new System.EventHandler(this.txtElementSearch_TextChanged);
+            this.txtElementSearch.Enter += new System.EventHandler(this.txtElementSearch_Enter);
+            this.txtElementSearch.Leave += new System.EventHandler(this.txtElementSearch_Leave);
+            // 
             // frmElementSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(471, 322);
+            this.ClientSize = new System.Drawing.Size(471, 343);
+            this.Controls.Add(this.txtElementSearch);
             this.Controls.Add(this.uiBtnOk);
             this.Controls.Add(this.uiBtnCancel);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.lstElements);
-            this.Icon = OpenBots.Core.Properties.Resources.OpenBots_ico;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmElementSelector";
             this.Text = "Insert a Element";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.frmElementSelector_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnOk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiBtnCancel)).EndInit();
@@ -126,5 +141,6 @@
         private OpenBots.Core.UI.Controls.UIPictureButton uiBtnCancel;
         public System.Windows.Forms.ListBox lstElements;
         public System.Windows.Forms.Label lblHeader;
+        public System.Windows.Forms.TextBox txtElementSearch;
     }
 }

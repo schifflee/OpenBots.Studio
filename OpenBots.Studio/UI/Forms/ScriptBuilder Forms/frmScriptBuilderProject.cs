@@ -331,8 +331,21 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         {
             try
             {
+                string newName = "";
+                var newNameForm = new frmInputBox("Enter the name of the new folder", "New Folder");
+                newNameForm.txtInput.Text = tvProject.SelectedNode.Name;
+                newNameForm.ShowDialog();
+
+                if (newNameForm.DialogResult == DialogResult.OK)
+                    newName = newNameForm.txtInput.Text;
+                else if (newNameForm.DialogResult == DialogResult.Cancel)
+                    return;
+
+                if (newName.EndsWith(".json"))
+                    throw new Exception("Invalid folder name");
+
                 string selectedNodePath = tvProject.SelectedNode.Tag.ToString();
-                string newFolderPath = Path.Combine(selectedNodePath, "New folder");
+                string newFolderPath = Path.Combine(selectedNodePath, newName);
 
                 if (!Directory.Exists(newFolderPath))
                 {
@@ -453,9 +466,22 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         private void tsmiNewScriptFile_Click(object sender, EventArgs e)
         {
             try
-            {
+            {               
+                string newName = "";
+                var newNameForm = new frmInputBox("Enter the name of the new file without extension", "New File");
+                newNameForm.txtInput.Text = tvProject.SelectedNode.Name;
+                newNameForm.ShowDialog();
+
+                if (newNameForm.DialogResult == DialogResult.OK)
+                    newName = newNameForm.txtInput.Text;
+                else if (newNameForm.DialogResult == DialogResult.Cancel)
+                    return;
+
+                if (newName.EndsWith(".json"))
+                    throw new Exception("Invalid file name");
+
                 string selectedNodePath = tvProject.SelectedNode.Tag.ToString();
-                string newFilePath = Path.Combine(selectedNodePath, "New Script.json");
+                string newFilePath = Path.Combine(selectedNodePath, newName + ".json");
                 UIListView newScriptActions = NewLstScriptActions();
                 List<ScriptVariable> newScripVariables = new List<ScriptVariable>();
                 List<ScriptElement> newScriptElements = new List<ScriptElement>();

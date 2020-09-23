@@ -48,9 +48,10 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.enableSelectedCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disableSelectedCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addRemoveBreakpointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cutSelectedActionssToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copySelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutSelectedCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copySelectedCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteSelectedCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSelectedCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveToParentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyTray = new System.Windows.Forms.NotifyIcon(this.components);
@@ -319,13 +320,14 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.enableSelectedCodeToolStripMenuItem,
             this.disableSelectedCodeToolStripMenuItem,
             this.addRemoveBreakpointToolStripMenuItem,
-            this.cutSelectedActionssToolStripMenuItem,
-            this.copySelectedToolStripMenuItem,
-            this.pasteSelectedToolStripMenuItem,
+            this.cutSelectedCodeToolStripMenuItem,
+            this.copySelectedCodeToolStripMenuItem,
+            this.pasteSelectedCodeToolStripMenuItem,
+            this.deleteSelectedCodeToolStripMenuItem,
             this.moveToParentToolStripMenuItem,
             this.viewCodeToolStripMenuItem});
             this.cmsScriptActions.Name = "cmsScriptActions";
-            this.cmsScriptActions.Size = new System.Drawing.Size(329, 228);
+            this.cmsScriptActions.Size = new System.Drawing.Size(329, 256);
             // 
             // enableSelectedCodeToolStripMenuItem
             // 
@@ -351,29 +353,37 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             this.addRemoveBreakpointToolStripMenuItem.Text = "Add/Remove Breakpoint";
             this.addRemoveBreakpointToolStripMenuItem.Click += new System.EventHandler(this.addRemoveBreakpointToolStripMenuItem_Click);
             // 
-            // cutSelectedActionssToolStripMenuItem
+            // cutSelectedCodeToolStripMenuItem
             // 
-            this.cutSelectedActionssToolStripMenuItem.Name = "cutSelectedActionssToolStripMenuItem";
-            this.cutSelectedActionssToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutSelectedActionssToolStripMenuItem.Size = new System.Drawing.Size(328, 28);
-            this.cutSelectedActionssToolStripMenuItem.Text = "Cut Selected Actions(s)";
-            this.cutSelectedActionssToolStripMenuItem.Click += new System.EventHandler(this.cutSelectedActionssToolStripMenuItem_Click);
+            this.cutSelectedCodeToolStripMenuItem.Name = "cutSelectedCodeToolStripMenuItem";
+            this.cutSelectedCodeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.cutSelectedCodeToolStripMenuItem.Size = new System.Drawing.Size(328, 28);
+            this.cutSelectedCodeToolStripMenuItem.Text = "Cut Selected Code";
+            this.cutSelectedCodeToolStripMenuItem.Click += new System.EventHandler(this.cutSelectedCodeToolStripMenuItem_Click);
             // 
-            // copySelectedToolStripMenuItem
+            // copySelectedCodeToolStripMenuItem
             // 
-            this.copySelectedToolStripMenuItem.Name = "copySelectedToolStripMenuItem";
-            this.copySelectedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copySelectedToolStripMenuItem.Size = new System.Drawing.Size(328, 28);
-            this.copySelectedToolStripMenuItem.Text = "Copy Selected Action(s)";
-            this.copySelectedToolStripMenuItem.Click += new System.EventHandler(this.copySelectedToolStripMenuItem_Click);
+            this.copySelectedCodeToolStripMenuItem.Name = "copySelectedCodeToolStripMenuItem";
+            this.copySelectedCodeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.copySelectedCodeToolStripMenuItem.Size = new System.Drawing.Size(328, 28);
+            this.copySelectedCodeToolStripMenuItem.Text = "Copy Selected Code";
+            this.copySelectedCodeToolStripMenuItem.Click += new System.EventHandler(this.copySelectedCodeToolStripMenuItem_Click);
             // 
-            // pasteSelectedToolStripMenuItem
+            // pasteSelectedCodeToolStripMenuItem
             // 
-            this.pasteSelectedToolStripMenuItem.Name = "pasteSelectedToolStripMenuItem";
-            this.pasteSelectedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteSelectedToolStripMenuItem.Size = new System.Drawing.Size(328, 28);
-            this.pasteSelectedToolStripMenuItem.Text = "Paste Selected Action(s)";
-            this.pasteSelectedToolStripMenuItem.Click += new System.EventHandler(this.pasteSelectedToolStripMenuItem_Click);
+            this.pasteSelectedCodeToolStripMenuItem.Name = "pasteSelectedCodeToolStripMenuItem";
+            this.pasteSelectedCodeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.pasteSelectedCodeToolStripMenuItem.Size = new System.Drawing.Size(328, 28);
+            this.pasteSelectedCodeToolStripMenuItem.Text = "Paste Selected Code";
+            this.pasteSelectedCodeToolStripMenuItem.Click += new System.EventHandler(this.pasteSelectedCodeToolStripMenuItem_Click);
+            // 
+            // deleteSelectedCodeToolStripMenuItem
+            // 
+            this.deleteSelectedCodeToolStripMenuItem.Name = "deleteSelectedCodeToolStripMenuItem";
+            this.deleteSelectedCodeToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteSelectedCodeToolStripMenuItem.Size = new System.Drawing.Size(328, 28);
+            this.deleteSelectedCodeToolStripMenuItem.Text = "Delete Selected Code";
+            this.deleteSelectedCodeToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedCodeToolStripMenuItem_Click);
             // 
             // moveToParentToolStripMenuItem
             // 
@@ -1637,7 +1647,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             // elementRecorderToolStripMenuItem
             // 
             this.elementRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.elementRecorderToolStripMenuItem.Image = Core.Properties.Resources.action_bar_element_recorder;
+            this.elementRecorderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("elementRecorderToolStripMenuItem.Image")));
             this.elementRecorderToolStripMenuItem.Name = "elementRecorderToolStripMenuItem";
             this.elementRecorderToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
             this.elementRecorderToolStripMenuItem.Text = "Web Element Recorder";
@@ -1646,7 +1656,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             // uiRecorderToolStripMenuItem
             // 
             this.uiRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.uiRecorderToolStripMenuItem.Image = Core.Properties.Resources.action_bar_element_recorder;
+            this.uiRecorderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("uiRecorderToolStripMenuItem.Image")));
             this.uiRecorderToolStripMenuItem.Name = "uiRecorderToolStripMenuItem";
             this.uiRecorderToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
             this.uiRecorderToolStripMenuItem.Text = "UI Recorder";
@@ -1655,7 +1665,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             // uiAdvancedRecorderToolStripMenuItem
             // 
             this.uiAdvancedRecorderToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.uiAdvancedRecorderToolStripMenuItem.Image = Core.Properties.Resources.action_bar_element_recorder;
+            this.uiAdvancedRecorderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("uiAdvancedRecorderToolStripMenuItem.Image")));
             this.uiAdvancedRecorderToolStripMenuItem.Name = "uiAdvancedRecorderToolStripMenuItem";
             this.uiAdvancedRecorderToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
             this.uiAdvancedRecorderToolStripMenuItem.Text = "Advanced UI Recorder";
@@ -1905,9 +1915,9 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         private System.Windows.Forms.ToolStripMenuItem enableSelectedCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem disableSelectedCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addRemoveBreakpointToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copySelectedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pasteSelectedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cutSelectedActionssToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copySelectedCodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteSelectedCodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cutSelectedCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem moveToParentToolStripMenuItem;
         private System.Windows.Forms.NotifyIcon notifyTray;
         private System.Windows.Forms.ToolStripMenuItem viewCodeToolStripMenuItem;
@@ -2025,6 +2035,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         private CustomControls.CustomUIControls.UIIconButton uiBtnClearCommandSearch;
         private ToolStripMenuItem breakpointToolStripMenuItem;
         private Core.UI.Controls.UIPictureButton uiBtnBreakpoint;
+        private ToolStripMenuItem deleteSelectedCodeToolStripMenuItem;
     }
 }
 

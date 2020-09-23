@@ -9,7 +9,6 @@ using OpenBots.Commands;
 using OpenBots.Core.Command;
 using OpenBots.Core.Common;
 using OpenBots.Core.Enums;
-using OpenBots.Core.Script;
 using OpenBots.Core.Properties;
 using OpenBots.UI.CustomControls.CustomUIControls;
 using OpenBots.UI.DTOs;
@@ -173,13 +172,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             if (e.KeyCode == Keys.Delete)
             {
                 CreateUndoSnapshot();
-                foreach (ListViewItem itm in _selectedTabScriptActions.SelectedItems)
-                {
-                    _selectedTabScriptActions.Items.Remove(itm);
-                }
-
-                _selectedTabScriptActions.Invalidate();
-                //FormatCommandListView();
+                DeleteSelectedCode();          
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -779,6 +772,54 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             }
         }
 
+        private void DeleteSelectedCode()
+        {
+            foreach (ListViewItem item in _selectedTabScriptActions.SelectedItems)
+            {               
+                switch (((ScriptCommand)item.Tag).CommandName)
+                {
+                    case "LoopCollectionCommand":
+                    case "LoopContinuouslyCommand":
+                    case "LoopNumberOfTimesCommand":
+                    case "BeginLoopCommand":
+                    case "BeginMultiLoopCommand":
+                        FindEndCommand(item, "EndLoopCommand");
+                        break;
+                    case "BeginIfCommand":
+                    case "BeginMultiIfCommand":
+                        FindEndCommand(item, "EndIfCommand");
+                        break;
+                    case "BeginTryCommand":
+                        FindEndCommand(item, "EndTryCommand");
+                        break;
+                    case "BeginRetryCommand":
+                        FindEndCommand(item, "EndRetryCommand");
+                        break;
+                    case "BeginSwitchCommand":
+                        FindEndCommand(item, "EndSwitchCommand");
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            foreach (ListViewItem item in _selectedTabScriptActions.SelectedItems)
+                _selectedTabScriptActions.Items.Remove(item);
+
+            _selectedTabScriptActions.Invalidate();
+        }
+
+        private void FindEndCommand(ListViewItem item, string endCommandName)
+        {
+            for (int itemIndex = item.Index; itemIndex < _selectedTabScriptActions.Items.Count; itemIndex++)
+            {
+                _selectedTabScriptActions.Items[itemIndex].Selected = true;
+                if (((ScriptCommand)_selectedTabScriptActions.Items[itemIndex].Tag).CommandName == endCommandName &&
+                    _selectedTabScriptActions.Items[itemIndex].IndentCount == item.IndentCount)
+                    break;
+            }
+        }
+
         private void SetSelectedCodeToCommented(bool setCommented)
         {
             //warn if nothing was selected
@@ -832,19 +873,24 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             AddRemoveBreakpoint();
         }
 
-        private void cutSelectedActionssToolStripMenuItem_Click(object sender, EventArgs e)
+        private void cutSelectedCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CutRows();
         }
 
-        private void copySelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        private void copySelectedCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CopyRows();
         }
 
-        private void pasteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        private void pasteSelectedCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PasteRows();
+        }
+
+        private void deleteSelectedCodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteSelectedCode();
         }
 
         private void viewCodeToolStripMenuItem_Click(object sender, EventArgs e)

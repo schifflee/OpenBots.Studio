@@ -221,6 +221,8 @@ namespace OpenBots.Commands
                     }
                     else if (NewEngine.IsNewTaskCancelled)
                         parentEngine.uiBtnCancel_Click(null, null);
+                    else //child task never stepped into
+                        parentEngine.IsHiddenTaskEngine = false;
                 });
             }
             else

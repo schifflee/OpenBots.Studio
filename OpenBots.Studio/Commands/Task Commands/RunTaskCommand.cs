@@ -275,11 +275,13 @@ namespace OpenBots.Commands
             AutomationEngineInstance currentScriptEngine = new AutomationEngineInstance(null);
             currentScriptEngine.VariableList.AddRange(editor.ScriptVariables);
             currentScriptEngine.ElementList.AddRange(editor.ScriptElements);
-            var startFile = v_taskPath.ConvertUserVariableToString(currentScriptEngine);
 
+            var startFile = v_taskPath;
             if (startFile.Contains("{ProjectPath}"))
                 startFile = startFile.Replace("{ProjectPath}", editor.ProjectPath);
 
+            startFile = startFile.ConvertUserVariableToString(currentScriptEngine);
+            
             var Sender = (CheckBox)sender;
 
             _assignmentsGridViewHelper.Visible = Sender.Checked;

@@ -107,11 +107,11 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                     ScriptProject = Project.OpenProject(projectBuilder.ExistingConfigPath);
                     _mainFileName = ScriptProject.Main;
 
-                    string mainFilePath = Directory.GetFiles(Path.GetDirectoryName(projectBuilder.ExistingConfigPath), _mainFileName, SearchOption.AllDirectories).FirstOrDefault();
+                    string mainFilePath = Directory.GetFiles(projectBuilder.ExistingProjectPath, _mainFileName, SearchOption.AllDirectories).FirstOrDefault();
                     if (mainFilePath == null || !File.Exists(mainFilePath))
-                        throw new Exception("Attempted to open project from a script that isn't project.config");
+                        throw new Exception("Main script not found");
 
-                    ScriptProjectPath = Path.GetDirectoryName(projectBuilder.ExistingConfigPath);
+                    ScriptProjectPath = projectBuilder.ExistingProjectPath;
                     uiScriptTabControl.TabPages.Clear();
                     //Open Main
                     OpenFile(mainFilePath);
@@ -185,7 +185,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                 fileNode.Text = childFileInfo.Name;
                 fileNode.Tag = childFileInfo.FullName;
                 
-                if (fileNode.Name != _mainFileName && fileNode.Name != "project.config")
+                if (fileNode.Name != "project.config")
                     fileNode.ContextMenuStrip = cmsProjectFileActions;
 
                 if (fileNode.Tag.ToString().ToLower().Contains(".json"))
@@ -398,7 +398,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                     if (File.Exists(Path.Combine(selectedNodePath, copiedNodeFileInfo.Name)))
                         throw new Exception("A file with this name already exists in this location");
 
-                    else if (copiedNodeFileInfo.Name == _mainFileName || copiedNodeFileInfo.Name == "project.config")
+                    else if (copiedNodeFileInfo.Name == "project.config")
                         throw new Exception("This file cannot be copied or moved");
 
                     else
@@ -511,7 +511,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             {
                 string selectedNodePath = tvProject.SelectedNode.Tag.ToString();
                 string selectedNodeName = tvProject.SelectedNode.Text.ToString();
-                if (selectedNodeName != _mainFileName && selectedNodeName != "project.config")
+                if (selectedNodeName != "project.config")
                 {
                     var result = MessageBox.Show($"Are you sure you would like to delete {selectedNodeName}?",
                                              $"Delete {selectedNodeName}", MessageBoxButtons.YesNo);
@@ -551,7 +551,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                 string selectedNodeNameWithoutExtension = Path.GetFileNameWithoutExtension(selectedNodeName);
                 string selectedNodeFileExtension = Path.GetExtension(selectedNodePath);
 
-                if (selectedNodeName != _mainFileName && selectedNodeName != "project.config")
+                if (selectedNodeName != "project.config")
                 {
                     FileInfo selectedNodeDirectoryInfo = new FileInfo(selectedNodePath);
 
@@ -587,9 +587,18 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                     }
 
                     FileSystem.Rename(selectedNodePath, newPath);
+
+                    if (selectedNodeName == _mainFileName)
+                    {
+                        string newMainName = Path.GetFileName(newPath);
+                        _mainFileName = newMainName;
+                        ScriptProject.Main = newMainName;
+                        ScriptProject.SaveProject(newPath);
+                    }
+
                     tvProject.SelectedNode.Name = newName;
                     tvProject.SelectedNode.Text = newName;
-                    tvProject.SelectedNode.Tag = newPath;
+                    tvProject.SelectedNode.Tag = newPath;                   
                 }
             }
             catch (Exception ex)

@@ -58,9 +58,10 @@ namespace OpenBots.UI.Forms.Supplement_Forms
         private void btnOpenProject_Click(object sender, EventArgs e)
         {
             ExistingConfigPath = txtExistingProjectLocation.Text.Trim();
-            if (ExistingConfigPath == string.Empty || !File.Exists(ExistingConfigPath))
+            if (ExistingConfigPath == string.Empty || !File.Exists(ExistingConfigPath) || 
+                Path.GetFileName(ExistingConfigPath) != "project.config")
             {
-                lblError.Text = "Error: Please enter a valid project path";
+                lblError.Text = "Error: Please enter a valid project.config path";
             }
             else
             {
@@ -76,6 +77,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 txtNewProjectLocation.Text = fbd.SelectedPath;
+                txtNewProjectLocation.Focus();
             }
         }
 
@@ -86,6 +88,37 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 txtExistingProjectLocation.Text = ofd.FileName;
+                txtExistingProjectLocation.Focus();
+            }
+        }
+
+        private void txtNewProjectName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnCreateProject_Click(sender, e);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }           
+        }
+
+        private void txtNewProjectLocation_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnCreateProject_Click(sender, e);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void txtExistingProjectLocation_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnOpenProject_Click(sender, e);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
     }

@@ -55,7 +55,7 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
             var projectPathVariable = new ScriptVariable
             {
                 VariableName = "ProjectPath",
-                VariableValue = null
+                VariableValue = "Value Provided at Runtime"
             };
             _scriptVariables.Add(projectPathVariable);
             GenerateRecentFiles();

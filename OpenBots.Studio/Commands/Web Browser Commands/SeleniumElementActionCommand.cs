@@ -206,9 +206,11 @@ namespace OpenBots.Commands
                     try
                     {
                         element = FindElement(engine, seleniumInstance, seleniumSearchParamRows);
-                             
+
                         if (element == null)
                             throw elementSearchException;
+                        else
+                            break;
                     }
                     catch (Exception)
                     {
@@ -601,11 +603,15 @@ namespace OpenBots.Commands
             SeleniumAction_SelectionChangeCommitted(null, null);
         }
 
-        public bool ElementExists(object sender, string searchType, string elementName)
+        public bool ElementExists(object sender, string searchMethod, string parameterName)
         {
             //get engine reference
             var engine = (AutomationEngineInstance)sender;
             List<string[]> seleniumSearchParamRows = new List<string[]>();
+            seleniumSearchParamRows.Add(new string[]
+            {
+                string.Empty, searchMethod, parameterName
+            });
 
             //get stored app object
             var browserObject = v_InstanceName.GetAppInstance(engine);

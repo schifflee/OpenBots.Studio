@@ -483,7 +483,7 @@ namespace OpenBots.Commands
 
                     if (sender != null)
                     {
-                        actionParameters.Rows.Add("Selenium Instance Name", "default");
+                        actionParameters.Rows.Add("Selenium Instance Name", "DefaultBrowser");
                         actionParameters.Rows.Add("Element Search Method", "");
                         actionParameters.Rows.Add("Element Search Parameter", "");
                         actionParameters.Rows.Add("True When", "");
@@ -949,7 +949,7 @@ namespace OpenBots.Commands
                                                 select rw.Field<string>("Parameter Value")).FirstOrDefault();
 
                 SeleniumElementActionCommand newElementActionCommand = new SeleniumElementActionCommand();
-                newElementActionCommand.v_InstanceName = instanceName.ConvertUserVariableToString(engine);
+                newElementActionCommand.v_InstanceName = instanceName;
                 bool elementExists = newElementActionCommand.ElementExists(sender, searchMethod, parameterName);
                 loopResult = elementExists;
 

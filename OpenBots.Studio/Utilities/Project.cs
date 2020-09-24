@@ -46,7 +46,7 @@ namespace OpenBots.Utilities
             }
             catch (Exception)
             {
-                throw new Exception("Project Directory Not Found. Saving File Externally.");
+                throw new Exception("Project Directory Not Found. File Saved Externally");
             }                       
         }
 

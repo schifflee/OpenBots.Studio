@@ -611,7 +611,8 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
         #region Project Pane Buttons
         private void uiBtnRefresh_Click(object sender, EventArgs e)
         {
-            tvProject.Refresh();
+            tvProject.CollapseAll();
+            tvProject.TopNode.Expand();
         }
 
         private void uiBtnExpand_Click(object sender, EventArgs e)

@@ -70,21 +70,17 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                 {                    
                     //Serialize main script
                     var mainScript = Script.SerializeScript(mainScriptActions.Items, mainScriptVariables, mainScriptElements,
-                                                            mainScriptPath);                  
+                                                            mainScriptPath);
                     //Create new project
-                    Project proj = new Project(projectBuilder.NewProjectName);
-                    _mainFileName = proj.Main;
+                    ScriptProject = new Project(projectBuilder.NewProjectName);
+                    _mainFileName = ScriptProject.Main;
 
                     //create config file
-                    File.WriteAllText(configPath, JsonConvert.SerializeObject(proj));
+                    File.WriteAllText(configPath, JsonConvert.SerializeObject(ScriptProject));
 
-                    //Save new project
-                    proj.SaveProject(mainScriptPath);
-                    //Open new project
-                    ScriptProject = Project.OpenProject(configPath);
-                    //Open main script
                     OpenFile(mainScriptPath);
                     ScriptFilePath = mainScriptPath;
+
                     //Show success dialog
                     Notify("Project has been created successfully!");
                 }
@@ -108,11 +104,12 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
                     _mainFileName = ScriptProject.Main;
 
                     string mainFilePath = Directory.GetFiles(projectBuilder.ExistingProjectPath, _mainFileName, SearchOption.AllDirectories).FirstOrDefault();
-                    if (mainFilePath == null || !File.Exists(mainFilePath))
+                    if (mainFilePath == null)
                         throw new Exception("Main script not found");
 
                     ScriptProjectPath = projectBuilder.ExistingProjectPath;
                     uiScriptTabControl.TabPages.Clear();
+
                     //Open Main
                     OpenFile(mainFilePath);
                     //show success dialog

@@ -70,7 +70,7 @@ namespace OpenBots.UI.Forms
         {
             //build script path and execute
             var scriptFilePath = Path.Combine(_appSettings.ClientSettings.AttendedTasksFolder, cboSelectedScript.Text);
-
+            var projectName = _projectPath.Split('\\').LastOrDefault();
             //initialize Logger
             Logger engineLogger = null;
             switch (_appSettings.EngineSettings.LoggingSinkType)
@@ -83,13 +83,13 @@ namespace OpenBots.UI.Forms
                         _appSettings.EngineSettings.MinLogLevel);
                     break;
                 case SinkType.HTTP:
-                    engineLogger = new Logging().CreateHTTPLogger(Path.GetDirectoryName(_projectPath), _appSettings.EngineSettings.LoggingValue1, _appSettings.EngineSettings.MinLogLevel);
+                    engineLogger = new Logging().CreateHTTPLogger(projectName, _appSettings.EngineSettings.LoggingValue1, _appSettings.EngineSettings.MinLogLevel);
                     break;
                 case SinkType.SignalR:
                     string[] groupNames = _appSettings.EngineSettings.LoggingValue3.Split(',').Select(x => x.Trim()).ToArray();
                     string[] userIDs = _appSettings.EngineSettings.LoggingValue4.Split(',').Select(x => x.Trim()).ToArray();
 
-                    engineLogger = new Logging().CreateSignalRLogger(Path.GetDirectoryName(_projectPath), _appSettings.EngineSettings.LoggingValue1, _appSettings.EngineSettings.LoggingValue2, 
+                    engineLogger = new Logging().CreateSignalRLogger(projectName, _appSettings.EngineSettings.LoggingValue1, _appSettings.EngineSettings.LoggingValue2, 
                         groupNames, userIDs, _appSettings.EngineSettings.MinLogLevel);
                     break;
             }

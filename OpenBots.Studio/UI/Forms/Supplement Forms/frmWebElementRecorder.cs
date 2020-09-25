@@ -85,11 +85,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                 if (!chkStopOnClick.Checked)
                     lblDescription.Text = _recordingMessage;
 
-                SearchParameters = new DataTable();
-                SearchParameters.Columns.Add("Enabled");
-                SearchParameters.Columns.Add("Parameter Name");
-                SearchParameters.Columns.Add("Parameter Value");
-                SearchParameters.TableName = DateTime.Now.ToString("UIASearchParamTable" + DateTime.Now.ToString("MMddyy.hhmmss"));
+                SearchParameters = NewSearchParameterDataTable();
 
                 //clear all
                 SearchParameters.Rows.Clear();
@@ -290,9 +286,9 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             LastItemClicked = $"[XPath:{_xPath}].[ID:{_id}].[Name:{_name}].[Tag Name:{_tagName}].[Class:{_className}].[Link Text:{_linkText}].[CSS Selector:{cssSelectorString}]";
             lblSubHeader.Text = LastItemClicked;
 
+            SearchParameters = NewSearchParameterDataTable();
             if (IsRecordingSequence)
-            {
-                SearchParameters.Rows.Clear();
+            {                
                 foreach (DataRow row in _parameterSettings.Rows)
                 {
                     switch (row[1].ToString())
@@ -324,7 +320,6 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             }
             else
             {
-                SearchParameters.Rows.Clear();
                 SearchParameters.Rows.Add(true, "XPath", _xPath);
                 SearchParameters.Rows.Add(false, "ID", _id);
                 SearchParameters.Rows.Add(false, "Name", _name);
@@ -631,6 +626,16 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                 if (_browserEngineType != "None")
                     CallBackForm.AddCommandToListView(closeBrowserCommand);
             }            
+        }
+
+        private DataTable NewSearchParameterDataTable()
+        {
+            DataTable searchParameters = new DataTable();
+            searchParameters.Columns.Add("Enabled");
+            searchParameters.Columns.Add("Parameter Name");
+            searchParameters.Columns.Add("Parameter Value");
+            searchParameters.TableName = DateTime.Now.ToString("UIASearchParamTable" + DateTime.Now.ToString("MMddyy.hhmmss"));
+            return searchParameters;
         }
 
         readonly Dictionary<uint, string> _seleniumAdvancedKeyMap = new Dictionary<uint, string>()

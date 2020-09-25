@@ -67,12 +67,8 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             if (!_isRecording)
             {
                 _isRecording = true;
-               
-                SearchParameters = new DataTable();
-                SearchParameters.Columns.Add("Enabled");
-                SearchParameters.Columns.Add("Parameter Name");
-                SearchParameters.Columns.Add("Parameter Value");
-                SearchParameters.TableName = DateTime.Now.ToString("UIASearchParamTable" + DateTime.Now.ToString("MMddyy.hhmmss"));
+
+                SearchParameters = NewSearchParameterDataTable();
 
                 //clear all
                 SearchParameters.Rows.Clear();
@@ -258,7 +254,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             PropertyInfo[] properties = typeof(AutomationElement.AutomationElementInformation).GetProperties();
             Array.Sort(properties, (x, y) => string.Compare(x.Name, y.Name));
 
-            SearchParameters.Rows.Clear();
+            SearchParameters = NewSearchParameterDataTable();
 
             if (IsRecordingSequence)
             {
@@ -469,6 +465,16 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             }
 
             DialogResult = DialogResult.Cancel;
+        }
+
+        private DataTable NewSearchParameterDataTable()
+        {
+            DataTable searchParameters = new DataTable();
+            searchParameters.Columns.Add("Enabled");
+            searchParameters.Columns.Add("Parameter Name");
+            searchParameters.Columns.Add("Parameter Value");
+            searchParameters.TableName = DateTime.Now.ToString("UIASearchParamTable" + DateTime.Now.ToString("MMddyy.hhmmss"));
+            return searchParameters;
         }
     }
 }

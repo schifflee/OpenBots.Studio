@@ -41,6 +41,8 @@ namespace OpenBots.UI.Forms.Supplement_Forms
         private string _recordingMessage = "Recording. Press F2 to save and close.";
         private string _errorMessage = "Error cloning element. Please Try Again.";
 
+        private Point _lastClickedMouseCoordinates;
+
         public frmAdvancedUIElementRecorder()
         {
             _appSettings = new ApplicationSettings();
@@ -150,7 +152,6 @@ namespace OpenBots.UI.Forms.Supplement_Forms
 
         private void GlobalHook_HookStopped(object sender, EventArgs e)
         {
-            GlobalHook_MouseEvent(null, null);
             _isHookStopped = true;
             Close();
         }
@@ -159,7 +160,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
         {
             //mouse down has occured
             if (e != null)
-            {
+            {               
                 //invoke UIA
                 try
                 {
@@ -173,7 +174,20 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                     switch (e.MouseMessage)
                     {
                         case MouseMessages.WmLButtonDown:
-                            clickType = "Left Click";
+                            if (e.MouseCoordinates.X == _lastClickedMouseCoordinates.X &&
+                                e.MouseCoordinates.Y == _lastClickedMouseCoordinates.Y &&
+                                _stopwatch.ElapsedMilliseconds <= 500)
+                            {
+                                _stopwatch.Stop();
+
+                                //remove previous commands generated from single click
+                                for (int i = 0; i < 2; i++)
+                                    _sequenceCommandList.RemoveAt(_sequenceCommandList.Count - 1);
+
+                                clickType = "Double Left Click";
+                            }                              
+                            else
+                                clickType = "Left Click";
                             break;
                         case MouseMessages.WmMButtonDown:
                             clickType = "Middle Click";
@@ -188,6 +202,8 @@ namespace OpenBots.UI.Forms.Supplement_Forms
 
                     if (IsRecordingSequence && _isRecording)
                         BuildElementClickActionCommand(clickType);
+
+                    _lastClickedMouseCoordinates = e.MouseCoordinates;
                 }
                 catch (Exception)
                 {
@@ -307,37 +323,24 @@ namespace OpenBots.UI.Forms.Supplement_Forms
 
         private void BuildElementClickActionCommand(string clickType)
         {
-            //check if previous click was made within 500ms of this to and change to double click if true
-            if ((_sequenceCommandList.Count > 1) && (_sequenceCommandList[_sequenceCommandList.Count - 1] is UIAutomationCommand)
-                && (_sequenceCommandList[_sequenceCommandList.Count - 1] as UIAutomationCommand).v_AutomationType == "Click Element"
-                && (_sequenceCommandList[_sequenceCommandList.Count - 1] as UIAutomationCommand).v_UIAActionParameters.Rows[0].ItemArray[1].ToString() == "Left Click"
-                && _stopwatch.ElapsedMilliseconds <= 500)
+            BuildWaitForElementActionCommand();
+
+            var clickElementActionCommand = new UIAutomationCommand
             {
-                var lastCreatedClickCommand = (UIAutomationCommand)_sequenceCommandList[_sequenceCommandList.Count - 1];
-                lastCreatedClickCommand.v_UIAActionParameters.Rows[0].SetField(1, "Double Left Click");
-                _stopwatch.Stop();
-            }
-            else
-            {
-                BuildWaitForElementActionCommand();
+                v_WindowName = _windowName,
+                v_UIASearchParameters = SearchParameters,
+                v_AutomationType = "Click Element"
+            };
 
-                var clickElementActionCommand = new UIAutomationCommand
-                {
-                    v_WindowName = _windowName,
-                    v_UIASearchParameters = SearchParameters,
-                    v_AutomationType = "Click Element"
-                };
+            DataTable webActionDT = clickElementActionCommand.v_UIAActionParameters;
+            DataRow clickTypeRow = webActionDT.NewRow();
+            clickTypeRow["Parameter Name"] = "Click Type";
+            clickTypeRow["Parameter Value"] = clickType;
+            webActionDT.Rows.Add(clickTypeRow);
 
-                DataTable webActionDT = clickElementActionCommand.v_UIAActionParameters;
-                DataRow clickTypeRow = webActionDT.NewRow();
-                clickTypeRow["Parameter Name"] = "Click Type";
-                clickTypeRow["Parameter Value"] = clickType;
-                webActionDT.Rows.Add(clickTypeRow);
+            _sequenceCommandList.Add(clickElementActionCommand);
 
-                _sequenceCommandList.Add(clickElementActionCommand);
-
-                _stopwatch.Restart();
-            }
+            _stopwatch.Restart();
         }
 
         private void BuildWaitForElementActionCommand()

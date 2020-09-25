@@ -27,6 +27,7 @@ namespace OpenBots.Utilities
         private static Stopwatch _lastMouseMove;
         private static bool _isKeyPressed;
         private static Keys _prevKey;
+        private static MsLlHookStruct _lastClickHookStruct;
 
         private static bool _performMouseClickCapture;
         private static bool _groupMouseMovesIntoSequence;
@@ -372,6 +373,8 @@ namespace OpenBots.Utilities
         //build mouse command
         private static void BuildMouseCommand(IntPtr lParam, MouseMessages mouseMessage)
         {
+            MsLlHookStruct hookStruct = (MsLlHookStruct)Marshal.PtrToStructure(lParam, typeof(MsLlHookStruct));
+
             string mouseEventClickType;
             switch (mouseMessage)
             {
@@ -414,7 +417,8 @@ namespace OpenBots.Utilities
                 return;
 
             if ((GeneratedCommands.Count > 1) && (GeneratedCommands[GeneratedCommands.Count - 1] is SendMouseMoveCommand) 
-                && mouseEventClickType != "None" && _stopWatch.ElapsedMilliseconds <= 500)
+                && mouseEventClickType != "None" && _stopWatch.ElapsedMilliseconds <= 500 
+                && hookStruct.Pt.X == _lastClickHookStruct.Pt.X && hookStruct.Pt.Y == _lastClickHookStruct.Pt.Y)
             {
                 var lastCreatedMouseCommand = (SendMouseMoveCommand)GeneratedCommands[GeneratedCommands.Count - 1];
 
@@ -445,9 +449,7 @@ namespace OpenBots.Utilities
                 //build a pause command to track pause since last command
                 BuildPauseCommand();
 
-                //define new mouse command
-                MsLlHookStruct hookStruct = (MsLlHookStruct)Marshal.PtrToStructure(lParam, typeof(MsLlHookStruct));
-
+                //define new mouse command                
                 var mouseMove = new SendMouseMoveCommand
                 {
                     v_XMousePosition = hookStruct.Pt.X.ToString(),
@@ -467,6 +469,8 @@ namespace OpenBots.Utilities
 
                 GeneratedCommands.Add(mouseMove);
             }
+
+            _lastClickHookStruct = hookStruct;
         }
 
         //build window command

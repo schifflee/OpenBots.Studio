@@ -121,7 +121,7 @@ namespace OpenBots.Commands.File
 
             //create standard group controls
             RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_DirectoryPathOrigin", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_Password", this, editor));
+            RenderedControls.AddRange(commandControls.CreateDefaultPasswordInputGroupFor("v_Password", this, editor));
             RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_PathDestination", this, editor));
             RenderedControls.AddRange(commandControls.CreateDefaultOutputGroupFor("v_OutputUserVariableName", this, editor));
 

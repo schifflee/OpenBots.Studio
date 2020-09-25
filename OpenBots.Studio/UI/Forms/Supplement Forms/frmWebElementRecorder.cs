@@ -15,7 +15,6 @@ using OpenBots.Core.Settings;
 using OpenBots.UI.Forms.ScriptBuilder_Forms;
 using OpenBots.UI.Supplement_Forms;
 using OpenBots.Utilities;
-using System.Diagnostics;
 
 namespace OpenBots.UI.Forms.Supplement_Forms
 {

@@ -160,6 +160,7 @@ namespace OpenBots.UI.CustomControls.CustomUIControls
             uiImages.Add("WriteCreateTextFileCommand", Resources.command_files);
             uiImages.Add("MoveCopyFileCommand", Resources.command_files);
             uiImages.Add("ExtractFilesCommand", Resources.command_files);
+            uiImages.Add("CompressFilesCommand", Resources.command_files);
             uiImages.Add("DeleteFileCommand", Resources.command_files);
             uiImages.Add("RenameFileCommand", Resources.command_files);
             uiImages.Add("WaitForFileCommand", Resources.command_files);

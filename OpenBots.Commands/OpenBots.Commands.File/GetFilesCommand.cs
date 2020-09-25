@@ -47,7 +47,7 @@ namespace OpenBots.Commands.File
             var sourceFolder = v_SourceFolderPath.ConvertUserVariableToString(engine);
 
             //Get File Paths from the folder
-            var filesList = Directory.GetFiles(sourceFolder).ToList();
+            var filesList = Directory.GetFiles(sourceFolder, ".", SearchOption.AllDirectories).ToList();
 
             //Add File Paths to the output variable
             filesList.StoreInUserVariable(engine, v_OutputUserVariableName);

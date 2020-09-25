@@ -145,8 +145,6 @@ namespace OpenBots.UI.Forms
             //set file
             FilePath = null;
 
-            //ProjectName = "";
-
             //get engine settings
             _engineSettings = new ApplicationSettings().GetOrCreateApplicationSettings().EngineSettings;
 

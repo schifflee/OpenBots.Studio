@@ -50,9 +50,7 @@
             this.TransparencyKey = System.Drawing.Color.Black;
             this.Load += new System.EventHandler(this.frmSplash_Load);
             this.ResumeLayout(false);
-
         }
-
         #endregion
     }
 }

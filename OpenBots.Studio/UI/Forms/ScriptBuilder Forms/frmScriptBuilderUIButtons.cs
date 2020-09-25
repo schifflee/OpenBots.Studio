@@ -645,6 +645,9 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 
         private void debugToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (IsScriptRunning)
+                return;
+
             saveToolStripMenuItem_Click(null, null);
             _isDebugMode = true;
             RunScript();
@@ -719,6 +722,9 @@ namespace OpenBots.UI.Forms.ScriptBuilder_Forms
 
         private void runToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (IsScriptRunning)
+                return;
+
             saveToolStripMenuItem_Click(null, null);
             _isDebugMode = false;
             RunScript();

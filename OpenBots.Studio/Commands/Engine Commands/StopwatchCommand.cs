@@ -126,6 +126,14 @@ namespace OpenBots.Commands
             RenderedControls.AddRange(MeasureControls);
           
             return RenderedControls;
+        }     
+
+        public override string GetDisplayValue()
+        {
+            if (v_StopwatchAction == "Measure Stopwatch")
+                return base.GetDisplayValue() + $" [{v_StopwatchAction} - Store Elapsed Time in '{v_OutputUserVariableName}' - Instance Name '{v_InstanceName}']";
+            else
+                return base.GetDisplayValue() + $" [{v_StopwatchAction} - Instance Name '{v_InstanceName}']";
         }
 
         private void StopWatchComboBox_SelectedValueChanged(object sender, EventArgs e)
@@ -135,19 +143,15 @@ namespace OpenBots.Commands
                 foreach (var ctrl in MeasureControls)
                     ctrl.Visible = true;
             }
-            else 
+            else
             {
                 foreach (var ctrl in MeasureControls)
+                {
                     ctrl.Visible = false;
+                    if (ctrl is TextBox)
+                        ((TextBox)ctrl).Clear();
+                }
             }
-        }
-
-        public override string GetDisplayValue()
-        {
-            if (v_StopwatchAction == "Measure Stopwatch")
-                return base.GetDisplayValue() + $" [{v_StopwatchAction} - Store Elapsed Time in '{v_OutputUserVariableName}' - Instance Name '{v_InstanceName}']";
-            else
-                return base.GetDisplayValue() + $" [{v_StopwatchAction} - Instance Name '{v_InstanceName}']";
         }
     }
 }

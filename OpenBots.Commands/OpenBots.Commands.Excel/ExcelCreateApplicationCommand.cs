@@ -1,4 +1,5 @@
-﻿using OpenBots.Core.Attributes.ClassAttributes;
+﻿using Newtonsoft.Json;
+using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
 using OpenBots.Core.Enums;
@@ -58,6 +59,10 @@ namespace OpenBots.Commands.Excel
         [Remarks("")]
         public string v_CloseAllInstances { get; set; }
 
+        [JsonIgnore]
+        [NonSerialized]
+        public List<Control> OpenFileControls;
+
         public ExcelCreateApplicationCommand()
         {
             CommandName = "ExcelCreateApplicationCommand";
@@ -114,7 +119,16 @@ namespace OpenBots.Commands.Excel
 
             RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_InstanceName", this, editor));
             RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_NewOpenWorkbook", this, editor));
-            RenderedControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_FilePath", this, editor));
+            ((ComboBox)RenderedControls[3]).SelectedIndexChanged += OpenFileComboBox_SelectedValueChanged;
+
+            OpenFileControls = new List<Control>();
+            OpenFileControls.AddRange(commandControls.CreateDefaultInputGroupFor("v_FilePath", this, editor));
+
+            foreach (var ctrl in OpenFileControls)
+                ctrl.Visible = false;
+
+            RenderedControls.AddRange(OpenFileControls);
+            
             RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_Visible", this, editor));
             RenderedControls.AddRange(commandControls.CreateDefaultDropdownGroupFor("v_CloseAllInstances", this, editor));
 
@@ -124,6 +138,24 @@ namespace OpenBots.Commands.Excel
         public override string GetDisplayValue()
         {
             return base.GetDisplayValue() + $" [{v_NewOpenWorkbook} - Visible '{v_Visible}' - Close Instances '{v_CloseAllInstances}' - New Instance Name '{v_InstanceName}']";
+        }
+
+        private void OpenFileComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (((ComboBox)RenderedControls[3]).Text == "Open Workbook")
+            {
+                foreach (var ctrl in OpenFileControls)
+                    ctrl.Visible = true;
+            }
+            else
+            {
+                foreach (var ctrl in OpenFileControls)
+                {
+                    ctrl.Visible = false;
+                    if (ctrl is TextBox)
+                        ((TextBox)ctrl).Clear();
+                }
+            }
         }
     }
 }

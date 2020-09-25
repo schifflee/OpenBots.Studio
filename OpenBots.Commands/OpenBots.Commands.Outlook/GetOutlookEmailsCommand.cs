@@ -225,7 +225,11 @@ namespace OpenBots.Commands.Outlook
             else
             {
                 foreach (var ctrl in SavingControls)
+                {
                     ctrl.Visible = false;
+                    if (ctrl is TextBox)
+                        ((TextBox)ctrl).Clear();
+                }
             }
         }
     }

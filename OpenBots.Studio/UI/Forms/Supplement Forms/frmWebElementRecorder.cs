@@ -48,7 +48,6 @@ namespace OpenBots.UI.Forms.Supplement_Forms
         private SeleniumCreateBrowserCommand _createBrowserCommand;
         private ApplicationSettings _appSettings;
         private Point _lastSavedPoint;
-        private Stopwatch _stopwatch;
 
         private string _recordingMessage = "Recording. Press F2 to save and close.";
         private string _errorMessage = "Error cloning element. Please Try Again.";
@@ -71,9 +70,6 @@ namespace OpenBots.UI.Forms.Supplement_Forms
             wbElementRecorder.Navigate(StartURL);
             tbURL.Text = StartURL;
             tbURL.Refresh();
-
-            _stopwatch = new Stopwatch();
-            _stopwatch.Start();
         }
 
         private void frmHTMLElementRecorder_Load(object sender, EventArgs e)
@@ -103,6 +99,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
                 GlobalHook.HookStopped += GlobalHook_HookStopped;
                 GlobalHook.StartElementCaptureHook(chkStopOnClick.Checked);
                 wbElementRecorder.DomClick += wbElementRecorder_DomClick;
+                wbElementRecorder.DomDoubleClick += wbElementRecorder_DomDoubleClick;
                 wbElementRecorder.DomKeyDown += WbElementRecorder_DomKeyDown;
 
                 if (IsRecordingSequence && _isFirstRecordClick)
@@ -131,6 +128,7 @@ namespace OpenBots.UI.Forms.Supplement_Forms
 
                         //remove wait for left mouse down event
                         wbElementRecorder.DomClick -= wbElementRecorder_DomClick;
+                        wbElementRecorder.DomDoubleClick -= wbElementRecorder_DomDoubleClick;
                         wbElementRecorder.DomKeyDown -= WbElementRecorder_DomKeyDown;
                         GlobalHook.HookStopped -= GlobalHook_HookStopped;
 
@@ -204,6 +202,36 @@ namespace OpenBots.UI.Forms.Supplement_Forms
 
             if (chkStopOnClick.Checked)
                 Close();
+        }
+
+        private void wbElementRecorder_DomDoubleClick(object sender, DomMouseEventArgs e)
+        {
+            //mouse down has occured
+            if (e != null)
+            {
+                try
+                {
+                    if (_isRecording)
+                    {
+                        _lastSavedPoint = new Point(e.ClientX, e.ClientY);
+                        LoadSearchParameters(_lastSavedPoint);
+                        lblDescription.Text = _recordingMessage;
+                    }
+
+                    if (IsRecordingSequence && _isRecording)
+                    {
+                        //remove previous commands generated from two single clicks
+                        for(int i = 0; i < 4; i++)
+                            _sequenceCommandList.RemoveAt(_sequenceCommandList.Count - 1);
+
+                        BuildElementClickActionCommand("Double Left Click");
+                    }
+                }
+                catch (Exception)
+                {
+                    lblDescription.Text = _errorMessage;
+                }
+            }
         }
 
         private void WbElementRecorder_DomKeyDown(object sender, DomKeyEventArgs e)
@@ -459,29 +487,15 @@ namespace OpenBots.UI.Forms.Supplement_Forms
 
         private void BuildElementClickActionCommand(string clickType)
         {
-            //check if previous click was made within 500ms of this to and change to double click if true
-            if ((_sequenceCommandList.Count > 1) && (_sequenceCommandList[_sequenceCommandList.Count - 1] is SeleniumElementActionCommand)
-                && (_sequenceCommandList[_sequenceCommandList.Count - 1] as SeleniumElementActionCommand).v_SeleniumElementAction == "Invoke Click" 
-                && _stopwatch.ElapsedMilliseconds <= 500)
-            {
-                var lastCreatedClickCommand = (SeleniumElementActionCommand)_sequenceCommandList[_sequenceCommandList.Count - 1];
-                lastCreatedClickCommand.v_SeleniumElementAction = "Double Left Click";
-                _stopwatch.Stop();
-            }
-            else
-            {
-                BuildWaitForElementActionCommand();
+            BuildWaitForElementActionCommand();
 
-                var clickElementActionCommand = new SeleniumElementActionCommand
-                {
-                    v_InstanceName = _browserInstanceName,
-                    v_SeleniumSearchParameters = SearchParameters,
-                    v_SeleniumElementAction = clickType
-                };
-                _sequenceCommandList.Add(clickElementActionCommand);
-
-                _stopwatch.Restart();
-            }           
+            var clickElementActionCommand = new SeleniumElementActionCommand
+            {
+                v_InstanceName = _browserInstanceName,
+                v_SeleniumSearchParameters = SearchParameters,
+                v_SeleniumElementAction = clickType
+            };
+            _sequenceCommandList.Add(clickElementActionCommand);          
         }
 
         private void BuildWaitForElementActionCommand()

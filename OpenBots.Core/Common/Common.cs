@@ -51,60 +51,6 @@ namespace OpenBots.Core.Common
             return JsonConvert.DeserializeObject<T>(serializedObject, serializerSettings);
         }
 
-        ///// <summary>
-        ///// Returns a path to the underlying Script folder where script file objects are loaded and saved. Used when saved or loading files.
-        ///// </summary>
-        //public static string GetScriptFolderPath()
-        //{
-        //    return GetAppFolderPath() + "My Scripts\\";
-        //}
-        ///// <summary>
-        ///// Returns a path to the storage path for OpenBots objects. Used when accessing the base storage path.
-        ///// </summary>
-        //public static string GetAppFolderPath()
-        //{
-        //    return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\OpenBots\\";
-        //}
-        ///// <summary>
-        ///// Returns a path to the storage path for log objects. Used when accessing the base storage path.
-        ///// </summary>
-        //public static string GetLogFolderPath()
-        //{
-        //    return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\OpenBots\\Logs";
-        //}
-
-        //public static string GetAppDataPath()
-        //{
-        //    return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\OpenBots\\";
-        //}
-
-        /// <summary>
-        /// Returns commands from the AutomationCommands.cs file grouped by Custom 'Group' attribute.
-        /// </summary>
-        // remove it
-        public static List<IGrouping<Attribute, Type>> GetGroupedCommands()
-        {
-            var groupedCommands = Assembly.GetExecutingAssembly().GetTypes()
-                                          .Where(t => t.Namespace == "OpenBots.Core.Automation.Commands")
-                                          .Where(t => t.Name != "ScriptCommand")
-                                          .Where(t => t.IsAbstract == false)
-                                          .Where(t => t.BaseType.Name == "ScriptCommand")
-                                          .Where(t => CommandEnabled(t))
-                                          .GroupBy(t => t.GetCustomAttribute(typeof(Attributes.ClassAttributes.Group)))
-                                          .ToList();
-
-            return groupedCommands;
-        }
-
-        /// <summary>
-        /// Returns boolean indicating if the current command is enabled for use in automation.
-        /// </summary>
-        private static bool CommandEnabled(Type cmd)
-        {
-            var scriptCommand = (ScriptCommand)Activator.CreateInstance(cmd);
-            return scriptCommand.CommandEnabled;
-        }
-
         /// <summary>
         /// Returns a list of system-generated variables for use with automation.
         /// </summary>

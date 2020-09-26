@@ -6,7 +6,7 @@ namespace OpenBots.Core.IO
 {
     public class JavaInterface
     {
-        private Process Create(string jarName, string args)
+        public Process Create(string jarName, string args)
         {
             var jarLibary = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Resources", jarName);
 
@@ -23,34 +23,6 @@ namespace OpenBots.Core.IO
             javaProc.StartInfo.RedirectStandardOutput = true;
 
             return javaProc;
-        }
-
-        public string ExtractPDFText(string pdfFilePath)
-        {
-
-            //create pdf path
-            var pdfPath = "\"" + pdfFilePath + "\"";
-
-            //create args
-            var args = string.Join(" ", pdfPath);
-
-            //create interface process
-            var javaInterface = Create("OpenBots-ExtractPDFText.jar", args);
-
-            //run command line
-            javaInterface.Start();
-
-            //track output
-            var output = javaInterface.StandardOutput.ReadToEnd();
-
-            //wait for exist
-            javaInterface.WaitForExit();
-
-            //close and dispose
-            javaInterface.Close();
-
-            //return data
-            return output;
         }
     }
 }

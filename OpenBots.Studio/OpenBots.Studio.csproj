@@ -250,8 +250,9 @@
     <Compile Include="UI\Forms\Supplement Forms\frmHTMLElementRecorderSettings.Designer.cs">
       <DependentUpon>frmHTMLElementRecorderSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Common\Common.cs" />
+    <Compile Include="Utilities\Documentation\CommandMetaData.cs" />
     <Compile Include="Utilities\Documentation\DocumentationGeneration.cs" />
-    <Compile Include="Utilities\Enums\Enums.cs" />
     <Compile Include="Utilities\GlobalHook.cs" />
     <Compile Include="Utilities\ManifestUpdate.cs" />
     <Compile Include="Commands\API Commands\ExecuteRESTAPICommand.cs" />

@@ -1,5 +1,5 @@
 ﻿
-namespace OpenBots.Core.Documentation
+namespace OpenBots.Studio.Utilities.Documentation
 {
     public class CommandMetaData
     {

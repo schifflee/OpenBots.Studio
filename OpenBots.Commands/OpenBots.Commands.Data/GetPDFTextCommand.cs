@@ -102,7 +102,7 @@ namespace OpenBots.Commands.Data
             JavaInterface javaInterface = new JavaInterface();
 
             //get output from process
-            var result = javaInterface.ExtractPDFText(vSourceFilePath);
+            var result = ExtractPDFText(javaInterface, vSourceFilePath);
 
             //apply to variable
             result.StoreInUserVariable(engine, v_OutputUserVariableName);
@@ -123,6 +123,33 @@ namespace OpenBots.Commands.Data
         public override string GetDisplayValue()
         {
             return base.GetDisplayValue() + $" [Extract Text From '{v_FilePath}' - Store Text in '{v_OutputUserVariableName}']";
+        }
+
+        public string ExtractPDFText(JavaInterface javaInterface, string pdfFilePath)
+        {
+            //create pdf path
+            var pdfPath = "\"" + pdfFilePath + "\"";
+
+            //create args
+            var args = string.Join(" ", pdfPath);
+
+            //create interface process
+            var javaProcess = javaInterface.Create("OpenBots-ExtractPDFText.jar", args);
+
+            //run command line
+            javaProcess.Start();
+
+            //track output
+            var output = javaProcess.StandardOutput.ReadToEnd();
+
+            //wait for exist
+            javaProcess.WaitForExit();
+
+            //close and dispose
+            javaProcess.Close();
+
+            //return data
+            return output;
         }
     }
 }

@@ -58,6 +58,10 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="OpenBots.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\OpenBots.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -116,14 +120,13 @@
     <Compile Include="Attributes\PropertyAttributes\SampleUsage.cs" />
     <Compile Include="Command\ScriptCommand.cs" />
     <Compile Include="Common\Common.cs" />
-    <Compile Include="Documentation\CommandMetaData.cs" />
     <Compile Include="Enums\Enums.cs" />
-    <Compile Include="Infrastructure\ICommandControls.cs" />
-    <Compile Include="Infrastructure\IfrmCommandEditor.cs" />
-    <Compile Include="Infrastructure\IfrmDialog.cs" />
-    <Compile Include="Infrastructure\IfrmScriptBuilder.cs" />
-    <Compile Include="Infrastructure\IfrmScriptEngine.cs" />
-    <Compile Include="Infrastructure\IEngine.cs" />
+    <Compile Include="Interfaces\ICommandControls.cs" />
+    <Compile Include="Interfaces\IfrmCommandEditor.cs" />
+    <Compile Include="Interfaces\IfrmDialog.cs" />
+    <Compile Include="Interfaces\IfrmScriptBuilder.cs" />
+    <Compile Include="Interfaces\IfrmScriptEngine.cs" />
+    <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="IO\Folders.cs" />
     <Compile Include="IO\JavaInterface.cs" />
     <Compile Include="Metrics\ExecutionMetric.cs" />
@@ -133,11 +136,6 @@
     <Compile Include="Model\EngineModel\ScriptError.cs" />
     <Compile Include="Model\EngineModel\ScriptFinishedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Script\Script.cs" />
     <Compile Include="Script\ScriptAction.cs" />
     <Compile Include="Script\ScriptElement.cs" />
@@ -146,9 +144,6 @@
     <Compile Include="Settings\ApplicationSettings.cs" />
     <Compile Include="Settings\ClientSettings.cs" />
     <Compile Include="Settings\EngineSettings.cs" />
-    <Compile Include="Settings\LocalListenerSettings.cs" />
-    <Compile Include="Settings\ServerSettings.cs" />
-    <Compile Include="Settings\WhiteListIPSettings.cs" />
     <Compile Include="UI\Controls\CommandItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -206,7 +201,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\CommandItemControl.resx">
       <DependentUpon>CommandItemControl.cs</DependentUpon>
@@ -219,121 +213,120 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\7z.dll" />
-    <Content Include="Resources\7z.exe" />
-    <Content Include="Resources\action-bar-add-command.png" />
-    <Content Include="Resources\action-bar-clear.png" />
-    <Content Include="Resources\action-bar-debug.png" />
-    <Content Include="Resources\action-bar-element-recorder.png" />
-    <Content Include="Resources\action-bar-element.png" />
-    <Content Include="Resources\action-bar-import.png" />
-    <Content Include="Resources\action-bar-new.png" />
-    <Content Include="Resources\action-bar-open.png" />
-    <Content Include="Resources\action-bar-options.png" />
-    <Content Include="Resources\action-bar-project.png" />
-    <Content Include="Resources\action-bar-record.png" />
-    <Content Include="Resources\action-bar-run.png" />
-    <Content Include="Resources\action-bar-save.png" />
-    <Content Include="Resources\action-bar-saveas.png" />
-    <Content Include="Resources\action-bar-schedule.png" />
-    <Content Include="Resources\action-bar-variable.png" />
-    <Content Include="Resources\action_bar_close.png" />
-    <Content Include="Resources\action_bar_restart.png" />
-    <Content Include="Resources\browser-back.png" />
-    <Content Include="Resources\browser-elements.png" />
-    <Content Include="Resources\browser-forward.png" />
-    <Content Include="Resources\browser-home.png" />
-    <Content Include="Resources\browser-refresh.png" />
-    <Content Include="Resources\browser-save.png" />
-    <Content Include="Resources\chromedriver.exe" />
-    <Content Include="Resources\close-button.png" />
-    <Content Include="Resources\command-begin-if.png" />
-    <Content Include="Resources\command-begin-multi-if.png" />
-    <Content Include="Resources\command-begin-switch.png" />
-    <Content Include="Resources\command-breakpoint.png" />
-    <Content Include="Resources\command-camera.png" />
-    <Content Include="Resources\command-cancel.png" />
-    <Content Include="Resources\command-case.png" />
-    <Content Include="Resources\command-catch.png" />
-    <Content Include="Resources\command-comment.png" />
-    <Content Include="Resources\command-database.png" />
-    <Content Include="Resources\command-database2.png" />
-    <Content Include="Resources\command-dictionary.png" />
-    <Content Include="Resources\command-disabled.png" />
-    <Content Include="Resources\command-element.png" />
-    <Content Include="Resources\command-else.png" />
-    <Content Include="Resources\command-end-if.png" />
-    <Content Include="Resources\command-end-switch.png" />
-    <Content Include="Resources\command-end-try.png" />
-    <Content Include="Resources\command-endloop.png" />
-    <Content Include="Resources\command-error.png" />
-    <Content Include="Resources\command-exception.png" />
-    <Content Include="Resources\command-exitloop.png" />
-    <Content Include="Resources\command-files.png" />
-    <Content Include="Resources\command-folders.png" />
-    <Content Include="Resources\command-function.png" />
-    <Content Include="Resources\command-ignore.png" />
-    <Content Include="Resources\command-input.png" />
-    <Content Include="Resources\command-message.png" />
-    <Content Include="Resources\command-nextloop.png" />
-    <Content Include="Resources\command-nlg.png" />
-    <Content Include="Resources\command-parse.png" />
-    <Content Include="Resources\command-password.png" />
-    <Content Include="Resources\command-pause.png" />
-    <Content Include="Resources\command-regex.png" />
-    <Content Include="Resources\command-remote.png" />
-    <Content Include="Resources\command-resume.png" />
-    <Content Include="Resources\command-run-code.png" />
-    <Content Include="Resources\command-script.png" />
-    <Content Include="Resources\command-search.png" />
-    <Content Include="Resources\command-sequence.png" />
-    <Content Include="Resources\command-server.png" />
-    <Content Include="Resources\command-smtp.png" />
-    <Content Include="Resources\command-spreadsheet.png" />
-    <Content Include="Resources\command-start-process.png" />
-    <Content Include="Resources\command-startloop.png" />
-    <Content Include="Resources\command-step-into.png" />
-    <Content Include="Resources\command-step-over.png" />
-    <Content Include="Resources\command-stop-process.png" />
-    <Content Include="Resources\command-stopwatch.png" />
-    <Content Include="Resources\command-string.png" />
-    <Content Include="Resources\command-system.png" />
-    <Content Include="Resources\command-try.png" />
-    <Content Include="Resources\command-web.png" />
-    <Content Include="Resources\command-window-close.png" />
-    <Content Include="Resources\command-window.png" />
-    <Content Include="Resources\command_folders.bmp" />
-    <Content Include="Resources\copy.png" />
-    <Content Include="Resources\create.png" />
-    <Content Include="Resources\delete.png" />
-    <Content Include="Resources\edit.png" />
-    <Content Include="Resources\error.png" />
-    <Content Include="Resources\executing.png" />
-    <Content Include="Resources\header-backing.png" />
-    <Content Include="Resources\header_backing_dark.png" />
-    <Content Include="Resources\HTMLInputSample.html" />
-    <Content Include="Resources\IEDriverServer.exe" />
-    <Content Include="Resources\links-header - rotated.png" />
-    <Content Include="Resources\links-header.png" />
-    <Content Include="Resources\microsoft-excel-icon.png" />
-    <Content Include="Resources\microsoft-word-icon.png" />
-    <None Include="Resources\OpenBots-ExtractPDFText.jar" />
-    <Content Include="Resources\OpenBots-logo.png" />
-    <None Include="Resources\OpenBots.Updater.exe" />
-    <Content Include="Resources\paste.png" />
-    <Content Include="Resources\pdf-icon.png" />
-    <Content Include="Resources\project-collapse.png" />
-    <Content Include="Resources\project-expand.png" />
-    <Content Include="Resources\project-open-directory.png" />
-    <Content Include="Resources\recent-files.png" />
-    <Content Include="Resources\robot source.png" />
-    <Content Include="Resources\robot-bouncing-transparent.gif" />
-    <Content Include="Resources\robot-bouncing.gif" />
-    <Content Include="Resources\robot-error.png" />
-    <Content Include="Resources\robot-error1.png" />
-    <Content Include="Resources\various-question.png" />
-    <Content Include="Resources\various-record-button.png" />
-    <Content Include="Resources\various-stop-button.png" />
+    <Content Include="Resources\Dependencies\7z.dll" />
+    <Content Include="Resources\Dependencies\7z.exe" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-add-command.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-clear.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-debug.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-element-recorder.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-element.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-import.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-new.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-open.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-options.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-project.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-record.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-run.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-save.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-saveas.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-schedule.png" />
+    <Content Include="Resources\Icons\ActionBar\action-bar-variable.png" />
+    <Content Include="Resources\Icons\ActionBar\action_bar_close.png" />
+    <Content Include="Resources\Icons\ActionBar\action_bar_restart.png" />
+    <Content Include="Resources\Icons\Browser\browser-back.png" />
+    <Content Include="Resources\Icons\Browser\browser-elements.png" />
+    <Content Include="Resources\Icons\Browser\browser-forward.png" />
+    <Content Include="Resources\Icons\Browser\browser-home.png" />
+    <Content Include="Resources\Icons\Browser\browser-refresh.png" />
+    <Content Include="Resources\Icons\Browser\browser-save.png" />
+    <Content Include="Resources\Dependencies\chromedriver.exe" />
+    <Content Include="Resources\Icons\Buttons\close-button.png" />
+    <Content Include="Resources\Icons\Commands\command-begin-if.png" />
+    <Content Include="Resources\Icons\Commands\command-begin-multi-if.png" />
+    <Content Include="Resources\Icons\Commands\command-begin-switch.png" />
+    <Content Include="Resources\Icons\Commands\command-breakpoint.png" />
+    <Content Include="Resources\Icons\Commands\command-camera.png" />
+    <Content Include="Resources\Icons\Commands\command-cancel.png" />
+    <Content Include="Resources\Icons\Commands\command-case.png" />
+    <Content Include="Resources\Icons\Commands\command-catch.png" />
+    <Content Include="Resources\Icons\Commands\command-comment.png" />
+    <Content Include="Resources\Icons\Commands\command-database.png" />
+    <Content Include="Resources\Icons\Commands\command-database2.png" />
+    <Content Include="Resources\Icons\Commands\command-dictionary.png" />
+    <Content Include="Resources\Icons\Commands\command-disabled.png" />
+    <Content Include="Resources\Icons\Commands\command-element.png" />
+    <Content Include="Resources\Icons\Commands\command-else.png" />
+    <Content Include="Resources\Icons\Commands\command-end-if.png" />
+    <Content Include="Resources\Icons\Commands\command-end-switch.png" />
+    <Content Include="Resources\Icons\Commands\command-end-try.png" />
+    <Content Include="Resources\Icons\Commands\command-endloop.png" />
+    <Content Include="Resources\Icons\Commands\command-error.png" />
+    <Content Include="Resources\Icons\Commands\command-exception.png" />
+    <Content Include="Resources\Icons\Commands\command-exitloop.png" />
+    <Content Include="Resources\Icons\Commands\command-files.png" />
+    <Content Include="Resources\Icons\Commands\command-folders.png" />
+    <Content Include="Resources\Icons\Commands\command-function.png" />
+    <Content Include="Resources\Icons\Commands\command-ignore.png" />
+    <Content Include="Resources\Icons\Commands\command-input.png" />
+    <Content Include="Resources\Icons\Commands\command-message.png" />
+    <Content Include="Resources\Icons\Commands\command-nextloop.png" />
+    <Content Include="Resources\Icons\Commands\command-nlg.png" />
+    <Content Include="Resources\Icons\Commands\command-parse.png" />
+    <Content Include="Resources\Icons\Commands\command-password.png" />
+    <Content Include="Resources\Icons\Commands\command-pause.png" />
+    <Content Include="Resources\Icons\Commands\command-regex.png" />
+    <Content Include="Resources\Icons\Commands\command-remote.png" />
+    <Content Include="Resources\Icons\Commands\command-resume.png" />
+    <Content Include="Resources\Icons\Commands\command-run-code.png" />
+    <Content Include="Resources\Icons\Commands\command-script.png" />
+    <Content Include="Resources\Icons\Commands\command-search.png" />
+    <Content Include="Resources\Icons\Commands\command-sequence.png" />
+    <Content Include="Resources\Icons\Commands\command-server.png" />
+    <Content Include="Resources\Icons\Commands\command-smtp.png" />
+    <Content Include="Resources\Icons\Commands\command-spreadsheet.png" />
+    <Content Include="Resources\Icons\Commands\command-start-process.png" />
+    <Content Include="Resources\Icons\Commands\command-startloop.png" />
+    <Content Include="Resources\Icons\Commands\command-step-into.png" />
+    <Content Include="Resources\Icons\Commands\command-step-over.png" />
+    <Content Include="Resources\Icons\Commands\command-stop-process.png" />
+    <Content Include="Resources\Icons\Commands\command-stopwatch.png" />
+    <Content Include="Resources\Icons\Commands\command-string.png" />
+    <Content Include="Resources\Icons\Commands\command-system.png" />
+    <Content Include="Resources\Icons\Commands\command-try.png" />
+    <Content Include="Resources\Icons\Commands\command-web.png" />
+    <Content Include="Resources\Icons\Commands\command-window-close.png" />
+    <Content Include="Resources\Icons\Commands\command-window.png" />
+    <Content Include="Resources\Icons\Commands\command_folders.bmp" />
+    <Content Include="Resources\Icons\Buttons\copy.png" />
+    <Content Include="Resources\Icons\Buttons\create.png" />
+    <Content Include="Resources\Icons\Buttons\delete.png" />
+    <Content Include="Resources\Icons\Buttons\edit.png" />
+    <Content Include="Resources\Icons\Misc\error.png" />
+    <Content Include="Resources\Icons\Misc\executing.png" />
+    <Content Include="Resources\Icons\Misc\header-backing.png" />
+    <Content Include="Resources\Icons\Misc\header_backing_dark.png" />
+    <Content Include="Resources\Samples\HTMLInputSample.html" />
+    <Content Include="Resources\Dependencies\IEDriverServer.exe" />
+    <Content Include="Resources\Icons\Buttons\links-header - rotated.png" />
+    <Content Include="Resources\Icons\Buttons\links-header.png" />
+    <Content Include="Resources\Icons\FileIcons\microsoft-excel-icon.png" />
+    <Content Include="Resources\Icons\FileIcons\microsoft-word-icon.png" />
+    <Content Include="Resources\Icons\Logo\OpenBots-logo.png" />
+    <None Include="Resources\Dependencies\OpenBots.Updater.exe" />
+    <Content Include="Resources\Icons\Buttons\paste.png" />
+    <Content Include="Resources\Icons\FileIcons\pdf-icon.png" />
+    <Content Include="Resources\Icons\Buttons\project-collapse.png" />
+    <Content Include="Resources\Icons\Buttons\project-expand.png" />
+    <Content Include="Resources\Icons\Buttons\project-open-directory.png" />
+    <Content Include="Resources\Icons\Buttons\recent-files.png" />
+    <Content Include="Resources\Icons\Misc\robot source.png" />
+    <Content Include="Resources\Icons\Misc\robot-bouncing-transparent.gif" />
+    <Content Include="Resources\Icons\Misc\robot-bouncing.gif" />
+    <Content Include="Resources\Icons\Misc\robot-error.png" />
+    <Content Include="Resources\Icons\Misc\robot-error1.png" />
+    <Content Include="Resources\Icons\Buttons\various-question.png" />
+    <Content Include="Resources\Icons\Buttons\various-record-button.png" />
+    <Content Include="Resources\Icons\Buttons\various-stop-button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

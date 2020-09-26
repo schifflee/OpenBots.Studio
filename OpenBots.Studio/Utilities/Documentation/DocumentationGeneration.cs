@@ -8,7 +8,8 @@ using OpenBots.Core.Attributes.ClassAttributes;
 using OpenBots.Core.Attributes.PropertyAttributes;
 using OpenBots.Core.Command;
 
-namespace OpenBots.Core.Documentation
+
+namespace OpenBots.Studio.Utilities.Documentation
 {
     /// <summary>
     /// This class generates markdown files to be used in the official OpenBots Website

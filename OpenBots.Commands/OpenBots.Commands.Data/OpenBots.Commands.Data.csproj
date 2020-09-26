@@ -78,7 +78,9 @@
   <ItemGroup>
     <Folder Include="Forms\" />
     <Folder Include="Library\" />
-    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\openbots-ExtractPDFText.jar" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
